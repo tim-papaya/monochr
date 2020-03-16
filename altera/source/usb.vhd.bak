@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity usb_read is
+
+port (
+	clk_in : in std_logic;
+	clk_out : out std_logic
+);
+
+end entity;
+
+architecture usb_read of usb_read is
+
+signal buf : std_logic :='0'; 
+
+begin
+	
+process(clk_in)
+	begin
+		if rising_edge(clk_in) then
+			clk_out <= NOT buf;
+		end if;
+	end process;
+end architecture;

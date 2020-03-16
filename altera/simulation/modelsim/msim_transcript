@@ -1,0 +1,68 @@
+# Reading C:/Program Files (x86)/Altera/modelsim_ase/tcl/vsim/pref.tcl
+# ERROR: No extended dataflow license exists
+# do monochr_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim PE vmap 10.3c Lib Mapping Utility 2014.09 Sep 20 2014
+# vmap -modelsim_quiet work rtl_work 
+# Copying C:/Program Files (x86)/Altera/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:/Program Files (x86)/Altera/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {C:/TIM/Project/fpga_altera/monochr/source/ram.vhd}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 14:31:14 on Dec 25,2019
+# vcom -reportprogress 300 -93 -work work C:/TIM/Project/fpga_altera/monochr/source/ram.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity ram
+# -- Compiling architecture logic of ram
+# End time: 14:31:15 on Dec 25,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/TIM/Project/fpga_altera/monochr/source/memory.vhd}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 14:31:15 on Dec 25,2019
+# vcom -reportprogress 300 -93 -work work C:/TIM/Project/fpga_altera/monochr/source/memory.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity memory
+# -- Compiling architecture memory of memory
+# End time: 14:31:15 on Dec 25,2019, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {C:/TIM/Project/fpga_altera/monochr/source/vhdl_tb.vhd}
+# Model Technology ModelSim ALTERA vcom 10.3c Compiler 2014.09 Sep 20 2014
+# Start time: 14:31:15 on Dec 25,2019
+# vcom -reportprogress 300 -93 -work work C:/TIM/Project/fpga_altera/monochr/source/vhdl_tb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity vhdl_tb
+# -- Compiling architecture vhdl_tb of vhdl_tb
+# End time: 14:31:16 on Dec 25,2019, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneive -L rtl_work -L work -voptargs="+acc"  vhdl_tb
+# vsim -gui "+altera" -l msim_transcript -do "monochr_run_msim_rtl_vhdl.do" 
+# Start time: 14:31:16 on Dec 25,2019
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.vhdl_tb(vhdl_tb)
+# Loading work.memory(memory)
+# Loading work.ram(logic)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# End time: 14:32:09 on Dec 25,2019, Elapsed time: 0:00:53
+# Errors: 0, Warnings: 0

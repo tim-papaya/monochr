@@ -1,0 +1,77 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity monochr is
+
+port (
+-------------------
+--------VGA--------
+-------------------
+	CLK : in std_logic := '1';  -- 50 Mhz
+	RESET : in std_logic := '1';
+	KEY_1 : in std_logic := '1';
+	VGA_RED : out std_logic_vector (4 downto 0):= "00000"; 
+	VGA_GRN : out std_logic_vector (5 downto 0):= "000000"; 
+	VGA_BLU : out std_logic_vector (4 downto 0) := "00000"; 
+	VGA_HS : out std_logic :='1';
+	VGA_VS: out std_logic :='1'
+-------------------
+------MEMORY-------
+-------------------
+	CCD_IN : in std_logic_vector (10 downto 0);
+);
+
+end entity;
+
+architecture monochr of monochr is
+---------------
+---MEMORY------
+---------------
+signal vga_clk_reg : std_logic := '0';
+signal memory_ack_reg : std_logic := '0';
+---------------
+---VGA---------
+---------------
+component vga_test
+	port (
+	clk : in std_logic := '1'; -- 50 MHz
+	rstn : in std_logic := '1';
+	vga_hs : out std_logic;
+	vga_vs: out std_logic;
+	vga_r : out std_logic_vector (4 downto 0); 
+	vga_g : out std_logic_vector (5 downto 0); 
+	vga_b : out std_logic_vector (4 downto 0); 
+	key1 : in std_logic := '1';
+	memory_ack : out std_logic := '0';
+	vga_clk_out : out std_logic
+	);
+end component;
+---------------
+---CCD---------
+---------------
+component vga_test
+	port (
+	
+	);
+end component;
+
+begin
+ COMP_VGA: vga_test port map (CLK,
+										RESET,
+										VGA_HS,
+										VGA_VS,
+										VGA_RED,
+										VGA_GRN,
+										VGA_BLU,
+										KEY_1,
+										vga_clk_reg,
+										memory_ack_reg 
+										);
+ process (vga_clk_reg) 
+ begin
+	if (rising_edge(vga_clk_reg)) then
+		
+	end if;
+ end process;
+ 
+end architecture;

@@ -1,0 +1,308 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+(header "graphic" (version "1.4"))
+(symbol
+	(rect 392 352 560 464)
+	(text "pzs_test" (rect 5 0 46 12)(font "Arial" ))
+	(text "inst" (rect 8 96 25 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk_in" (rect 0 0 28 12)(font "Arial" ))
+		(text "clk_in" (rect 21 27 49 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "key_add" (rect 0 0 42 12)(font "Arial" ))
+		(text "key_add" (rect 21 43 63 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "key_sub" (rect 0 0 42 12)(font "Arial" ))
+		(text "key_sub" (rect 21 59 63 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 168 32)
+		(output)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 136 27 150 39)(font "Arial" ))
+		(line (pt 168 32)(pt 152 32))
+	)
+	(port
+		(pt 168 48)
+		(output)
+		(text "rog" (rect 0 0 15 12)(font "Arial" ))
+		(text "rog" (rect 135 43 150 55)(font "Arial" ))
+		(line (pt 168 48)(pt 152 48))
+	)
+	(port
+		(pt 168 64)
+		(output)
+		(text "clk_adc" (rect 0 0 37 12)(font "Arial" ))
+		(text "clk_adc" (rect 116 59 153 71)(font "Arial" ))
+		(line (pt 168 64)(pt 152 64))
+	)
+	(drawing
+		(rectangle (rect 16 16 152 96))
+	)
+)
+(symbol
+	(rect 936 200 1176 344)
+	(text "memory" (rect 5 0 46 12)(font "Arial" ))
+	(text "inst1" (rect 8 128 31 140)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "ccd_data[10..0]" (rect 0 0 76 12)(font "Arial" ))
+		(text "ccd_data[10..0]" (rect 21 27 97 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk_adc" (rect 0 0 37 12)(font "Arial" ))
+		(text "clk_adc" (rect 21 43 58 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "rog_ccd" (rect 0 0 38 12)(font "Arial" ))
+		(text "rog_ccd" (rect 21 59 59 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "wr_ena" (rect 0 0 34 12)(font "Arial" ))
+		(text "wr_ena" (rect 21 75 55 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "ack_memory" (rect 0 0 64 12)(font "Arial" ))
+		(text "ack_memory" (rect 21 91 85 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "clk_memory" (rect 0 0 61 12)(font "Arial" ))
+		(text "clk_memory" (rect 21 107 82 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112))
+	)
+	(port
+		(pt 240 32)
+		(output)
+		(text "memory_data[10..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "memory_data[10..0]" (rect 135 27 235 39)(font "Arial" ))
+		(line (pt 240 32)(pt 224 32)(line_width 3))
+	)
+	(parameter
+		"MEMORY_SIZE"
+		"1024"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 224 128))
+	)
+	(annotation_block (parameter)(rect 1176 168 1384 200))
+)
+(symbol
+	(rect 688 432 928 608)
+	(text "vga_test" (rect 5 0 48 12)(font "Arial" ))
+	(text "inst2" (rect 8 160 31 172)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 14 12)(font "Arial" ))
+		(text "clk" (rect 21 27 35 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "rstn" (rect 0 0 18 12)(font "Arial" ))
+		(text "rstn" (rect 21 43 39 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "key1" (rect 0 0 24 12)(font "Arial" ))
+		(text "key1" (rect 21 59 45 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "memory_data[10..0]" (rect 0 0 100 12)(font "Arial" ))
+		(text "memory_data[10..0]" (rect 21 75 121 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 240 32)
+		(output)
+		(text "vga_hs" (rect 0 0 36 12)(font "Arial" ))
+		(text "vga_hs" (rect 189 27 225 39)(font "Arial" ))
+		(line (pt 240 32)(pt 224 32))
+	)
+	(port
+		(pt 240 48)
+		(output)
+		(text "vga_vs" (rect 0 0 37 12)(font "Arial" ))
+		(text "vga_vs" (rect 188 43 225 55)(font "Arial" ))
+		(line (pt 240 48)(pt 224 48))
+	)
+	(port
+		(pt 240 64)
+		(output)
+		(text "vga_r[4..0]" (rect 0 0 54 12)(font "Arial" ))
+		(text "vga_r[4..0]" (rect 174 59 228 71)(font "Arial" ))
+		(line (pt 240 64)(pt 224 64)(line_width 3))
+	)
+	(port
+		(pt 240 80)
+		(output)
+		(text "vga_g[5..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "vga_g[5..0]" (rect 172 75 228 87)(font "Arial" ))
+		(line (pt 240 80)(pt 224 80)(line_width 3))
+	)
+	(port
+		(pt 240 96)
+		(output)
+		(text "vga_b[4..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "vga_b[4..0]" (rect 172 91 228 103)(font "Arial" ))
+		(line (pt 240 96)(pt 224 96)(line_width 3))
+	)
+	(port
+		(pt 240 112)
+		(output)
+		(text "memory_ack" (rect 0 0 64 12)(font "Arial" ))
+		(text "memory_ack" (rect 165 107 229 119)(font "Arial" ))
+		(line (pt 240 112)(pt 224 112))
+	)
+	(port
+		(pt 240 128)
+		(output)
+		(text "vga_clk_out" (rect 0 0 60 12)(font "Arial" ))
+		(text "vga_clk_out" (rect 169 123 229 135)(font "Arial" ))
+		(line (pt 240 128)(pt 224 128))
+	)
+	(parameter
+		"LinePeriod"
+		"1344"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"H_SyncPulse"
+		"136"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"H_BackPorch"
+		"160"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"H_ActivePix"
+		"1024"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"H_FrontPorch"
+		"24"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"Hde_start"
+		"296"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"Hde_end"
+		"1320"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"FramePeriod"
+		"806"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"V_SyncPulse"
+		"6"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"V_BackPorch"
+		"29"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"V_ActivePix"
+		"768"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"V_FrontPorch"
+		"3"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"Vde_start"
+		"35"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"Vde_end"
+		"803"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"V_start"
+		""
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 224 160))
+	)
+	(annotation_block (parameter)(rect 712 648 912 872))
+)
+(connector
+	(pt 560 400)
+	(pt 640 400)
+)
+(connector
+	(pt 640 264)
+	(pt 640 400)
+)
+(connector
+	(pt 640 264)
+	(pt 936 264)
+)

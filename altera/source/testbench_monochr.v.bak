@@ -1,0 +1,8 @@
+module testbench_monochr();
+
+reg clk;
+
+monochr uut 
+(
+	.
+);

@@ -1,0 +1,127 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/TIM/Project/fpga_altera/monochr/simulation/modelsim
+Ememory
+Z1 w1577266359
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z4 8C:/TIM/Project/fpga_altera/monochr/source/memory.vhd
+Z5 FC:/TIM/Project/fpga_altera/monochr/source/memory.vhd
+l0
+L4
+VfTifT]5RgZQmKWRg`Be^L2
+!s100 e4cg<^H<]ZXg>mRZhmhSV1
+Z6 OV;C;10.3c;59
+31
+Z7 !s110 1577273475
+!i10b 1
+Z8 !s108 1577273475.340000
+Z9 !s90 -reportprogress|300|-93|-work|work|C:/TIM/Project/fpga_altera/monochr/source/memory.vhd|
+Z10 !s107 C:/TIM/Project/fpga_altera/monochr/source/memory.vhd|
+!i113 1
+Z11 o-93 -work work
+Z12 tExplicit 1
+Amemory
+R2
+R3
+DEx4 work 6 memory 0 22 fTifT]5RgZQmKWRg`Be^L2
+l47
+L29
+VH];kM=W=4o71D50^g`UK41
+!s100 Gl4g82Y=FjIM[oEdVW_RA2
+R6
+31
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Eram
+Z13 w1576235274
+R2
+R3
+R0
+Z14 8C:/TIM/Project/fpga_altera/monochr/source/ram.vhd
+Z15 FC:/TIM/Project/fpga_altera/monochr/source/ram.vhd
+l0
+L26
+VT]df]CJ?9kjE@aDX0n4bD1
+!s100 VA=cO8i_30K^32[Wa>lne0
+R6
+31
+Z16 !s110 1577273474
+!i10b 1
+Z17 !s108 1577273474.971000
+Z18 !s90 -reportprogress|300|-93|-work|work|C:/TIM/Project/fpga_altera/monochr/source/ram.vhd|
+Z19 !s107 C:/TIM/Project/fpga_altera/monochr/source/ram.vhd|
+!i113 1
+R11
+R12
+Alogic
+R2
+R3
+DEx4 work 3 ram 0 22 T]df]CJ?9kjE@aDX0n4bD1
+l42
+L38
+VUloE_1OBiKMT1W<>305IN1
+!s100 kIbF23Yd6Cn]NWLMZY@I31
+R6
+31
+R16
+!i10b 1
+R17
+R18
+R19
+!i113 1
+R11
+R12
+Evhdl_tb
+Z20 w1577273448
+R2
+R3
+R0
+Z21 8C:/TIM/Project/fpga_altera/monochr/source/vhdl_tb.vhd
+Z22 FC:/TIM/Project/fpga_altera/monochr/source/vhdl_tb.vhd
+l0
+L5
+V`Y;Z4c8`h?Q128l@dRGSe2
+!s100 b7b?eb;3DgFR8WbD4dSFU0
+R6
+31
+R7
+!i10b 1
+Z23 !s108 1577273475.703000
+Z24 !s90 -reportprogress|300|-93|-work|work|C:/TIM/Project/fpga_altera/monochr/source/vhdl_tb.vhd|
+Z25 !s107 C:/TIM/Project/fpga_altera/monochr/source/vhdl_tb.vhd|
+!i113 1
+R11
+R12
+Avhdl_tb
+R2
+R3
+DEx4 work 7 vhdl_tb 0 22 `Y;Z4c8`h?Q128l@dRGSe2
+l34
+L8
+V0KDR7UV<G^g^_5gFQS5bS2
+!s100 ^m[m:;0n7`adXmeWWWgC;0
+R6
+31
+R7
+!i10b 1
+R23
+R24
+R25
+!i113 1
+R11
+R12
