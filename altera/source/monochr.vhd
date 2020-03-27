@@ -10,14 +10,14 @@ port (
 ------------------------
 --------VGA-PORT--------
 ------------------------
-	CLK : in std_logic := '1';  -- 50 Mhz
-	RESET : in std_logic := '1';
-	KEY_1 : in std_logic := '1';
-	VGA_RED : out std_logic_vector (4 downto 0):= "00000"; 
-	VGA_GRN : out std_logic_vector (5 downto 0):= "000000"; 
-	VGA_BLU : out std_logic_vector (4 downto 0) := "00000"; 
-	VGA_HS : out std_logic :='1';
-	VGA_VS: out std_logic :='1';
+
+--	RESET : in std_logic := '1';
+--	KEY_1 : in std_logic := '1';
+--	VGA_RED : out std_logic_vector (4 downto 0):= "00000"; 
+--	VGA_GRN : out std_logic_vector (5 downto 0):= "000000"; 
+--	VGA_BLU : out std_logic_vector (4 downto 0) := "00000"; 
+--	VGA_HS : out std_logic :='1';
+--	VGA_VS: out std_logic :='1';
 ------------------------
 ------MEMORY-PORT-------
 ------------------------
@@ -25,15 +25,16 @@ port (
 ------------------------
 ------CCD-PORT----------
 ------------------------
+	CLK : in std_logic := '1';  -- 50 Mhz
 	clk_ccd : out std_logic; -- 2.5 Mhz /clk
 	rog_ccd : out std_logic; -- /rog signal
+	SHUT : out std_logic; -- /shut signal;
 	
 	---ADC---
 	clk_adc : out std_logic;
 		
 	---KEYS FOR CONTROL CLOCK---
-	key_add : in std_logic; -- /decrease output frequency
-	key_sub : in std_logic; -- /decrease output frequency
+	KEY_START : in std_logic;
 ------------------------
 --------USB-PORT--------
 ------------------------
@@ -72,24 +73,24 @@ signal wr_ena : std_logic := '1';
 ---------------------------
 ---VGA-COMPONENT-----------
 ---------------------------
-component vga_test
-	port (
-	clk : in std_logic := '1'; -- 50 MHz
-	rstn : in std_logic := '1';
-	vga_hs : out std_logic;
-	vga_vs: out std_logic;
-	vga_r : out std_logic_vector (4 downto 0); 
-	vga_g : out std_logic_vector (5 downto 0); 
-	vga_b : out std_logic_vector (4 downto 0); 
-	key1 : in std_logic := '1';
-	memory_ack : out std_logic;
-	vga_clk_out : out std_logic;
-	memory_data : in std_logic_vector (10 downto 0)
-	);
-end component;
-
-signal vga_ack_reg : std_logic;
-signal vga_clk_reg : std_logic;
+--component vga_test
+--	port (
+--	clk : in std_logic := '1'; -- 50 MHz
+--	rstn : in std_logic := '1';
+--	vga_hs : out std_logic;
+--	vga_vs: out std_logic;
+--	vga_r : out std_logic_vector (4 downto 0); 
+--	vga_g : out std_logic_vector (5 downto 0); 
+--	vga_b : out std_logic_vector (4 downto 0); 
+--	key1 : in std_logic := '1';
+--	memory_ack : out std_logic;
+--	vga_clk_out : out std_logic;
+--	memory_data : in std_logic_vector (10 downto 0)
+--	);
+--end component;
+--
+--signal vga_ack_reg : std_logic;
+--signal vga_clk_reg : std_logic;
 --------------------------
 ---USB-COMPONENT----------
 --------------------------
@@ -99,6 +100,7 @@ port (
 	
 --	clk_out : out std_logic;
 	TXE : in std_logic := '1';
+	CCD_READY : in std_logic;
 	DATA : out std_logic_vector(7 DOWNTO 0);
 	DATA_IN : in std_logic_vector(7 DOWNTO 0) := "00000000";
 	OE : out std_logic := '1';
@@ -117,13 +119,14 @@ component pzs_test
 	---CCD---
 	clk : out std_logic; -- 2.5 Mhz /clk
 	rog : out std_logic; -- /rog signal
+	SHUT : out std_logic; -- /shut signal;
 	
 	---ADC---
 	clk_adc : out std_logic;
-		
+	CCD_READY : out std_logic;	
+	
 	---KEYS FOR CONTROL CLOCK---
-	key_add : in std_logic; -- /increase output frequency
-	key_sub : in std_logic -- /decrease output frequency
+	KEY_START : in std_logic -- /increase output frequency
 	);
 end component;
 
@@ -133,33 +136,34 @@ signal rog_reg : std_logic;
 signal mem_reg : std_logic := '0';
 signal ack_reg : std_logic := '0';
 signal vga_reg : std_logic := '0';
+signal clk_ready_buf : std_logic;
 signal data_buf_usb :  std_logic_vector(7 DOWNTO 0) := "00000000";
 
 begin
------------------------
----VGA-PORTMAP---------
------------------------
- COMP_VGA: vga_test port map (CLK,
-										RESET,
-										VGA_HS,
-										VGA_VS,
-										VGA_RED,
-										VGA_GRN,
-										VGA_BLU,
-										key_add,
-										vga_ack_reg, 
-										vga_clk_reg,
-										memory_data_reg
-										);
+-------------------------
+-----VGA-PORTMAP---------
+-------------------------
+-- COMP_VGA: vga_test port map (CLK,
+--										RESET,
+--										VGA_HS,
+--										VGA_VS,
+--										VGA_RED,
+--										VGA_GRN,
+--										VGA_BLU,
+--										vga_ack_reg, 
+--										vga_clk_reg,
+--										memory_data_reg
+--										);
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------
 COMP_CCD : pzs_test port map (CLK,                             
                               clk_ccd_reg,
                               rog_reg,
+										SHUT,
                               clk_adc_reg,
-                              key_add,
-                              key_sub
+										clk_ready_buf,
+                              KEY_START
 										);
 -----------------------
 ---USB-PORTMAP---------
@@ -174,6 +178,7 @@ data_buf_usb(6) <= ccd_data(9);
 data_buf_usb(7) <= ccd_data(10);
 COMP_USB : usb port map (CLK_USB,
 								 TXE_USB,
+								 clk_ready_buf,
 								 DATA_USB,
 								 data_buf_usb,
 								 OE_USB,
@@ -182,68 +187,68 @@ COMP_USB : usb port map (CLK_USB,
 -----------------------
 ---MEMORY-PORTMAP------
 -----------------------
-COMP_MEM : memory port map (ccd_data,
-									 clk_adc_reg,
-									 rog_reg,
-									 wr_ena,          
-									 memory_data_reg,
-									 vga_ack_reg,
-									 vga_clk_reg
-								 );
+--COMP_MEM : memory port map (ccd_data,
+--									 clk_adc_reg,
+--									 rog_reg,
+--									 wr_ena,          
+--									 memory_data_reg,
+--									 vga_ack_reg,
+--									 vga_clk_reg
+--								 );
 -----------------------
 ----MEMORY->VGA--------
 -----------------------
-process (clk_adc_reg) 
-	variable cnt : integer := 0;
-	variable tmp : std_logic := '0';
-begin
-	if (rising_edge(clk_adc_reg)) then
-		if (KEY_1 = '0' AND mem_reg = NOT tmp) then
-			cnt := 0;
-			wr_ena <= '1';
-			tmp := mem_reg;
-		else
-			if (cnt <  MEMORY_SIZE) then
-				cnt := cnt + 1;
-			else
-				wr_ena <= '0';
-			end if;
-		end if;
-	end if;
-end process;
-
-
-process (rog_reg) 
-begin
-	if (rising_edge(rog_reg)) then
-		mem_reg <= NOT mem_reg;
-	end if;
-end process;
-
-process (vga_clk_reg) 
-	variable cnt : integer := 0;
-	variable tmp : std_logic := '0';
-begin
-	if (rising_edge(vga_clk_reg)) then
-		if (vga_ack_reg = NOT tmp) then
-			cnt := 0;
-			tmp := vga_ack_reg;
-		else
-			if (cnt <  2) then
-				vga_reg <= '0';
-			else
-				vga_reg <= '1';
-			end if;
-		end if;
-	end if;
-end process;
-
-process (vga_ack_reg) 
-begin
-	if (rising_edge(vga_ack_reg)) then
-		ack_reg <= NOT ack_reg;
-	end if;
-end process;
+--process (clk_adc_reg) 
+--	variable cnt : integer := 0;
+--	variable tmp : std_logic := '0';
+--begin
+--	if (rising_edge(clk_adc_reg)) then
+--		if (KEY_1 = '0' AND mem_reg = NOT tmp) then
+--			cnt := 0;
+--			wr_ena <= '1';
+--			tmp := mem_reg;
+--		else
+--			if (cnt <  MEMORY_SIZE) then
+--				cnt := cnt + 1;
+--			else
+--				wr_ena <= '0';
+--			end if;
+--		end if;
+--	end if;
+--end process;
+--
+--
+--process (rog_reg) 
+--begin
+--	if (rising_edge(rog_reg)) then
+--		mem_reg <= NOT mem_reg;
+--	end if;
+--end process;
+----
+--process (vga_clk_reg) 
+--	variable cnt : integer := 0;
+--	variable tmp : std_logic := '0';
+--begin
+--	if (rising_edge(vga_clk_reg)) then
+--		if (vga_ack_reg = NOT tmp) then
+--			cnt := 0;
+--			tmp := vga_ack_reg;
+--		else
+--			if (cnt <  2) then
+--				vga_reg <= '0';
+--			else
+--				vga_reg <= '1';
+--			end if;
+--		end if;
+--	end if;
+--end process;
+--
+--process (vga_ack_reg) 
+--begin
+--	if (rising_edge(vga_ack_reg)) then
+--		ack_reg <= NOT ack_reg;
+--	end if;
+--end process;
 	
 --process (vga_clk_reg) 
 --	variable cnt_read : integer := 0;

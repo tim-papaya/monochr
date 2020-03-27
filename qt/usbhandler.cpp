@@ -146,9 +146,9 @@ bool UsbHandler::readData(char *rxBuffer)
                            rxBytes,
                            &bytesReceived);
         if (ftStatus == FT_OK) {
-            qDebug() << "First five chars : ";
-            for (int i = 0; i < 5; i++) {
-                qDebug() << rxBuffer[i] << ":" << static_cast<int>(rxBuffer[i]);
+            qDebug() << "First ten chars : ";
+            for (int i = 0; i < 10; i++) {
+                qDebug() << rxBuffer[i] << ":" << static_cast<uchar>(rxBuffer[i]);
             }
         }
         else

@@ -74,6 +74,28 @@ void MainWindow::on_readBtn_clicked()
         str += buffer[i];
         str += ' ';
     }
+    QGraphicsScene *scene = new QGraphicsScene();
+    QPen redPen(Qt::red);
+
+    scene->setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
+
+    int uns_numb = 0;
+    int dbl_numb = 0;
+    int all_numb = 0;
+
+    for (int i = 0; i < size_buffer; i++) {
+        if (static_cast<unsigned>(buffer[i]) < 0 )
+            uns_numb++;
+        if (static_cast<qreal>(buffer[i]) < 0 )
+            dbl_numb++;
+        if (static_cast<qreal>(static_cast<unsigned>(buffer[i])) < 0 )
+            all_numb++;
+    }
+    qDebug() << "unsigned :" << uns_numb << "double :" << dbl_numb << "all :" << all_numb;
+    for (int i = 0; i < size_buffer; i++) {
+        scene->addLine(i,static_cast<uchar>(buffer[i]),i,static_cast<uchar>(buffer[i]),redPen);
+    }
+    ui->graphicsView->setScene(scene);
     ui->textBrowser->setPlainText(str);
 }
 
