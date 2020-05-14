@@ -18,14 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    usbhandler.cpp \
-    usbthread.cpp
+    usbhandler.cpp
 
 HEADERS += \
     mainwindow.h \
     usb/ftd2xx.h \
-    usbhandler.h \
-    usbthread.h
+    usbhandler.h
 
 FORMS += \
     mainwindow.ui

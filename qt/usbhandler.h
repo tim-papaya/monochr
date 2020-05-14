@@ -4,7 +4,6 @@
 #include <ftd2xx.h>
 #include <QDebug>
 
-
 class UsbHandler {
 public:
     UsbHandler();

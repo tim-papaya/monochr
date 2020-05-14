@@ -17,7 +17,7 @@
 -- PROGRAM "Quartus II 64-Bit"
 -- VERSION "Version 14.1.0 Build 186 12/03/2014 SJ Web Edition"
 
--- DATE "03/27/2020 17:35:38"
+-- DATE "05/08/2020 17:17:46"
 
 -- 
 -- Device: Altera EP4CE10F17C8 Package FBGA256
@@ -421,9 +421,9 @@ SIGNAL \COMP_USB|compl_buf~q\ : std_logic;
 SIGNAL \COMP_USB|WR~0_combout\ : std_logic;
 SIGNAL \COMP_USB|WR~q\ : std_logic;
 SIGNAL \COMP_CCD|count\ : std_logic_vector(31 DOWNTO 0);
-SIGNAL \COMP_CCD|ALT_INV_clk_div~clkctrl_outclk\ : std_logic;
 SIGNAL \COMP_USB|ALT_INV_WR~q\ : std_logic;
 SIGNAL \COMP_CCD|ALT_INV_clk_adc_buf~q\ : std_logic;
+SIGNAL \COMP_CCD|ALT_INV_clk_div~clkctrl_outclk\ : std_logic;
 
 BEGIN
 
@@ -446,9 +446,9 @@ ww_devpor <= devpor;
 \COMP_CCD|clk_div~clkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \COMP_CCD|clk_div~q\);
 
 \CLK~inputclkctrl_INCLK_bus\ <= (vcc & vcc & vcc & \CLK~input_o\);
-\COMP_CCD|ALT_INV_clk_div~clkctrl_outclk\ <= NOT \COMP_CCD|clk_div~clkctrl_outclk\;
 \COMP_USB|ALT_INV_WR~q\ <= NOT \COMP_USB|WR~q\;
 \COMP_CCD|ALT_INV_clk_adc_buf~q\ <= NOT \COMP_CCD|clk_adc_buf~q\;
+\COMP_CCD|ALT_INV_clk_div~clkctrl_outclk\ <= NOT \COMP_CCD|clk_div~clkctrl_outclk\;
 
 -- Location: IOOBUF_X7_Y24_N16
 \clk_ccd~output\ : cycloneive_io_obuf

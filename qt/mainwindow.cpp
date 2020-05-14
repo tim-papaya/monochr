@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
-#include "usbthread.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -59,6 +58,28 @@ void MainWindow::on_showDevicesBtn_clicked()
 
 void MainWindow::on_readBtn_clicked()
 {
+    connect(&usbThread, )
+}
+
+void MainWindow::on_initBtn_clicked()
+{
+    constexpr int size_buffer = 65536;
+    QString str = ui->deviceList->currentText();
+
+    qDebug() << "device :" << str;
+    QByteArray qb = str.toUtf8();
+    char* desc = qb.data();
+
+    usb.setSyncFIFO(size_buffer, size_buffer, desc);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    usb.closeHandle();
+}
+
+void MainWindow::read()
+{
     constexpr int size_buffer = 65536;
 
     char buffer [size_buffer];
@@ -93,25 +114,8 @@ void MainWindow::on_readBtn_clicked()
     }
     qDebug() << "unsigned :" << uns_numb << "double :" << dbl_numb << "all :" << all_numb;
     for (int i = 0; i < size_buffer; i++) {
-        scene->addLine(i,static_cast<uchar>(buffer[i]),i,static_cast<uchar>(buffer[i]),redPen);
+        scene->addLine(i, static_cast<uchar>(buffer[i]), i, static_cast<uchar>(buffer[i]), redPen);
     }
     ui->graphicsView->setScene(scene);
     ui->textBrowser->setPlainText(str);
-}
-
-void MainWindow::on_initBtn_clicked()
-{
-    constexpr int size_buffer = 65536;
-    QString str = ui->deviceList->currentText();
-
-    qDebug() << "device :" << str;
-    QByteArray qb = str.toUtf8();
-    char* desc = qb.data();
-
-    usb.setSyncFIFO(size_buffer, size_buffer, desc);
-}
-
-void MainWindow::on_pushButton_clicked()
-{
-    usb.closeHandle();
 }
