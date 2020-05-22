@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <usbhandler.h>
 #include <QThread>
-#include <reader.h>
+#include <QGraphicsScene>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,10 +18,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QThread usbThread;
+    QThread *usbThread;
 
-
-private slots:
+public slots:
     void on_showDevicesBtn_clicked();
 
     void on_readBtn_clicked();
@@ -30,10 +29,11 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void read();
+    void read(QString* result);
 
 private:
     Ui::MainWindow *ui;
     UsbHandler usb;
+    QGraphicsScene scene;
 };
 #endif // MAINWINDOW_H

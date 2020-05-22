@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
+#include "reader.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -58,7 +59,16 @@ void MainWindow::on_showDevicesBtn_clicked()
 
 void MainWindow::on_readBtn_clicked()
 {
-    connect(&usbThread, )
+    usbThread = new QThread();
+    scene.setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
+
+    Reader *reader = new Reader(&usb, &scene, this);
+
+    connect(reader, SIGNAL(ready(QString*)), this, SLOT(read(QString*)));
+    connect(usbThread, SIGNAL(started()), reader, SLOT(readUsb()));
+    connect(reader, SIGNAL(finished()), usbThread, SLOT(terminate()));
+
+    usbThread->start();
 }
 
 void MainWindow::on_initBtn_clicked()
@@ -78,44 +88,11 @@ void MainWindow::on_pushButton_clicked()
     usb.closeHandle();
 }
 
-void MainWindow::read()
+void MainWindow::read(QString* result)
 {
-    constexpr int size_buffer = 65536;
-
-    char buffer [size_buffer];
-
-    for(int i = 0; i < size_buffer; i++)
-          buffer[i] = 0;
-
-    usb.readData(buffer);
-
-    QString str;
-
-    for (int i = 0; i < size_buffer; i++) {
-        str += buffer[i];
-        str += ' ';
-    }
-    QGraphicsScene *scene = new QGraphicsScene();
-    QPen redPen(Qt::red);
-
-    scene->setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
-
-    int uns_numb = 0;
-    int dbl_numb = 0;
-    int all_numb = 0;
-
-    for (int i = 0; i < size_buffer; i++) {
-        if (static_cast<unsigned>(buffer[i]) < 0 )
-            uns_numb++;
-        if (static_cast<qreal>(buffer[i]) < 0 )
-            dbl_numb++;
-        if (static_cast<qreal>(static_cast<unsigned>(buffer[i])) < 0 )
-            all_numb++;
-    }
-    qDebug() << "unsigned :" << uns_numb << "double :" << dbl_numb << "all :" << all_numb;
-    for (int i = 0; i < size_buffer; i++) {
-        scene->addLine(i, static_cast<uchar>(buffer[i]), i, static_cast<uchar>(buffer[i]), redPen);
-    }
-    ui->graphicsView->setScene(scene);
-    ui->textBrowser->setPlainText(str);
+    ui->graphicsView->setScene(&scene);
+    //ui->textBrowser->setPlainText(*result);
+    //delete result;
+    usbThread->sleep(5);
+    qDebug() << "HERE";
 }

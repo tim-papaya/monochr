@@ -18,10 +18,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    reader.cpp \
     usbhandler.cpp
 
 HEADERS += \
     mainwindow.h \
+    reader.h \
     usb/ftd2xx.h \
     usbhandler.h
 
