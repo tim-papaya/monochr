@@ -1,0 +1,17 @@
+-- begin_signature
+-- usb
+-- end_signature
+WIDTH=8;
+DEPTH=8;
+
+ADDRESS_RADIX=UNS;
+DATA_RADIX=BIN;
+
+CONTENT BEGIN
+	5 :	01001101;
+	4 :	01001001;
+	3 :	01010100;
+	2 :	01010101;
+	1 :	01010011;
+	0 :	01000100;
+END;

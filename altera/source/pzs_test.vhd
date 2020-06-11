@@ -13,7 +13,8 @@ port (
 	SHUT : out std_logic; -- /shut signal;
 	---ADC---
 	clk_adc : out std_logic;
-	CCD_READY : out std_logic;	
+	ccd_ready : out std_logic;
+	ccd_line : out std_logic;
 	---KEYS FOR CONTROL CLOCK---
 	KEY_START : in std_logic
 );
@@ -80,24 +81,31 @@ process (clk_adc_div)
 -- rog signal - for reset
 -- clk - clock 
  process (clk_div)
-	variable count : integer := 4187; -- counter for status
+	variable count : integer := 4192; -- counter for status
 	variable start_buf : std_logic := '0';
+	variable ccd_ready_buf : std_logic := '0';
  begin
 	if rising_edge(clk_div) then
-		
+	
+		ccd_ready <= ccd_ready_buf;
 --	timing logic 
-		if (count < 3) then
+		if (count = 0) then
 			rog_buf <= '0';
 			clk_buf <= '1';
-		elsif (count >=  3 AND count < 3495) then
+			ccd_line <= '1';
+			ccd_ready_buf := '0';
+		elsif (count < 7) then
+			ccd_ready_buf := NOT ccd_ready_buf;
+		elsif (count >=  7 AND count < 3495) then
 			shut_buf <= '1';
 			rog_buf <= '1';
 			clk_buf <= NOT clk_buf;
+			ccd_line <= '0';
 			
 			if (clk_buf = '0') then
-				CCD_READY <= '1';
+				ccd_ready_buf := '1';
 			else
-				CCD_READY <= '0';
+				ccd_ready_buf := '0';
 			end if;
 		elsif (count >=  3495 AND count < 3500) then
 			shut_buf <= '0';
@@ -107,22 +115,29 @@ process (clk_adc_div)
 			clk_buf <= NOT clk_buf;
 			
 			if (clk_buf = '0') then
-				CCD_READY <= '1';
+				ccd_ready_buf := '1';
 			else
-				CCD_READY <= '0';
-			end if;			
+				ccd_ready_buf := '0';
+			end if;
+		elsif (count = 4186) then
+			ccd_line <= '1';
+			ccd_ready_buf := '0';
+		elsif (count >= 4187 AND count < 4193)	then
+			ccd_ready_buf := NOT ccd_ready_buf;
+		elsif (count >= 4183 AND count < 4196) then
+			ccd_line <= '0';
 		else
 			rog_buf <= '1';
 			clk_buf <= '1';
 		end if;
 		
 -- counter logic
-		if (count = 4187 AND start_buf = '0') then -- AND KEY_START = '0'
-			count := 0;
+		if (count = 4192 AND start_buf = '0') then -- AND KEY_START = '0' Вместо start_buf нужно вставить KEY_START,
+			count := 0;										 -- чтобы переводить в режим ожидания
 			start_buf := '1';
-		elsif (count = 4187 ) then -- AND KEY_START = '1'
-			start_buf := '0'; 
-		elsif (count < 4187)	then
+		elsif (count = 4192 ) then -- AND KEY_START = '1'
+			start_buf := '0';
+		elsif (count < 4192)	then
 			count := count + 1;
 		end if;		
 	end if; 

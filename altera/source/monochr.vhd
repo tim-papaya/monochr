@@ -104,7 +104,8 @@ port (
 	DATA : out std_logic_vector(7 DOWNTO 0);
 	DATA_IN : in std_logic_vector(7 DOWNTO 0) := "00000000";
 	OE : out std_logic := '1';
-	WR : out std_logic := '1'
+	WR : out std_logic := '1';
+	ccd_line : in std_logic
 );
 
 end component;
@@ -124,6 +125,7 @@ component pzs_test
 	---ADC---
 	clk_adc : out std_logic;
 	CCD_READY : out std_logic;	
+	ccd_line : out std_logic;
 	
 	---KEYS FOR CONTROL CLOCK---
 	KEY_START : in std_logic -- /increase output frequency
@@ -137,6 +139,7 @@ signal mem_reg : std_logic := '0';
 signal ack_reg : std_logic := '0';
 signal vga_reg : std_logic := '0';
 signal clk_ready_buf : std_logic;
+signal ccd_line_reg : std_logic := '0';
 signal data_buf_usb :  std_logic_vector(7 DOWNTO 0) := "00000000";
 
 begin
@@ -163,6 +166,7 @@ COMP_CCD : pzs_test port map (CLK,
 										SHUT,
                               clk_adc_reg,
 										clk_ready_buf,
+										ccd_line_reg,
                               KEY_START
 										);
 -----------------------
@@ -182,7 +186,8 @@ COMP_USB : usb port map (CLK_USB,
 								 DATA_USB,
 								 data_buf_usb,
 								 OE_USB,
-								 WR_USB
+								 WR_USB,
+								 ccd_line_reg
 								);
 -----------------------
 ---MEMORY-PORTMAP------
