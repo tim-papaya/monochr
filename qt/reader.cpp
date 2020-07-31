@@ -28,7 +28,8 @@ void Reader::readUsb()
         for(int i = 0; i < size_buffer; i++)
               buffer[i] = 0;
 
-        usb->readData(buffer);
+        if (!usb->readData(buffer))
+            qDebug() << "Buffer is empty!";
 
         QString *str = new QString;
 

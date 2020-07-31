@@ -81,7 +81,6 @@ void MainWindow::on_initBtn_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-
     usbReader->stop();
     usb.closeHandle();
 }
