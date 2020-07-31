@@ -5,6 +5,7 @@
 #include <usbhandler.h>
 #include <QThread>
 #include <QGraphicsScene>
+#include "reader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,6 +20,7 @@ public:
     ~MainWindow();
 
     QThread *usbThread;
+    Reader *usbReader;
 
 public slots:
     void on_showDevicesBtn_clicked();

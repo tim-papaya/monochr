@@ -10,7 +10,7 @@ class Reader : public QObject
 {
     Q_OBJECT
 public:
-    Reader(UsbHandler *usb, QGraphicsScene *scene, QObject* parent);
+    Reader(UsbHandler *usb, QGraphicsScene *scene);
 public slots:
     void stop();
     void readUsb();

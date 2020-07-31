@@ -86,6 +86,11 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::read(QString* result)
 {
+    QPen redPen(Qt::red);
+
+    for (int i = 0; i < size_buffer; i++) {
+        scene->addLine(i, static_cast<uchar>(buffer[i]), i, static_cast<uchar>(buffer[i]), redPen);
+    }
     ui->graphicsView->setScene(&scene);
     ui->textBrowser->setPlainText(*result);
     delete result;

@@ -1,7 +1,7 @@
 #include "reader.h"
 #include <QDebug>
-Reader::Reader(UsbHandler *usb, QGraphicsScene *scene, QObject* parent)
-  : QObject(parent), usb(usb), scene(scene)
+Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
+  : usb(usb), scene(scene)
 {
 
 }
@@ -34,12 +34,6 @@ void Reader::readUsb()
         for (int i = 0; i < size_buffer; i++) {
             str += buffer[i];
             str += ' ';
-        }
-
-        QPen redPen(Qt::red);
-
-        for (int i = 0; i < size_buffer; i++) {
-            scene->addLine(i, static_cast<uchar>(buffer[i]), i, static_cast<uchar>(buffer[i]), redPen);
         }
         emit ready(str);
     }
