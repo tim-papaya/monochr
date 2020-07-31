@@ -31,7 +31,7 @@ public slots:
 
     void on_pushButton_clicked();
 
-    void read(QString* result);
+    void read();
 
 private:
     Ui::MainWindow *ui;

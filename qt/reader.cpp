@@ -16,6 +16,7 @@ void Reader::stop()
 void Reader::readUsb()
 {
     qDebug() << "Thread Started";
+
     m_running = true;
 
     constexpr int size_buffer = 65536;
@@ -35,6 +36,7 @@ void Reader::readUsb()
             str += buffer[i];
             str += ' ';
         }
-        emit ready(str);
+        setResult(*str);
+        emit ready();
     }
 }

@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     usbReader = new Reader(&usb, &scene);
 
-    connect(usbReader, SIGNAL(ready(QString*)), this, SLOT(read(QString*)));
+    connect(usbReader, SIGNAL(resultChanged()), this, SLOT(read()));
     connect(usbThread, SIGNAL(started()), usbReader, SLOT(readUsb()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
     usbReader->moveToThread(usbThread);
@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+   usbReader->stop();
     delete ui;
 }
 
@@ -80,14 +81,14 @@ void MainWindow::on_initBtn_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
+
     usbReader->stop();
     usb.closeHandle();
 }
 
-void MainWindow::read(QString* result)
+void MainWindow::read()
 {
-    ui->graphicsView->setScene(&scene);
-    ui->textBrowser->setPlainText(*result);
-    delete result;
+    ui->graphicsView->setScene(&scene);    
+    ui->textBrowser->setPlainText(usbReader->result());
     qDebug() << "HERE";
 }
