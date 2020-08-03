@@ -1,0 +1,15 @@
+Record=TopLevelDocument|FileName=1_POWER.SchDoc
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=SubProject|Record=SubProject|ProjectPath=FPGA Project1.PrjFpg
+Record=FPGA_COMPONENT|BaseComponentDesignator=U3|DocumentName=2_FPGA.SchDoc|LibraryReference=EP4CE6F17C8|SubProjectPath=FPGA Project1.PrjFpg|Configuration=Configuration 1|Description=Cyclone IV Family FPGA, 2V Core, 179 I/O Pins, 2 PLLs, 256-Pin FBGA, Speed Grade 8, Commercial Grade|NexusDeviceId=EP4CE6F17C8|SubPartUniqueId1=RVMURNMQ|SubPartDocPath1=2_FPGA.SchDoc|SubPartUniqueId2=XHHDJCQI|SubPartDocPath2=2_FPGA.SchDoc|SubPartUniqueId3=UKMEISPK|SubPartDocPath3=2_FPGA.SchDoc|SubPartUniqueId4=ISDIRTPB|SubPartDocPath4=2_FPGA.SchDoc|SubPartUniqueId5=YQBJRGVR|SubPartDocPath5=3_FPGA.SchDoc|SubPartUniqueId6=PMDLIHVN|SubPartDocPath6=3_FPGA.SchDoc|SubPartUniqueId7=RFVYKGED|SubPartDocPath7=3_FPGA.SchDoc|SubPartUniqueId8=SDNYLMPC|SubPartDocPath8=3_FPGA.SchDoc|SubPartUniqueId9=JSBEXOXN|SubPartDocPath9=4_FPGA.SchDoc|SubPartUniqueId10=DYHLAXSQ|SubPartDocPath10=4_FPGA.SchDoc|SubPartUniqueId11=JVOUQLJS|SubPartDocPath11=4_FPGA.SchDoc|SubPartUniqueId12=RIIRTSWH|SubPartDocPath12=4_FPGA.SchDoc|SubPartUniqueId13=PRKIKEVA|SubPartDocPath13=4_FPGA.SchDoc
