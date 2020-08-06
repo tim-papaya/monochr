@@ -155,6 +155,8 @@ bool UsbHandler::readData(char *rxBuffer)
             qDebug() << "error: can`t read bytes.\n";
 
     }
+    else
+        return false;
     return true;
 }
 

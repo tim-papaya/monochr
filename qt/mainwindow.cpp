@@ -81,13 +81,13 @@ void MainWindow::on_initBtn_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-
     usbReader->stop();
     usb.closeHandle();
 }
 
 void MainWindow::read()
 {
+    // Plot update here
     ui->graphicsView->setScene(&scene);    
     ui->textBrowser->setPlainText(usbReader->result());
     qDebug() << "HERE";

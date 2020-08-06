@@ -28,15 +28,23 @@ void Reader::readUsb()
         for(int i = 0; i < size_buffer; i++)
               buffer[i] = 0;
 
-        usb->readData(buffer);
-
+        if (!usb->readData(buffer))
+        {
+            // exit from the while but dont stop the thread,
+            // will continue reading if readUsb() called
+            qDebug() << "Buffer is empty!";
+            m_running = false;
+            break;
+        }
         QString *str = new QString;
 
         for (int i = 0; i < size_buffer; i++) {
             str += buffer[i];
             str += ' ';
         }
-        setResult(*str);
+        QStringList lines = str->split(startSequence);
+
+        setResult(lines);
         emit ready();
     }
 }
