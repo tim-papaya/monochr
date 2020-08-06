@@ -87,6 +87,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::read()
 {
+    // Plot update here
     ui->graphicsView->setScene(&scene);    
     ui->textBrowser->setPlainText(usbReader->result());
     qDebug() << "HERE";

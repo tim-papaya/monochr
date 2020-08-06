@@ -10,14 +10,12 @@
 class Reader : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString result READ result WRITE setResult NOTIFY resultChanged)
-
-
-
+    Q_PROPERTY(QStringList result READ result WRITE setResult NOTIFY resultChanged)
 
 public:
     Reader(UsbHandler *usb, QGraphicsScene *scene);
-    QString result() const
+
+    QStringList result() const
     {
         return m_result;
     }
@@ -25,7 +23,8 @@ public:
 public slots:
     void stop();
     void readUsb();
-    void setResult(QString result)
+
+    void setResult(QStringList result)
     {
         if (m_result == result)
             return;
@@ -37,13 +36,14 @@ public slots:
 signals:
     void ready();
     void finished();
-    void resultChanged(QString result);
+    void resultChanged(QStringList result);
 
 private:
+    QString startSequence = "SRT";
     bool m_running;
     UsbHandler *usb;
     QGraphicsScene *scene;
-    QString m_result;
+    QStringList m_result;
 };
 
 #endif // READER_H
