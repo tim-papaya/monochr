@@ -135,38 +135,14 @@
      </rect>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QWidget" name="plot_widget" native="true">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>50</y>
-      <width>761</width>
-      <height>611</height>
+      <x>650</x>
+      <y>30</y>
+      <width>581</width>
+      <height>571</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="plot_name">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>10</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>24</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>PLOT</string>
-    </property>
-    <property name="margin">
-     <number>0</number>
-    </property>
-    <property name="indent">
-     <number>-1</number>
     </property>
    </widget>
   </widget>

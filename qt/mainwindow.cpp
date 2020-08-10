@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
+#include <QCh>
+#include <QLineSeries>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,8 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     usbThread = new QThread();
-    scene.setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
-
     usbReader = new Reader(&usb, &scene);
 
     connect(usbReader, SIGNAL(resultChanged()), this, SLOT(read()));
@@ -57,6 +57,7 @@ void MainWindow::on_showDevicesBtn_clicked()
             listDev.push_back(desc);
         }
     }
+    ui->deviceList->clear();
     ui->deviceList->addItems(listDev);
 
     ui->infoList->setPlainText(info);
@@ -88,7 +89,12 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::read()
 {
     // Plot update here
-    ui->graphicsView->setScene(&scene);    
-    ui->textBrowser->setPlainText(usbReader->result());
+    QStringList list = usbReader->result();
+
+//    for (int i = 0; i < list.size(); i++)
+
+    QLineSeries *series = new QLineSeries();
+
+    ui->plot_widget;
     qDebug() << "HERE";
 }
