@@ -2,10 +2,9 @@
 #define READER_H
 
 #include <QObject>
-
-#include <usbhandler.h>
 #include <QGraphicsScene>
 
+#include <usbhandler.h>
 
 class Reader : public QObject
 {

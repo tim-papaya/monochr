@@ -135,12 +135,12 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="plot_widget" native="true">
+   <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>30</y>
-      <width>581</width>
+      <x>620</x>
+      <y>20</y>
+      <width>661</width>
       <height>571</height>
      </rect>
     </property>
@@ -152,7 +152,7 @@
      <x>0</x>
      <y>0</y>
      <width>1403</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

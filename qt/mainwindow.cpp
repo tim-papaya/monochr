@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
 #include <QtCharts/QtCharts>
+#include "chart/view.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -70,6 +71,8 @@ void MainWindow::on_readBtn_clicked()
 
 void MainWindow::on_initBtn_clicked()
 {
+
+
     constexpr int size_buffer = 65536;
     QString str = ui->deviceList->currentText();
 
@@ -89,11 +92,12 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::read()
 {
     // Plot update here
-    QStringList list = usbReader->result();
-    QChart *linesChart  = new QChart();
-    QLineSeries *series = new QLineSeries();
+    //QStringList list = usbReader->result();
 
+    QStringList list;
+    list.push_back("11177722228900");
 
+    View view(list);
 
     //    for (int i = 0; i < list.size(); i++)
 

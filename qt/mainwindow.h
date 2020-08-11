@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <usbhandler.h>
 #include <QThread>
 #include <QGraphicsScene>
 #include "reader.h"
+#include <usbhandler.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
