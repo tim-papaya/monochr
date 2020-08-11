@@ -1,6 +1,7 @@
 QT       += core gui
+QT       += charts
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
@@ -31,16 +32,14 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    monochr_ru_RU.ts
+    test_ru_RU.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/usb/ -lftd2xx
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/usb/ -lftd2xx
-else:unix: LIBS += -L$$PWD/usb/ -lftd2xx
+unix|win32: LIBS += -L$$PWD/usb/ -lftd2xx
 
 INCLUDEPATH += $$PWD/usb
 DEPENDPATH += $$PWD/usb

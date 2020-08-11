@@ -1,7 +1,7 @@
 #ifndef USBHANDLER_H
 #define USBHANDLER_H
 
-#include <ftd2xx.h>
+#include "usb/ftd2xx.h"
 #include <QDebug>
 
 class UsbHandler {

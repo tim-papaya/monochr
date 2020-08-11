@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
-#include <QCh>
-#include <QLineSeries>
+#include <QtCharts/QtCharts>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     usbThread = new QThread();
     usbReader = new Reader(&usb, &scene);
 
-    connect(usbReader, SIGNAL(resultChanged()), this, SLOT(read()));
+    connect(usbReader, SIGNAL(resultChanged(QStringList)), this, SLOT(read()));
     connect(usbThread, SIGNAL(started()), usbReader, SLOT(readUsb()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
     usbReader->moveToThread(usbThread);
@@ -90,11 +90,13 @@ void MainWindow::read()
 {
     // Plot update here
     QStringList list = usbReader->result();
-
-//    for (int i = 0; i < list.size(); i++)
-
+    QChart *linesChart  = new QChart();
     QLineSeries *series = new QLineSeries();
 
-    ui->plot_widget;
+
+
+    //    for (int i = 0; i < list.size(); i++)
+
+
     qDebug() << "HERE";
 }
