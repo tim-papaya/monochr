@@ -34,6 +34,20 @@ void Reader::readUsb()
             // will continue reading if readUsb() called
             qDebug() << "Buffer is empty!";
             m_running = false;
+
+            // DELETE THIS BEFORE USE!!!!
+            QString str = "SRT2135SRT1612SRT12345SRT456SRT";
+            QStringList lines;
+            lines = str.split(startSequence);;
+
+            for (int i = 0; i < lines.size(); i++)
+                if (lines[i].isEmpty())
+                    lines.removeAt(i);
+
+            qDebug() << lines;
+            setResult(lines);
+            // DELETE THIS BEFORE USE!!!!
+
             break;
         }
         QString *str = new QString;
@@ -45,6 +59,5 @@ void Reader::readUsb()
         QStringList lines = str->split(startSequence);
 
         setResult(lines);
-        emit ready();
     }
 }

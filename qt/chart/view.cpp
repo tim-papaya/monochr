@@ -54,22 +54,16 @@ View::View(QStringList lines, QWidget *parent)
     m_chart->setMinimumSize(640, 480);
     m_chart->setTitle("Hover the line to show callout. Click the line to make it stay");
     m_chart->legend()->hide();
-    QLineSeries *series = new QLineSeries;
 
-//    for(QString temp_line: lines)
+    for (QString temp_line: lines)
+    {
+         QLineSeries *series = new QLineSeries;
 
-    // one line chart
-        for (int i = 0; i < lines.at(0).size(); i++)
-            series->append(i, static_cast<int>( lines.at(0)[i].unicode()));
-        m_chart->addSeries(series);
-//    QSplineSeries *series2 = new QSplineSeries;
-//    series2->append(1.6, 1.4);
-//    series2->append(2.4, 3.5);
-//    series2->append(3.7, 2.5);
-//    series2->append(7, 4);
-//    series2->append(10, 2);
-//    m_chart->addSeries(series2);
+         for (int i = 0; i < lines.at(0).size(); i++)
+            series->append(i, static_cast<int>( temp_line[i].unicode()));
 
+         m_chart->addSeries(series);
+    }
     m_chart->createDefaultAxes();
     m_chart->setAcceptHoverEvents(true);
 
@@ -83,12 +77,12 @@ View::View(QStringList lines, QWidget *parent)
     m_coordY->setPos(m_chart->size().width()/2 + 50, m_chart->size().height());
     m_coordY->setText("Y: ");
 
-    connect(series, &QLineSeries::clicked, this, &View::keepCallout);
-    connect(series, &QLineSeries::hovered, this, &View::tooltip);
+    for (QAbstractSeries *series : m_chart->series())
+    {
 
-//    connect(series2, &QSplineSeries::clicked, this, &View::keepCallout);
-//    connect(series2, &QSplineSeries::hovered, this, &View::tooltip);
-
+        connect((QLineSeries*)series, &QLineSeries::clicked, this, &View::keepCallout);
+        connect((QLineSeries*)series, &QLineSeries::hovered, this, &View::tooltip);
+    }
     this->setMouseTracking(true);
 }
 
