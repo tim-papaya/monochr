@@ -6,6 +6,14 @@ Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
 
 }
 
+short Reader::convert(const QChar ch1, const QChar ch2)
+{
+        char ch[2];
+        ch[1] = ch1.unicode();
+        ch[0] = ch2.unicode();
+        return *(short*)ch;
+}
+
 void Reader::stop()
 {
     qDebug() << "Thread Stopped";
@@ -33,16 +41,12 @@ void Reader::readUsb()
             // exit from the while but dont stop the thread,
             // will continue reading if readUsb() called
             qDebug() << "Buffer is empty!";
-            m_running = false;
 
             // DELETE THIS BEFORE USE!!!!
-            QString str = "SRT2135SRT1612SRT12345SRT456SRT";
+            QString str = " S R T2135 S R T1612 S R T12345 S R T456 S R T";
             QStringList lines;
-            lines = str.split(startSequence);;
+            lines = str.split(startSequence);
 
-            for (int i = 0; i < lines.size(); i++)
-                if (lines[i].isEmpty())
-                    lines.removeAt(i);
 
             qDebug() << lines;
             setResult(lines);
@@ -57,7 +61,7 @@ void Reader::readUsb()
             str += ' ';
         }
         QStringList lines = str->split(startSequence);
-
+        qDebug() << "Lines readed:" << lines.size();
         setResult(lines);
     }
 }

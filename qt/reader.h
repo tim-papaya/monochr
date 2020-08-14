@@ -18,6 +18,7 @@ public:
     {
         return m_result;
     }
+    short static convert(QChar const ch1, QChar const ch2);
 
 public slots:
     void stop();
@@ -38,7 +39,7 @@ signals:
     void resultChanged(QStringList result);
 
 private:
-    QString startSequence = "SRT";
+    QString startSequence = " S R T";
     bool m_running;
     UsbHandler *usb;
     QGraphicsScene *scene;

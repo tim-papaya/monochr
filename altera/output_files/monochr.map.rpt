@@ -1,5 +1,5 @@
 Analysis & Synthesis report for monochr
-Thu Jun 11 17:34:52 2020
+Fri Aug 14 16:38:03 2020
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -13,13 +13,15 @@ Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Parameter Settings for User Entity Instance: Top-level Entity: |monochr
- 12. Post-Synthesis Netlist Statistics for Top Partition
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Inverted Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: pzs_test:COMP_CCD
+ 13. Parameter Settings for User Entity Instance: usb:COMP_USB
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -46,16 +48,16 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Jun 11 17:34:52 2020      ;
+; Analysis & Synthesis Status        ; Successful - Fri Aug 14 16:38:03 2020      ;
 ; Quartus II 64-Bit Version          ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name                      ; monochr                                    ;
 ; Top-level Entity Name              ; monochr                                    ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 281                                        ;
-;     Total combinational functions  ; 279                                        ;
-;     Dedicated logic registers      ; 116                                        ;
-; Total registers                    ; 116                                        ;
-; Total pins                         ; 29                                         ;
+; Total logic elements               ; 406                                        ;
+;     Total combinational functions  ; 405                                        ;
+;     Dedicated logic registers      ; 188                                        ;
+; Total registers                    ; 188                                        ;
+; Total pins                         ; 30                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -156,52 +158,52 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 ; Processors                 ; Number ;
 +----------------------------+--------+
-; Number detected on machine ; 4      ;
+; Number detected on machine ; 8      ;
 ; Maximum allowed            ; 1      ;
 +----------------------------+--------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                             ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                      ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
-; source/usb.vhd                   ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/usb.vhd      ;         ;
-; source/pzs_test.vhd              ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/pzs_test.vhd ;         ;
-; source/monochr.vhd               ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/monochr.vhd  ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                           ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                    ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; source/usb.vhd                   ; yes             ; User VHDL File  ; C:/Users/HP/Documents/source/monochr/altera/source/usb.vhd      ;         ;
+; source/pzs_test.vhd              ; yes             ; User VHDL File  ; C:/Users/HP/Documents/source/monochr/altera/source/pzs_test.vhd ;         ;
+; source/monochr.vhd               ; yes             ; User VHDL File  ; C:/Users/HP/Documents/source/monochr/altera/source/monochr.vhd  ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                              ;
-+---------------------------------------------+----------------------------+
-; Resource                                    ; Usage                      ;
-+---------------------------------------------+----------------------------+
-; Estimated Total logic elements              ; 281                        ;
-;                                             ;                            ;
-; Total combinational functions               ; 279                        ;
-; Logic element usage by number of LUT inputs ;                            ;
-;     -- 4 input functions                    ; 118                        ;
-;     -- 3 input functions                    ; 16                         ;
-;     -- <=2 input functions                  ; 145                        ;
-;                                             ;                            ;
-; Logic elements by mode                      ;                            ;
-;     -- normal mode                          ; 186                        ;
-;     -- arithmetic mode                      ; 93                         ;
-;                                             ;                            ;
-; Total registers                             ; 116                        ;
-;     -- Dedicated logic registers            ; 116                        ;
-;     -- I/O registers                        ; 0                          ;
-;                                             ;                            ;
-; I/O pins                                    ; 29                         ;
-;                                             ;                            ;
-; Embedded Multiplier 9-bit elements          ; 0                          ;
-;                                             ;                            ;
-; Maximum fan-out node                        ; pzs_test:COMP_CCD|ccd_line ;
-; Maximum fan-out                             ; 43                         ;
-; Total fan-out                               ; 1124                       ;
-; Average fan-out                             ; 2.48                       ;
-+---------------------------------------------+----------------------------+
++-----------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                 ;
++---------------------------------------------+-------------------------------+
+; Resource                                    ; Usage                         ;
++---------------------------------------------+-------------------------------+
+; Estimated Total logic elements              ; 406                           ;
+;                                             ;                               ;
+; Total combinational functions               ; 405                           ;
+; Logic element usage by number of LUT inputs ;                               ;
+;     -- 4 input functions                    ; 115                           ;
+;     -- 3 input functions                    ; 80                            ;
+;     -- <=2 input functions                  ; 210                           ;
+;                                             ;                               ;
+; Logic elements by mode                      ;                               ;
+;     -- normal mode                          ; 250                           ;
+;     -- arithmetic mode                      ; 155                           ;
+;                                             ;                               ;
+; Total registers                             ; 188                           ;
+;     -- Dedicated logic registers            ; 188                           ;
+;     -- I/O registers                        ; 0                             ;
+;                                             ;                               ;
+; I/O pins                                    ; 30                            ;
+;                                             ;                               ;
+; Embedded Multiplier 9-bit elements          ; 0                             ;
+;                                             ;                               ;
+; Maximum fan-out node                        ; pzs_test:COMP_CCD|ccd_clk_div ;
+; Maximum fan-out                             ; 113                           ;
+; Total fan-out                               ; 1713                          ;
+; Average fan-out                             ; 2.62                          ;
++---------------------------------------------+-------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -209,11 +211,21 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name        ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
-; |monochr                   ; 279 (0)           ; 116 (0)      ; 0           ; 0            ; 0       ; 0         ; 29   ; 0            ; |monochr                   ; work         ;
-;    |pzs_test:COMP_CCD|     ; 197 (197)         ; 74 (74)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|pzs_test:COMP_CCD ; work         ;
-;    |usb:COMP_USB|          ; 82 (82)           ; 42 (42)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|usb:COMP_USB      ; work         ;
+; |monochr                   ; 405 (0)           ; 188 (0)      ; 0           ; 0            ; 0       ; 0         ; 30   ; 0            ; |monochr                   ; work         ;
+;    |pzs_test:COMP_CCD|     ; 344 (344)         ; 146 (146)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|pzs_test:COMP_CCD ; work         ;
+;    |usb:COMP_USB|          ; 61 (61)           ; 42 (42)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|usb:COMP_USB      ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; pzs_test:COMP_CCD|trigger_start_reg   ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 1 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -221,51 +233,82 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 116   ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 6     ;
+; Total registers                              ; 188   ;
+; Number of registers using Synchronous Clear  ; 32    ;
+; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 32    ;
+; Number of registers using Clock Enable       ; 148   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; pzs_test:COMP_CCD|clk_buf              ; 5       ;
-; pzs_test:COMP_CCD|rog_buf              ; 2       ;
-; pzs_test:COMP_CCD|shut_buf             ; 2       ;
-; usb:COMP_USB|WR                        ; 1       ;
-; pzs_test:COMP_CCD|\process_2:count[5]  ; 16      ;
-; pzs_test:COMP_CCD|\process_2:count[6]  ; 10      ;
-; pzs_test:COMP_CCD|\process_2:count[12] ; 8       ;
-; pzs_test:COMP_CCD|clk_div              ; 40      ;
-; Total number of inverted registers = 8 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; pzs_test:COMP_CCD|adc_clk_div           ; 2       ;
+; pzs_test:COMP_CCD|clk_reg               ; 5       ;
+; pzs_test:COMP_CCD|rog_reg               ; 2       ;
+; usb:COMP_USB|wr                         ; 2       ;
+; pzs_test:COMP_CCD|\process_1:count[11]  ; 6       ;
+; pzs_test:COMP_CCD|\process_1:count[4]   ; 4       ;
+; pzs_test:COMP_CCD|\process_1:count[5]   ; 4       ;
+; pzs_test:COMP_CCD|\process_1:count[1]   ; 5       ;
+; pzs_test:COMP_CCD|\process_1:count[2]   ; 5       ;
+; pzs_test:COMP_CCD|ccd_clk_div           ; 113     ;
+; pzs_test:COMP_CCD|count_line[3]         ; 2       ;
+; pzs_test:COMP_CCD|count_line[1]         ; 2       ;
+; Total number of inverted registers = 12 ;         ;
++-----------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; 4:1                ; 29 bits   ; 58 LEs        ; 29 LEs               ; 29 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|\process_2:count[20] ;
-; 9:1                ; 3 bits    ; 18 LEs        ; 15 LEs               ; 3 LEs                  ; Yes        ; |monochr|usb:COMP_USB|DATA[4]                   ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |monochr|pzs_test:COMP_CCD|\process_2:count[5]  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |monochr|usb:COMP_USB|data_out[4]              ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |monochr|usb:COMP_USB|data_out[0]              ;
+; 3:1                ; 27 bits   ; 54 LEs        ; 27 LEs               ; 27 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|\process_1:count[8] ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |monochr|usb:COMP_USB|switch_write[5]          ;
+; 4:1                ; 30 bits   ; 60 LEs        ; 30 LEs               ; 30 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|count_line[29]      ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 32 LEs               ; 64 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|count_start_seq[9]  ;
+; 8:1                ; 12 bits   ; 60 LEs        ; 24 LEs               ; 36 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|data_out[8]         ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |monochr|pzs_test:COMP_CCD|\process_1:count[4] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |monochr|pzs_test:COMP_CCD|count_line[1]       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
 
 
-+-------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |monochr ;
-+----------------+-------+------------------------------------------------+
-; Parameter Name ; Value ; Type                                           ;
-+----------------+-------+------------------------------------------------+
-; MEMORY_SIZE    ; 1024  ; Signed Integer                                 ;
-+----------------+-------+------------------------------------------------+
++----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pzs_test:COMP_CCD ;
++------------------+--------------+------------------------------+
+; Parameter Name   ; Value        ; Type                         ;
++------------------+--------------+------------------------------+
+; ccd_clk_divider  ; 6            ; Signed Integer               ;
+; adc_clk_divider  ; 3            ; Signed Integer               ;
+; ccd_count_rog    ; 5            ; Signed Integer               ;
+; ccd_count_dum1   ; 48           ; Signed Integer               ;
+; ccd_count_data   ; 2096         ; Signed Integer               ;
+; ccd_count_dum2   ; 2102         ; Signed Integer               ;
+; ccd_lines_number ; 10           ; Signed Integer               ;
+; start_sequence1  ; 000001010011 ; Unsigned Binary              ;
+; start_sequence2  ; 000001111111 ; Unsigned Binary              ;
+; start_sequence3  ; 000001000001 ; Unsigned Binary              ;
++------------------+--------------+------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: usb:COMP_USB ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; timing_msb     ; 0     ; Signed Integer                   ;
+; timing_lsb     ; 1     ; Signed Integer                   ;
+; timing_end     ; 2     ; Signed Integer                   ;
++----------------+-------+----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -274,23 +317,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 29                          ;
-; cycloneiii_ff         ; 116                         ;
-;     ENA               ; 32                          ;
-;     SLD               ; 6                           ;
-;     plain             ; 78                          ;
-; cycloneiii_lcell_comb ; 282                         ;
-;     arith             ; 93                          ;
-;         2 data inputs ; 93                          ;
-;     normal            ; 189                         ;
-;         0 data inputs ; 1                           ;
+; boundary_port         ; 30                          ;
+; cycloneiii_ff         ; 188                         ;
+;     ENA               ; 116                         ;
+;     ENA SCLR          ; 32                          ;
+;     plain             ; 40                          ;
+; cycloneiii_lcell_comb ; 408                         ;
+;     arith             ; 155                         ;
+;         2 data inputs ; 124                         ;
+;         3 data inputs ; 31                          ;
+;     normal            ; 253                         ;
+;         0 data inputs ; 2                           ;
 ;         1 data inputs ; 6                           ;
-;         2 data inputs ; 48                          ;
-;         3 data inputs ; 16                          ;
-;         4 data inputs ; 118                         ;
+;         2 data inputs ; 81                          ;
+;         3 data inputs ; 49                          ;
+;         4 data inputs ; 115                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 9.00                        ;
-; Average LUT depth     ; 5.94                        ;
+; Max LUT depth         ; 10.70                       ;
+; Average LUT depth     ; 6.01                        ;
 +-----------------------+-----------------------------+
 
 
@@ -309,7 +353,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
-    Info: Processing started: Thu Jun 11 17:34:38 2020
+    Info: Processing started: Fri Aug 14 16:37:53 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off monochr -c monochr
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file source/usb.vhd
@@ -349,16 +393,13 @@ Info (12021): Found 2 design units, including 1 entities, in source file source/
     Info (12023): Found entity 1: vhdl_tb
 Info (12127): Elaborating entity "monochr" for the top level hierarchy
 Info (12128): Elaborating entity "pzs_test" for hierarchy "pzs_test:COMP_CCD"
-Warning (10542): VHDL Variable Declaration warning at pzs_test.vhd(42): used initial value expression for variable "freq" because variable was never assigned a value
-Warning (10542): VHDL Variable Declaration warning at pzs_test.vhd(43): used initial value expression for variable "freq_adc" because variable was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at pzs_test.vhd(50): used explicit default value for signal "shut_reg" because signal was never assigned a value
+Warning (10542): VHDL Variable Declaration warning at pzs_test.vhd(71): used initial value expression for variable "ccd_freq" because variable was never assigned a value
+Warning (10542): VHDL Variable Declaration warning at pzs_test.vhd(72): used initial value expression for variable "adc_freq" because variable was never assigned a value
 Info (12128): Elaborating entity "usb" for hierarchy "usb:COMP_USB"
-Warning (10540): VHDL Signal Declaration warning at usb.vhd(14): used explicit default value for signal "OE" because signal was never assigned a value
-Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276004): RAM logic "usb:COMP_USB|mem" is uninferred due to inappropriate RAM size
-Warning (113028): 2 out of 8 addresses are uninitialized. The Quartus II software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported.
-    Warning (113027): Addresses ranging from 6 to 7 are not initialized
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "OE_USB" is stuck at VCC
+    Warning (13410): Pin "ccd_shut" is stuck at GND
+    Warning (13410): Pin "usb_oe" is stuck at VCC
 Info (286030): Timing-Driven Synthesis is running
 Warning (20013): Ignored assignments for entity "pll_usb" -- entity does not exist in design
     Warning (20014): Assignment for entity set_global_assignment -name IP_GENERATED_DEVICE_FAMILY "\{Cyclone IV E\}" -entity pll_usb -qip source/pll_usb/synthesis/pll_usb.qip -library pll_usb was ignored
@@ -465,20 +506,14 @@ Warning (20013): Ignored assignments for entity "pll_usb_altpll_0" -- entity doe
     Warning (20014): Assignment for entity set_global_assignment -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::Q3ljbG9uZSBJViBF::QXV0byBERVZJQ0VfRkFNSUxZ" -entity pll_usb_altpll_0 -qip source/pll_usb/synthesis/pll_usb.qip -library pll_usb was ignored
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 5 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "ccd_data[0]"
-    Warning (15610): No output dependent on input pin "ccd_data[1]"
-    Warning (15610): No output dependent on input pin "ccd_data[2]"
-    Warning (15610): No output dependent on input pin "KEY_START"
-    Warning (15610): No output dependent on input pin "TXE_USB"
-Info (21057): Implemented 340 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 15 input pins
+Info (21057): Implemented 465 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 16 input pins
     Info (21059): Implemented 14 output pins
-    Info (21061): Implemented 311 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 118 warnings
-    Info: Peak virtual memory: 4799 megabytes
-    Info: Processing ended: Thu Jun 11 17:34:52 2020
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:21
+    Info (21061): Implemented 435 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 111 warnings
+    Info: Peak virtual memory: 4802 megabytes
+    Info: Processing ended: Fri Aug 14 16:38:03 2020
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:22
 
 

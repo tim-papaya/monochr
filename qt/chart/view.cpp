@@ -37,6 +37,7 @@
 #include "callout.h"
 #include <QtGui/QMouseEvent>
 #include <QDebug>
+#include "reader.h"
 
 View::View(QStringList lines, QWidget *parent)
     : QGraphicsView(new QGraphicsScene, parent),
@@ -55,14 +56,15 @@ View::View(QStringList lines, QWidget *parent)
     m_chart->setTitle("Hover the line to show callout. Click the line to make it stay");
     m_chart->legend()->hide();
 
+    // create lines for chart
     for (QString temp_line: lines)
     {
          QLineSeries *series = new QLineSeries;
 
-         for (int i = 0; i < lines.at(0).size(); i++)
-            series->append(i, static_cast<int>( temp_line[i].unicode()));
-
+         for (int i = 0; i < temp_line.size(); i += 2)
+            series->append(i, Reader::convert(temp_line[i], temp_line[i + 1]));
          m_chart->addSeries(series);
+         qDebug() << "Line, data number:" << series->count();
     }
     m_chart->createDefaultAxes();
     m_chart->setAcceptHoverEvents(true);
@@ -71,10 +73,10 @@ View::View(QStringList lines, QWidget *parent)
     scene()->addItem(m_chart);
 
     m_coordX = new QGraphicsSimpleTextItem(m_chart);
-    m_coordX->setPos(m_chart->size().width()/2 - 50, m_chart->size().height());
+    m_coordX->setPos(m_chart->size().width() / 2 - 50, m_chart->size().height());
     m_coordX->setText("X: ");
     m_coordY = new QGraphicsSimpleTextItem(m_chart);
-    m_coordY->setPos(m_chart->size().width()/2 + 50, m_chart->size().height());
+    m_coordY->setPos(m_chart->size().width() / 2 + 50, m_chart->size().height());
     m_coordY->setText("Y: ");
 
     for (QAbstractSeries *series : m_chart->series())
@@ -91,8 +93,8 @@ void View::resizeEvent(QResizeEvent *event)
     if (scene()) {
         scene()->setSceneRect(QRect(QPoint(0, 0), event->size()));
          m_chart->resize(event->size());
-         m_coordX->setPos(m_chart->size().width()/2 - 50, m_chart->size().height() - 20);
-         m_coordY->setPos(m_chart->size().width()/2 + 50, m_chart->size().height() - 20);
+         m_coordX->setPos(m_chart->size().width() / 2 - 50, m_chart->size().height() - 20);
+         m_coordY->setPos(m_chart->size().width() / 2 + 50, m_chart->size().height() - 20);
          const auto callouts = m_callouts;
          for (Callout *callout : callouts)
              callout->updateGeometry();
