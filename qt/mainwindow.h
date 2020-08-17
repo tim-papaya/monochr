@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include "reader.h"
 #include <usbhandler.h>
+#include "chart/view.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +35,7 @@ public slots:
     void read();
 
 private:
+    View *currentView;
     Ui::MainWindow *ui;
     UsbHandler usb;
     QGraphicsScene scene;

@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
 #include <QtCharts/QtCharts>
-#include "chart/view.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -14,10 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     usbThread = new QThread();
     usbReader = new Reader(&usb, &scene);
 
-    connect(usbReader, SIGNAL(resultChanged(QStringList)), this, SLOT(read()));
-    connect(usbThread, SIGNAL(started()), usbReader, SLOT(readUsb()));
+    connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
     usbReader->moveToThread(usbThread);
+    usbThread->start();
 }
 
 MainWindow::~MainWindow()
@@ -66,7 +65,7 @@ void MainWindow::on_showDevicesBtn_clicked()
 
 void MainWindow::on_readBtn_clicked()
 {
-    usbThread->start();
+    usbReader->readUsb();
 }
 
 void MainWindow::on_initBtn_clicked()
@@ -92,11 +91,12 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::read()
 {
     // Plot update here
-    QStringList list = usbReader->result();
+    QList<QVector<ushort>> list = usbReader->result();
 
-    View *view = new View(list);
+    if (currentView != nullptr)
+        ui->chartLayout->removeWidget(currentView);
 
-    ui->chartLayout->addWidget(view);
-
+    currentView = new View(list);
+    ui->chartLayout->addWidget(currentView);
     qDebug() << "HERE";
 }

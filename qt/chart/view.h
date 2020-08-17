@@ -51,7 +51,7 @@ class View: public QGraphicsView
     Q_OBJECT
 
 public:
-    View(QStringList lines, QWidget *parent = 0);
+    View(QList<QVector<ushort>> lines, QWidget *parent = 0);
 
 protected:
     void resizeEvent(QResizeEvent *event);

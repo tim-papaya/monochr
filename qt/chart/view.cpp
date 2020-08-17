@@ -39,7 +39,7 @@
 #include <QDebug>
 #include "reader.h"
 
-View::View(QStringList lines, QWidget *parent)
+View::View(QList<QVector<ushort>> lines, QWidget *parent)
     : QGraphicsView(new QGraphicsScene, parent),
       m_coordX(0),
       m_coordY(0),
@@ -57,12 +57,13 @@ View::View(QStringList lines, QWidget *parent)
     m_chart->legend()->hide();
 
     // create lines for chart
-    for (QString temp_line: lines)
+    qDebug() << lines.first().size();
+    for (QVector<ushort> temp_line: lines)
     {
          QLineSeries *series = new QLineSeries;
 
-         for (int i = 0; i < temp_line.size(); i += 2)
-            series->append(i, Reader::convert(temp_line[i], temp_line[i + 1]));
+         for (int i = 0; i < temp_line.size(); i++)
+            series->append(i, static_cast<int>(temp_line[i]));
          m_chart->addSeries(series);
          qDebug() << "Line, data number:" << series->count();
     }

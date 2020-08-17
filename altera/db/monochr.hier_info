@@ -1,5 +1,5 @@
 |monochr
-adc_clk <= pzs_test:COMP_CCD.adc_clk
+adc_clk << pzs_test:COMP_CCD.adc_clk
 adc_data_in[0] => pzs_test:COMP_CCD.adc_data_in[0]
 adc_data_in[1] => pzs_test:COMP_CCD.adc_data_in[1]
 adc_data_in[2] => pzs_test:COMP_CCD.adc_data_in[2]
@@ -14,21 +14,22 @@ adc_data_in[10] => pzs_test:COMP_CCD.adc_data_in[10]
 adc_data_in[11] => pzs_test:COMP_CCD.adc_data_in[11]
 trigger_start => pzs_test:COMP_CCD.trigger_start
 clk50Mhz => pzs_test:COMP_CCD.clk_in
-ccd_clk <= pzs_test:COMP_CCD.ccd_clk
-ccd_rog <= pzs_test:COMP_CCD.rog
-ccd_shut <= pzs_test:COMP_CCD.shut
+ccd_clk << pzs_test:COMP_CCD.ccd_clk
+ccd_rog << pzs_test:COMP_CCD.rog
+ccd_shut << pzs_test:COMP_CCD.shut
 usb_clk => usb:COMP_USB.clk_in
 usb_txe => usb:COMP_USB.txe
-usb_data[0] <= usb:COMP_USB.data_out[0]
-usb_data[1] <= usb:COMP_USB.data_out[1]
-usb_data[2] <= usb:COMP_USB.data_out[2]
-usb_data[3] <= usb:COMP_USB.data_out[3]
-usb_data[4] <= usb:COMP_USB.data_out[4]
-usb_data[5] <= usb:COMP_USB.data_out[5]
-usb_data[6] <= usb:COMP_USB.data_out[6]
-usb_data[7] <= usb:COMP_USB.data_out[7]
-usb_oe <= usb:COMP_USB.oe
-usb_wr <= usb:COMP_USB.wr
+usb_data[0] << usb:COMP_USB.data_out[0]
+usb_data[1] << usb:COMP_USB.data_out[1]
+usb_data[2] << usb:COMP_USB.data_out[2]
+usb_data[3] << usb:COMP_USB.data_out[3]
+usb_data[4] << usb:COMP_USB.data_out[4]
+usb_data[5] << usb:COMP_USB.data_out[5]
+usb_data[6] << usb:COMP_USB.data_out[6]
+usb_data[7] << usb:COMP_USB.data_out[7]
+usb_oe << usb:COMP_USB.oe
+usb_wr << usb:COMP_USB.wr
+usb_rd << usb:COMP_USB.rd
 
 
 |monochr|pzs_test:COMP_CCD
@@ -80,7 +81,7 @@ clk_in => count[30].CLK
 clk_in => count[31].CLK
 ccd_clk <= clk_reg.DB_MAX_OUTPUT_PORT_TYPE
 rog <= rog_reg.DB_MAX_OUTPUT_PORT_TYPE
-shut <= <GND>
+shut <= shut_reg.DB_MAX_OUTPUT_PORT_TYPE
 adc_clk <= adc_clk_div.DB_MAX_OUTPUT_PORT_TYPE
 ccd_ready <= ccd_ready~reg0.DB_MAX_OUTPUT_PORT_TYPE
 adc_data_in[0] => data_out.DATAB
@@ -95,6 +96,7 @@ adc_data_in[8] => data_out.DATAB
 adc_data_in[9] => data_out.DATAB
 adc_data_in[10] => data_out.DATAB
 adc_data_in[11] => data_out.DATAB
+trigger_start => process_1.IN1
 trigger_start => process_1.IN1
 
 
@@ -141,6 +143,7 @@ clk_in => switch_write[28].CLK
 clk_in => switch_write[29].CLK
 clk_in => switch_write[30].CLK
 clk_in => switch_write[31].CLK
+txe => wr.OUTPUTSELECT
 txe => data_out[0]~reg0.ENA
 txe => data_out[1]~reg0.ENA
 txe => data_out[2]~reg0.ENA
@@ -149,7 +152,6 @@ txe => data_out[4]~reg0.ENA
 txe => data_out[5]~reg0.ENA
 txe => data_out[6]~reg0.ENA
 txe => data_out[7]~reg0.ENA
-txe => wr~reg0.ENA
 txe => ccd_ready_reg.ENA
 txe => switch_write[0].ENA
 txe => switch_write[1].ENA
@@ -207,5 +209,6 @@ data_out[6] <= data_out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 data_out[7] <= data_out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 oe <= <VCC>
 wr <= wr~reg0.DB_MAX_OUTPUT_PORT_TYPE
+rd <= <VCC>
 
 

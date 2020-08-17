@@ -1,6 +1,6 @@
 #include "usbhandler.h"
 #include "QDebug"
-
+#include "reader.h"
 UsbHandler::UsbHandler() : numDevs(0) ,
                            ftStatus(FT_CreateDeviceInfoList(&numDevs))
 {
@@ -123,7 +123,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, ch
         qDebug() << "Can`t set BUFFER.";
     return true;
 }
-bool UsbHandler::readData(char *rxBuffer)
+bool UsbHandler::readData(char *rxBuffer, int &readed)
 {
     DWORD rxBytes;
     DWORD txBytes;
@@ -135,7 +135,9 @@ bool UsbHandler::readData(char *rxBuffer)
 
     FT_GetStatus(ftHandle, &rxBytes, &txBytes, &eventDWORD);
 
-    qDebug() << "Bytes received:" << static_cast<int>(rxBytes);
+    readed = static_cast<int>(rxBytes);
+    qDebug() << "Bytes received:" << readed;
+
     qDebug() << "Bytes transmitted:" << static_cast<int>(txBytes);
 
 
@@ -157,6 +159,7 @@ bool UsbHandler::readData(char *rxBuffer)
     }
     else
         return false;
+    qDebug() << "usbhandler::readData";
     return true;
 }
 

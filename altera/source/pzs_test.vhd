@@ -3,22 +3,25 @@ use IEEE.std_logic_1164.all;
 
 entity pzs_test is
 generic (
-	CCD_CLK_DIVIDER : integer; -- 50Mhz => 5Mhz :=5
-										-- 50Mhz => 4.16Mhz :=6	
-										-- 50Mhz => 2.5Mhz :=10
-	ADC_CLK_DIVIDER  : integer;-- 50Mhz => 5Mhz :=2(3)
-										-- 50Mhz => 4.16Mhz :=3
-										-- 50Mhz => 2.5Mhz := 5
-	CCD_COUNT_ROG : integer := 5;
-	CCD_COUNT_DUM1 : integer := 33 + 3 * 5;
-	CCD_COUNT_DATA : integer := 2048 + 48;
-	CCD_COUNT_DUM2 : integer := 6 + 2096;
+	CCD_CLK_DIVIDER : integer; 
+										-- 50Mhz => 4.16Mhz :=2	
+	ADC_CLK_DIVIDER  : integer;
+										-- 50Mhz => 4.16Mhz :=1
+	CCD_COUNT_EXPOSURE : integer := 10;
+	CCD_COUNT_ROG_START : integer := 15;
+	CCD_COUNT_ROG_END : integer := 20;
+	CCD_COUNT_DUM1 : integer := 33 + 20;
+	CCD_COUNT_DATA : integer := 2048 + 53;
+	CCD_COUNT_DUM2 : integer := 6 + 2101;
+	CCD_COUNT_END : integer := 6 + 2101 + 5;
+	
+	TRIGGER_ACTIVE : std_logic := '0';
 	
 	CCD_LINES_NUMBER : integer; -- Number of lines that ccd should read
 	
-	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "000001010011"; --S
-	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "000001111111"; --?
-	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "000001000001" --A
+	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0101"&"0011"; --S
+	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"0111"&"1111"; --?
+	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "0000"&"0100"&"0001" --A
 	);
 
 port (
@@ -47,7 +50,7 @@ architecture pzs_test of pzs_test is
 	signal ccd_clk_div : std_logic := '1';
 	signal clk_reg : std_logic := '1'; 
 	signal rog_reg : std_logic := '1'; 
-	signal shut_reg : std_logic := '1';
+	signal shut_reg : std_logic := '0';
 	signal data_reg : std_logic_vector (11 DOWNTO 0);  
 -------ADC--------
 	signal adc_clk_div : std_logic := '1'; -- reads Vout of ccd on rising_edge
@@ -90,7 +93,7 @@ end process;
 ------------------------
 process (ccd_clk_div)
 	variable ccd_ready_reg : std_logic := '0';
-	variable count : integer := CCD_COUNT_DUM2;
+	variable count : integer := CCD_COUNT_END;
 	variable count_line : integer := CCD_LINES_NUMBER;
 	variable count_start_seq : integer := 0;
 	variable trigger_start_reg : std_logic := '0';
@@ -100,18 +103,23 @@ process (ccd_clk_div)
 		----------------
 		-- ROG TIMING --
 		----------------
-		if (count < CCD_COUNT_ROG) then
+		if (count < CCD_COUNT_EXPOSURE) then
+			shut_reg <= '1';
 			clk_reg <= '1';
 			ccd_ready_reg := '0';
-		elsif (count >= CCD_COUNT_ROG AND count < 2 * CCD_COUNT_ROG) then
+		ccd_ready <= ccd_ready_reg;
+		----------------
+		-- ROG TIMING --
+		----------------
+		elsif (count >= CCD_COUNT_EXPOSURE AND count < CCD_COUNT_ROG_START) then
 			rog_reg <= '0';
-		elsif (count >= 2 * CCD_COUNT_ROG AND count < 3 * CCD_COUNT_ROG) then
+		elsif (count >= 2 * CCD_COUNT_ROG_START AND count < CCD_COUNT_ROG_END) then
 			rog_reg <= '1';
 			count_start_seq := 0;
 		-------------------------
 		-- DUMMIES BEFORE DATA --
 		-------------------------
-		elsif (count >=  3 * CCD_COUNT_ROG AND count < CCD_COUNT_DUM1) then
+		elsif (count >=  CCD_COUNT_ROG_END AND count < CCD_COUNT_DUM1) then
 			clk_reg <= NOT clk_reg;
 			if (count_start_seq < 3) then
 				if (clk_reg = '0') then
@@ -144,17 +152,30 @@ process (ccd_clk_div)
 		--------------------------
 		elsif (count >=  CCD_COUNT_DATA AND count < CCD_COUNT_DUM2) then
 			clk_reg <= NOT clk_reg;
+		--------------------------
+		------ END LINE ----------
+		--------------------------
+		elsif (count >=  CCD_COUNT_DUM2 AND count < CCD_COUNT_END) then
+			clk_reg <= NOT clk_reg;
+			rog_reg <= '1';
+			shut_reg <= '0';
+		elsif (count >= CCD_COUNT_END) then
+			clk_reg <= NOT clk_reg;
+			rog_reg <= '1';
+			shut_reg <= '0';
 		end if; 
 		-------------------------
 		---LINE NUMBER CONTROL---
 		-------------------------
-		if (trigger_start = '1' AND trigger_start_reg = '0') then
+		if (trigger_start = TRIGGER_ACTIVE AND trigger_start_reg = '0') then
 			count_line := 0;
 			count := 0;
-		elsif (count_line >= CCD_LINES_NUMBER) then
+			trigger_start_reg := '1';
+		elsif ( NOT (trigger_start = TRIGGER_ACTIVE) AND (count_line >= CCD_LINES_NUMBER)) then
 			trigger_start_reg := '0';
+			count := CCD_COUNT_END;
 		elsif (count_line < CCD_LINES_NUMBER) then
-			if (count >= CCD_COUNT_DUM2) then
+			if (count >= CCD_COUNT_END) then
 				count_line := count_line + 1;
 				count := 0;
 			end if;

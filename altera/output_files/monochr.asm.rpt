@@ -1,5 +1,5 @@
 Assembler report for monochr
-Fri Aug 14 16:38:13 2020
+Mon Aug 17 18:16:39 2020
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -10,7 +10,7 @@ Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/HP/Documents/source/monochr/altera/output_files/monochr.sof
+  5. Assembler Device Options: C:/TIM/Project/monochr/altera/output_files/monochr.sof
   6. Assembler Messages
 
 
@@ -38,7 +38,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri Aug 14 16:38:13 2020 ;
+; Assembler Status      ; Successful - Mon Aug 17 18:16:39 2020 ;
 ; Revision Name         ; monochr                               ;
 ; Top-level Entity Name ; monochr                               ;
 ; Family                ; Cyclone IV E                          ;
@@ -53,24 +53,24 @@ agreement for further details.
 +--------+---------+---------------+
 
 
-+----------------------------------------------------------------------+
-; Assembler Generated Files                                            ;
-+----------------------------------------------------------------------+
-; File Name                                                            ;
-+----------------------------------------------------------------------+
-; C:/Users/HP/Documents/source/monochr/altera/output_files/monochr.sof ;
-+----------------------------------------------------------------------+
++--------------------------------------------------------+
+; Assembler Generated Files                              ;
++--------------------------------------------------------+
+; File Name                                              ;
++--------------------------------------------------------+
+; C:/TIM/Project/monochr/altera/output_files/monochr.sof ;
++--------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/HP/Documents/source/monochr/altera/output_files/monochr.sof ;
-+----------------+-------------------------------------------------------------------------------+
-; Option         ; Setting                                                                       ;
-+----------------+-------------------------------------------------------------------------------+
-; Device         ; EP4CE10F17C8                                                                  ;
-; JTAG usercode  ; 0x000BB00C                                                                    ;
-; Checksum       ; 0x000BB00C                                                                    ;
-+----------------+-------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------+
+; Assembler Device Options: C:/TIM/Project/monochr/altera/output_files/monochr.sof ;
++----------------+-----------------------------------------------------------------+
+; Option         ; Setting                                                         ;
++----------------+-----------------------------------------------------------------+
+; Device         ; EP4CE10F17C8                                                    ;
+; JTAG usercode  ; 0x000BE0B6                                                      ;
+; Checksum       ; 0x000BE0B6                                                      ;
++----------------+-----------------------------------------------------------------+
 
 
 +--------------------+
@@ -79,13 +79,13 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
-    Info: Processing started: Fri Aug 14 16:38:12 2020
+    Info: Processing started: Mon Aug 17 18:16:38 2020
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off monochr -c monochr
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4692 megabytes
-    Info: Processing ended: Fri Aug 14 16:38:13 2020
+    Info: Peak virtual memory: 4686 megabytes
+    Info: Processing ended: Mon Aug 17 18:16:39 2020
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

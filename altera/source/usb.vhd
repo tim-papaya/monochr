@@ -15,7 +15,8 @@ port (
 	data_in : in std_logic_vector(11 DOWNTO 0);
 	data_out : out std_logic_vector(7 DOWNTO 0);
 	oe : out std_logic := '1';
-	wr : out std_logic := '1'
+	wr : out std_logic := '1';
+	rd : out std_logic := '1'
 );
 end entity;
 
@@ -25,7 +26,7 @@ begin
 -- OE set '1' to write
 -- OE set '0' to read
 oe <= '1';
-
+rd <= '1';
 process (clk_in)
 		variable switch_write : integer := 0;
 		variable ccd_ready_reg : std_logic := '0';
@@ -42,14 +43,18 @@ begin
 				elsif (switch_write < TIMING_END) then
 					if (switch_write = TIMING_MSB) then
 						wr <= '0';
-						data_out <= "0000" & data_in(11 DOWNTO 8);
+						data_out <= "1010" & data_in(11 DOWNTO 8);
+						--data_out <= "0000" & "0010";
 					elsif (switch_write = TIMING_LSB) then
+						--data_out <= "1111" & "0101";
 						data_out <= data_in(7 DOWNTO 0);
 					end if;
 					switch_write := switch_write + 1;
 				else
 					wr <= '1';
 				end if;
+			else
+				wr <= '1';
 			end if;
 		end if;
 end process;

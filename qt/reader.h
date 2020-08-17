@@ -9,22 +9,27 @@
 class Reader : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QStringList result READ result WRITE setResult NOTIFY resultChanged)
+    Q_PROPERTY(QList<QVector<ushort>> result READ result WRITE setResult NOTIFY resultChanged)
 
 public:
     Reader(UsbHandler *usb, QGraphicsScene *scene);
 
-    QStringList result() const
+
+    int static convert(QChar const ch1, QChar const ch2);
+
+    QList<QVector<ushort>> static split(QVector<ushort> &ubuffer);
+
+    QList<QVector<ushort>> result() const
     {
         return m_result;
     }
-    short static convert(QChar const ch1, QChar const ch2);
 
 public slots:
     void stop();
     void readUsb();
 
-    void setResult(QStringList result)
+
+    void setResult(QList<QVector<ushort>> result)
     {
         if (m_result == result)
             return;
@@ -36,14 +41,17 @@ public slots:
 signals:
     void ready();
     void finished();
-    void resultChanged(QStringList result);
+
+    void resultChanged(QList<QVector<ushort>> result);
 
 private:
-    QString startSequence = " S R T";
+    static constexpr ushort start_seq[3] = {0x53, 0x7F, 0x41};
+    static constexpr int seq_size = 3;
     bool m_running;
     UsbHandler *usb;
     QGraphicsScene *scene;
-    QStringList m_result;
+
+    QList<QVector<ushort>> m_result;
 };
 
 #endif // READER_H
