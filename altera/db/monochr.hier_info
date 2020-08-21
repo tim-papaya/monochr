@@ -82,7 +82,7 @@ clk_in => count[31].CLK
 ccd_clk <= clk_reg.DB_MAX_OUTPUT_PORT_TYPE
 rog <= rog_reg.DB_MAX_OUTPUT_PORT_TYPE
 shut <= shut_reg.DB_MAX_OUTPUT_PORT_TYPE
-adc_clk <= adc_clk_div.DB_MAX_OUTPUT_PORT_TYPE
+adc_clk <= adc_clk_reg.DB_MAX_OUTPUT_PORT_TYPE
 ccd_ready <= ccd_ready~reg0.DB_MAX_OUTPUT_PORT_TYPE
 adc_data_in[0] => data_out.DATAB
 adc_data_in[1] => data_out.DATAB
@@ -96,8 +96,8 @@ adc_data_in[8] => data_out.DATAB
 adc_data_in[9] => data_out.DATAB
 adc_data_in[10] => data_out.DATAB
 adc_data_in[11] => data_out.DATAB
-trigger_start => process_1.IN1
-trigger_start => process_1.IN1
+trigger_start => process_2.IN1
+trigger_start => process_2.IN1
 
 
 |monochr|usb:COMP_USB

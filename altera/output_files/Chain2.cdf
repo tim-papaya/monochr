@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE10F17) Path("C:/TIM/Project/fpga_altera/monochr/output_files/") File("monochr.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE10F17) Path("C:/TIM/Project/monochr/altera/output_files/") File("monochr.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

@@ -64,21 +64,8 @@ generic (
 										-- 50Mhz => 4.16Mhz :=2	
 	ADC_CLK_DIVIDER  : integer;
 										-- 50Mhz => 4.16Mhz :=1
-	CCD_COUNT_EXPOSURE : integer := 10;
-	CCD_COUNT_ROG_START : integer := 15;
-	CCD_COUNT_ROG_END : integer := 20;
-	CCD_COUNT_DUM1 : integer := 33 + 20;
-	CCD_COUNT_DATA : integer := 2048 + 53;
-	CCD_COUNT_DUM2 : integer := 6 + 2101;
-	CCD_COUNT_END : integer := 6 + 2101 + 5;
+	CCD_LINES_NUMBER : integer -- Number of lines that ccd should read
 	
-	TRIGGER_ACTIVE : std_logic := '0';
-	
-	CCD_LINES_NUMBER : integer; -- Number of lines that ccd should read
-	
-	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "000001010011"; --S
-	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "000001111111"; --?
-	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "000001000001" --A
 	);
 
 port (
@@ -110,8 +97,8 @@ begin
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------
-COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 2,
-											 ADC_CLK_DIVIDER => 1,
+COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 50,
+											 ADC_CLK_DIVIDER => 25,
 											 CCD_LINES_NUMBER => 2)
 							port map (data_out => usb_data_in_reg,
 										 clk_in => clk50Mhz,                             

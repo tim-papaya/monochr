@@ -14,10 +14,11 @@ class Reader : public QObject
 public:
     Reader(UsbHandler *usb, QGraphicsScene *scene);
 
+    const ushort start_seq[3] = {0x03, 0x7F, 0x41};
+    const int seq_size = 3;
+    int static convert(char const ch1, char const ch2);
 
-    int static convert(QChar const ch1, QChar const ch2);
-
-    QList<QVector<ushort>> static split(QVector<ushort> &ubuffer);
+    QList<QVector<ushort>> split(QVector<ushort> &ubuffer);
 
     QList<QVector<ushort>> result() const
     {
@@ -45,8 +46,6 @@ signals:
     void resultChanged(QList<QVector<ushort>> result);
 
 private:
-    static constexpr ushort start_seq[3] = {0x53, 0x7F, 0x41};
-    static constexpr int seq_size = 3;
     bool m_running;
     UsbHandler *usb;
     QGraphicsScene *scene;

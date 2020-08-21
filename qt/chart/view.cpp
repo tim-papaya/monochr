@@ -33,10 +33,12 @@
 #include <QtCharts/QChart>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
+#include <QtCharts/QScatterSeries>
 #include <QtWidgets/QGraphicsTextItem>
 #include "callout.h"
 #include <QtGui/QMouseEvent>
 #include <QDebug>
+#include <QValueAxis>
 #include "reader.h"
 
 View::View(QList<QVector<ushort>> lines, QWidget *parent)
@@ -57,7 +59,6 @@ View::View(QList<QVector<ushort>> lines, QWidget *parent)
     m_chart->legend()->hide();
 
     // create lines for chart
-    qDebug() << lines.first().size();
     for (QVector<ushort> temp_line: lines)
     {
          QLineSeries *series = new QLineSeries;
@@ -65,8 +66,9 @@ View::View(QList<QVector<ushort>> lines, QWidget *parent)
          for (int i = 0; i < temp_line.size(); i++)
             series->append(i, static_cast<int>(temp_line[i]));
          m_chart->addSeries(series);
-         qDebug() << "Line, data number:" << series->count();
+         qDebug() << "Line, data number:" << temp_line.size();
     }
+
     m_chart->createDefaultAxes();
     m_chart->setAcceptHoverEvents(true);
 
@@ -79,6 +81,9 @@ View::View(QList<QVector<ushort>> lines, QWidget *parent)
     m_coordY = new QGraphicsSimpleTextItem(m_chart);
     m_coordY->setPos(m_chart->size().width() / 2 + 50, m_chart->size().height());
     m_coordY->setText("Y: ");
+
+    m_chart->axisX()->setRange(-50,2100);
+    m_chart->axisY()->setRange(-50,4500);
 
     for (QAbstractSeries *series : m_chart->series())
     {

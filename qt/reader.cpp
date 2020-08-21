@@ -1,36 +1,61 @@
 #include "reader.h"
 #include <QDebug>
+#include <QFile>
+#include <QTextStream>
 Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
   : usb(usb), scene(scene)
 {
 
 }
 
-int Reader::convert(const QChar ch1, const QChar ch2)
+int Reader::convert(const char ch1, const char ch2)
 {
         char ch[2];
-        ch[1] = ch1.unicode(); // MSByte
-        ch[0] = ch2.unicode(); // LSByte
+        ch[1] = ch1; // MSByte
+        ch[0] = ch2; // LSByte
         return *(ushort*)ch;
 }
 
-//QList<QVector<ushort> > Reader::split(QVector<ushort> &ubuffer)
-//{
-//    int pos_start, pos_end, seq_count = 0;
-//    for(int i = 0; i < ubuffer.size(); i++)
-//        if (ubuffer[i] == start_seq[seq_count])
-//        {
-//            seq_count++;
-//            if (seq_count == 1)
-//                pos_end = i - 1;
-//            if (seq_count == seq_size)
-//            {
+QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
+{
+    int pos_start, pos_end, seq_count = 0;
+    bool is_line = false;
 
-//            }
-//        {
-//        else
-//            seq_count = 0;
-//}
+    QList<QVector<ushort>> list;
+
+    for(int i = 0; i < ubuffer.size(); i++)
+    {
+        if (ubuffer[i] == start_seq[seq_count])
+        {
+           seq_count++;
+
+           if (seq_count == seq_size)
+           {
+               if (!is_line)
+               {
+                   pos_start = i + 1;
+                   is_line = true;
+                   seq_count = 0;
+               }
+               else
+               {
+                  pos_end = i - 2;
+                  QVector<ushort> line;
+                  for (int j = pos_start; j < pos_end; j++)
+                      line.push_back(ubuffer[j]);
+                  list.push_back(line);
+                  seq_count = 0;
+                  is_line = false;
+               }
+           }
+        }
+        else
+            seq_count = 0;
+    }
+    if (list.size() == 0)
+       list.push_back(ubuffer);
+    return list;
+}
 
 void Reader::stop()
 {
@@ -74,9 +99,15 @@ void Reader::readUsb()
         for (int i = 0; i < readed; i+=2)
             ubuffer.push_back(convert(buffer[i], buffer[i+1]));
 
-//        QList<QVector<ushort>> lines = split(ubuffer);
-        QList<QVector<ushort>> lines;
-        lines.push_back(ubuffer);
+        QFile fileOut("out_rawwww.csv");
+        fileOut.open(QFile::WriteOnly);
+        QTextStream stream(&fileOut);
+
+        for (ushort temp : ubuffer)
+            stream << temp << "\n";
+        fileOut.close();
+        QList<QVector<ushort>> lines = split(ubuffer);
+
         qDebug() << "Lines readed:" << lines.size();
         setResult(lines);
     }

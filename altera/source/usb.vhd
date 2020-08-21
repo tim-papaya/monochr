@@ -43,7 +43,7 @@ begin
 				elsif (switch_write < TIMING_END) then
 					if (switch_write = TIMING_MSB) then
 						wr <= '0';
-						data_out <= "1010" & data_in(11 DOWNTO 8);
+						data_out <= "0000" & data_in(11 DOWNTO 8);
 						--data_out <= "0000" & "0010";
 					elsif (switch_write = TIMING_LSB) then
 						--data_out <= "1111" & "0101";
