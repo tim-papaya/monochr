@@ -1,0 +1,122 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C1
+Change Component Designator: OldDesignator=C? NewDesignator=C2
+Change Component Designator: OldDesignator=C? NewDesignator=C3
+Change Component Designator: OldDesignator=C? NewDesignator=C4
+Change Component Designator: OldDesignator=C? NewDesignator=C5
+Change Component Designator: OldDesignator=C? NewDesignator=C6
+Change Component Designator: OldDesignator=C? NewDesignator=C7
+Change Component Designator: OldDesignator=C? NewDesignator=C8
+Change Component Designator: OldDesignator=C? NewDesignator=C9
+Change Component Designator: OldDesignator=C? NewDesignator=C10
+Change Component Designator: OldDesignator=C? NewDesignator=C11
+Change Component Designator: OldDesignator=C? NewDesignator=C12
+Change Component Designator: OldDesignator=C? NewDesignator=C13
+Change Component Designator: OldDesignator=C? NewDesignator=C14
+Change Component Designator: OldDesignator=C? NewDesignator=C15
+Change Component Designator: OldDesignator=C? NewDesignator=C16
+Change Component Designator: OldDesignator=C? NewDesignator=C17
+Change Component Designator: OldDesignator=C? NewDesignator=C18
+Change Component Designator: OldDesignator=C? NewDesignator=C19
+Change Component Designator: OldDesignator=C? NewDesignator=C20
+Change Component Designator: OldDesignator=C? NewDesignator=C21
+Change Component Designator: OldDesignator=C? NewDesignator=C22
+Change Component Designator: OldDesignator=C? NewDesignator=C23
+Change Component Designator: OldDesignator=C? NewDesignator=C24
+Change Component Designator: OldDesignator=C? NewDesignator=C25
+Change Component Designator: OldDesignator=C? NewDesignator=C26
+Change Component Designator: OldDesignator=C? NewDesignator=C27
+Change Component Designator: OldDesignator=D? NewDesignator=D3
+Change Component Designator: OldDesignator=D? NewDesignator=D4
+Change Component Designator: OldDesignator=D? NewDesignator=D5
+Change Component Designator: OldDesignator=D? NewDesignator=D6
+Change Component Designator: OldDesignator=DD*? NewDesignator=DD*1
+Change Component Designator: OldDesignator=DD*? NewDesignator=DD*2
+Change Component Designator: OldDesignator=DD*? NewDesignator=DD*3
+Change Component Designator: OldDesignator=DD*? NewDesignator=DD*4
+Change Component Designator: OldDesignator=DD*? NewDesignator=DD*5
+Change Component Designator: OldDesignator=P? NewDesignator=P1
+Change Component Designator: OldDesignator=P? NewDesignator=P2
+Change Component Designator: OldDesignator=P? NewDesignator=P3
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Component Designator: OldDesignator=R? NewDesignator=R3
+Change Component Designator: OldDesignator=R? NewDesignator=R4
+Change Component Designator: OldDesignator=R? NewDesignator=R5
+Change Component Designator: OldDesignator=R? NewDesignator=R6
+Change Component Designator: OldDesignator=R? NewDesignator=R7
+Change Component Designator: OldDesignator=R? NewDesignator=R8
+Change Component Designator: OldDesignator=R? NewDesignator=R9
+Change Component Designator: OldDesignator=R? NewDesignator=R10
+Change Component Designator: OldDesignator=R? NewDesignator=R11
+Change Component Designator: OldDesignator=R? NewDesignator=R12
+Change Component Designator: OldDesignator=R? NewDesignator=R13
+Change Component Designator: OldDesignator=R? NewDesignator=R14
+Change Net Name : Old Net Name=NetC?_2 New Net Name=NetC23_2
+Change Net Name : Old Net Name=NetDD*?_3 New Net Name=NetDD*5_3
+Change Net Name : Old Net Name=NetDD*?_4 New Net Name=NetDD*5_4
+Change Net Name : Old Net Name=NetR?_1 New Net Name=NetR3_1
+Added Pin To Net: NetName=NetC20_2 Pin=C20-2
+Added Pin To Net: NetName=NetC20_2 Pin=D3-1
+Added Pin To Net: NetName=NetC20_2 Pin=R7-1
+Added Pin To Net: NetName=NetC20_2 Pin=R11-2
+Added Net: Name=NetC20_2
+Added Pin To Net: NetName=NetC21_2 Pin=C21-2
+Added Pin To Net: NetName=NetC21_2 Pin=D4-1
+Added Pin To Net: NetName=NetC21_2 Pin=R8-1
+Added Pin To Net: NetName=NetC21_2 Pin=R12-2
+Added Net: Name=NetC21_2
+Added Pin To Net: NetName=NetC22_2 Pin=C22-2
+Added Pin To Net: NetName=NetC22_2 Pin=D5-1
+Added Pin To Net: NetName=NetC22_2 Pin=R9-1
+Added Pin To Net: NetName=NetC22_2 Pin=R13-2
+Added Net: Name=NetC22_2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C1 10
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C2 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C4 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C5 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C6 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C7 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C8 10
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C9 10
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C10 10
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C11 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C12 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C13 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C14 10
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C15 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C16 100,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C17 100,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C18 100,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C19 100,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C20 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C21 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C22 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C23 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C24 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C25 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C26 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C27 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D3 LM1117
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D4 LM1117
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D6 LM1117
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD*1 NC7SZ14M5X
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD*2 NC7SZ14M5X
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD*4 NC7SZ14M5X
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD*5 AD8605ARTZ
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P1 Header 2X2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P2 TRIGGER
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R1 30
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R2 30
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R3 100k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R4 1k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R5 100k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R6 1k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R7 1k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R8 1k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R9 1k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R10 1k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R11 240
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R13 240
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R14 240
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X* left_connector
+Added Room: Name=motherboard_Sheet

@@ -1,0 +1,8 @@
+Change Component Designator: OldDesignator=X* NewDesignator=X-left
+Change Component Designator: OldDesignator=X* NewDesignator=X-right
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C3 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D5 LM1117
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P3 V+12
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R12 240
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X-right right_connector
+Added Room: Name=motherboard_Sheet
