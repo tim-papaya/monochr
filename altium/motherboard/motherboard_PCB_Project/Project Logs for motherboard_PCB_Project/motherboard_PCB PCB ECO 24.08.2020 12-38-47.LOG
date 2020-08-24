@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=V12 Pin=P3-1
+Removed Pin From Net: NetName=GND Pin=P3-2
+Removed Pin From Net: NetName=GND Pin=P3-2
+Removed Pin From Net: NetName=GND Pin=P3-2
+Removed Member From Class: ClassName=motherboard_Sheet Member=P3
+Change Component Comment : Designator=R1 Old Comment=RES0805 New Comment=30
+Change Component Comment : Designator=R2 Old Comment=RES0805 New Comment=30
+Added Component: Designator=X1(POWER-2X2)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=V12 Pin=X1-1
+Added Pin To Net: NetName=GND Pin=X1-3
+Added Pin To Net: NetName=GND Pin=X1-4
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X1 POWER

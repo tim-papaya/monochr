@@ -1,0 +1,13 @@
+Change Component Comment : Designator=C3 Old Comment=0,1 New Comment=10,0
+Change Component Comment : Designator=C15 Old Comment=0,1 New Comment=10,0
+Change Component Comment : Designator=C11 Old Comment=0,1 New Comment=10.0
+Added Component: Designator=C28(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C29(0805)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=C28-1
+Added Pin To Net: NetName=V5_ADC Pin=C28-2
+Added Pin To Net: NetName=GND Pin=C29-1
+Added Pin To Net: NetName=V5_ADC Pin=C29-2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C28 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C29 10.0

@@ -1,0 +1,12 @@
+* C:\Users\HP\Documents\source\monochr\doc\LTspice\trigger.asc
+XDD6 N005 N002 N001 0 N004 AD8605
+R5 N004 N005 100k
+R3 N003 N005 100k
+R6_VARIABLE N005 0 2k
+V3V3 N001 0 3.3
+V5_VDD N003 0 5
+V§INPUT N002 0 SINE(0 1 1)
+.tran 1
+.lib ADI.lib
+.backanno
+.end
