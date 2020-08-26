@@ -1,0 +1,4 @@
+Change Physical Footprint: Designator=D7 Old Footprint=ILX751A - Module New Footprint=ILX751A - Module
+Change Physical Footprint: Designator=P1 Old Footprint=HDR2X2 New Footprint=HDR2X2
+Change Physical Footprint: Designator=X-left Old Footprint=altera_board_left New Footprint=altera_board_left
+Change Physical Footprint: Designator=X-right Old Footprint=altera_board_right New Footprint=altera_board_right
