@@ -38,7 +38,7 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=..\..\..\..\Altium_lib\MIT_Schlib.SchLib
+DocumentPath=..\..\..\Altium_lib\MIT_Schlib.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -55,7 +55,7 @@ GenerateClassCluster=0
 DocumentUniqueId=FRZOOZLU
 
 [Document2]
-DocumentPath=..\..\..\..\Altium_lib\MIT_Pcblib.PcbLib
+DocumentPath=..\..\..\Altium_lib\MIT_Pcblib.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
