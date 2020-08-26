@@ -1,0 +1,7 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C18
+Change Component Designator: OldDesignator=C? NewDesignator=C19
+Change Component Designator: OldDesignator=D? NewDesignator=D2
+Change Component Designator: OldDesignator=D? NewDesignator=D3
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C18 1.0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D2 AMS1117-FIX
+Added Room: Name=motherboard_Sheet

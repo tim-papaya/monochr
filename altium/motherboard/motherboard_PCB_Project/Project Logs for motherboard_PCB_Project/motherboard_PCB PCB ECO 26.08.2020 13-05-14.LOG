@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=GND Pin=C1-2
+Removed Pin From Net: NetName=GND Pin=C3-2
+Removed Pin From Net: NetName=GND Pin=D8-28
+Removed Pin From Net: NetName=GND Pin=DD6-5
+Removed Pin From Net: NetName=V5_VDD Pin=R3-2
+Removed Pin From Net: NetName=GND Pin=X-left-40
+Removed Pin From Net: NetName=GND Pin=X-right-39
+Removed Pin From Net: NetName=GND Pin=X-right-40
+Added Pin To Net: NetName=V3V3 Pin=C1-2
+Added Pin To Net: NetName=V3V3 Pin=C3-2
+Added Pin To Net: NetName=V3V3 Pin=D8-28
+Added Pin To Net: NetName=V3V3 Pin=DD6-5
+Added Pin To Net: NetName=V3V3 Pin=R3-2
+Added Pin To Net: NetName=V3V3 Pin=X-left-40
+Added Pin To Net: NetName=V3V3 Pin=X-right-39
+Added Pin To Net: NetName=V3V3 Pin=X-right-40
+Added Net: Name=V3V3
+Added Room: Name=motherboard_Sheet

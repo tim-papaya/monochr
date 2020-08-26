@@ -1,0 +1,50 @@
+Added Component: Designator=D1(ILX751A)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D2(ILX751A - Module)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=CLK Pin=D1-5
+Added Pin To Net: NetName=CLK Pin=D2-5
+Added Pin To Net: NetName=CLK Pin=D2-5
+Added Net: Name=CLK
+Added Pin To Net: NetName=GND Pin=D1-12
+Added Pin To Net: NetName=GND Pin=D1-17
+Added Pin To Net: NetName=GND Pin=D1-19
+Added Pin To Net: NetName=GND Pin=D2-12
+Added Pin To Net: NetName=GND Pin=D2-12
+Added Pin To Net: NetName=GND Pin=D2-17
+Added Pin To Net: NetName=GND Pin=D2-17
+Added Pin To Net: NetName=GND Pin=D2-19
+Added Pin To Net: NetName=GND Pin=D2-19
+Added Net: Name=GND
+Added Pin To Net: NetName=ROG Pin=D1-11
+Added Pin To Net: NetName=ROG Pin=D2-11
+Added Pin To Net: NetName=ROG Pin=D2-11
+Added Net: Name=ROG
+Added Pin To Net: NetName=SHSW Pin=D1-4
+Added Pin To Net: NetName=SHSW Pin=D2-4
+Added Pin To Net: NetName=SHSW Pin=D2-4
+Added Net: Name=SHSW
+Added Pin To Net: NetName=SHUT Pin=D1-9
+Added Pin To Net: NetName=SHUT Pin=D2-9
+Added Pin To Net: NetName=SHUT Pin=D2-9
+Added Net: Name=SHUT
+Added Pin To Net: NetName=VDD1 Pin=D1-20
+Added Pin To Net: NetName=VDD1 Pin=D2-20
+Added Pin To Net: NetName=VDD1 Pin=D2-20
+Added Net: Name=VDD1
+Added Pin To Net: NetName=VDD2 Pin=D1-8
+Added Pin To Net: NetName=VDD2 Pin=D1-21
+Added Pin To Net: NetName=VDD2 Pin=D1-22
+Added Pin To Net: NetName=VDD2 Pin=D2-8
+Added Pin To Net: NetName=VDD2 Pin=D2-8
+Added Pin To Net: NetName=VDD2 Pin=D2-21
+Added Pin To Net: NetName=VDD2 Pin=D2-21
+Added Pin To Net: NetName=VDD2 Pin=D2-22
+Added Pin To Net: NetName=VDD2 Pin=D2-22
+Added Net: Name=VDD2
+Added Pin To Net: NetName=VOUT Pin=D1-1
+Added Pin To Net: NetName=VOUT Pin=D2-1
+Added Pin To Net: NetName=VOUT Pin=D2-1
+Added Net: Name=VOUT
+Added Class: Name=ILX_Sheet
+Added Room: Name=ILX_Sheet

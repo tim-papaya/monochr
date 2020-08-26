@@ -1,0 +1,4 @@
+Change Component Designator: OldDesignator=D* NewDesignator=D9
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C19 22.0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D3 AMS1117-FIX
+Added Room: Name=motherboard_Sheet

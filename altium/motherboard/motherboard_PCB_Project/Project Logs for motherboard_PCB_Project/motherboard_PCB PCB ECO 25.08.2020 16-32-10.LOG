@@ -1,0 +1,78 @@
+Removed Pin From Net: NetName=GND Pin=C18-1
+Removed Pin From Net: NetName=V5_ADC Pin=C18-2
+Removed Pin From Net: NetName=GND Pin=C19-1
+Removed Pin From Net: NetName=V2,5_REF Pin=C19-2
+Removed Pin From Net: NetName=GND Pin=C20-1
+Removed Pin From Net: NetName=GND Pin=C22-1
+Removed Pin From Net: NetName=GND Pin=C23-1
+Removed Pin From Net: NetName=V12 Pin=C24-1
+Removed Pin From Net: NetName=GND Pin=C24-2
+Removed Pin From Net: NetName=V12 Pin=C26-1
+Removed Pin From Net: NetName=GND Pin=C26-2
+Removed Pin From Net: NetName=V12 Pin=C27-1
+Removed Pin From Net: NetName=GND Pin=C27-2
+Removed Pin From Net: NetName=GND Pin=C28-1
+Removed Pin From Net: NetName=V5_ADC Pin=C28-2
+Removed Pin From Net: NetName=GND Pin=C29-1
+Removed Pin From Net: NetName=V5_ADC Pin=C29-2
+Removed Pin From Net: NetName=V5_VDD Pin=D3-2
+Removed Pin From Net: NetName=V12 Pin=D3-3
+Removed Pin From Net: NetName=V5_ADC Pin=D5-2
+Removed Pin From Net: NetName=V12 Pin=D5-3
+Removed Pin From Net: NetName=V2,5_REF Pin=D6-2
+Removed Pin From Net: NetName=V12 Pin=D6-3
+Removed Pin From Net: NetName=GND Pin=R7-2
+Removed Pin From Net: NetName=GND Pin=R9-2
+Removed Pin From Net: NetName=GND Pin=R10-2
+Removed Pin From Net: NetName=V5_VDD Pin=R11-1
+Removed Pin From Net: NetName=V5_ADC Pin=R13-1
+Removed Pin From Net: NetName=V2,5_REF Pin=R14-1
+Removed Member From Class: ClassName=motherboard_Sheet Member=C18
+Removed Member From Class: ClassName=motherboard_Sheet Member=C19
+Removed Member From Class: ClassName=motherboard_Sheet Member=C20
+Removed Member From Class: ClassName=motherboard_Sheet Member=C22
+Removed Member From Class: ClassName=motherboard_Sheet Member=C23
+Removed Member From Class: ClassName=motherboard_Sheet Member=C24
+Removed Member From Class: ClassName=motherboard_Sheet Member=C26
+Removed Member From Class: ClassName=motherboard_Sheet Member=C27
+Removed Member From Class: ClassName=motherboard_Sheet Member=C28
+Removed Member From Class: ClassName=motherboard_Sheet Member=C29
+Removed Member From Class: ClassName=motherboard_Sheet Member=D3
+Removed Member From Class: ClassName=motherboard_Sheet Member=D5
+Removed Member From Class: ClassName=motherboard_Sheet Member=D6
+Removed Member From Class: ClassName=motherboard_Sheet Member=R7
+Removed Member From Class: ClassName=motherboard_Sheet Member=R9
+Removed Member From Class: ClassName=motherboard_Sheet Member=R10
+Removed Member From Class: ClassName=motherboard_Sheet Member=R11
+Removed Member From Class: ClassName=motherboard_Sheet Member=R13
+Removed Member From Class: ClassName=motherboard_Sheet Member=R14
+Change Component Comment : Designator=C16 Old Comment=100,0 New Comment=22.0
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D*(SOP8)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(SOT-223)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(SOT-223)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=V5_ADC Pin=C?-2
+Added Pin To Net: NetName=V12 Pin=C?-2
+Added Pin To Net: NetName=V12 Pin=D*-2
+Added Pin To Net: NetName=GND Pin=D*-4
+Added Pin To Net: NetName=V2,5_REF Pin=D*-6
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=V5_ADC Pin=D?-2
+Added Pin To Net: NetName=V5_VDD Pin=D?-2
+Added Pin To Net: NetName=V12 Pin=D?-3
+Added Pin To Net: NetName=V12 Pin=D?-3
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 22.0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 1.0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D* AD780
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? AMS1117-FIX
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? AMS1117-FIX
+Added Room: Name=motherboard_Sheet
