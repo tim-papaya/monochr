@@ -1,0 +1,16 @@
+Added Component: Designator=D7(ILX751A)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=CCD_Vout Pin=D7-1
+Added Pin To Net: NetName=SHSW Pin=D7-4
+Added Pin To Net: NetName=CCD_CLK Pin=D7-5
+Added Pin To Net: NetName=V5_VDD Pin=D7-8
+Added Pin To Net: NetName=CCD_SHUT Pin=D7-9
+Added Pin To Net: NetName=CCD_ROG Pin=D7-11
+Added Pin To Net: NetName=GND Pin=D7-12
+Added Pin To Net: NetName=GND Pin=D7-17
+Added Pin To Net: NetName=GND Pin=D7-19
+Added Pin To Net: NetName=V9_CCD Pin=D7-20
+Added Pin To Net: NetName=V5_VDD Pin=D7-21
+Added Pin To Net: NetName=V5_VDD Pin=D7-22
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D7 ILX751A
+Added Room: Name=motherboard_Sheet

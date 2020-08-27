@@ -1,0 +1,8 @@
+Added Component: Designator=X6(SMA)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=X6-1
+Added Pin To Net: NetName=GND Pin=X6-1
+Added Pin To Net: NetName=GND Pin=X6-1
+Added Pin To Net: NetName=GND Pin=X6-1
+Added Pin To Net: NetName=NetDD6_4 Pin=X6-2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X6 SMA

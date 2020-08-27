@@ -1,0 +1,73 @@
+Change Component Comment : Designator=R4 Old Comment= New Comment=RES0805
+Change Component Comment : Designator=C18 Old Comment=1.0 New Comment=0,1
+Change Component Comment : Designator=R6 Old Comment=5k New Comment=RES_VAR
+Change Component Comment : Designator=C3 Old Comment=10,0 New Comment=0,1
+Change Component Comment : Designator=C12 Old Comment=10,0 New Comment=0,1
+Change Component Comment : Designator=C13 Old Comment=10,0 New Comment=0,1
+Change Component Comment : Designator=C15 Old Comment=10,0 New Comment=0,1
+Change Component Comment : Designator=C5 Old Comment=10,0 New Comment=CAP_TANT
+Change Component Comment : Designator=C21 Old Comment=10,0 New Comment=CAP_TANT
+Change Component Comment : Designator=C11 Old Comment=10.0 New Comment=0,1
+Change Component Comment : Designator=C16 Old Comment=22.0 New Comment=CAP_TANT
+Change Component Comment : Designator=C19 Old Comment=22.0 New Comment=CAP_TANT
+Change Component Comment : Designator=R1 Old Comment=30 New Comment=RES0805
+Change Component Comment : Designator=R2 Old Comment=30 New Comment=RES0805
+Change Component Comment : Designator=C17 Old Comment=100,0 New Comment=CAP_TANT
+Change Component Comment : Designator=C20 Old Comment=100,0 New Comment=CAP_TANT
+Change Component Comment : Designator=R3 Old Comment=100k New Comment=RES0805
+Change Component Comment : Designator=R5 Old Comment=100k New Comment=RES0805
+Change Component Comment : Designator=R12 Old Comment=120 New Comment=RES0805
+Change Component Comment : Designator=R8 Old Comment=750 New Comment=RES0805
+Change Component Description : Designator=D2 Old Description=LM1117 New Description=AMS1117-FIX
+Change Component Description : Designator=D3 Old Description=LM1117 New Description=AMS1117-FIX
+Added Component: Designator=X3(CORE_EP4CE10-RIGHT)
+Add component. Clean all parameters for all variants
+Added Component: Designator=X4(CORE_EP4CE10-TOP)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=V3V3 Pin=X2-5
+Added Pin To Net: NetName=GND Pin=X2-7
+Added Pin To Net: NetName=GND Pin=X2-8
+Added Pin To Net: NetName=FPGA_ADC_CLK Pin=X2-14
+Added Pin To Net: NetName=ADC_DATA12 Pin=X2-16
+Added Pin To Net: NetName=ADC_DATA11 Pin=X2-18
+Added Pin To Net: NetName=ADC_DATA10 Pin=X2-20
+Added Pin To Net: NetName=ADC_DATA9 Pin=X2-22
+Added Pin To Net: NetName=ADC_DATA8 Pin=X2-24
+Added Pin To Net: NetName=ADC_DATA7 Pin=X2-26
+Added Pin To Net: NetName=ADC_DATA6 Pin=X2-28
+Added Pin To Net: NetName=ADC_DATA5 Pin=X2-30
+Added Pin To Net: NetName=ADC_DATA4 Pin=X2-32
+Added Pin To Net: NetName=ADC_DATA3 Pin=X2-34
+Added Pin To Net: NetName=ADC_DATA2 Pin=X2-36
+Added Pin To Net: NetName=ADC_DATA1 Pin=X2-38
+Added Pin To Net: NetName=OTR Pin=X2-40
+Added Pin To Net: NetName=GND Pin=X2-44
+Added Pin To Net: NetName=GND Pin=X3-5
+Added Pin To Net: NetName=USB_DATA0 Pin=X3-12
+Added Pin To Net: NetName=USB_DATA2 Pin=X3-13
+Added Pin To Net: NetName=USB_DATA1 Pin=X3-14
+Added Pin To Net: NetName=USB_DATA3 Pin=X3-15
+Added Pin To Net: NetName=USB_DATA5 Pin=X3-16
+Added Pin To Net: NetName=USB_DATA4 Pin=X3-17
+Added Pin To Net: NetName=USB_DATA7 Pin=X3-18
+Added Pin To Net: NetName=USB_DATA6 Pin=X3-19
+Added Pin To Net: NetName=USB_TXE# Pin=X3-20
+Added Pin To Net: NetName=USB_RXF# Pin=X3-21
+Added Pin To Net: NetName=USB_WR# Pin=X3-22
+Added Pin To Net: NetName=USB_RD# Pin=X3-23
+Added Pin To Net: NetName=USB_SIWUA Pin=X3-24
+Added Pin To Net: NetName=USB_OE# Pin=X3-25
+Added Pin To Net: NetName=CLKOUT Pin=X3-30
+Added Pin To Net: NetName=FPGA_CCD_CLK Pin=X3-35
+Added Pin To Net: NetName=TRIGGER Pin=X3-36
+Added Pin To Net: NetName=FPGA_SHUT Pin=X3-37
+Added Pin To Net: NetName=FPGA_ROG Pin=X3-39
+Added Pin To Net: NetName=GND Pin=X3-41
+Added Pin To Net: NetName=GND Pin=X3-42
+Added Pin To Net: NetName=V3V3 Pin=X3-43
+Added Pin To Net: NetName=V3V3 Pin=X3-44
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X2 CORE_EP4CE10-LEFT
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X3 CORE_EP4CE10-RIGHT
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X4 CORE_EP4CE10-TOP
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X5 CORE_EP4CE10-BOT
+Added Room: Name=motherboard_Sheet
