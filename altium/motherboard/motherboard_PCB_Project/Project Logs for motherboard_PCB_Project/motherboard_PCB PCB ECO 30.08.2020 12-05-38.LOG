@@ -1,0 +1,5 @@
+Change Physical Footprint: Designator=D1 Old Footprint=ftd232_minimodule New Footprint=ftd232_minimodule
+Change Physical Footprint: Designator=X2 Old Footprint=CORE_EP4CE10-LEFT New Footprint=CORE_EP4CE10-LEFT
+Change Physical Footprint: Designator=X3 Old Footprint=CORE_EP4CE10-RIGHT New Footprint=CORE_EP4CE10-RIGHT
+Change Physical Footprint: Designator=X4 Old Footprint=CORE_EP4CE10-TOP New Footprint=CORE_EP4CE10-TOP
+Change Physical Footprint: Designator=X5 Old Footprint=CORE_EP4CE10-BOT New Footprint=CORE_EP4CE10-BOT

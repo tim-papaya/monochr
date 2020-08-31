@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=USB_OE# Pin=X2-43
+Removed Pin From Net: NetName=USB_WR# Pin=X2-45
+Added Pin To Net: NetName=USB_WR# Pin=X2-43
+Added Pin To Net: NetName=USB_OE# Pin=X2-45

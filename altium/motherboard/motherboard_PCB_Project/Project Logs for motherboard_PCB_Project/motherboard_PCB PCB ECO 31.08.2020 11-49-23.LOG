@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=SHSW Pin=X3-9
+Added Pin To Net: NetName=FPGA_SHSW Pin=X3-9

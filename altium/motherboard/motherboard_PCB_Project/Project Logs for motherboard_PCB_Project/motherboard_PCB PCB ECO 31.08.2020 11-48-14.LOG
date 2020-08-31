@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=FPGA_ADC_CLK Pin=X3-23
+Removed Pin From Net: NetName=GND Pin=X3-42
+Removed Pin From Net: NetName=V3V3 Pin=X3-44
+Added Pin To Net: NetName=V3V3 Pin=X3-1
+Added Pin To Net: NetName=GND Pin=X3-2
+Added Pin To Net: NetName=FPGA_ADC_CLK Pin=X3-21

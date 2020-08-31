@@ -1,0 +1,25 @@
+Added Pin To Net: NetName=V5_VDD Pin=D1-29
+Added Pin To Net: NetName=TRIGGER Pin=X2-9
+Added Pin To Net: NetName=USB_DATA1 Pin=X2-27
+Added Pin To Net: NetName=USB_DATA3 Pin=X2-29
+Added Pin To Net: NetName=USB_DATA4 Pin=X2-31
+Added Pin To Net: NetName=USB_DATA6 Pin=X2-33
+Added Pin To Net: NetName=USB_RXF# Pin=X2-35
+Added Pin To Net: NetName=USB_RD# Pin=X2-37
+Added Pin To Net: NetName=USB_SIWUA Pin=X2-39
+Added Pin To Net: NetName=CLKOUT Pin=X2-41
+Added Pin To Net: NetName=USB_OE# Pin=X2-43
+Added Pin To Net: NetName=USB_WR# Pin=X2-45
+Added Pin To Net: NetName=USB_TXE# Pin=X2-47
+Added Pin To Net: NetName=USB_DATA7 Pin=X2-49
+Added Pin To Net: NetName=USB_DATA5 Pin=X2-51
+Added Pin To Net: NetName=USB_DATA2 Pin=X2-53
+Added Pin To Net: NetName=USB_DATA0 Pin=X2-54
+Added Pin To Net: NetName=V3V3_USB Pin=D1-1
+Added Pin To Net: NetName=V3V3_USB Pin=D1-3
+Added Pin To Net: NetName=V3V3_USB Pin=D1-5
+Added Pin To Net: NetName=V3V3_USB Pin=D1-11
+Added Pin To Net: NetName=V3V3_USB Pin=D1-21
+Added Pin To Net: NetName=V3V3_USB Pin=D1-38
+Added Pin To Net: NetName=V3V3_USB Pin=D1-48
+Added Net: Name=V3V3_USB

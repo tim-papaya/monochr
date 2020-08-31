@@ -1,0 +1,9 @@
+Added Component: Designator=DD7(SOT-23-5)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=DD7-3
+Added Pin To Net: NetName=SHSW Pin=DD7-4
+Added Pin To Net: NetName=V5_VDD Pin=DD7-5
+Added Pin To Net: NetName=FPGA_SHSW Pin=DD7-2
+Added Net: Name=FPGA_SHSW
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD7 NC7SZ14M5X
+Added Room: Name=motherboard_Sheet
