@@ -1,0 +1,8 @@
+Removed Pin From Net: NetName=BUTTON_2 Pin=R9-1
+Removed Pin From Net: NetName=V3.3_VDD Pin=R9-2
+Removed Pin From Net: NetName=GND Pin=SB2-1
+Removed Pin From Net: NetName=GND Pin=SB2-1
+Removed Pin From Net: NetName=BUTTON_2 Pin=SB2-2
+Removed Pin From Net: NetName=BUTTON_2 Pin=SB2-2
+Removed Member From Class: ClassName=motherboard_Sheet Member=R9
+Removed Member From Class: ClassName=motherboard_Sheet Member=SB2

@@ -1,0 +1,11 @@
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=V3V3 Pin=C?-2
+Added Pin To Net: NetName=V3V3 Pin=C?-2
+Change Net Name : Old Net Name=V3V3 New Net Name=V3V3_VDD
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 0,1

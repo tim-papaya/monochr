@@ -105,6 +105,109 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=HJVGQBYX
 
+[Document5]
+DocumentPath=Project Outputs for motherboard_PCB_Project\AllLayers.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document6]
+DocumentPath=Project Outputs for motherboard_PCB_Project\Drill.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[Document7]
+DocumentPath=motherboard_PCB_Project.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB-Plated.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GKO
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.RUL
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
@@ -114,6 +217,45 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Generic_SmartPDF]
+AutoOpenFile=-1
+AutoOpenOutJob=-1
+
+[Generic_SmartPDFSettings]
+ProjectMode=0
+ZoomPrecision=50
+AddNetsInformation=-1
+AddNetPins=-1
+AddNetNetLabels=-1
+AddNetPorts=-1
+ShowComponentParameters=-1
+GlobalBookmarks=0
+ExportBOM=-1
+TemplateFilename=Board Stack Report.XLT
+TemplateStoreRelative=-1
+PCB_PrintColor=1
+SCH_PrintColor=0
+PrintQuality=-3
+SCH_ShowNoErc=-1
+SCH_ShowParameter=-1
+SCH_ShowProbes=-1
+SCH_ShowBlankets=-1
+SCH_NoERCSymbolsToShow="Thin Cross","Thick Cross","Small Cross",Checkbox,Triangle
+SCH_ShowNote=-1
+SCH_ShowNoteCollapsed=-1
+SCH_ExpandLogicalToPhysical=-1
+SCH_VariantName=[No Variations]
+SCH_ExpandComponentDesignators=-1
+SCH_ExpandNetlabels=0
+SCH_ExpandPorts=0
+SCH_ExpandSheetNumber=0
+SCH_ExpandDocumentNumber=0
+SCH_HasExpandLogicalToPhysicalSheets=-1
+SaveSettingsToOutJob=-1
+
+[Generic_EDE]
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -326,20 +468,20 @@ Name=Fabrication Outputs
 Description=
 TargetPrinter=Canon MG5200 series Printer
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
-OutputType1=Board Stack Report
-OutputName1=Report Board Stack
+OutputType1=CompositeDrill
+OutputName1=Composite Drill Drawing
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType2=CompositeDrill
-OutputName2=Composite Drill Drawing
+OutputType2=Drill
+OutputName2=Drill Drawing/Guides
 OutputDocumentPath2=
 OutputVariantName2=
 OutputDefault2=0
 PageOptions2=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType3=Drill
-OutputName3=Drill Drawing/Guides
+OutputType3=Board Stack Report
+OutputName3=Report Board Stack
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
@@ -350,48 +492,56 @@ OutputDocumentPath4=
 OutputVariantName4=[No Variations]
 OutputDefault4=0
 PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType5=Gerber
-OutputName5=Gerber Files
+OutputType5=Gerber X2
+OutputName5=Gerber X2 Files
 OutputDocumentPath5=
-OutputVariantName5=[No Variations]
+OutputVariantName5=
 OutputDefault5=0
-OutputType6=Gerber X2
-OutputName6=Gerber X2 Files
+OutputType6=ODB
+OutputName6=ODB++ Files
 OutputDocumentPath6=
-OutputVariantName6=
+OutputVariantName6=[No Variations]
 OutputDefault6=0
-OutputType7=IPC2581
-OutputName7=IPC-2581 Files
+OutputType7=Mask
+OutputName7=Solder/Paste Mask Prints
 OutputDocumentPath7=
 OutputVariantName7=
 OutputDefault7=0
-OutputType8=Mask
-OutputName8=Solder/Paste Mask Prints
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType8=NC Drill
+OutputName8=NC Drill Files
 OutputDocumentPath8=
 OutputVariantName8=
 OutputDefault8=0
-PageOptions8=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType9=NC Drill
-OutputName9=NC Drill Files
+Configuration8_Name1=ForceUpdateSettings
+Configuration8_Item1=False
+Configuration8_Name2=OutputConfigurationParameter1
+Configuration8_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=True|NumberOfDecimals=4|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
+OutputType9=IPC2581
+OutputName9=IPC-2581 Files
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
-OutputType10=ODB
-OutputName10=ODB++ Files
+OutputType10=Plane
+OutputName10=Power-Plane Prints
 OutputDocumentPath10=
-OutputVariantName10=[No Variations]
+OutputVariantName10=
 OutputDefault10=0
-OutputType11=Plane
-OutputName11=Power-Plane Prints
+PageOptions10=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
+OutputType11=Test Points
+OutputName11=Test Point Report
 OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
-PageOptions11=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=1|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-3|MediaType=1|DitherType=10|PrintScaleMode=1|PaperKind=A4|PaperIndex=9
-OutputType12=Test Points
-OutputName12=Test Point Report
+OutputType12=Gerber
+OutputName12=Gerber Files
 OutputDocumentPath12=
-OutputVariantName12=
+OutputVariantName12=[No Variations]
 OutputDefault12=0
+Configuration12_Name1=ForceUpdateSettings
+Configuration12_Item1=False
+Configuration12_Name2=OutputConfigurationParameter1
+Configuration12_Item2=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=200000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Imperial|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=False|LayerClassesMirror.Set= |LayerClassesPlot.Set= |LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NoRegularPolygons=False|NumberOfDecimals=4|NumberOfDecimals=4|OptimizeChangeLocationCommands=True|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973834~1,16777217~1,16842751~1,16973835~1,16973831~1,16973837~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=50|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False|Sorted=False
 
 [OutputGroup6]
 Name=Report Outputs
@@ -1081,119 +1231,113 @@ SelectedOnly=0
 UpdateVariants=1
 PartTypes=0
 ComponentLibIdentifierKind0=Library Name And Type
-ComponentLibraryIdentifier0=Miscellaneous Connectors.IntLib
-ComponentDesignItemID0=BNC
-ComponentSymbolReference0=BNC
+ComponentLibraryIdentifier0=MIT_Schlib.SchLib
+ComponentDesignItemID0=AD780
+ComponentSymbolReference0=AD780
 ComponentUpdate0=1
 ComponentIsDeviceSheet0=0
 ComponentLibIdentifierKind1=Library Name And Type
-ComponentLibraryIdentifier1=Miscellaneous Connectors.IntLib
-ComponentDesignItemID1=Header 2X2
-ComponentSymbolReference1=Header 2X2
+ComponentLibraryIdentifier1=MIT_Schlib.SchLib
+ComponentDesignItemID1=AD8605ARTZ
+ComponentSymbolReference1=AD8605ARTZ
 ComponentUpdate1=1
 ComponentIsDeviceSheet1=0
 ComponentLibIdentifierKind2=Library Name And Type
 ComponentLibraryIdentifier2=MIT_Schlib.SchLib
-ComponentDesignItemID2=AD780
-ComponentSymbolReference2=AD780
+ComponentDesignItemID2=AD9220ARZ
+ComponentSymbolReference2=AD9220ARZ
 ComponentUpdate2=1
 ComponentIsDeviceSheet2=0
 ComponentLibIdentifierKind3=Library Name And Type
 ComponentLibraryIdentifier3=MIT_Schlib.SchLib
-ComponentDesignItemID3=AD8605ARTZ
-ComponentSymbolReference3=AD8605ARTZ
+ComponentDesignItemID3=AMS1117-FIX
+ComponentSymbolReference3=AMS1117-FIX
 ComponentUpdate3=1
 ComponentIsDeviceSheet3=0
 ComponentLibIdentifierKind4=Library Name And Type
 ComponentLibraryIdentifier4=MIT_Schlib.SchLib
-ComponentDesignItemID4=AD9220ARZ
-ComponentSymbolReference4=AD9220ARZ
+ComponentDesignItemID4=CAP_SMALL
+ComponentSymbolReference4=CAP_SMALL
 ComponentUpdate4=1
 ComponentIsDeviceSheet4=0
 ComponentLibIdentifierKind5=Library Name And Type
 ComponentLibraryIdentifier5=MIT_Schlib.SchLib
-ComponentDesignItemID5=AMS1117-FIX
-ComponentSymbolReference5=AMS1117-FIX
+ComponentDesignItemID5=CAP_TANT
+ComponentSymbolReference5=CAP_TANT
 ComponentUpdate5=1
 ComponentIsDeviceSheet5=0
 ComponentLibIdentifierKind6=Library Name And Type
 ComponentLibraryIdentifier6=MIT_Schlib.SchLib
-ComponentDesignItemID6=CAP_SMALL
-ComponentSymbolReference6=CAP_SMALL
+ComponentDesignItemID6=CORE_EP4CE10-BOT
+ComponentSymbolReference6=CORE_EP4CE10-BOT
 ComponentUpdate6=1
 ComponentIsDeviceSheet6=0
 ComponentLibIdentifierKind7=Library Name And Type
 ComponentLibraryIdentifier7=MIT_Schlib.SchLib
-ComponentDesignItemID7=CAP_TANT
-ComponentSymbolReference7=CAP_TANT
+ComponentDesignItemID7=CORE_EP4CE10-LEFT
+ComponentSymbolReference7=CORE_EP4CE10-LEFT
 ComponentUpdate7=1
 ComponentIsDeviceSheet7=0
 ComponentLibIdentifierKind8=Library Name And Type
 ComponentLibraryIdentifier8=MIT_Schlib.SchLib
-ComponentDesignItemID8=CORE_EP4CE10-BOT
-ComponentSymbolReference8=CORE_EP4CE10-BOT
+ComponentDesignItemID8=CORE_EP4CE10-RIGHT
+ComponentSymbolReference8=CORE_EP4CE10-RIGHT
 ComponentUpdate8=1
 ComponentIsDeviceSheet8=0
 ComponentLibIdentifierKind9=Library Name And Type
 ComponentLibraryIdentifier9=MIT_Schlib.SchLib
-ComponentDesignItemID9=CORE_EP4CE10-LEFT
-ComponentSymbolReference9=CORE_EP4CE10-LEFT
+ComponentDesignItemID9=CORE_EP4CE10-TOP
+ComponentSymbolReference9=CORE_EP4CE10-TOP
 ComponentUpdate9=1
 ComponentIsDeviceSheet9=0
 ComponentLibIdentifierKind10=Library Name And Type
 ComponentLibraryIdentifier10=MIT_Schlib.SchLib
-ComponentDesignItemID10=CORE_EP4CE10-RIGHT
-ComponentSymbolReference10=CORE_EP4CE10-RIGHT
+ComponentDesignItemID10=ftd232_minimodule
+ComponentSymbolReference10=ftd232_minimodule
 ComponentUpdate10=1
 ComponentIsDeviceSheet10=0
 ComponentLibIdentifierKind11=Library Name And Type
 ComponentLibraryIdentifier11=MIT_Schlib.SchLib
-ComponentDesignItemID11=CORE_EP4CE10-TOP
-ComponentSymbolReference11=CORE_EP4CE10-TOP
+ComponentDesignItemID11=ILX751A
+ComponentSymbolReference11=ILX751A
 ComponentUpdate11=1
 ComponentIsDeviceSheet11=0
 ComponentLibIdentifierKind12=Library Name And Type
 ComponentLibraryIdentifier12=MIT_Schlib.SchLib
-ComponentDesignItemID12=ftd232_minimodule
-ComponentSymbolReference12=ftd232_minimodule
+ComponentDesignItemID12=LM1117_ADJ
+ComponentSymbolReference12=LM1117_ADJ
 ComponentUpdate12=1
 ComponentIsDeviceSheet12=0
 ComponentLibIdentifierKind13=Library Name And Type
 ComponentLibraryIdentifier13=MIT_Schlib.SchLib
-ComponentDesignItemID13=ILX751A
-ComponentSymbolReference13=ILX751A
+ComponentDesignItemID13=NC7SZ14M5X
+ComponentSymbolReference13=NC7SZ14M5X
 ComponentUpdate13=1
 ComponentIsDeviceSheet13=0
 ComponentLibIdentifierKind14=Library Name And Type
 ComponentLibraryIdentifier14=MIT_Schlib.SchLib
-ComponentDesignItemID14=LM1117_ADJ
-ComponentSymbolReference14=LM1117_ADJ
+ComponentDesignItemID14=RES_VAR
+ComponentSymbolReference14=RES_VAR
 ComponentUpdate14=1
 ComponentIsDeviceSheet14=0
 ComponentLibIdentifierKind15=Library Name And Type
 ComponentLibraryIdentifier15=MIT_Schlib.SchLib
-ComponentDesignItemID15=NC7SZ14M5X
-ComponentSymbolReference15=NC7SZ14M5X
+ComponentDesignItemID15=RES0805
+ComponentSymbolReference15=RES0805
 ComponentUpdate15=1
 ComponentIsDeviceSheet15=0
 ComponentLibIdentifierKind16=Library Name And Type
 ComponentLibraryIdentifier16=MIT_Schlib.SchLib
-ComponentDesignItemID16=POWER_2X2
-ComponentSymbolReference16=POWER_2X2
+ComponentDesignItemID16=ROBITON_12V
+ComponentSymbolReference16=ROBITON_12V
 ComponentUpdate16=1
 ComponentIsDeviceSheet16=0
 ComponentLibIdentifierKind17=Library Name And Type
 ComponentLibraryIdentifier17=MIT_Schlib.SchLib
-ComponentDesignItemID17=RES_VAR
-ComponentSymbolReference17=RES_VAR
+ComponentDesignItemID17=SMA
+ComponentSymbolReference17=SMA
 ComponentUpdate17=1
 ComponentIsDeviceSheet17=0
-ComponentLibIdentifierKind18=Library Name And Type
-ComponentLibraryIdentifier18=MIT_Schlib.SchLib
-ComponentDesignItemID18=RES0805
-ComponentSymbolReference18=RES0805
-ComponentUpdate18=1
-ComponentIsDeviceSheet18=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -1213,14 +1357,8 @@ ParameterName1=Component Kind
 ParameterUpdate1=1
 ParameterName2=Description
 ParameterUpdate2=1
-ParameterName3=LatestRevisionDate
+ParameterName3=Library Reference
 ParameterUpdate3=1
-ParameterName4=LatestRevisionNote
-ParameterUpdate4=1
-ParameterName5=Library Reference
-ParameterUpdate5=1
-ParameterName6=Publisher
-ParameterUpdate6=1
 ModelTypeGroup0=PCBLIB
 ModelTypeUpdate0=1
 ModelType0=PCBLIB
@@ -1230,48 +1368,46 @@ ModelType1=PCBLIB
 ModelName1=3006P
 ModelUpdate1=1
 ModelType2=PCBLIB
-ModelName2=BNC_RA CON
+ModelName2=CORE_EP4CE10-BOT
 ModelUpdate2=1
 ModelType3=PCBLIB
-ModelName3=CORE_EP4CE10-BOT
+ModelName3=CORE_EP4CE10-LEFT
 ModelUpdate3=1
 ModelType4=PCBLIB
-ModelName4=CORE_EP4CE10-LEFT
+ModelName4=CORE_EP4CE10-RIGHT
 ModelUpdate4=1
 ModelType5=PCBLIB
-ModelName5=ftd232_minimodule
+ModelName5=CORE_EP4CE10-TOP
 ModelUpdate5=1
 ModelType6=PCBLIB
-ModelName6=HDR2X2
+ModelName6=ftd232_minimodule
 ModelUpdate6=1
 ModelType7=PCBLIB
 ModelName7=ILX751A
 ModelUpdate7=1
 ModelType8=PCBLIB
-ModelName8=POWER-2X2
+ModelName8=Robiton-DS-210
 ModelUpdate8=1
 ModelType9=PCBLIB
-ModelName9=SOP28
+ModelName9=SMA
 ModelUpdate9=1
 ModelType10=PCBLIB
-ModelName10=SOP8
+ModelName10=SOP28
 ModelUpdate10=1
 ModelType11=PCBLIB
-ModelName11=SOT-223
+ModelName11=SOP8
 ModelUpdate11=1
 ModelType12=PCBLIB
-ModelName12=SOT-23-5
+ModelName12=SOT-223
 ModelUpdate12=1
 ModelType13=PCBLIB
-ModelName13=TO-252
+ModelName13=SOT-23-5
 ModelUpdate13=1
 ModelType14=PCBLIB
-ModelName14=TYPE_C
+ModelName14=TO-252
 ModelUpdate14=1
-ModelTypeGroup1=SI
-ModelTypeUpdate1=1
-ModelType15=SI
-ModelName15=Connector
+ModelType15=PCBLIB
+ModelName15=TYPE_C
 ModelUpdate15=1
 
 [DatabaseUpdateOptions]

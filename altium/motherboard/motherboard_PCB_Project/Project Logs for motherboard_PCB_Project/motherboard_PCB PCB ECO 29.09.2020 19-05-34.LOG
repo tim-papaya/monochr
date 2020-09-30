@@ -1,0 +1,10 @@
+Added Component: Designator=D6(AD5245)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=D6-1
+Added Pin To Net: NetName=V3.3_VDD Pin=D6-2
+Added Pin To Net: NetName=GND Pin=D6-3
+Added Pin To Net: NetName=SCL Pin=D6-4
+Added Pin To Net: NetName=SDA Pin=D6-5
+Added Pin To Net: NetName=GND Pin=D6-6
+Added Pin To Net: NetName=POT_B Pin=D6-7
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D6 AD5245

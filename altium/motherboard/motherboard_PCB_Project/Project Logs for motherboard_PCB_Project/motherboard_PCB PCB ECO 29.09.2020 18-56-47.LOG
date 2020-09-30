@@ -1,0 +1,35 @@
+Added Component: Designator=R7(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R9(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SB1(BUTTON)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SB2(BUTTON)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=V3.3_VDD Pin=R7-2
+Added Pin To Net: NetName=V3.3_VDD Pin=R9-2
+Added Pin To Net: NetName=GND Pin=SB1-1
+Added Pin To Net: NetName=GND Pin=SB1-1
+Added Pin To Net: NetName=GND Pin=SB2-1
+Added Pin To Net: NetName=GND Pin=SB2-1
+Change Net Name : Old Net Name=NetR3_1 New Net Name=POT_B
+Added Pin To Net: NetName=BUTTON_1 Pin=R7-1
+Added Pin To Net: NetName=BUTTON_1 Pin=SB1-2
+Added Pin To Net: NetName=BUTTON_1 Pin=SB1-2
+Added Pin To Net: NetName=BUTTON_1 Pin=X2-32
+Added Net: Name=BUTTON_1
+Added Pin To Net: NetName=BUTTON_2 Pin=R9-1
+Added Pin To Net: NetName=BUTTON_2 Pin=SB2-2
+Added Pin To Net: NetName=BUTTON_2 Pin=SB2-2
+Added Pin To Net: NetName=BUTTON_2 Pin=X2-36
+Added Net: Name=BUTTON_2
+Added Pin To Net: NetName=SCL Pin=X2-17
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=X2-13
+Added Net: Name=SDA
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R7 10k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R9 10k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component SB1 KLS7-TS6604
+Added Member To Class: ClassName=motherboard_Sheet Member=Component SB2 KLS7-TS6604
+Added Member To Class: ClassName=motherboard_Sheet Member=Component X1 12V POWER
+Added Room: Name=motherboard_Sheet
