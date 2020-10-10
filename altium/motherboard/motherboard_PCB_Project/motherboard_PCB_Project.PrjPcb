@@ -86,7 +86,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=OYAMJXQH
+DocumentUniqueId=LVGCTEFD
 
 [Document4]
 DocumentPath=motherboard_Sheet.SchDoc
@@ -106,40 +106,6 @@ GenerateClassCluster=0
 DocumentUniqueId=HJVGQBYX
 
 [Document5]
-DocumentPath=Project Outputs for motherboard_PCB_Project\AllLayers.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document6]
-DocumentPath=Project Outputs for motherboard_PCB_Project\Drill.Cam
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document7]
 DocumentPath=motherboard_PCB_Project.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -161,50 +127,54 @@ DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB-Plated.
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.DRR
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB-RectHoles-Plated.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.EXTREP
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBL
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBO
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBS
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GKO
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTL
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTO
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTS
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.LDP
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.REP
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument13]
+DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument14]
 DocumentPath=Project Outputs for motherboard_PCB_Project\motherboard_PCB.RUL
 DItemRevisionGUID=
 

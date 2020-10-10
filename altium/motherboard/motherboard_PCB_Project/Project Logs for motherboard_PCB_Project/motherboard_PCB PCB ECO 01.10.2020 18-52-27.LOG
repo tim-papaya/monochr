@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=BUTTON_1 Pin=R7-1
+Removed Pin From Net: NetName=BUTTON_1 Pin=SB1-2
+Removed Pin From Net: NetName=BUTTON_1 Pin=SB1-2
+Added Component: Designator=R9(0805)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=BUTTON_1 Pin=R9-2
+Added Pin To Net: NetName=NetR7_1 Pin=R7-1
+Added Pin To Net: NetName=NetR7_1 Pin=R9-1
+Added Pin To Net: NetName=NetR7_1 Pin=SB1-2
+Added Pin To Net: NetName=NetR7_1 Pin=SB1-2
+Added Net: Name=NetR7_1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R9 100
