@@ -10,4 +10,4 @@ From  : Project [motherboard_PCB_Project.PrjPcb]
 Files Generated   : 4
 Documents Printed : 0
 
-Finished Output Generation At 13:17:26 On 10.10.2020
+Finished Output Generation At 10:30:02 On 20.10.2020
