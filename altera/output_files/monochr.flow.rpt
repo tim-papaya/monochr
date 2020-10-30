@@ -1,5 +1,5 @@
 Flow report for monochr
-Fri Sep 18 18:49:54 2020
+Fri Oct 30 18:43:40 2020
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -41,18 +41,18 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Fri Sep 18 18:49:54 2020      ;
+; Flow Status                        ; Successful - Fri Oct 30 18:43:40 2020      ;
 ; Quartus II 64-Bit Version          ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name                      ; monochr                                    ;
 ; Top-level Entity Name              ; monochr                                    ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE10F17C8                               ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 411 / 10,320 ( 4 % )                       ;
-;     Total combinational functions  ; 406 / 10,320 ( 4 % )                       ;
+; Total logic elements               ; 407 / 10,320 ( 4 % )                       ;
+;     Total combinational functions  ; 403 / 10,320 ( 4 % )                       ;
 ;     Dedicated logic registers      ; 191 / 10,320 ( 2 % )                       ;
 ; Total registers                    ; 191                                        ;
-; Total pins                         ; 31 / 180 ( 17 % )                          ;
+; Total pins                         ; 38 / 180 ( 21 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0 / 423,936 ( 0 % )                        ;
 ; Embedded Multiplier 9-bit elements ; 0 / 46 ( 0 % )                             ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/18/2020 18:49:17 ;
+; Start date & time ; 10/30/2020 18:43:10 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; monochr             ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
 ; Assignment Name                      ; Value                                                     ; Default Value ; Entity Name ; Section Id        ;
 +--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
-; COMPILER_SIGNATURE_ID                ; 5025755261032.160044415708440                             ; --            ; --          ; --                ;
+; COMPILER_SIGNATURE_ID                ; 5025755261032.160407259015796                             ; --            ; --          ; --                ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; testbench_monochr ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; vhdl_tb           ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; vhdl_tb                                                   ; --            ; --          ; eda_simulation    ;
@@ -94,6 +94,10 @@ agreement for further details.
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                                         ; --            ; --          ; --                ;
 ; MISC_FILE                            ; source/pll_usb/synthesis/../pll_usb.cmp                   ; --            ; --          ; --                ;
 ; MISC_FILE                            ; source/pll_usb/synthesis/pll_usb.qsys                     ; --            ; --          ; --                ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS       ; Half Signal Swing                                         ; --            ; --          ; --                ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS       ; Half Signal Swing                                         ; --            ; --          ; --                ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS      ; Half Vccio                                                ; --            ; --          ; --                ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS      ; Half Vccio                                                ; --            ; --          ; --                ;
 ; PARTITION_COLOR                      ; 16764057                                                  ; --            ; --          ; Top               ;
 ; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING                                     ; --            ; --          ; Top               ;
 ; PARTITION_NETLIST_TYPE               ; SOURCE                                                    ; --            ; --          ; Top               ;
@@ -112,12 +116,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:17     ; 1.0                     ; 4804 MB             ; 00:00:21                           ;
-; Fitter                    ; 00:00:09     ; 1.0                     ; 5070 MB             ; 00:00:06                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 4692 MB             ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 4751 MB             ; 00:00:02                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4664 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:30     ; --                      ; --                  ; 00:00:31                           ;
+; Analysis & Synthesis      ; 00:00:13     ; 1.0                     ; 4793 MB             ; 00:00:21                           ;
+; Fitter                    ; 00:00:06     ; 1.0                     ; 5060 MB             ; 00:00:06                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 4682 MB             ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 4737 MB             ; 00:00:02                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4656 MB             ; 00:00:01                           ;
+; Total                     ; 00:00:24     ; --                      ; --                  ; 00:00:31                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

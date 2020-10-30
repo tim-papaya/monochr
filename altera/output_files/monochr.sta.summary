@@ -3,27 +3,27 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'pzs_test:COMP_CCD|ccd_clk_div'
-Slack : -7.012
-TNS   : -724.692
+Slack : -7.220
+TNS   : -730.992
 
 Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
-Slack : -6.962
-TNS   : -89.407
+Slack : -6.052
+TNS   : -90.262
 
 Type  : Slow 1200mV 85C Model Setup 'usb_clk'
-Slack : -4.781
-TNS   : -183.015
+Slack : -4.305
+TNS   : -175.379
 
 Type  : Slow 1200mV 85C Model Setup 'pzs_test:COMP_CCD|adc_clk_div'
-Slack : -1.502
-TNS   : -1.502
+Slack : -2.057
+TNS   : -2.057
 
 Type  : Slow 1200mV 85C Model Hold 'clk50Mhz'
-Slack : -1.376
-TNS   : -1.579
+Slack : 0.342
+TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'pzs_test:COMP_CCD|ccd_clk_div'
-Slack : 0.454
+Slack : 0.438
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'usb_clk'
@@ -31,7 +31,7 @@ Slack : 0.485
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'pzs_test:COMP_CCD|adc_clk_div'
-Slack : 1.914
+Slack : 2.530
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'usb_clk'
@@ -51,27 +51,27 @@ Slack : -1.487
 TNS   : -1.487
 
 Type  : Slow 1200mV 0C Model Setup 'pzs_test:COMP_CCD|ccd_clk_div'
-Slack : -6.438
-TNS   : -667.764
+Slack : -6.623
+TNS   : -672.115
 
 Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -6.359
-TNS   : -77.624
+Slack : -5.404
+TNS   : -78.087
 
 Type  : Slow 1200mV 0C Model Setup 'usb_clk'
-Slack : -4.404
-TNS   : -166.400
+Slack : -3.891
+TNS   : -158.924
 
 Type  : Slow 1200mV 0C Model Setup 'pzs_test:COMP_CCD|adc_clk_div'
-Slack : -1.242
-TNS   : -1.242
+Slack : -1.752
+TNS   : -1.752
 
 Type  : Slow 1200mV 0C Model Hold 'clk50Mhz'
-Slack : -1.251
-TNS   : -1.362
+Slack : 0.317
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'pzs_test:COMP_CCD|ccd_clk_div'
-Slack : 0.405
+Slack : 0.390
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'usb_clk'
@@ -79,7 +79,7 @@ Slack : 0.432
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'pzs_test:COMP_CCD|adc_clk_div'
-Slack : 1.735
+Slack : 2.299
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'usb_clk'
@@ -99,27 +99,27 @@ Slack : -1.487
 TNS   : -1.487
 
 Type  : Fast 1200mV 0C Model Setup 'pzs_test:COMP_CCD|ccd_clk_div'
-Slack : -2.500
-TNS   : -246.917
+Slack : -2.523
+TNS   : -248.115
 
 Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -2.276
-TNS   : -19.416
+Slack : -2.069
+TNS   : -20.135
 
 Type  : Fast 1200mV 0C Model Setup 'usb_clk'
-Slack : -1.430
-TNS   : -52.405
+Slack : -1.247
+TNS   : -49.439
 
 Type  : Fast 1200mV 0C Model Setup 'pzs_test:COMP_CCD|adc_clk_div'
-Slack : -0.138
-TNS   : -0.138
+Slack : -0.453
+TNS   : -0.453
 
 Type  : Fast 1200mV 0C Model Hold 'clk50Mhz'
-Slack : -0.701
-TNS   : -0.967
+Slack : 0.065
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'pzs_test:COMP_CCD|ccd_clk_div'
-Slack : 0.184
+Slack : 0.177
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'usb_clk'
@@ -127,16 +127,16 @@ Slack : 0.199
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'pzs_test:COMP_CCD|adc_clk_div'
-Slack : 0.840
+Slack : 1.187
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -53.818
+TNS   : -65.070
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -39.157
+TNS   : -47.080
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pzs_test:COMP_CCD|ccd_clk_div'
 Slack : -1.000

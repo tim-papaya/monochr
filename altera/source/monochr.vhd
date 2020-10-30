@@ -8,10 +8,12 @@ port (
 ------------------------
 	adc_clk : out std_logic;
 	adc_data_in : in std_logic_vector(11 DOWNTO 0);
+	adc_otr : in std_logic;
 ------------------------
 ----START TRIGGER-------
 ------------------------
 	trigger_start : in std_logic;
+	button : in std_logic;
 ------------------------
 ------CCD-PORT----------
 ------------------------
@@ -19,15 +21,23 @@ port (
 	ccd_clk : out std_logic; -- 2.5 Mhz /clk
 	ccd_rog : out std_logic; -- /rog signal
 	ccd_shut : out std_logic; -- /shut signal;
+	ccd_shsw : out std_logic := '0';
 ------------------------
 --------USB-PORT--------
 ------------------------
 	usb_clk : in std_logic;
 	usb_txe : in std_logic := '1';
-	usb_data : out std_logic_vector(7 DOWNTO 0);
+	usb_data : inout std_logic_vector(7 DOWNTO 0);
 	usb_oe : out std_logic := '1';
 	usb_wr : out std_logic := '1';
-	usb_rd : out std_logic := '1'
+	usb_rd : out std_logic := '1';
+	usb_rxf : in std_logic := '1';
+	usb_siwua : out std_logic := '1';
+------------------------
+-----R-DIGITAL-PORT-----
+------------------------
+	r_scl : out std_logic := '1';
+	r_sda : inout std_logic := 'Z'
 );
 end entity;
 -------------------------
@@ -108,7 +118,7 @@ COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 50,
                                adc_clk => adc_clk,
 										 ccd_ready => ccd_ready_reg,
 										 adc_data_in => adc_data_in,
-                               trigger_start => trigger_start
+                               trigger_start => button
 );
 -----------------------
 ---USB-PORTMAP---------

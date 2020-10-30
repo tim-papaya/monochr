@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <QtEndian>
 Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
   : usb(usb), scene(scene)
 {
@@ -10,14 +11,19 @@ Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
 
 int Reader::convert(const char ch1, const char ch2)
 {
-        char ch[2];
-        ch[1] = ch1; // MSByte
-        ch[0] = ch2; // LSByte
-        return *(ushort*)ch;
+    ushort numb = ch2;
+    numb <<= 8;
+    return  numb + ch1;
+//        char ch[2];
+//        ch[1] = ch1; // MSByte
+//        ch[0] = ch2; // LSByte
+//        return *(ushort*)ch;
+
 }
 
 QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
 {
+
     int pos_start, pos_end, seq_count = 0;
     bool is_line = false;
 
@@ -41,8 +47,15 @@ QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
                {
                   pos_end = i - 2;
                   QVector<ushort> line;
-                  for (int j = pos_start; j < pos_end; j++)
-                      line.push_back(ubuffer[j]);
+//                  qDebug()<< "split 3 chars:";
+                  for (int j = pos_start; j < pos_end; j++){
+                      line.push_back(qFromBigEndian(ubuffer[j]));
+                      if(j<=3){
+                          qDebug()<< static_cast<char>(ubuffer[j]);
+                      }
+                  }
+
+
                   list.push_back(line);
                   seq_count = 0;
                   is_line = false;
@@ -98,9 +111,14 @@ void Reader::readUsb()
         QVector<ushort> ubuffer;
         for (int i = 0; i < readed; i+=2)
             ubuffer.push_back(convert(buffer[i], buffer[i+1]));
+        qDebug() << "First 3 chars:";
+//        for(int i = 0; i < 3; i++)
+        qDebug()<<QByteArray::fromHex( QByteArray::fromRawData(buffer,readed));
 
-        QFile fileOut("out_rawwww.csv");
-        fileOut.open(QFile::WriteOnly);
+        QFile fileOut("C:\\TIM\\Project\\monochr\\logs\\out_rawwww.txt");
+        if (!fileOut.open(QIODevice::WriteOnly))
+           qDebug() << "error: file to write raw data from ccd don`t open";
+
         QTextStream stream(&fileOut);
 
         for (ushort temp : ubuffer)
@@ -109,6 +127,7 @@ void Reader::readUsb()
         QList<QVector<ushort>> lines = split(ubuffer);
 
         qDebug() << "Lines readed:" << lines.size();
+
         setResult(lines);
     }
 }
