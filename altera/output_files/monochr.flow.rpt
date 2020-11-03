@@ -1,5 +1,5 @@
 Flow report for monochr
-Fri Oct 30 18:43:40 2020
+Tue Nov 03 15:44:24 2020
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -41,17 +41,17 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Fri Oct 30 18:43:40 2020      ;
+; Flow Status                        ; Successful - Tue Nov 03 15:44:24 2020      ;
 ; Quartus II 64-Bit Version          ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name                      ; monochr                                    ;
 ; Top-level Entity Name              ; monochr                                    ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE10F17C8                               ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 407 / 10,320 ( 4 % )                       ;
-;     Total combinational functions  ; 403 / 10,320 ( 4 % )                       ;
-;     Dedicated logic registers      ; 191 / 10,320 ( 2 % )                       ;
-; Total registers                    ; 191                                        ;
+; Total logic elements               ; 384 / 10,320 ( 4 % )                       ;
+;     Total combinational functions  ; 383 / 10,320 ( 4 % )                       ;
+;     Dedicated logic registers      ; 189 / 10,320 ( 2 % )                       ;
+; Total registers                    ; 189                                        ;
 ; Total pins                         ; 38 / 180 ( 21 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0 / 423,936 ( 0 % )                        ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/30/2020 18:43:10 ;
+; Start date & time ; 11/03/2020 15:43:54 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; monochr             ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
 ; Assignment Name                      ; Value                                                     ; Default Value ; Entity Name ; Section Id        ;
 +--------------------------------------+-----------------------------------------------------------+---------------+-------------+-------------------+
-; COMPILER_SIGNATURE_ID                ; 5025755261032.160407259015796                             ; --            ; --          ; --                ;
+; COMPILER_SIGNATURE_ID                ; 5025755261032.160440743409152                             ; --            ; --          ; --                ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; testbench_monochr ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                        ; --            ; --          ; vhdl_tb           ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; vhdl_tb                                                   ; --            ; --          ; eda_simulation    ;
@@ -116,12 +116,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:13     ; 1.0                     ; 4793 MB             ; 00:00:21                           ;
-; Fitter                    ; 00:00:06     ; 1.0                     ; 5060 MB             ; 00:00:06                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 4682 MB             ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 4737 MB             ; 00:00:02                           ;
+; Analysis & Synthesis      ; 00:00:13     ; 1.0                     ; 4795 MB             ; 00:00:21                           ;
+; Fitter                    ; 00:00:05     ; 1.0                     ; 5061 MB             ; 00:00:06                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 4684 MB             ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 4731 MB             ; 00:00:02                           ;
 ; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 4656 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:24     ; --                      ; --                  ; 00:00:31                           ;
+; Total                     ; 00:00:22     ; --                      ; --                  ; 00:00:31                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

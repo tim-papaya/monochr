@@ -131,7 +131,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : D11       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : D12       :        :                   :         : 7         :                
 VCCD_PLL2                    : D13       : power  :                   : 1.2V    :           :                
 usb_data[5]                  : D14       : bidir  : 3.3-V LVCMOS      :         : 7         : Y              
-adc_data_in[0]               : D15       : input  : 3.3-V LVCMOS      :         : 6         : Y              
+adc_data_in[11]              : D15       : input  : 3.3-V LVCMOS      :         : 6         : Y              
 usb_txe                      : D16       : input  : 3.3-V LVCMOS      :         : 6         : Y              
 GND+                         : E1        :        :                   :         : 1         :                
 GND                          : E2        : gnd    :                   :         :           :                
@@ -162,7 +162,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : F10       :        :                   :      
 usb_wr                       : F11       : output : 3.3-V LVCMOS      :         : 7         : Y              
 VCCA2                        : F12       : power  :                   : 2.5V    :           :                
 usb_oe                       : F13       : output : 3.3-V LVCMOS      :         : 6         : Y              
-adc_data_in[1]               : F14       : input  : 3.3-V LVCMOS      :         : 6         : Y              
+adc_data_in[10]              : F14       : input  : 3.3-V LVCMOS      :         : 6         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : F15       :        :                   :         : 6         :                
 adc_clk                      : F16       : output : 3.3-V LVCMOS      :         : 6         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : G1        :        :                   :         : 1         :                
@@ -209,8 +209,8 @@ GND                          : J9        : gnd    :                   :         
 GND                          : J10       : gnd    :                   :         :           :                
 usb_clk                      : J11       : input  : 3.3-V LVCMOS      :         : 5         : Y              
 usb_siwua                    : J12       : output : 3.3-V LVCMOS      :         : 5         : Y              
-adc_data_in[6]               : J13       : input  : 3.3-V LVCMOS      :         : 5         : Y              
-adc_data_in[2]               : J14       : input  : 3.3-V LVCMOS      :         : 5         : Y              
+adc_data_in[5]               : J13       : input  : 3.3-V LVCMOS      :         : 5         : Y              
+adc_data_in[9]               : J14       : input  : 3.3-V LVCMOS      :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : J15       :        :                   :         : 5         :                
 button                       : J16       : input  : 3.3-V LVCMOS      :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : K1        :        :                   :         : 2         :                
@@ -222,9 +222,9 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : K6        :        :                   :      
 VCCINT                       : K7        : power  :                   : 1.2V    :           :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K8        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K9        :        :                   :         : 4         :                
-adc_data_in[3]               : K10       : input  : 3.3-V LVCMOS      :         : 4         : Y              
-adc_data_in[4]               : K11       : input  : 3.3-V LVCMOS      :         : 5         : Y              
-adc_data_in[5]               : K12       : input  : 3.3-V LVCMOS      :         : 5         : Y              
+adc_data_in[8]               : K10       : input  : 3.3-V LVCMOS      :         : 4         : Y              
+adc_data_in[7]               : K11       : input  : 3.3-V LVCMOS      :         : 5         : Y              
+adc_data_in[6]               : K12       : input  : 3.3-V LVCMOS      :         : 5         : Y              
 GND                          : K13       : gnd    :                   :         :           :                
 VCCIO5                       : K14       : power  :                   : 3.3V    : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : K15       :        :                   :         : 5         :                
@@ -238,10 +238,10 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : L6        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : L7        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : L8        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : L9        :        :                   :         : 4         :                
-adc_data_in[11]              : L10       : input  : 3.3-V LVCMOS      :         : 4         : Y              
+adc_data_in[0]               : L10       : input  : 3.3-V LVCMOS      :         : 4         : Y              
 usb_rd                       : L11       : output : 3.3-V LVCMOS      :         : 4         : Y              
-adc_data_in[7]               : L12       : input  : 3.3-V LVCMOS      :         : 5         : Y              
-adc_data_in[8]               : L13       : input  : 3.3-V LVCMOS      :         : 5         : Y              
+adc_data_in[4]               : L12       : input  : 3.3-V LVCMOS      :         : 5         : Y              
+adc_data_in[3]               : L13       : input  : 3.3-V LVCMOS      :         : 5         : Y              
 usb_rxf                      : L14       : input  : 3.3-V LVCMOS      :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : L15       :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : L16       :        :                   :         : 5         :                
@@ -255,7 +255,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : M7        :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : M8        :        :                   :         : 3         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : M9        :        :                   :         : 4         :                
 usb_data[1]                  : M10       : bidir  : 3.3-V LVCMOS      :         : 4         : Y              
-adc_data_in[10]              : M11       : input  : 3.3-V LVCMOS      :         : 4         : Y              
+adc_data_in[1]               : M11       : input  : 3.3-V LVCMOS      :         : 4         : Y              
 usb_data[6]                  : M12       : bidir  : 3.3-V LVCMOS      :         : 5         : Y              
 GND                          : M13       : gnd    :                   :         :           :                
 VCCIO5                       : M14       : power  :                   : 3.3V    : 5         :                
@@ -290,7 +290,7 @@ VCCIO4                       : P10       : power  :                   : 3.3V    
 RESERVED_INPUT_WITH_WEAK_PULLUP : P11       :        :                   :         : 4         :                
 GND                          : P12       : gnd    :                   :         :           :                
 VCCIO4                       : P13       : power  :                   : 3.3V    : 4         :                
-adc_data_in[9]               : P14       : input  : 3.3-V LVCMOS      :         : 4         : Y              
+adc_data_in[2]               : P14       : input  : 3.3-V LVCMOS      :         : 4         : Y              
 ccd_rog                      : P15       : output : 3.3-V LVCMOS      :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : P16       :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : R1        :        :                   :         : 2         :                

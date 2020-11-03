@@ -107,9 +107,9 @@ begin
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------
-COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 50,
+COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 2,
 											 ADC_CLK_DIVIDER => 25,
-											 CCD_LINES_NUMBER => 2)
+											 CCD_LINES_NUMBER => 4)
 							port map (data_out => usb_data_in_reg,
 										 clk_in => clk50Mhz,                             
                                ccd_clk => ccd_clk,

@@ -44,9 +44,9 @@ begin
 					if (switch_write = TIMING_MSB) then
 						wr <= '0';
 						data_out <= "0000" & data_in(11 DOWNTO 8);
-						--data_out <= "0000" & "0010";
+						--data_out <= "1100" & "0011";
 					elsif (switch_write = TIMING_LSB) then
-						--data_out <= "1111" & "0101";
+						--data_out <= "0011" & "1100";
 						data_out <= data_in(7 DOWNTO 0);
 					end if;
 					switch_write := switch_write + 1;

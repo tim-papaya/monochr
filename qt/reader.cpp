@@ -3,6 +3,9 @@
 #include <QFile>
 #include <QTextStream>
 #include <QtEndian>
+#include <QDate>
+#include <QTime>
+
 Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
   : usb(usb), scene(scene)
 {
@@ -11,9 +14,9 @@ Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
 
 int Reader::convert(const char ch1, const char ch2)
 {
-    ushort numb = ch2;
+    ushort numb = ch1;
     numb <<= 8;
-    return  numb + ch1;
+    return  numb + ch2;
 //        char ch[2];
 //        ch[1] = ch1; // MSByte
 //        ch[0] = ch2; // LSByte
@@ -47,9 +50,9 @@ QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
                {
                   pos_end = i - 2;
                   QVector<ushort> line;
-//                  qDebug()<< "split 3 chars:";
+
                   for (int j = pos_start; j < pos_end; j++){
-                      line.push_back(qFromBigEndian(ubuffer[j]));
+                      line.push_back(ubuffer[j]);
                       if(j<=3){
                           qDebug()<< static_cast<char>(ubuffer[j]);
                       }
@@ -111,16 +114,20 @@ void Reader::readUsb()
         QVector<ushort> ubuffer;
         for (int i = 0; i < readed; i+=2)
             ubuffer.push_back(convert(buffer[i], buffer[i+1]));
-        qDebug() << "First 3 chars:";
-//        for(int i = 0; i < 3; i++)
-        qDebug()<<QByteArray::fromHex( QByteArray::fromRawData(buffer,readed));
 
-        QFile fileOut("C:\\TIM\\Project\\monochr\\logs\\out_rawwww.txt");
+        QString path = "C:\\TIM\\Project\\monochr\\logs\\";
+        QString time = QString::number(QTime::currentTime().hour()) + "_" +
+                       QString::number(QTime::currentTime().minute()) + "_" +
+                       QString::number(QTime::currentTime().second());
+        path += "out_raw_" + QDate::currentDate().toString() + "_" + time + ".txt";
+
+        QFile fileOut(path);
         if (!fileOut.open(QIODevice::WriteOnly))
            qDebug() << "error: file to write raw data from ccd don`t open";
 
         QTextStream stream(&fileOut);
 
+        Qt::bin(stream);
         for (ushort temp : ubuffer)
             stream << temp << "\n";
         fileOut.close();

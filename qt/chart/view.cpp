@@ -83,7 +83,7 @@ View::View(QList<QVector<ushort>> lines, QWidget *parent)
     m_coordY->setText("Y: ");
 
     m_chart->axisX()->setRange(-50,2100);
-    m_chart->axisY()->setRange(-50,70000);
+    m_chart->axisY()->setRange(-50,5000);
 
     for (QAbstractSeries *series : m_chart->series())
     {

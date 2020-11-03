@@ -29,7 +29,7 @@ generic (
 	
 	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0000"&"0011"; --0x3
 	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"0111"&"1111"; --0x7F
-	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "0000"&"0100"&"0001";--0x41
+	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1011"&"1100"&"0001";--0xBC1
 	
 	END_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0101"&"0011"; --0x
 	END_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"1111"&"1111"; --0x
@@ -80,7 +80,7 @@ begin
 	rog <=  NOT rog_reg;	
 	shut <= NOT shut_reg;
 -------ADC--------------
-	adc_clk <= NOT adc_clk_reg;
+	adc_clk <=  clk_reg;
 ------------------------
 ---CLOCK FOR CCD, ADC---
 ------------------------
@@ -182,6 +182,7 @@ process (ccd_clk_div)
 		   AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA) then
 			clk_reg <= NOT clk_reg;
 			data_out <= adc_data_in;
+			--data_out <= "0101" & "1110" & "0001";
 			if (clk_reg = '0') then
 				ccd_ready_reg := '1';
 			else
@@ -221,7 +222,7 @@ process (ccd_clk_div)
 			clk_reg <= NOT clk_reg;
 		else
 			rog_reg <= '1';
-			shut_reg <= '0';
+			shut_reg <= '1'; -- When shutter open ('0') CCD is heating
 			clk_reg <= NOT clk_reg;	
 		end if; 
 		-------------------------

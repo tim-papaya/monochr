@@ -14,7 +14,7 @@ class Reader : public QObject
 public:
     Reader(UsbHandler *usb, QGraphicsScene *scene);
 
-    const ushort start_seq[3] = {0x03, 0x7F, 0x41};
+    const ushort start_seq[3] = {0x0003, 0x007F, 0x0AC1};
     const int seq_size = 3;
     int static convert(char const ch1, char const ch2);
 
