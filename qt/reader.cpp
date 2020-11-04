@@ -92,7 +92,7 @@ void Reader::readUsb()
 
     while (m_running)
     {
-        for(int i = 0; i < size_buffer; i++)
+        for (int i = 0; i < size_buffer; i++)
               buffer[i] = 0;
         int readed = 0;
         if (!usb->readData(buffer, readed))
@@ -115,22 +115,23 @@ void Reader::readUsb()
         for (int i = 0; i < readed; i+=2)
             ubuffer.push_back(convert(buffer[i], buffer[i+1]));
 
-        QString path = "C:\\TIM\\Project\\monochr\\logs\\";
-        QString time = QString::number(QTime::currentTime().hour()) + "_" +
-                       QString::number(QTime::currentTime().minute()) + "_" +
-                       QString::number(QTime::currentTime().second());
-        path += "out_raw_" + QDate::currentDate().toString() + "_" + time + ".txt";
+//        QString path = "C:\\TIM\\Project\\monochr\\logs\\";
+//        QString time = QString::number(QTime::currentTime().hour()) + "_" +
+//                       QString::number(QTime::currentTime().minute()) + "_" +
+//                       QString::number(QTime::currentTime().second());
+//        path += "out_raw_" + QDate::currentDate().toString() + "_" + time + ".txt";
 
-        QFile fileOut(path);
-        if (!fileOut.open(QIODevice::WriteOnly))
-           qDebug() << "error: file to write raw data from ccd don`t open";
+//        QFile fileOut(path);
+//        if (!fileOut.open(QIODevice::WriteOnly))
+//           qDebug() << "error: file to write raw data from ccd don`t open";
 
-        QTextStream stream(&fileOut);
+//        QTextStream stream(&fileOut);
 
-        Qt::bin(stream);
-        for (ushort temp : ubuffer)
-            stream << temp << "\n";
-        fileOut.close();
+//        Qt::bin(stream);
+//        for (ushort temp : ubuffer)
+//            stream << temp << "\n";
+//        fileOut.close();
+
         QList<QVector<ushort>> lines = split(ubuffer);
 
         qDebug() << "Lines readed:" << lines.size();

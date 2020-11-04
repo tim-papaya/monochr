@@ -138,7 +138,7 @@ bool UsbHandler::readData(char *rxBuffer, int &readed)
     readed = static_cast<int>(rxBytes);
     qDebug() << "Bytes received:" << readed;
 
-    qDebug() << "Bytes transmitted:" << static_cast<int>(txBytes);
+    qDebug() << "Bytes is transmitted:" << static_cast<int>(txBytes);
 
 
     if (rxBytes > 0)
@@ -161,6 +161,23 @@ bool UsbHandler::readData(char *rxBuffer, int &readed)
         return false;
     qDebug() << "usbhandler::readData";
     return true;
+}
+
+bool UsbHandler::writeData(char *wrBuffer, int &writed)
+{
+    DWORD bytesWritten;
+
+    qDebug() << "Write buffer:";
+    for (int i = 0; i < sizeof (wrBuffer); i++)
+        qDebug() << i << ':' << wrBuffer[i];
+    ftStatus = FT_Write(ftHandle, wrBuffer, sizeof(wrBuffer), &bytesWritten);
+    if (ftStatus == FT_OK) {
+        writed = static_cast<int>(bytesWritten);
+        qDebug() << "Bytes is written:" << writed;
+    }
+    else {
+        qDebug() << "error: can`t write bytes.\n";
+    }
 }
 
 bool UsbHandler::closeHandle()

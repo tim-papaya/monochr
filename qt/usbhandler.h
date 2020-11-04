@@ -14,6 +14,7 @@ public:
     int showDevices(QString* info);
     bool setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, char* desc);
     bool readData(char *rxBuffer, int &readed);
+    bool writeData(char *wrBuffer, int &writed);
     bool closeHandle();
 
 private:

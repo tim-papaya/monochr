@@ -34,6 +34,11 @@ public slots:
 
     void read();
 
+private slots:
+    void on_readBtn_2_clicked();
+
+    void on_writeBtn_clicked();
+
 private:
     View *currentView;
     Ui::MainWindow *ui;

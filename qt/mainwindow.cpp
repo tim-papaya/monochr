@@ -72,14 +72,16 @@ void MainWindow::on_initBtn_clicked()
 {
 
 
-    constexpr int size_buffer = 65536;
+    constexpr int size_rd_buffer = 65536;
+    constexpr int size_wr_buffer = 64;
+
     QString str = ui->deviceList->currentText();
 
     qDebug() << "device :" << str;
     QByteArray qb = str.toUtf8();
     char* desc = qb.data();
 
-    usb.setSyncFIFO(size_buffer, size_buffer, desc);
+    usb.setSyncFIFO(size_rd_buffer, size_wr_buffer, desc);
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -98,5 +100,13 @@ void MainWindow::read()
 
     currentView = new View(list);
     ui->chartLayout->addWidget(currentView);
-    qDebug() << "HERE";
+    qDebug() << "Plot updated";
+}
+
+void MainWindow::on_writeBtn_clicked()
+{
+    char* wrBuffer = ui->writeLine->text().toUtf8().data();
+//    char wrBuffer[] = "11111111";
+    int written;
+    usb.writeData(wrBuffer, written);
 }

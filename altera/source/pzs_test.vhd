@@ -3,11 +3,8 @@ use IEEE.std_logic_1164.all;
 
 entity pzs_test is
 generic (
-	CCD_CLK_DIVIDER : integer; 
-										-- 50Mhz => 4.16Mhz :=2	
-	ADC_CLK_DIVIDER  : integer;
-										-- 50Mhz => 4.16Mhz :=1
-	
+	CCD_CLK_DIVIDER : integer; -- 50Mhz => 5Mhz := 5	
+										
 	---=NUMBERx2----
 	SHUTTER : integer := 40;
 	EXPOSURE : integer := 20;
@@ -25,8 +22,6 @@ generic (
 	
 	TRIGGER_ACTIVE : std_logic := '0';
 	
-	CCD_LINES_NUMBER : integer; -- Number of lines that ccd should read
-	
 	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0000"&"0011"; --0x3
 	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"0111"&"1111"; --0x7F
 	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1011"&"1100"&"0001";--0xBC1
@@ -40,6 +35,7 @@ generic (
 port (
 	---DATA---
 	data_out : out std_logic_vector(11 DOWNTO 0);
+	command_in : in std_logic_vector(7 DOWNTO 0);
 	---EXTERNAL CLOCK---
 	clk_in : in std_logic;  -- 50 Mhz
 	---CCD---
@@ -67,6 +63,10 @@ architecture pzs_test of pzs_test is
 	signal adc_clk_reg : std_logic := '1';
 	
 	signal data_reg : std_logic_vector (11 DOWNTO 0);  
+	signal command_reg : std_logic_vector(7 DOWNTO 0) := "0110" & "1011";
+	
+-------CONSTANTS-------------
+	signal CCD_LINES_NUMBER : integer := 4 ;
 -------ADC--------
 	signal adc_clk_div : std_logic := '1'; -- reads Vout of ccd on rising_edge
 														-- gives data on negative_edge 
@@ -81,43 +81,27 @@ begin
 	shut <= NOT shut_reg;
 -------ADC--------------
 	adc_clk <=  clk_reg;
-------------------------
----CLOCK FOR CCD, ADC---
-------------------------
+-------COMMAND----------
+	command_reg <= command_in;
+	
 process (clk_in)
-	variable count : integer := 0; -- divider for clock
-	variable ccd_freq : integer := CCD_CLK_DIVIDER;
-	variable adc_freq : integer := ADC_CLK_DIVIDER;
- begin
-	if rising_edge(clk_in) then
-		---CCD---
-		if (count = ccd_freq) then
-			ccd_clk_div <= NOT ccd_clk_div;
-			count := 0;
-		else
-			count := count + 1;
-		end if;		
-		---ADC---
-		if (count = adc_freq) then
-			adc_clk_div <= NOT adc_clk_div;
-		end if;
-	end if;	
-end process;
-------------------------
-------------------------
-------------------------
-process (adc_clk_div)
-	variable count : integer := 0;
-begin 
-		if rising_edge(adc_clk_div) then
-			adc_clk_reg <= clk_reg;
-		end if;
-end process;
-------------------------
-------------------------
-------------------------
-process (ccd_clk_div)
+begin
+	if (command_reg = ("0011" & "0001")) then
+		CCD_LINES_NUMBER <= 1; 
+	elsif (command_reg = ("0011" & "0010")) then
+		CCD_LINES_NUMBER <= 4;
+	elsif (command_reg = ("0011" & "0011")) then
+		CCD_LINES_NUMBER <= 100;
+	else 
+	end if;
+end process;	
+
+process (clk_in)
 	variable ccd_ready_reg : std_logic := '0';
+	
+	variable count_div : integer := 0; -- divider for clock
+	variable ccd_freq : integer := CCD_CLK_DIVIDER;
+	
 	variable count : integer := SHUTTER + EXPOSURE + ROG_START 
 	                          + ROG_END + DUM1 + DATA + DUM2 
 									  + LINE_END;
@@ -125,126 +109,137 @@ process (ccd_clk_div)
 	variable count_start_seq : integer := 0;
 	variable trigger_start_reg : std_logic := '0';
  begin
-	if rising_edge(ccd_clk_div) then
-		ccd_ready <= ccd_ready_reg;
-		--------------------
-		-- SHUTTER TIMING --
-		--------------------
-		if (count < SHUTTER) then
-			clk_reg <= NOT clk_reg;
-			shut_reg <= '0';
-		---------------------
-		-- EXPOSURE TIMING --
-		---------------------
-		elsif (count >= SHUTTER 
-		   AND count < SHUTTER + EXPOSURE) then
-			shut_reg <= '1';
-			clk_reg <= '1';
-			ccd_ready_reg := '0';
-		----------------
-		-- ROG TIMING --
-		----------------
-		elsif (count >= SHUTTER + EXPOSURE 
-			AND count < SHUTTER + EXPOSURE + ROG_START) then
-			rog_reg <= '0';
-			count_start_seq := 0;
-		elsif (count >= 2 * SHUTTER + EXPOSURE + ROG_START 
-		   AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END) then
-			rog_reg <= '1';
-			count_start_seq := 0;
-		-------------------------
-		-- DUMMIES BEFORE DATA --
-		-------------------------
-		elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END 
-		   AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1) then
-			-- SENDING START SEQUENCE --
-			if (count_start_seq < 3) then
-				if (clk_reg = '0') then
-					if (count_start_seq = 0) then
-						data_out <= START_SEQUENCE1;
-					elsif (count_start_seq = 1) then 
-						data_out <= START_SEQUENCE2;
-					elsif (count_start_seq = 2) then
-						data_out <= START_SEQUENCE3;
-					end if;
-					count_start_seq := count_start_seq + 1;
-					ccd_ready_reg := '1';
-				else
-					ccd_ready_reg := '0';
-				end if;
-			end if;
-			-----------------------------
-			clk_reg <= NOT clk_reg;
-		-----------------
-		-- DATA TIMING --
-		-----------------
-		elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 
-		   AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA) then
-			clk_reg <= NOT clk_reg;
-			data_out <= adc_data_in;
-			--data_out <= "0101" & "1110" & "0001";
-			if (clk_reg = '0') then
-				ccd_ready_reg := '1';
-			else
-				ccd_ready_reg := '0';
-			end if;
-			count_start_seq := 0;
-		--------------------------
-		-- DUMMIES AFTER TIMING --
-		--------------------------
-		elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA 
-		   AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2) then
-			-- SENDING START SEQUENCE --
-			if (count_start_seq < 3) then
-				if (clk_reg = '0') then
-					if (count_start_seq = 0) then
-						data_out <= START_SEQUENCE1;
-					elsif (count_start_seq = 1) then 
-						data_out <= START_SEQUENCE2;
-					elsif (count_start_seq = 2) then
-						data_out <= START_SEQUENCE3;
-					end if;
-					count_start_seq := count_start_seq + 1;
-					ccd_ready_reg := '1';
-				else
-					ccd_ready_reg := '0';
-				end if;
-			end if;
-			-----------------------------
-			clk_reg <= NOT clk_reg;	
-		--------------------------
-		------ END LINE ----------
-		--------------------------
-		elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2
-	     	AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2 + LINE_END) then
-			rog_reg <= '1';
-			shut_reg <= '0';
-			clk_reg <= NOT clk_reg;
+	if rising_edge(clk_in) then
+		---CCD-DIVIDER---
+		if (count_div = ccd_freq) then
+			ccd_clk_div <= NOT ccd_clk_div;
+			count_div := 0;
 		else
-			rog_reg <= '1';
-			shut_reg <= '1'; -- When shutter open ('0') CCD is heating
-			clk_reg <= NOT clk_reg;	
-		end if; 
-		-------------------------
-		---LINE NUMBER CONTROL---
-		-------------------------
-		if (trigger_start = TRIGGER_ACTIVE AND trigger_start_reg = '0') then
-			count_line := 0;
-			count := 0;
-			trigger_start_reg := '1';
-		elsif (NOT (trigger_start = TRIGGER_ACTIVE) AND (count_line >= CCD_LINES_NUMBER)) then
-			trigger_start_reg := '0';
-		elsif (count_line < CCD_LINES_NUMBER) then
-			if (count >= SHUTTER + EXPOSURE + ROG_START 
-	                  + ROG_END + DUM1 + DATA + DUM2 
-							+ LINE_END) then
-				count_line := count_line + 1;
-				if (count_line < CCD_LINES_NUMBER) then
-					count := 0;
+			count_div := count_div + 1;
+		end if;
+		-----------------
+		if (count_div = ccd_freq) then
+			ccd_ready <= ccd_ready_reg;
+			--------------------
+			-- SHUTTER TIMING --
+			--------------------
+			if (count < SHUTTER) then
+				clk_reg <= NOT clk_reg;
+				shut_reg <= '0';
+			---------------------
+			-- EXPOSURE TIMING --
+			---------------------
+			elsif (count >= SHUTTER 
+				AND count < SHUTTER + EXPOSURE) then
+				shut_reg <= '1';
+				clk_reg <= '1';
+				ccd_ready_reg := '0';
+			----------------
+			-- ROG TIMING --
+			----------------
+			elsif (count >= SHUTTER + EXPOSURE 
+				AND count < SHUTTER + EXPOSURE + ROG_START) then
+				rog_reg <= '0';
+				count_start_seq := 0;
+			elsif (count >= 2 * SHUTTER + EXPOSURE + ROG_START 
+				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END) then
+				rog_reg <= '1';
+				count_start_seq := 0;
+			-------------------------
+			-- DUMMIES BEFORE DATA --
+			-------------------------
+			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END 
+				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1) then
+				-- SENDING START SEQUENCE --
+				if (count_start_seq < 3) then
+					if (clk_reg = '0') then
+						if (count_start_seq = 0) then
+							data_out <= START_SEQUENCE1;
+						elsif (count_start_seq = 1) then 
+							data_out <= START_SEQUENCE2;
+						elsif (count_start_seq = 2) then
+							data_out <= START_SEQUENCE3;
+						end if;
+						count_start_seq := count_start_seq + 1;
+						ccd_ready_reg := '1';
+					else
+						ccd_ready_reg := '0';
+					end if;
 				end if;
+				-----------------------------
+				clk_reg <= NOT clk_reg;
+			-----------------
+			-- DATA TIMING --
+			-----------------
+			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 
+				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA) then
+				clk_reg <= NOT clk_reg;
+				data_out <= adc_data_in;
+				--data_out <= "0101" & "1110" & "0001";
+--				data_out <= "0000" & command_reg;
+				if (clk_reg = '0') then
+					ccd_ready_reg := '1';
+				else
+					ccd_ready_reg := '0';
+				end if;
+				count_start_seq := 0;
+			--------------------------
+			-- DUMMIES AFTER TIMING --
+			--------------------------
+			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA 
+				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2) then
+				-- SENDING START SEQUENCE --
+				if (count_start_seq < 3) then
+					if (clk_reg = '0') then
+						if (count_start_seq = 0) then
+							data_out <= START_SEQUENCE1;
+						elsif (count_start_seq = 1) then 
+							data_out <= START_SEQUENCE2;
+						elsif (count_start_seq = 2) then
+							data_out <= START_SEQUENCE3;
+						end if;
+						count_start_seq := count_start_seq + 1;
+						ccd_ready_reg := '1';
+					else
+						ccd_ready_reg := '0';
+					end if;
+				end if;
+				-----------------------------
+				clk_reg <= NOT clk_reg;	
+			--------------------------
+			------ END LINE ----------
+			--------------------------
+			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2
+				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2 + LINE_END) then
+				rog_reg <= '1';
+				shut_reg <= '0';
+				clk_reg <= NOT clk_reg;
 			else
-				count := count + 1;
-			end if;			
+				rog_reg <= '1';
+				shut_reg <= '1'; -- When shutter open ('0') CCD is heating
+				clk_reg <= NOT clk_reg;	
+			end if; 
+			-------------------------
+			---LINE NUMBER CONTROL---
+			-------------------------
+			if (trigger_start = TRIGGER_ACTIVE AND trigger_start_reg = '0') then
+				count_line := 0;
+				count := 0;
+				trigger_start_reg := '1';
+			elsif (NOT (trigger_start = TRIGGER_ACTIVE) AND (count_line >= CCD_LINES_NUMBER)) then
+				trigger_start_reg := '0';
+			elsif (count_line < CCD_LINES_NUMBER) then
+				if (count >= SHUTTER + EXPOSURE + ROG_START 
+								+ ROG_END + DUM1 + DATA + DUM2 
+								+ LINE_END) then
+					count_line := count_line + 1;
+					if (count_line < CCD_LINES_NUMBER) then
+						count := 0;
+					end if;
+				else
+					count := count + 1;
+				end if;			
+			end if;
 		end if;
 	 end if; 
  end process;

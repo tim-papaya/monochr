@@ -59,7 +59,9 @@ port (
 	txe : in std_logic;
 	ccd_ready : in std_logic;
 	data_in : in std_logic_vector(11 DOWNTO 0);
-	data_out : out std_logic_vector(7 DOWNTO 0);
+	rxf : in std_logic;
+	data : inout std_logic_vector(7 DOWNTO 0);
+	command_out : out  std_logic_vector(7 DOWNTO 0);
 	oe : out std_logic := '1';
 	wr : out std_logic := '1';
 	rd : out std_logic := '1'
@@ -70,17 +72,14 @@ end component;
 --------------------------
 component pzs_test
 generic (
-	CCD_CLK_DIVIDER : integer; 
-										-- 50Mhz => 4.16Mhz :=2	
-	ADC_CLK_DIVIDER  : integer;
-										-- 50Mhz => 4.16Mhz :=1
-	CCD_LINES_NUMBER : integer -- Number of lines that ccd should read
-	
+	CCD_CLK_DIVIDER : integer -- 50Mhz => 4.16Mhz := 5	
+										-- 50Mhz => 5Mhz := 4
 	);
 
 port (
 	---DATA---
 	data_out : out std_logic_vector(11 DOWNTO 0);
+	command_in : in std_logic_vector(7 DOWNTO 0);
 	---EXTERNAL CLOCK---
 	clk_in : in std_logic;  -- 50 Mhz
 	---CCD---
@@ -100,25 +99,46 @@ end component;
 -------------------------
 signal ccd_ready_reg : std_logic;
 signal usb_data_in_reg : std_logic_vector(11 DOWNTO 0);
+signal command_reg : std_logic_vector(7 DOWNTO 0);
+signal start_trig_reg : std_logic := '1';
+signal pc_trig_reg : std_logic := '1';
 -------------------------
 -------------------------
 -------------------------
 begin
+
+process (clk50Mhz) 
+	variable count : integer := 0;
+begin
+	if rising_edge(clk50Mhz) then
+		if (count = 10) then
+			if (command_reg = ("0101" & "0011")) then
+				pc_trig_reg <= '0';
+			else
+				pc_trig_reg <= '1';
+			end if;
+			count := 0;
+		else
+			count := count + 1;
+		end if;
+	end if;
+end process;
+
+start_trig_reg <= pc_trig_reg AND button;
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------
-COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 2,
-											 ADC_CLK_DIVIDER => 25,
-											 CCD_LINES_NUMBER => 4)
+COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 5)
 							port map (data_out => usb_data_in_reg,
 										 clk_in => clk50Mhz,                             
                                ccd_clk => ccd_clk,
                                rog => ccd_rog,
 										 shut => ccd_shut,
                                adc_clk => adc_clk,
+										 command_in => command_reg,
 										 ccd_ready => ccd_ready_reg,
 										 adc_data_in => adc_data_in,
-                               trigger_start => button
+                               trigger_start => start_trig_reg
 );
 -----------------------
 ---USB-PORTMAP---------
@@ -127,9 +147,11 @@ COMP_USB : usb port map (clk_in => usb_clk,
 								 txe => usb_txe,
 								 ccd_ready => ccd_ready_reg,
 								 data_in => usb_data_in_reg,
-								 data_out => usb_data,
+								 data => usb_data,
+								 command_out => command_reg,
 								 oe => usb_oe,
 								 wr => usb_wr,
+								 rxf => usb_rxf,
 								 rd => usb_rd
 );
 end architecture;
