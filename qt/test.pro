@@ -2,16 +2,14 @@ QT       += core gui
 QT       += charts
 
 SOURCES += \
-    chart/callout.cpp \
-    chart/view.cpp \
+    chart/chart.cpp \
     main.cpp \
     mainwindow.cpp \
     reader.cpp \
     usbhandler.cpp
 
 HEADERS += \
-    chart/callout.h \
-    chart/view.h \
+    chart/chart.h \
     mainwindow.h \
     reader.h \
     usb/ftd2xx.h \

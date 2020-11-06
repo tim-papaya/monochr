@@ -24,11 +24,11 @@ generic (
 	
 	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0000"&"0011"; --0x3
 	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"0111"&"1111"; --0x7F
-	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1011"&"1100"&"0001";--0xBC1
+	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "0000"&"1100"&"0001";--0xC1
 	
-	END_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0101"&"0011"; --0x
-	END_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"1111"&"1111"; --0x
-	END_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1111"&"0100"&"0001" --0x
+	END_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0101"&"1100"; --0x5C
+	END_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"1000"&"0000"; --0x80
+	END_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1111"&"0011"&"1110" --0x3E
 	
 	);
 
@@ -56,6 +56,7 @@ architecture pzs_test of pzs_test is
 ----SIGNALS------
 -----------------
 -------CCD-------
+	signal auto_mod : std_logic := '1';
 	signal ccd_clk_div : std_logic := '1';
 	signal clk_reg : std_logic := '1'; 
 	signal rog_reg : std_logic := '1'; 
@@ -84,17 +85,17 @@ begin
 -------COMMAND----------
 	command_reg <= command_in;
 	
-process (clk_in)
-begin
-	if (command_reg = ("0011" & "0001")) then
-		CCD_LINES_NUMBER <= 1; 
-	elsif (command_reg = ("0011" & "0010")) then
-		CCD_LINES_NUMBER <= 4;
-	elsif (command_reg = ("0011" & "0011")) then
-		CCD_LINES_NUMBER <= 100;
-	else 
-	end if;
-end process;	
+--process (clk_in)
+--begin
+--	if (command_reg = ("0011" & "0001")) then
+--		CCD_LINES_NUMBER <= 1; 
+--	elsif (command_reg = ("0011" & "0010")) then
+--		CCD_LINES_NUMBER <= 4;
+--	elsif (command_reg = ("0011" & "0011")) then
+--		CCD_LINES_NUMBER <= 100;
+--	else 
+--	end if;
+--end process;	
 
 process (clk_in)
 	variable ccd_ready_reg : std_logic := '0';
@@ -108,6 +109,7 @@ process (clk_in)
 	variable count_line : integer := CCD_LINES_NUMBER;
 	variable count_start_seq : integer := 0;
 	variable trigger_start_reg : std_logic := '0';
+	
  begin
 	if rising_edge(clk_in) then
 		---CCD-DIVIDER---
@@ -151,20 +153,20 @@ process (clk_in)
 			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END 
 				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1) then
 				-- SENDING START SEQUENCE --
-				if (count_start_seq < 3) then
-					if (clk_reg = '0') then
-						if (count_start_seq = 0) then
-							data_out <= START_SEQUENCE1;
-						elsif (count_start_seq = 1) then 
-							data_out <= START_SEQUENCE2;
-						elsif (count_start_seq = 2) then
-							data_out <= START_SEQUENCE3;
-						end if;
-						count_start_seq := count_start_seq + 1;
+				if (clk_reg = '0') then
+					if (count_start_seq = 0) then
+						data_out <= START_SEQUENCE1;
 						ccd_ready_reg := '1';
-					else
-						ccd_ready_reg := '0';
+					elsif (count_start_seq = 1) then 
+						data_out <= START_SEQUENCE2;
+						ccd_ready_reg := '1';
+					elsif (count_start_seq = 2) then
+						data_out <= START_SEQUENCE3;
+						ccd_ready_reg := '1';
 					end if;
+					count_start_seq := count_start_seq + 1;
+				else
+					ccd_ready_reg := '0';
 				end if;
 				-----------------------------
 				clk_reg <= NOT clk_reg;
@@ -189,20 +191,20 @@ process (clk_in)
 			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA 
 				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2) then
 				-- SENDING START SEQUENCE --
-				if (count_start_seq < 3) then
-					if (clk_reg = '0') then
-						if (count_start_seq = 0) then
-							data_out <= START_SEQUENCE1;
-						elsif (count_start_seq = 1) then 
-							data_out <= START_SEQUENCE2;
-						elsif (count_start_seq = 2) then
-							data_out <= START_SEQUENCE3;
-						end if;
-						count_start_seq := count_start_seq + 1;
+				if (clk_reg = '0') then
+					if (count_start_seq = 0) then
+						data_out <= END_SEQUENCE1;
 						ccd_ready_reg := '1';
-					else
-						ccd_ready_reg := '0';
+					elsif (count_start_seq = 1) then 
+						data_out <= END_SEQUENCE2;
+						ccd_ready_reg := '1';
+					elsif (count_start_seq = 2) then
+						data_out <= END_SEQUENCE3;
+						ccd_ready_reg := '1';
 					end if;
+					count_start_seq := count_start_seq + 1;
+				else
+					ccd_ready_reg := '0';
 				end if;
 				-----------------------------
 				clk_reg <= NOT clk_reg;	
@@ -216,7 +218,7 @@ process (clk_in)
 				clk_reg <= NOT clk_reg;
 			else
 				rog_reg <= '1';
-				shut_reg <= '1'; -- When shutter open ('0') CCD is heating
+				shut_reg <= '0'; -- When shutter open ('0') CCD is heating
 				clk_reg <= NOT clk_reg;	
 			end if; 
 			-------------------------
@@ -238,7 +240,15 @@ process (clk_in)
 					end if;
 				else
 					count := count + 1;
-				end if;			
+				end if;
+			elsif (auto_mod = '1') then
+				if (count >= SHUTTER + EXPOSURE + ROG_START 
+								+ ROG_END + DUM1 + DATA + DUM2 
+								+ LINE_END) then
+					count := 0;
+				else
+					count := count + 1;
+				end if;
 			end if;
 		end if;
 	 end if; 

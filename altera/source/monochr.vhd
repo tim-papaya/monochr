@@ -124,7 +124,7 @@ begin
 	end if;
 end process;
 
-start_trig_reg <= pc_trig_reg AND button;
+start_trig_reg <= '0';
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------

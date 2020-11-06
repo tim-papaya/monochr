@@ -4,9 +4,11 @@
 #include <QMainWindow>
 #include <QThread>
 #include <QGraphicsScene>
+#include <QtCharts/QChartView>
+
 #include "reader.h"
 #include <usbhandler.h>
-#include "chart/view.h"
+#include "chart/chart.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +25,9 @@ public:
     QThread *usbThread;
     Reader *usbReader;
 
+signals:
+    void read_from_usb();
+
 public slots:
     void on_showDevicesBtn_clicked();
 
@@ -35,12 +40,10 @@ public slots:
     void read();
 
 private slots:
-    void on_readBtn_2_clicked();
-
     void on_writeBtn_clicked();
 
 private:
-    View *currentView;
+    QChartView *currentView;
     Ui::MainWindow *ui;
     UsbHandler usb;
     QGraphicsScene scene;

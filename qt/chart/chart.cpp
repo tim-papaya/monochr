@@ -27,46 +27,41 @@
 **
 ****************************************************************************/
 
-#ifndef CALLOUT_H
-#define CALLOUT_H
+#include "chart.h"
+#include <QtCharts/QChart>
+#include <QtCharts/QLineSeries>
 
-#include <QtCharts/QChartGlobal>
-#include <QtWidgets/QGraphicsItem>
-#include <QtGui/QFont>
 
-QT_BEGIN_NAMESPACE
-class QGraphicsSceneMouseEvent;
-QT_END_NAMESPACE
+#include <QDebug>
+#include "reader.h"
 
-QT_CHARTS_BEGIN_NAMESPACE
-class QChart;
-QT_CHARTS_END_NAMESPACE
-
-QT_CHARTS_USE_NAMESPACE
-
-class Callout : public QGraphicsItem
+void updateChart(QChart* data_chart, QList<QVector<ushort> > lines)
 {
-public:
-    Callout(QChart *parent);
+    qDebug() << "Updating QChart";
+    data_chart->removeAllSeries();
+    QLineSeries *series = new QLineSeries;
 
-    void setText(const QString &text);
-    void setAnchor(QPointF point);
-    void updateGeometry();
+    for (int i = 0; i < lines[0].size(); i++)
+       series->append(i, static_cast<int>(lines[0][i]));
+    data_chart->addSeries(series);
+    qDebug() << "Line, data number:" << lines[0].size();
 
-    QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,QWidget *widget);
+    data_chart->createDefaultAxes();
 
-protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    data_chart->axisX()->setRange(-50,2100);
+    data_chart->axisY()->setRange(-50,5000);
 
-private:
-    QString m_text;
-    QRectF m_textRect;
-    QRectF m_rect;
-    QPointF m_anchor;
-    QFont m_font;
-    QChart *m_chart;
-};
+}
 
-#endif // CALLOUT_H
+
+QChart* createChart()
+{
+    QChart *dataChart = new QChart();
+
+    //dataChart->setMinimumSize(640, 480);
+    dataChart->setTitle("Lines");
+    //dataChart->legend()->hide();
+
+    // create lines for chart
+
+}

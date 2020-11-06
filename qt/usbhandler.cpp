@@ -73,7 +73,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, ch
     QByteArray bitmodeExa(BitMode, 1);
     if (ftStatus == FT_OK)
 
-        qDebug() << "BitMode: "<< QString( QByteArray::fromHex(bitmodeExa))  << hex  <<BitMode;
+        qDebug() << "BitMode: "<< QString( QByteArray::fromHex(bitmodeExa))  << Qt::hex  <<BitMode;
     else
         qDebug() << "Can`t read bit mode.";
 
@@ -84,7 +84,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, ch
 
     UCHAR mask(0xff);
 
-    qDebug() << "mask : " << hex << mask;
+    qDebug() << "mask : " << Qt::hex << mask;
 
     ftStatus = FT_SetBitMode(ftHandle, mask, 0x07);
     Sleep(10);
@@ -96,7 +96,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, ch
     ftStatus = FT_GetBitMode(ftHandle, &BitMode);
     if (ftStatus == FT_OK)
 
-        qDebug() << "BitMode: "<< QString( QByteArray::fromHex(bitmodeExa))  << hex  <<BitMode;
+        qDebug() << "BitMode: "<< QString( QByteArray::fromHex(bitmodeExa))  << Qt::hex  <<BitMode;
     else
         qDebug() << "Can`t read bit mode.";
 
@@ -105,7 +105,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, ch
 
     ftStatus = FT_GetBitMode(ftHandle, &BitMode);
     if (ftStatus == FT_OK)
-        qDebug() << "BitMode: " << hex << BitMode;
+        qDebug() << "BitMode: " << Qt::hex << BitMode;
     else
        qDebug() << "Can`t read bit mode.";
     // SET SIZE OF RECEIVING, TRANSMITTING BUFFER

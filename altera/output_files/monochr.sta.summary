@@ -3,12 +3,12 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
-Slack : -8.274
-TNS   : -1028.732
+Slack : -8.209
+TNS   : -939.217
 
 Type  : Slow 1200mV 85C Model Setup 'usb_clk'
-Slack : -4.698
-TNS   : -238.719
+Slack : -5.682
+TNS   : -239.255
 
 Type  : Slow 1200mV 85C Model Hold 'clk50Mhz'
 Slack : 0.432
@@ -20,19 +20,19 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -269.173
+TNS   : -220.102
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -93.707
+TNS   : -81.811
 
 Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -7.548
-TNS   : -928.934
+Slack : -7.591
+TNS   : -862.640
 
 Type  : Slow 1200mV 0C Model Setup 'usb_clk'
-Slack : -4.277
-TNS   : -217.716
+Slack : -5.242
+TNS   : -218.273
 
 Type  : Slow 1200mV 0C Model Hold 'clk50Mhz'
 Slack : 0.381
@@ -44,19 +44,19 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -269.173
+TNS   : -220.102
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -93.707
+TNS   : -81.811
 
 Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -2.993
-TNS   : -341.655
+Slack : -3.102
+TNS   : -330.464
 
 Type  : Fast 1200mV 0C Model Setup 'usb_clk'
-Slack : -1.409
-TNS   : -65.750
+Slack : -1.854
+TNS   : -71.092
 
 Type  : Fast 1200mV 0C Model Hold 'clk50Mhz'
 Slack : 0.178
@@ -68,10 +68,10 @@ TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -240.480
+TNS   : -196.686
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -95.011
+TNS   : -82.440
 
 ------------------------------------------------------------

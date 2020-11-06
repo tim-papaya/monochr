@@ -4,12 +4,13 @@
 #include <QTextStream>
 #include <QtEndian>
 #include <QDate>
-#include <QTime>
 
-Reader::Reader(UsbHandler *usb, QGraphicsScene *scene)
-  : usb(usb), scene(scene)
+Reader::Reader(UsbHandler *usb)
+  : usb(usb)
 {
-
+    qRegisterMetaType<QList<QVector<ushort>>>();
+    displayTime.start();
+    setWaitTime(300);
 }
 
 int Reader::convert(const char ch1, const char ch2)
@@ -26,52 +27,55 @@ int Reader::convert(const char ch1, const char ch2)
 
 QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
 {
-
-    int pos_start, pos_end, seq_count = 0;
-    bool is_line = false;
-
+    qDebug() << "Starting to split lines";
     QList<QVector<ushort>> list;
+    int i = 0, start_line = 0, end_line = 0;
 
-    for(int i = 0; i < ubuffer.size(); i++)
+    while (i < ubuffer.size())
     {
-        if (ubuffer[i] == start_seq[seq_count])
-        {
-           seq_count++;
+        i = findSeq(ubuffer, i, start_seq, seq_size);
+        if (i == SEQ_NOT_FOUND)
+            break;
+        start_line = i + 3; // skip start sequence
+        qDebug() << "start seq" << i;
+        qDebug() << "start line" << start_line;
 
-           if (seq_count == seq_size)
-           {
-               if (!is_line)
-               {
-                   pos_start = i + 1;
-                   is_line = true;
-                   seq_count = 0;
-               }
-               else
-               {
-                  pos_end = i - 2;
-                  QVector<ushort> line;
+        i = findSeq(ubuffer, i, end_seq, seq_size);
+        if (i == SEQ_NOT_FOUND)
+            break;
+        end_line = i; // set pos before end sequence
+        qDebug() << "end seq" << i;
+        qDebug() << "end line" << end_line;
 
-                  for (int j = pos_start; j < pos_end; j++){
-                      line.push_back(ubuffer[j]);
-                      if(j<=3){
-                          qDebug()<< static_cast<char>(ubuffer[j]);
-                      }
-                  }
+        if (end_line - start_line > LINE_SIZE)
+            continue;
 
-
-                  list.push_back(line);
-                  seq_count = 0;
-                  is_line = false;
-               }
-           }
-        }
-        else
-            seq_count = 0;
+        QVector<ushort> line;
+        for (int j = start_line; j < end_line; j++)
+            line.push_back(ubuffer[j]);
+        list.push_back(line);
     }
+
     if (list.size() == 0)
        list.push_back(ubuffer);
+
     return list;
 }
+
+int Reader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int seq_size)
+{
+    int count = 0;
+    for (int i = start_from; i < vec.size(); i++) {
+        if (vec[i] == seq[count])
+            count++;
+        else
+            count = 0;
+        if (count == seq_size)
+            return i - 2;
+    }
+    return -1;
+}
+
 
 void Reader::stop()
 {
@@ -79,6 +83,7 @@ void Reader::stop()
     m_running = false;
     emit finished();
 }
+
 
 void Reader::readUsb()
 {
@@ -101,15 +106,32 @@ void Reader::readUsb()
             // will continue reading if readUsb() called
             qDebug() << "Buffer is empty!";
 
+
             // DELETE THIS BEFORE USE!!!!
-//            QString str = " S R T2135 S R T1612 S R T12345 S R T456 S R T";
-//            QStringList lines;
-//            lines = str.split(startSequence);
-//            qDebug() << lines;
+//            QFile fileIn("C:\\TIM\\Project\\monochr\\logs\\in.txt");
+//            if (!fileIn.open(QIODevice::ReadOnly))
+//               qDebug() << "error: file to write raw data from ccd don`t open";
+
+//            QTextStream stream(&fileIn);
+//            QVector<ushort> ubuffer;
+//            int temp;
+//            while(!stream.atEnd())
+//            {
+//                stream >> temp;
+//                ubuffer.push_back(temp);
+//            }
+
+//            QList<QVector<ushort>> lines = split(ubuffer);
+
+//            qDebug() << "buffer size" << ubuffer.size();
+//            for (ushort numb : ubuffer)
+//                qDebug() << numb;
+//            qDebug() << "Lines readed:" << lines.size();
+
 //            setResult(lines);
             // DELETE THIS BEFORE USE!!!!
 
-            break;
+            continue;
         }
         QVector<ushort> ubuffer;
         for (int i = 0; i < readed; i+=2)
@@ -136,6 +158,10 @@ void Reader::readUsb()
 
         qDebug() << "Lines readed:" << lines.size();
 
-        setResult(lines);
+        if (displayTime.elapsed() >= waitTime())
+        {
+            setResult(lines);
+            displayTime.restart();
+        }
     }
 }

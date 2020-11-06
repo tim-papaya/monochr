@@ -11,11 +11,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     usbThread = new QThread();
-    usbReader = new Reader(&usb, &scene);
+    usbReader = new Reader(&usb);
 
     connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
+    connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
     usbReader->moveToThread(usbThread);
+
     usbThread->start();
 }
 
@@ -65,7 +67,7 @@ void MainWindow::on_showDevicesBtn_clicked()
 
 void MainWindow::on_readBtn_clicked()
 {
-    usbReader->readUsb();
+    emit(read_from_usb());
 }
 
 void MainWindow::on_initBtn_clicked()
@@ -93,20 +95,28 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::read()
 {
     // Plot update here
+    QElapsedTimer update_time;
+    update_time.start();
+
+
+    if (currentView == nullptr) {
+
+        currentView = new QChartView(createChart());
+        currentView->setRenderHint(QPainter::Antialiasing);
+        qDebug() << "creating QChartView";
+        ui->chartLayout->addWidget(currentView);
+
+    }
     QList<QVector<ushort>> list = usbReader->result();
+    updateChart(currentView->chart(), list);
 
-    if (currentView != nullptr)
-        ui->chartLayout->removeWidget(currentView);
-
-    currentView = new View(list);
-    ui->chartLayout->addWidget(currentView);
-    qDebug() << "Plot updated";
+    qDebug("Plot updated, takes %u ms", update_time.elapsed());
 }
 
 void MainWindow::on_writeBtn_clicked()
 {
     char* wrBuffer = ui->writeLine->text().toUtf8().data();
-//    char wrBuffer[] = "11111111";
+//  char wrBuffer[] = "11111111";
     int written;
     usb.writeData(wrBuffer, written);
 }
