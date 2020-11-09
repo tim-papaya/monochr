@@ -126,8 +126,8 @@ process (clk_in)
 			-- SHUTTER TIMING --
 			--------------------
 			if (count < SHUTTER) then
-				clk_reg <= NOT clk_reg;
-				shut_reg <= '0';
+				clk_reg <= '1';
+				shut_reg <= '1';
 			---------------------
 			-- EXPOSURE TIMING --
 			---------------------
@@ -214,12 +214,12 @@ process (clk_in)
 			elsif (count >=  SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2
 				AND count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2 + LINE_END) then
 				rog_reg <= '1';
-				shut_reg <= '0';
+				shut_reg <= '1';
 				clk_reg <= NOT clk_reg;
 			else
 				rog_reg <= '1';
-				shut_reg <= '0'; -- When shutter open ('0') CCD is heating
-				clk_reg <= NOT clk_reg;	
+				shut_reg <= '1'; -- When shutter open ('0') CCD is heating
+--				clk_reg <= NOT clk_reg;	
 			end if; 
 			-------------------------
 			---LINE NUMBER CONTROL---

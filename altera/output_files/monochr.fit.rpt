@@ -1,5 +1,5 @@
 Fitter report for monochr
-Fri Nov 06 18:12:30 2020
+Mon Nov 09 18:44:29 2020
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -70,17 +70,17 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Fri Nov 06 18:12:30 2020      ;
+; Fitter Status                      ; Successful - Mon Nov 09 18:44:29 2020      ;
 ; Quartus II 64-Bit Version          ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name                      ; monochr                                    ;
 ; Top-level Entity Name              ; monochr                                    ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE10F17C8                               ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 411 / 10,320 ( 4 % )                       ;
-;     Total combinational functions  ; 406 / 10,320 ( 4 % )                       ;
-;     Dedicated logic registers      ; 199 / 10,320 ( 2 % )                       ;
-; Total registers                    ; 199                                        ;
+; Total logic elements               ; 408 / 10,320 ( 4 % )                       ;
+;     Total combinational functions  ; 405 / 10,320 ( 4 % )                       ;
+;     Dedicated logic registers      ; 198 / 10,320 ( 2 % )                       ;
+; Total registers                    ; 198                                        ;
 ; Total pins                         ; 38 / 180 ( 21 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0 / 423,936 ( 0 % )                        ;
@@ -192,8 +192,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Type                ; Total [A + B]      ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+--------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                    ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 699 ) ; 0.00 % ( 0 / 699 )         ; 0.00 % ( 0 / 699 )       ;
-;     -- Achieved     ; 0.00 % ( 0 / 699 ) ; 0.00 % ( 0 / 699 )         ; 0.00 % ( 0 / 699 )       ;
+;     -- Requested    ; 0.00 % ( 0 / 697 ) ; 0.00 % ( 0 / 697 )         ; 0.00 % ( 0 / 697 )       ;
+;     -- Achieved     ; 0.00 % ( 0 / 697 ) ; 0.00 % ( 0 / 697 )         ; 0.00 % ( 0 / 697 )       ;
 ;                     ;                    ;                            ;                          ;
 ; Routing (by net)    ;                    ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )   ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -216,7 +216,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 691 )    ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 689 )    ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 8 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -232,26 +232,26 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 +---------------------------------------------+----------------------+
 ; Resource                                    ; Usage                ;
 +---------------------------------------------+----------------------+
-; Total logic elements                        ; 411 / 10,320 ( 4 % ) ;
-;     -- Combinational with no register       ; 212                  ;
-;     -- Register only                        ; 5                    ;
-;     -- Combinational with a register        ; 194                  ;
+; Total logic elements                        ; 408 / 10,320 ( 4 % ) ;
+;     -- Combinational with no register       ; 210                  ;
+;     -- Register only                        ; 3                    ;
+;     -- Combinational with a register        ; 195                  ;
 ;                                             ;                      ;
 ; Logic element usage by number of LUT inputs ;                      ;
-;     -- 4 input functions                    ; 131                  ;
-;     -- 3 input functions                    ; 68                   ;
-;     -- <=2 input functions                  ; 207                  ;
-;     -- Register only                        ; 5                    ;
+;     -- 4 input functions                    ; 168                  ;
+;     -- 3 input functions                    ; 32                   ;
+;     -- <=2 input functions                  ; 205                  ;
+;     -- Register only                        ; 3                    ;
 ;                                             ;                      ;
 ; Logic elements by mode                      ;                      ;
-;     -- normal mode                          ; 251                  ;
+;     -- normal mode                          ; 250                  ;
 ;     -- arithmetic mode                      ; 155                  ;
 ;                                             ;                      ;
-; Total registers*                            ; 199 / 11,172 ( 2 % ) ;
-;     -- Dedicated logic registers            ; 199 / 10,320 ( 2 % ) ;
+; Total registers*                            ; 198 / 11,172 ( 2 % ) ;
+;     -- Dedicated logic registers            ; 198 / 10,320 ( 2 % ) ;
 ;     -- I/O registers                        ; 0 / 852 ( 0 % )      ;
 ;                                             ;                      ;
-; Total LABs:  partially or completely used   ; 37 / 645 ( 6 % )     ;
+; Total LABs:  partially or completely used   ; 34 / 645 ( 5 % )     ;
 ; Virtual pins                                ; 0                    ;
 ; I/O pins                                    ; 38 / 180 ( 21 % )    ;
 ;     -- Clock pins                           ; 1 / 3 ( 33 % )       ;
@@ -269,12 +269,12 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )        ;
 ; Oscillator blocks                           ; 0 / 1 ( 0 % )        ;
 ; Impedance control blocks                    ; 0 / 4 ( 0 % )        ;
-; Average interconnect usage (total/H/V)      ; 1.2% / 1.1% / 1.4%   ;
-; Peak interconnect usage (total/H/V)         ; 3.1% / 2.9% / 3.4%   ;
-; Maximum fan-out                             ; 146                  ;
+; Average interconnect usage (total/H/V)      ; 1.4% / 1.3% / 1.4%   ;
+; Peak interconnect usage (total/H/V)         ; 2.6% / 2.8% / 2.4%   ;
+; Maximum fan-out                             ; 145                  ;
 ; Highest non-global fan-out                  ; 66                   ;
-; Total fan-out                               ; 1834                 ;
-; Average fan-out                             ; 2.61                 ;
+; Total fan-out                               ; 1864                 ;
+; Average fan-out                             ; 2.67                 ;
 +---------------------------------------------+----------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -287,26 +287,26 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 +---------------------------------------------+---------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                 ; Low                            ;
 ;                                             ;                     ;                                ;
-; Total logic elements                        ; 411 / 10320 ( 4 % ) ; 0 / 10320 ( 0 % )              ;
-;     -- Combinational with no register       ; 212                 ; 0                              ;
-;     -- Register only                        ; 5                   ; 0                              ;
-;     -- Combinational with a register        ; 194                 ; 0                              ;
+; Total logic elements                        ; 408 / 10320 ( 4 % ) ; 0 / 10320 ( 0 % )              ;
+;     -- Combinational with no register       ; 210                 ; 0                              ;
+;     -- Register only                        ; 3                   ; 0                              ;
+;     -- Combinational with a register        ; 195                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic element usage by number of LUT inputs ;                     ;                                ;
-;     -- 4 input functions                    ; 131                 ; 0                              ;
-;     -- 3 input functions                    ; 68                  ; 0                              ;
-;     -- <=2 input functions                  ; 207                 ; 0                              ;
-;     -- Register only                        ; 5                   ; 0                              ;
+;     -- 4 input functions                    ; 168                 ; 0                              ;
+;     -- 3 input functions                    ; 32                  ; 0                              ;
+;     -- <=2 input functions                  ; 205                 ; 0                              ;
+;     -- Register only                        ; 3                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic elements by mode                      ;                     ;                                ;
-;     -- normal mode                          ; 251                 ; 0                              ;
+;     -- normal mode                          ; 250                 ; 0                              ;
 ;     -- arithmetic mode                      ; 155                 ; 0                              ;
 ;                                             ;                     ;                                ;
-; Total registers                             ; 199                 ; 0                              ;
-;     -- Dedicated logic registers            ; 199 / 10320 ( 2 % ) ; 0 / 10320 ( 0 % )              ;
+; Total registers                             ; 198                 ; 0                              ;
+;     -- Dedicated logic registers            ; 198 / 10320 ( 2 % ) ; 0 / 10320 ( 0 % )              ;
 ;     -- I/O registers                        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
-; Total LABs:  partially or completely used   ; 37 / 645 ( 6 % )    ; 0 / 645 ( 0 % )                ;
+; Total LABs:  partially or completely used   ; 34 / 645 ( 5 % )    ; 0 / 645 ( 0 % )                ;
 ;                                             ;                     ;                                ;
 ; Virtual pins                                ; 0                   ; 0                              ;
 ; I/O pins                                    ; 38                  ; 0                              ;
@@ -322,8 +322,8 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ;     -- Registered Output Connections        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Internal Connections                        ;                     ;                                ;
-;     -- Total Connections                    ; 1830                ; 4                              ;
-;     -- Registered Connections               ; 547                 ; 0                              ;
+;     -- Total Connections                    ; 1860                ; 4                              ;
+;     -- Registered Connections               ; 574                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; External Connections                        ;                     ;                                ;
 ;     -- Top                                  ; 18                  ; 0                              ;
@@ -355,21 +355,21 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 +-----------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
 ; Name            ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Power Up High ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination Control Block ; Location assigned by ;
 +-----------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
-; adc_data_in[0]  ; L10   ; 4        ; 25           ; 0            ; 7            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[10] ; F14   ; 6        ; 34           ; 19           ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[11] ; D15   ; 6        ; 34           ; 19           ; 0            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[1]  ; M11   ; 4        ; 32           ; 0            ; 7            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[2]  ; P14   ; 4        ; 32           ; 0            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[3]  ; L13   ; 5        ; 34           ; 8            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[4]  ; L12   ; 5        ; 34           ; 3            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[5]  ; J13   ; 5        ; 34           ; 11           ; 0            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[6]  ; K12   ; 5        ; 34           ; 3            ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[7]  ; K11   ; 5        ; 34           ; 6            ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[8]  ; K10   ; 4        ; 25           ; 0            ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; adc_data_in[9]  ; J14   ; 5        ; 34           ; 10           ; 0            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
+; adc_data_in[0]  ; L10   ; 4        ; 25           ; 0            ; 7            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[10] ; F14   ; 6        ; 34           ; 19           ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[11] ; D15   ; 6        ; 34           ; 19           ; 0            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[1]  ; M11   ; 4        ; 32           ; 0            ; 7            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[2]  ; P14   ; 4        ; 32           ; 0            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[3]  ; L13   ; 5        ; 34           ; 8            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[4]  ; L12   ; 5        ; 34           ; 3            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[5]  ; J13   ; 5        ; 34           ; 11           ; 0            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[6]  ; K12   ; 5        ; 34           ; 3            ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[7]  ; K11   ; 5        ; 34           ; 6            ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[8]  ; K10   ; 4        ; 25           ; 0            ; 14           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
+; adc_data_in[9]  ; J14   ; 5        ; 34           ; 10           ; 0            ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVTTL  ; --                        ; User                 ;
 ; adc_otr         ; C15   ; 6        ; 34           ; 20           ; 0            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; button          ; J16   ; 5        ; 34           ; 9            ; 0            ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
-; clk50Mhz        ; E16   ; 6        ; 34           ; 12           ; 7            ; 146                   ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
+; clk50Mhz        ; E16   ; 6        ; 34           ; 12           ; 7            ; 145                   ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; trigger_start   ; R16   ; 5        ; 34           ; 5            ; 14           ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; usb_clk         ; J11   ; 5        ; 34           ; 9            ; 21           ; 53                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; usb_rxf         ; L14   ; 5        ; 34           ; 7            ; 7            ; 13                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
@@ -517,7 +517,7 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; D12      ; 152        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; D13      ;            ;          ; VCCD_PLL2                                                 ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; D14      ; 150        ; 7        ; usb_data[5]                                               ; bidir  ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
-; D15      ; 144        ; 6        ; adc_data_in[11]                                           ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; D15      ; 144        ; 6        ; adc_data_in[11]                                           ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; D16      ; 143        ; 6        ; usb_txe                                                   ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; E1       ; 24         ; 1        ; GND+                                                      ;        ;              ;         ; Row I/O    ;                 ; --       ; --           ;
 ; E2       ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
@@ -548,7 +548,7 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; F11      ; 166        ; 7        ; usb_wr                                                    ; output ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; F12      ;            ; --       ; VCCA2                                                     ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; F13      ; 138        ; 6        ; usb_oe                                                    ; output ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; F14      ; 142        ; 6        ; adc_data_in[10]                                           ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; F14      ; 142        ; 6        ; adc_data_in[10]                                           ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; F15      ; 140        ; 6        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; F16      ; 139        ; 6        ; adc_clk                                                   ; output ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; G1       ; 14         ; 1        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -596,8 +596,8 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; J10      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; J11      ; 117        ; 5        ; usb_clk                                                   ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; J12      ; 123        ; 5        ; usb_siwua                                                 ; output ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; J13      ; 124        ; 5        ; adc_data_in[5]                                            ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; J14      ; 122        ; 5        ; adc_data_in[9]                                            ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; J13      ; 124        ; 5        ; adc_data_in[5]                                            ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; J14      ; 122        ; 5        ; adc_data_in[9]                                            ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; J15      ; 121        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; J16      ; 120        ; 5        ; button                                                    ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; K1       ; 33         ; 2        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -609,9 +609,9 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; K7       ;            ;          ; VCCINT                                                    ; power  ;              ; 1.2V    ; --         ;                 ; --       ; --           ;
 ; K8       ; 60         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; K9       ; 76         ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; K10      ; 87         ; 4        ; adc_data_in[8]                                            ; input  ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
-; K11      ; 110        ; 5        ; adc_data_in[7]                                            ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; K12      ; 105        ; 5        ; adc_data_in[6]                                            ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; K10      ; 87         ; 4        ; adc_data_in[8]                                            ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
+; K11      ; 110        ; 5        ; adc_data_in[7]                                            ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; K12      ; 105        ; 5        ; adc_data_in[6]                                            ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; K13      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; K14      ;            ; 5        ; VCCIO5                                                    ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
 ; K15      ; 119        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -625,10 +625,10 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; L7       ; 65         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; L8       ; 68         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; L9       ; 77         ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; L10      ; 88         ; 4        ; adc_data_in[0]                                            ; input  ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
+; L10      ; 88         ; 4        ; adc_data_in[0]                                            ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; L11      ; 99         ; 4        ; usb_rd                                                    ; output ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
-; L12      ; 104        ; 5        ; adc_data_in[4]                                            ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; L13      ; 114        ; 5        ; adc_data_in[3]                                            ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; L12      ; 104        ; 5        ; adc_data_in[4]                                            ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; L13      ; 114        ; 5        ; adc_data_in[3]                                            ; input  ; 3.3-V LVTTL  ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; L14      ; 113        ; 5        ; usb_rxf                                                   ; input  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; L15      ; 116        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; L16      ; 115        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -642,7 +642,7 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; M8       ; 69         ; 3        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; M9       ; 78         ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; M10      ; 93         ; 4        ; usb_data[1]                                               ; bidir  ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
-; M11      ; 100        ; 4        ; adc_data_in[1]                                            ; input  ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
+; M11      ; 100        ; 4        ; adc_data_in[1]                                            ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; M12      ; 103        ; 5        ; usb_data[6]                                               ; bidir  ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; M13      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; M14      ;            ; 5        ; VCCIO5                                                    ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
@@ -677,7 +677,7 @@ The pin-out file can be found in C:/TIM/Project/monochr/altera/output_files/mono
 ; P11      ; 90         ; 4        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; --       ; --           ;
 ; P12      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; P13      ;            ; 4        ; VCCIO4                                                    ; power  ;              ; 3.3V    ; --         ;                 ; --       ; --           ;
-; P14      ; 98         ; 4        ; adc_data_in[2]                                            ; input  ; 3.3-V LVCMOS ;         ; Column I/O ; Y               ; no       ; Off          ;
+; P14      ; 98         ; 4        ; adc_data_in[2]                                            ; input  ; 3.3-V LVTTL  ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; P15      ; 107        ; 5        ; ccd_rog                                                   ; output ; 3.3-V LVCMOS ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; P16      ; 108        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; R1       ; 42         ; 2        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -721,9 +721,9 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name        ; Library Name ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------+--------------+
-; |monochr                   ; 411 (0)     ; 199 (0)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 38   ; 0            ; 212 (0)      ; 5 (0)             ; 194 (0)          ; |monochr                   ; work         ;
-;    |pzs_test:COMP_CCD|     ; 342 (342)   ; 146 (146)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 196 (196)    ; 2 (2)             ; 144 (144)        ; |monochr|pzs_test:COMP_CCD ; work         ;
-;    |usb:COMP_USB|          ; 70 (70)     ; 53 (53)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 16 (16)      ; 3 (3)             ; 51 (51)          ; |monochr|usb:COMP_USB      ; work         ;
+; |monochr                   ; 408 (0)     ; 198 (0)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 38   ; 0            ; 210 (0)      ; 3 (0)             ; 195 (0)          ; |monochr                   ; work         ;
+;    |pzs_test:COMP_CCD|     ; 340 (340)   ; 145 (145)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 195 (195)    ; 1 (1)             ; 144 (144)        ; |monochr|pzs_test:COMP_CCD ; work         ;
+;    |usb:COMP_USB|          ; 69 (69)     ; 53 (53)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 15 (15)      ; 2 (2)             ; 52 (52)          ; |monochr|usb:COMP_USB      ; work         ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -756,9 +756,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; usb_data[6]     ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; usb_data[7]     ; Bidir    ; --            ; --            ; --                    ; --  ; --   ;
 ; clk50Mhz        ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
-; usb_rxf         ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; usb_rxf         ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; usb_clk         ; Input    ; (0) 0 ps      ; (0) 0 ps      ; --                    ; --  ; --   ;
-; usb_txe         ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; usb_txe         ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; adc_data_in[8]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; adc_data_in[0]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; adc_data_in[9]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
@@ -766,11 +766,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adc_data_in[10] ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; adc_data_in[2]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; adc_data_in[11] ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; adc_data_in[3]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; adc_data_in[3]  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; adc_data_in[4]  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; adc_data_in[5]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; adc_data_in[6]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; adc_data_in[7]  ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; adc_data_in[7]  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 +-----------------+----------+---------------+---------------+-----------------------+-----+------+
 
 
@@ -793,23 +793,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; usb_data[7]                          ;                   ;         ;
 ; clk50Mhz                             ;                   ;         ;
 ; usb_rxf                              ;                   ;         ;
-;      - usb:COMP_USB|oe~0             ; 0                 ; 6       ;
-;      - usb:COMP_USB|ccd_ready_reg~2  ; 0                 ; 6       ;
-;      - usb:COMP_USB|rd~0             ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[0]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[1]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[2]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[3]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[4]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[5]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[7]~en       ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[7]~10       ; 0                 ; 6       ;
-;      - usb:COMP_USB|read_delay_reg~0 ; 0                 ; 6       ;
-;      - usb:COMP_USB|data[6]~enfeeder ; 0                 ; 6       ;
+;      - usb:COMP_USB|oe~0             ; 1                 ; 6       ;
+;      - usb:COMP_USB|ccd_ready_reg~2  ; 1                 ; 6       ;
+;      - usb:COMP_USB|rd~0             ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[0]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[1]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[2]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[3]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[4]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[5]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[6]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[7]~en       ; 1                 ; 6       ;
+;      - usb:COMP_USB|data[7]~10       ; 1                 ; 6       ;
+;      - usb:COMP_USB|read_delay_reg~0 ; 1                 ; 6       ;
 ; usb_clk                              ;                   ;         ;
 ;      - usb:COMP_USB|rd               ; 1                 ; 0       ;
 ;      - usb:COMP_USB|oe               ; 1                 ; 0       ;
-;      - usb:COMP_USB|wr               ; 1                 ; 0       ;
+;      - usb:COMP_USB|wr               ; 0                 ; 0       ;
 ;      - usb:COMP_USB|read_delay_reg   ; 1                 ; 0       ;
 ;      - usb:COMP_USB|switch_write[1]  ; 1                 ; 0       ;
 ;      - usb:COMP_USB|switch_write[2]  ; 1                 ; 0       ;
@@ -826,67 +826,67 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - usb:COMP_USB|switch_write[13] ; 1                 ; 0       ;
 ;      - usb:COMP_USB|switch_write[14] ; 1                 ; 0       ;
 ;      - usb:COMP_USB|switch_write[15] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[16] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[17] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[18] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[19] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[20] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[21] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[22] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[23] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[24] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[25] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[26] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[27] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[28] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[29] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[30] ; 1                 ; 0       ;
-;      - usb:COMP_USB|switch_write[31] ; 1                 ; 0       ;
+;      - usb:COMP_USB|switch_write[16] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[17] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[18] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[19] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[20] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[21] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[22] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[23] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[24] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[25] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[26] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[27] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[28] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[29] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[30] ; 0                 ; 0       ;
+;      - usb:COMP_USB|switch_write[31] ; 0                 ; 0       ;
 ;      - usb:COMP_USB|switch_write[0]  ; 1                 ; 0       ;
-;      - usb:COMP_USB|ccd_ready_reg    ; 0                 ; 0       ;
+;      - usb:COMP_USB|ccd_ready_reg    ; 1                 ; 0       ;
 ;      - usb:COMP_USB|data[0]~reg0     ; 1                 ; 0       ;
 ;      - usb:COMP_USB|data[0]~en       ; 1                 ; 0       ;
-;      - usb:COMP_USB|data[1]~reg0     ; 1                 ; 0       ;
+;      - usb:COMP_USB|data[1]~reg0     ; 0                 ; 0       ;
 ;      - usb:COMP_USB|data[1]~en       ; 1                 ; 0       ;
 ;      - usb:COMP_USB|data[2]~reg0     ; 1                 ; 0       ;
-;      - usb:COMP_USB|data[2]~en       ; 1                 ; 0       ;
+;      - usb:COMP_USB|data[2]~en       ; 0                 ; 0       ;
 ;      - usb:COMP_USB|data[3]~reg0     ; 1                 ; 0       ;
 ;      - usb:COMP_USB|data[3]~en       ; 1                 ; 0       ;
-;      - usb:COMP_USB|data[4]~reg0     ; 1                 ; 0       ;
-;      - usb:COMP_USB|data[4]~en       ; 1                 ; 0       ;
-;      - usb:COMP_USB|data[5]~reg0     ; 1                 ; 0       ;
+;      - usb:COMP_USB|data[4]~reg0     ; 0                 ; 0       ;
+;      - usb:COMP_USB|data[4]~en       ; 0                 ; 0       ;
+;      - usb:COMP_USB|data[5]~reg0     ; 0                 ; 0       ;
 ;      - usb:COMP_USB|data[5]~en       ; 1                 ; 0       ;
 ;      - usb:COMP_USB|data[6]~reg0     ; 1                 ; 0       ;
 ;      - usb:COMP_USB|data[6]~en       ; 1                 ; 0       ;
-;      - usb:COMP_USB|data[7]~reg0     ; 1                 ; 0       ;
+;      - usb:COMP_USB|data[7]~reg0     ; 0                 ; 0       ;
 ;      - usb:COMP_USB|data[7]~en       ; 1                 ; 0       ;
 ; usb_txe                              ;                   ;         ;
-;      - usb:COMP_USB|ccd_ready_reg~2  ; 1                 ; 6       ;
-;      - usb:COMP_USB|data[7]~10       ; 1                 ; 6       ;
+;      - usb:COMP_USB|ccd_ready_reg~2  ; 0                 ; 6       ;
+;      - usb:COMP_USB|data[7]~10       ; 0                 ; 6       ;
 ; adc_data_in[8]                       ;                   ;         ;
 ;      - pzs_test:COMP_CCD|data_out~2  ; 0                 ; 6       ;
 ; adc_data_in[0]                       ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~7  ; 0                 ; 6       ;
+;      - pzs_test:COMP_CCD|data_out~9  ; 0                 ; 6       ;
 ; adc_data_in[9]                       ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~8  ; 0                 ; 6       ;
-; adc_data_in[1]                       ;                   ;         ;
 ;      - pzs_test:COMP_CCD|data_out~10 ; 0                 ; 6       ;
+; adc_data_in[1]                       ;                   ;         ;
+;      - pzs_test:COMP_CCD|data_out~12 ; 0                 ; 6       ;
 ; adc_data_in[10]                      ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~11 ; 0                 ; 6       ;
-; adc_data_in[2]                       ;                   ;         ;
 ;      - pzs_test:COMP_CCD|data_out~13 ; 0                 ; 6       ;
-; adc_data_in[11]                      ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~14 ; 0                 ; 6       ;
-; adc_data_in[3]                       ;                   ;         ;
+; adc_data_in[2]                       ;                   ;         ;
 ;      - pzs_test:COMP_CCD|data_out~15 ; 0                 ; 6       ;
+; adc_data_in[11]                      ;                   ;         ;
+;      - pzs_test:COMP_CCD|data_out~16 ; 0                 ; 6       ;
+; adc_data_in[3]                       ;                   ;         ;
+;      - pzs_test:COMP_CCD|data_out~17 ; 1                 ; 6       ;
 ; adc_data_in[4]                       ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~16 ; 1                 ; 6       ;
+;      - pzs_test:COMP_CCD|data_out~18 ; 1                 ; 6       ;
 ; adc_data_in[5]                       ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~18 ; 0                 ; 6       ;
-; adc_data_in[6]                       ;                   ;         ;
-;      - pzs_test:COMP_CCD|data_out~19 ; 0                 ; 6       ;
-; adc_data_in[7]                       ;                   ;         ;
 ;      - pzs_test:COMP_CCD|data_out~20 ; 0                 ; 6       ;
+; adc_data_in[6]                       ;                   ;         ;
+;      - pzs_test:COMP_CCD|data_out~21 ; 0                 ; 6       ;
+; adc_data_in[7]                       ;                   ;         ;
+;      - pzs_test:COMP_CCD|data_out~22 ; 1                 ; 6       ;
 +--------------------------------------+-------------------+---------+
 
 
@@ -895,24 +895,24 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------------------------------------------+--------------------+---------+---------------+--------+----------------------+------------------+---------------------------+
 ; Name                                     ; Location           ; Fan-Out ; Usage         ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +------------------------------------------+--------------------+---------+---------------+--------+----------------------+------------------+---------------------------+
-; clk50Mhz                                 ; PIN_E16            ; 146     ; Clock         ; yes    ; Global Clock         ; GCLK7            ; --                        ;
-; pzs_test:COMP_CCD|Equal1~10              ; LCCOMB_X18_Y14_N10 ; 11      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; pzs_test:COMP_CCD|count[30]~20           ; LCCOMB_X18_Y14_N20 ; 31      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; pzs_test:COMP_CCD|count_line[31]~1       ; LCCOMB_X18_Y14_N16 ; 31      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; pzs_test:COMP_CCD|count_start_seq[0]~45  ; LCCOMB_X18_Y14_N28 ; 32      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; pzs_test:COMP_CCD|count_start_seq[14]~41 ; LCCOMB_X17_Y11_N22 ; 32      ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
-; pzs_test:COMP_CCD|data_out[0]~6          ; LCCOMB_X18_Y14_N14 ; 12      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[0]~en                  ; FF_X26_Y15_N27     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[1]~en                  ; FF_X28_Y15_N3      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[2]~en                  ; FF_X26_Y15_N19     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[3]~en                  ; FF_X26_Y15_N1      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[4]~en                  ; FF_X26_Y15_N29     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[5]~en                  ; FF_X26_Y15_N17     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[6]~en                  ; FF_X26_Y12_N1      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[7]~10                  ; LCCOMB_X26_Y15_N16 ; 16      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|data[7]~en                  ; FF_X31_Y15_N1      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|process_0~0                 ; LCCOMB_X26_Y15_N18 ; 33      ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
-; usb:COMP_USB|switch_write[0]~38          ; LCCOMB_X26_Y15_N4  ; 32      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; clk50Mhz                                 ; PIN_E16            ; 145     ; Clock         ; yes    ; Global Clock         ; GCLK7            ; --                        ;
+; pzs_test:COMP_CCD|Equal1~10              ; LCCOMB_X13_Y12_N28 ; 11      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; pzs_test:COMP_CCD|count[29]~21           ; LCCOMB_X13_Y12_N20 ; 31      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; pzs_test:COMP_CCD|count_line[31]~1       ; LCCOMB_X13_Y12_N8  ; 31      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; pzs_test:COMP_CCD|count_start_seq[0]~44  ; LCCOMB_X13_Y12_N10 ; 32      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; pzs_test:COMP_CCD|count_start_seq[14]~41 ; LCCOMB_X18_Y12_N8  ; 32      ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
+; pzs_test:COMP_CCD|data_out[0]~8          ; LCCOMB_X17_Y12_N14 ; 12      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[0]~en                  ; FF_X32_Y11_N13     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[1]~en                  ; FF_X32_Y11_N7      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[2]~en                  ; FF_X31_Y11_N29     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[3]~en                  ; FF_X32_Y11_N29     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[4]~en                  ; FF_X31_Y11_N17     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[5]~en                  ; FF_X32_Y11_N3      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[6]~en                  ; FF_X32_Y11_N15     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[7]~10                  ; LCCOMB_X32_Y11_N28 ; 16      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|data[7]~en                  ; FF_X32_Y11_N5      ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|process_0~0                 ; LCCOMB_X32_Y11_N12 ; 33      ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
+; usb:COMP_USB|switch_write[0]~38          ; LCCOMB_X32_Y11_N30 ; 32      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
 ; usb_clk                                  ; PIN_J11            ; 53      ; Clock         ; no     ; --                   ; --               ; --                        ;
 +------------------------------------------+--------------------+---------+---------------+--------+----------------------+------------------+---------------------------+
 
@@ -922,7 +922,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+----------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 ; Name     ; Location ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------+----------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; clk50Mhz ; PIN_E16  ; 146     ; 95                                   ; Global Clock         ; GCLK7            ; --                        ;
+; clk50Mhz ; PIN_E16  ; 145     ; 67                                   ; Global Clock         ; GCLK7            ; --                        ;
 +----------+----------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
@@ -933,76 +933,78 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------+---------+
 ; pzs_test:COMP_CCD|trigger_start_reg        ; 66      ;
 ; usb_clk~input                              ; 53      ;
+; pzs_test:COMP_CCD|count[31]                ; 42      ;
 ; usb:COMP_USB|process_0~0                   ; 33      ;
-; pzs_test:COMP_CCD|LessThan16~4             ; 33      ;
-; pzs_test:COMP_CCD|count_start_seq[0]~45    ; 32      ;
+; pzs_test:COMP_CCD|count_start_seq[0]~44    ; 32      ;
 ; pzs_test:COMP_CCD|count_start_seq[14]~41   ; 32      ;
 ; usb:COMP_USB|switch_write[0]~38            ; 32      ;
+; pzs_test:COMP_CCD|LessThan14~2             ; 32      ;
 ; pzs_test:COMP_CCD|count_line[31]~1         ; 31      ;
-; pzs_test:COMP_CCD|count[30]~20             ; 31      ;
+; pzs_test:COMP_CCD|count[29]~21             ; 31      ;
+; pzs_test:COMP_CCD|count[29]                ; 17      ;
 ; usb:COMP_USB|data[7]~10                    ; 16      ;
-; pzs_test:COMP_CCD|process_0~6              ; 15      ;
-; pzs_test:COMP_CCD|count[30]                ; 15      ;
-; pzs_test:COMP_CCD|count[29]                ; 14      ;
+; pzs_test:COMP_CCD|process_0~5              ; 16      ;
 ; usb_rxf~input                              ; 13      ;
-; pzs_test:COMP_CCD|count[31]                ; 13      ;
-; pzs_test:COMP_CCD|data_out[0]~6            ; 12      ;
-; pzs_test:COMP_CCD|process_0~5              ; 11      ;
+; pzs_test:COMP_CCD|data_out[0]~8            ; 12      ;
+; pzs_test:COMP_CCD|process_0~4              ; 12      ;
 ; pzs_test:COMP_CCD|Equal1~10                ; 11      ;
 ; usb:COMP_USB|switch_write[31]              ; 11      ;
-; pzs_test:COMP_CCD|count[6]                 ; 9       ;
+; pzs_test:COMP_CCD|count[6]                 ; 10      ;
 ; pzs_test:COMP_CCD|count[5]                 ; 9       ;
-; pzs_test:COMP_CCD|count[4]                 ; 8       ;
-; pzs_test:COMP_CCD|clk_reg                  ; 8       ;
+; pzs_test:COMP_CCD|count[4]                 ; 9       ;
+; pzs_test:COMP_CCD|count[30]                ; 9       ;
+; pzs_test:COMP_CCD|ccd_ready_reg~0          ; 8       ;
+; pzs_test:COMP_CCD|count[12]                ; 8       ;
 ; usb:COMP_USB|switch_write[0]               ; 8       ;
 ; usb:COMP_USB|LessThan0~0                   ; 7       ;
-; pzs_test:COMP_CCD|count[12]                ; 7       ;
-; pzs_test:COMP_CCD|process_0~3              ; 6       ;
-; pzs_test:COMP_CCD|count[1]                 ; 6       ;
-; pzs_test:COMP_CCD|count[3]                 ; 6       ;
+; pzs_test:COMP_CCD|count[3]                 ; 7       ;
+; pzs_test:COMP_CCD|LessThan11~5             ; 7       ;
+; pzs_test:COMP_CCD|clk_reg                  ; 7       ;
 ; pzs_test:COMP_CCD|LessThan1~1              ; 6       ;
-; pzs_test:COMP_CCD|count[28]                ; 6       ;
+; pzs_test:COMP_CCD|count[2]                 ; 6       ;
 ; pzs_test:COMP_CCD|count_start_seq[1]       ; 6       ;
-; pzs_test:COMP_CCD|clk_reg~7                ; 5       ;
 ; pzs_test:COMP_CCD|data_out~1               ; 5       ;
 ; pzs_test:COMP_CCD|Equal2~9                 ; 5       ;
-; pzs_test:COMP_CCD|LessThan6~0              ; 5       ;
-; pzs_test:COMP_CCD|count[2]                 ; 5       ;
+; pzs_test:COMP_CCD|LessThan9~1              ; 5       ;
+; pzs_test:COMP_CCD|count[1]                 ; 5       ;
 ; pzs_test:COMP_CCD|count[7]                 ; 5       ;
-; pzs_test:COMP_CCD|LessThan11~4             ; 5       ;
 ; pzs_test:COMP_CCD|count_start_seq[0]       ; 5       ;
 ; usb:COMP_USB|switch_write[1]               ; 5       ;
 ; usb:COMP_USB|Equal1~9                      ; 4       ;
 ; usb:COMP_USB|Equal1~8                      ; 4       ;
 ; pzs_test:COMP_CCD|ccd_ready                ; 4       ;
 ; usb:COMP_USB|Equal1~4                      ; 4       ;
-; pzs_test:COMP_CCD|data_out[0]~0            ; 4       ;
-; pzs_test:COMP_CCD|LessThan9~1              ; 4       ;
-; pzs_test:COMP_CCD|process_0~1              ; 4       ;
-; pzs_test:COMP_CCD|process_0~0              ; 4       ;
-; pzs_test:COMP_CCD|LessThan3~1              ; 4       ;
-; pzs_test:COMP_CCD|LessThan12~0             ; 4       ;
+; pzs_test:COMP_CCD|LessThan1~3              ; 4       ;
+; pzs_test:COMP_CCD|process_0~10             ; 4       ;
+; pzs_test:COMP_CCD|count_start_seq[0]~34    ; 4       ;
+; pzs_test:COMP_CCD|LessThan7~0              ; 4       ;
+; pzs_test:COMP_CCD|LessThan9~0              ; 4       ;
+; pzs_test:COMP_CCD|LessThan13~3             ; 4       ;
+; pzs_test:COMP_CCD|LessThan13~0             ; 4       ;
+; pzs_test:COMP_CCD|count[28]                ; 4       ;
+; pzs_test:COMP_CCD|count[27]                ; 4       ;
 ; pzs_test:COMP_CCD|Equal2~10                ; 3       ;
-; pzs_test:COMP_CCD|data_out~12              ; 3       ;
-; pzs_test:COMP_CCD|data_out~9               ; 3       ;
-; pzs_test:COMP_CCD|count_start_seq[14]~34   ; 3       ;
-; pzs_test:COMP_CCD|count[5]~19              ; 3       ;
+; pzs_test:COMP_CCD|data_out~14              ; 3       ;
+; pzs_test:COMP_CCD|data_out~11              ; 3       ;
+; pzs_test:COMP_CCD|data_out[0]~3            ; 3       ;
+; pzs_test:COMP_CCD|ccd_ready_reg~4          ; 3       ;
+; pzs_test:COMP_CCD|count[5]~20              ; 3       ;
 ; pzs_test:COMP_CCD|count_line[2]            ; 3       ;
 ; usb:COMP_USB|ccd_ready_reg~2               ; 3       ;
 ; usb:COMP_USB|ccd_ready_reg                 ; 3       ;
-; pzs_test:COMP_CCD|rog_reg~5                ; 3       ;
-; pzs_test:COMP_CCD|process_0~4              ; 3       ;
-; pzs_test:COMP_CCD|LessThan11~8             ; 3       ;
-; pzs_test:COMP_CCD|LessThan9~0              ; 3       ;
-; pzs_test:COMP_CCD|LessThan12~2             ; 3       ;
-; pzs_test:COMP_CCD|LessThan3~0              ; 3       ;
+; pzs_test:COMP_CCD|process_0~7              ; 3       ;
+; pzs_test:COMP_CCD|LessThan3~2              ; 3       ;
+; pzs_test:COMP_CCD|LessThan11~9             ; 3       ;
+; pzs_test:COMP_CCD|LessThan14~1             ; 3       ;
+; pzs_test:COMP_CCD|LessThan1~0              ; 3       ;
+; pzs_test:COMP_CCD|clk_reg~0                ; 3       ;
+; pzs_test:COMP_CCD|LessThan11~4             ; 3       ;
 ; pzs_test:COMP_CCD|rog_reg                  ; 3       ;
 ; usb_txe~input                              ; 2       ;
-; pzs_test:COMP_CCD|ccd_ready_reg~9          ; 2       ;
-; pzs_test:COMP_CCD|rog_reg~7                ; 2       ;
-; pzs_test:COMP_CCD|clk_reg~6                ; 2       ;
-; pzs_test:COMP_CCD|data_out~17              ; 2       ;
-; pzs_test:COMP_CCD|ccd_ready_reg~3          ; 2       ;
+; pzs_test:COMP_CCD|process_0~12             ; 2       ;
+; pzs_test:COMP_CCD|process_0~11             ; 2       ;
+; pzs_test:COMP_CCD|data_out~19              ; 2       ;
+; pzs_test:COMP_CCD|ccd_ready_reg~2          ; 2       ;
 ; pzs_test:COMP_CCD|ccd_ready_reg            ; 2       ;
 ; usb:COMP_USB|wr~4                          ; 2       ;
 ; usb:COMP_USB|process_0~2                   ; 2       ;
@@ -1035,13 +1037,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|count_line[29]           ; 2       ;
 ; pzs_test:COMP_CCD|count_line[30]           ; 2       ;
 ; pzs_test:COMP_CCD|count_line[31]           ; 2       ;
-; pzs_test:COMP_CCD|count[0]                 ; 2       ;
 ; usb:COMP_USB|data[7]~0                     ; 2       ;
 ; usb:COMP_USB|wr~1                          ; 2       ;
 ; usb:COMP_USB|read_delay_reg                ; 2       ;
-; pzs_test:COMP_CCD|ccd_ready_reg~2          ; 2       ;
-; pzs_test:COMP_CCD|LessThan11~5             ; 2       ;
-; pzs_test:COMP_CCD|LessThan16~1             ; 2       ;
+; pzs_test:COMP_CCD|rog_reg~3                ; 2       ;
+; pzs_test:COMP_CCD|LessThan1~2              ; 2       ;
+; pzs_test:COMP_CCD|rog_reg~0                ; 2       ;
+; pzs_test:COMP_CCD|process_0~8              ; 2       ;
 ; pzs_test:COMP_CCD|count_div~1              ; 2       ;
 ; pzs_test:COMP_CCD|count_div~0              ; 2       ;
 ; pzs_test:COMP_CCD|Equal0~10                ; 2       ;
@@ -1077,16 +1079,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|count_div[28]            ; 2       ;
 ; pzs_test:COMP_CCD|count_div[29]            ; 2       ;
 ; pzs_test:COMP_CCD|count_div[30]            ; 2       ;
-; pzs_test:COMP_CCD|LessThan1~2              ; 2       ;
-; pzs_test:COMP_CCD|process_0~2              ; 2       ;
-; pzs_test:COMP_CCD|LessThan5~2              ; 2       ;
-; pzs_test:COMP_CCD|LessThan4~2              ; 2       ;
-; pzs_test:COMP_CCD|LessThan4~1              ; 2       ;
+; pzs_test:COMP_CCD|process_0~6              ; 2       ;
+; pzs_test:COMP_CCD|ccd_ready_reg~1          ; 2       ;
+; pzs_test:COMP_CCD|LessThan13~1             ; 2       ;
+; pzs_test:COMP_CCD|count[0]                 ; 2       ;
+; pzs_test:COMP_CCD|LessThan11~6             ; 2       ;
+; pzs_test:COMP_CCD|LessThan3~0              ; 2       ;
 ; pzs_test:COMP_CCD|count[11]                ; 2       ;
 ; pzs_test:COMP_CCD|count[10]                ; 2       ;
 ; pzs_test:COMP_CCD|count[9]                 ; 2       ;
 ; pzs_test:COMP_CCD|count[8]                 ; 2       ;
-; pzs_test:COMP_CCD|count[27]                ; 2       ;
 ; pzs_test:COMP_CCD|count[26]                ; 2       ;
 ; pzs_test:COMP_CCD|count[25]                ; 2       ;
 ; pzs_test:COMP_CCD|count[24]                ; 2       ;
@@ -1101,11 +1103,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|count[15]                ; 2       ;
 ; pzs_test:COMP_CCD|count[14]                ; 2       ;
 ; pzs_test:COMP_CCD|count[13]                ; 2       ;
-; pzs_test:COMP_CCD|LessThan16~0             ; 2       ;
 ; usb:COMP_USB|rd                            ; 2       ;
 ; usb:COMP_USB|wr                            ; 2       ;
 ; usb:COMP_USB|oe                            ; 2       ;
-; pzs_test:COMP_CCD|shut_reg                 ; 2       ;
 ; pzs_test:COMP_CCD|count_start_seq[31]      ; 2       ;
 ; pzs_test:COMP_CCD|count_start_seq[30]      ; 2       ;
 ; pzs_test:COMP_CCD|count_start_seq[29]      ; 2       ;
@@ -1239,26 +1239,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adc_data_in[0]~input                       ; 1       ;
 ; adc_data_in[8]~input                       ; 1       ;
 ; usb:COMP_USB|read_delay_reg~0              ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[0]~104   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[0]~103   ; 1       ;
 ; usb:COMP_USB|ccd_ready_reg~3               ; 1       ;
-; pzs_test:COMP_CCD|shut_reg~4               ; 1       ;
+; pzs_test:COMP_CCD|data_out~22              ; 1       ;
+; pzs_test:COMP_CCD|data_out~21              ; 1       ;
 ; pzs_test:COMP_CCD|data_out~20              ; 1       ;
-; pzs_test:COMP_CCD|data_out~19              ; 1       ;
 ; pzs_test:COMP_CCD|data_out~18              ; 1       ;
+; pzs_test:COMP_CCD|data_out~17              ; 1       ;
 ; pzs_test:COMP_CCD|data_out~16              ; 1       ;
 ; pzs_test:COMP_CCD|data_out~15              ; 1       ;
-; pzs_test:COMP_CCD|data_out~14              ; 1       ;
 ; pzs_test:COMP_CCD|data_out~13              ; 1       ;
-; pzs_test:COMP_CCD|data_out~11              ; 1       ;
+; pzs_test:COMP_CCD|data_out~12              ; 1       ;
 ; pzs_test:COMP_CCD|data_out~10              ; 1       ;
-; pzs_test:COMP_CCD|data_out~8               ; 1       ;
-; pzs_test:COMP_CCD|data_out~7               ; 1       ;
+; pzs_test:COMP_CCD|data_out~9               ; 1       ;
+; pzs_test:COMP_CCD|data_out[0]~7            ; 1       ;
+; pzs_test:COMP_CCD|data_out[0]~6            ; 1       ;
 ; pzs_test:COMP_CCD|data_out[0]~5            ; 1       ;
 ; pzs_test:COMP_CCD|data_out[0]~4            ; 1       ;
-; pzs_test:COMP_CCD|LessThan11~9             ; 1       ;
-; pzs_test:COMP_CCD|data_out[0]~3            ; 1       ;
+; pzs_test:COMP_CCD|LessThan11~10            ; 1       ;
 ; pzs_test:COMP_CCD|data_out~2               ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[0]~44    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[0]~43    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[0]~42    ; 1       ;
 ; usb:COMP_USB|data[7]~17                    ; 1       ;
@@ -1285,7 +1284,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|ccd_ready_reg~7          ; 1       ;
 ; pzs_test:COMP_CCD|ccd_ready_reg~6          ; 1       ;
 ; pzs_test:COMP_CCD|ccd_ready_reg~5          ; 1       ;
-; pzs_test:COMP_CCD|ccd_ready_reg~4          ; 1       ;
+; pzs_test:COMP_CCD|ccd_ready_reg~3          ; 1       ;
 ; pzs_test:COMP_CCD|Equal2~8                 ; 1       ;
 ; pzs_test:COMP_CCD|Equal2~7                 ; 1       ;
 ; pzs_test:COMP_CCD|Equal2~6                 ; 1       ;
@@ -1327,7 +1326,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|count_line~3             ; 1       ;
 ; pzs_test:COMP_CCD|count_line~2             ; 1       ;
 ; pzs_test:COMP_CCD|count_line~0             ; 1       ;
-; pzs_test:COMP_CCD|Add3~95                  ; 1       ;
 ; usb:COMP_USB|data[7]~en                    ; 1       ;
 ; usb:COMP_USB|data[7]~reg0                  ; 1       ;
 ; usb:COMP_USB|data[6]~en                    ; 1       ;
@@ -1345,8 +1343,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; usb:COMP_USB|data[0]~en                    ; 1       ;
 ; usb:COMP_USB|data[0]~reg0                  ; 1       ;
 ; usb:COMP_USB|process_0~1                   ; 1       ;
+; pzs_test:COMP_CCD|Add3~95                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~94                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~93                  ; 1       ;
+; pzs_test:COMP_CCD|Add3~92                  ; 1       ;
+; pzs_test:COMP_CCD|Add3~91                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~90                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~89                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~88                  ; 1       ;
@@ -1372,9 +1373,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|Add3~68                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~67                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~66                  ; 1       ;
-; pzs_test:COMP_CCD|Add3~65                  ; 1       ;
-; pzs_test:COMP_CCD|Add3~64                  ; 1       ;
-; pzs_test:COMP_CCD|Add3~63                  ; 1       ;
+; pzs_test:COMP_CCD|count[5]~19              ; 1       ;
 ; pzs_test:COMP_CCD|count[5]~18              ; 1       ;
 ; pzs_test:COMP_CCD|count[5]~17              ; 1       ;
 ; pzs_test:COMP_CCD|count[5]~16              ; 1       ;
@@ -1384,21 +1383,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|count[5]~12              ; 1       ;
 ; pzs_test:COMP_CCD|count[5]~11              ; 1       ;
 ; pzs_test:COMP_CCD|count[5]~10              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~9              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~8              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~7              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~6              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~5              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~4              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~3              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~2              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~1              ; 1       ;
-; pzs_test:COMP_CCD|count[30]~0              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~9              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~8              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~7              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~6              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~5              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~4              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~3              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~2              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~1              ; 1       ;
+; pzs_test:COMP_CCD|count[29]~0              ; 1       ;
 ; pzs_test:COMP_CCD|count_line[0]            ; 1       ;
 ; pzs_test:COMP_CCD|count_line[1]            ; 1       ;
-; pzs_test:COMP_CCD|Add3~60                  ; 1       ;
-; pzs_test:COMP_CCD|LessThan16~3             ; 1       ;
-; pzs_test:COMP_CCD|LessThan16~2             ; 1       ;
+; pzs_test:COMP_CCD|Add3~65                  ; 1       ;
+; pzs_test:COMP_CCD|Add3~64                  ; 1       ;
 ; usb:COMP_USB|rd~0                          ; 1       ;
 ; usb:COMP_USB|wr~3                          ; 1       ;
 ; usb:COMP_USB|wr~2                          ; 1       ;
@@ -1411,15 +1409,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; usb:COMP_USB|Equal1~1                      ; 1       ;
 ; usb:COMP_USB|Equal1~0                      ; 1       ;
 ; usb:COMP_USB|oe~0                          ; 1       ;
-; pzs_test:COMP_CCD|shut_reg~3               ; 1       ;
-; pzs_test:COMP_CCD|shut_reg~2               ; 1       ;
-; pzs_test:COMP_CCD|rog_reg~6                ; 1       ;
 ; pzs_test:COMP_CCD|rog_reg~4                ; 1       ;
-; pzs_test:COMP_CCD|rog_reg~3                ; 1       ;
-; pzs_test:COMP_CCD|LessThan11~7             ; 1       ;
-; pzs_test:COMP_CCD|LessThan11~6             ; 1       ;
-; pzs_test:COMP_CCD|LessThan12~1             ; 1       ;
+; pzs_test:COMP_CCD|process_0~9              ; 1       ;
 ; pzs_test:COMP_CCD|rog_reg~2                ; 1       ;
+; pzs_test:COMP_CCD|rog_reg~1                ; 1       ;
 ; pzs_test:COMP_CCD|Equal1~9                 ; 1       ;
 ; pzs_test:COMP_CCD|Equal1~8                 ; 1       ;
 ; pzs_test:COMP_CCD|Equal1~7                 ; 1       ;
@@ -1440,74 +1433,79 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|Equal0~2                 ; 1       ;
 ; pzs_test:COMP_CCD|Equal0~1                 ; 1       ;
 ; pzs_test:COMP_CCD|Equal0~0                 ; 1       ;
-; pzs_test:COMP_CCD|clk_reg~5                ; 1       ;
-; pzs_test:COMP_CCD|LessThan5~3              ; 1       ;
-; pzs_test:COMP_CCD|clk_reg~4                ; 1       ;
+; pzs_test:COMP_CCD|clk_reg~3                ; 1       ;
+; pzs_test:COMP_CCD|data_out[0]~0            ; 1       ;
 ; pzs_test:COMP_CCD|LessThan5~1              ; 1       ;
 ; pzs_test:COMP_CCD|LessThan5~0              ; 1       ;
 ; pzs_test:COMP_CCD|LessThan4~0              ; 1       ;
-; pzs_test:COMP_CCD|LessThan1~0              ; 1       ;
+; pzs_test:COMP_CCD|clk_reg~2                ; 1       ;
+; pzs_test:COMP_CCD|LessThan11~8             ; 1       ;
+; pzs_test:COMP_CCD|LessThan11~7             ; 1       ;
+; pzs_test:COMP_CCD|LessThan13~2             ; 1       ;
+; pzs_test:COMP_CCD|LessThan14~0             ; 1       ;
+; pzs_test:COMP_CCD|clk_reg~1                ; 1       ;
+; pzs_test:COMP_CCD|LessThan3~1              ; 1       ;
 ; pzs_test:COMP_CCD|LessThan11~3             ; 1       ;
 ; pzs_test:COMP_CCD|LessThan11~2             ; 1       ;
 ; pzs_test:COMP_CCD|LessThan11~1             ; 1       ;
 ; pzs_test:COMP_CCD|LessThan11~0             ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[31]~102  ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[30]~101  ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[31]~101  ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[30]~100  ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[29]~99   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[30]~99   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[29]~98   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[28]~97   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[29]~97   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[28]~96   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[27]~95   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[28]~95   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[27]~94   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[26]~93   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[27]~93   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[26]~92   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[25]~91   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[26]~91   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[25]~90   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[24]~89   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[25]~89   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[24]~88   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[23]~87   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[24]~87   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[23]~86   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[22]~85   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[23]~85   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[22]~84   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[21]~83   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[22]~83   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[21]~82   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[20]~81   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[21]~81   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[20]~80   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[19]~79   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[20]~79   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[19]~78   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[18]~77   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[19]~77   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[18]~76   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[17]~75   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[18]~75   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[17]~74   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[16]~73   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[17]~73   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[16]~72   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[15]~71   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[16]~71   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[15]~70   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[14]~69   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[15]~69   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[14]~68   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[13]~67   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[14]~67   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[13]~66   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[12]~65   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[13]~65   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[12]~64   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[11]~63   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[12]~63   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[11]~62   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[10]~61   ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[11]~61   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[10]~60   ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[9]~59    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[10]~59   ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[9]~58    ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[8]~57    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[9]~57    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[8]~56    ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[7]~55    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[8]~55    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[7]~54    ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[6]~53    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[7]~53    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[6]~52    ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[5]~51    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[6]~51    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[5]~50    ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[4]~49    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[5]~49    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[4]~48    ; 1       ;
-; pzs_test:COMP_CCD|count_start_seq[3]~47    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[4]~47    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[3]~46    ; 1       ;
+; pzs_test:COMP_CCD|count_start_seq[3]~45    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[2]~40    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[2]~39    ; 1       ;
 ; pzs_test:COMP_CCD|count_start_seq[1]~38    ; 1       ;
@@ -1577,9 +1575,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; usb:COMP_USB|switch_write[1]~34            ; 1       ;
 ; usb:COMP_USB|switch_write[0]~33            ; 1       ;
 ; usb:COMP_USB|switch_write[0]~32            ; 1       ;
-; pzs_test:COMP_CCD|Add3~91                  ; 1       ;
-; pzs_test:COMP_CCD|Add3~62                  ; 1       ;
-; pzs_test:COMP_CCD|Add3~61                  ; 1       ;
 ; pzs_test:COMP_CCD|Add2~61                  ; 1       ;
 ; pzs_test:COMP_CCD|Add2~59                  ; 1       ;
 ; pzs_test:COMP_CCD|Add2~57                  ; 1       ;
@@ -1613,6 +1608,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; pzs_test:COMP_CCD|Add2~2                   ; 1       ;
 ; pzs_test:COMP_CCD|Add2~1                   ; 1       ;
 ; pzs_test:COMP_CCD|Add2~0                   ; 1       ;
+; pzs_test:COMP_CCD|Add3~62                  ; 1       ;
+; pzs_test:COMP_CCD|Add3~61                  ; 1       ;
+; pzs_test:COMP_CCD|Add3~60                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~59                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~58                  ; 1       ;
 ; pzs_test:COMP_CCD|Add3~57                  ; 1       ;
@@ -1714,50 +1712,50 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+------------------------+
 ; Routing Resource Type ; Usage                  ;
 +-----------------------+------------------------+
-; Block interconnects   ; 551 / 32,401 ( 2 % )   ;
-; C16 interconnects     ; 19 / 1,326 ( 1 % )     ;
-; C4 interconnects      ; 259 / 21,816 ( 1 % )   ;
-; Direct links          ; 165 / 32,401 ( < 1 % ) ;
+; Block interconnects   ; 548 / 32,401 ( 2 % )   ;
+; C16 interconnects     ; 14 / 1,326 ( 1 % )     ;
+; C4 interconnects      ; 272 / 21,816 ( 1 % )   ;
+; Direct links          ; 118 / 32,401 ( < 1 % ) ;
 ; Global clocks         ; 1 / 10 ( 10 % )        ;
-; Local interconnects   ; 250 / 10,320 ( 2 % )   ;
-; R24 interconnects     ; 21 / 1,289 ( 2 % )     ;
-; R4 interconnects      ; 247 / 28,186 ( < 1 % ) ;
+; Local interconnects   ; 251 / 10,320 ( 2 % )   ;
+; R24 interconnects     ; 25 / 1,289 ( 2 % )     ;
+; R4 interconnects      ; 303 / 28,186 ( 1 % )   ;
 +-----------------------+------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 11.11) ; Number of LABs  (Total = 37) ;
+; Number of Logic Elements  (Average = 12.00) ; Number of LABs  (Total = 34) ;
 +---------------------------------------------+------------------------------+
 ; 1                                           ; 3                            ;
 ; 2                                           ; 1                            ;
-; 3                                           ; 3                            ;
-; 4                                           ; 2                            ;
-; 5                                           ; 1                            ;
+; 3                                           ; 2                            ;
+; 4                                           ; 1                            ;
+; 5                                           ; 0                            ;
 ; 6                                           ; 1                            ;
-; 7                                           ; 1                            ;
-; 8                                           ; 1                            ;
+; 7                                           ; 0                            ;
+; 8                                           ; 0                            ;
 ; 9                                           ; 0                            ;
 ; 10                                          ; 1                            ;
-; 11                                          ; 2                            ;
-; 12                                          ; 1                            ;
-; 13                                          ; 0                            ;
-; 14                                          ; 0                            ;
-; 15                                          ; 1                            ;
-; 16                                          ; 19                           ;
+; 11                                          ; 0                            ;
+; 12                                          ; 3                            ;
+; 13                                          ; 3                            ;
+; 14                                          ; 1                            ;
+; 15                                          ; 0                            ;
+; 16                                          ; 18                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.32) ; Number of LABs  (Total = 37) ;
+; LAB-wide Signals  (Average = 1.29) ; Number of LABs  (Total = 34) ;
 +------------------------------------+------------------------------+
-; 1 Clock                            ; 24                           ;
-; 1 Clock enable                     ; 17                           ;
+; 1 Clock                            ; 22                           ;
+; 1 Clock enable                     ; 16                           ;
 ; 1 Sync. clear                      ; 4                            ;
-; 2 Clock enables                    ; 3                            ;
+; 2 Clock enables                    ; 1                            ;
 ; 2 Clocks                           ; 1                            ;
 +------------------------------------+------------------------------+
 
@@ -1765,40 +1763,40 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 16.43) ; Number of LABs  (Total = 37) ;
+; Number of Signals Sourced  (Average = 17.76) ; Number of LABs  (Total = 34) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 2                            ;
+; 1                                            ; 3                            ;
 ; 2                                            ; 1                            ;
-; 3                                            ; 2                            ;
-; 4                                            ; 3                            ;
+; 3                                            ; 1                            ;
+; 4                                            ; 0                            ;
 ; 5                                            ; 0                            ;
-; 6                                            ; 2                            ;
+; 6                                            ; 1                            ;
 ; 7                                            ; 1                            ;
-; 8                                            ; 1                            ;
-; 9                                            ; 1                            ;
+; 8                                            ; 0                            ;
+; 9                                            ; 0                            ;
 ; 10                                           ; 0                            ;
-; 11                                           ; 0                            ;
+; 11                                           ; 1                            ;
 ; 12                                           ; 1                            ;
-; 13                                           ; 1                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 0                            ;
-; 16                                           ; 5                            ;
-; 17                                           ; 2                            ;
-; 18                                           ; 0                            ;
+; 13                                           ; 0                            ;
+; 14                                           ; 1                            ;
+; 15                                           ; 1                            ;
+; 16                                           ; 6                            ;
+; 17                                           ; 1                            ;
+; 18                                           ; 1                            ;
 ; 19                                           ; 0                            ;
-; 20                                           ; 0                            ;
-; 21                                           ; 2                            ;
+; 20                                           ; 3                            ;
+; 21                                           ; 1                            ;
 ; 22                                           ; 0                            ;
 ; 23                                           ; 1                            ;
-; 24                                           ; 3                            ;
-; 25                                           ; 0                            ;
+; 24                                           ; 1                            ;
+; 25                                           ; 1                            ;
 ; 26                                           ; 0                            ;
 ; 27                                           ; 1                            ;
-; 28                                           ; 1                            ;
+; 28                                           ; 0                            ;
 ; 29                                           ; 1                            ;
-; 30                                           ; 1                            ;
-; 31                                           ; 0                            ;
+; 30                                           ; 0                            ;
+; 31                                           ; 1                            ;
 ; 32                                           ; 5                            ;
 +----------------------------------------------+------------------------------+
 
@@ -1806,40 +1804,40 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                         ;
 +--------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 10.46) ; Number of LABs  (Total = 37) ;
+; Number of Signals Sourced Out  (Average = 11.15) ; Number of LABs  (Total = 34) ;
 +--------------------------------------------------+------------------------------+
 ; 0                                                ; 0                            ;
-; 1                                                ; 4                            ;
-; 2                                                ; 3                            ;
-; 3                                                ; 3                            ;
-; 4                                                ; 2                            ;
+; 1                                                ; 3                            ;
+; 2                                                ; 2                            ;
+; 3                                                ; 2                            ;
+; 4                                                ; 1                            ;
 ; 5                                                ; 1                            ;
-; 6                                                ; 1                            ;
+; 6                                                ; 2                            ;
 ; 7                                                ; 1                            ;
-; 8                                                ; 2                            ;
-; 9                                                ; 2                            ;
-; 10                                               ; 1                            ;
-; 11                                               ; 1                            ;
+; 8                                                ; 1                            ;
+; 9                                                ; 3                            ;
+; 10                                               ; 2                            ;
+; 11                                               ; 0                            ;
 ; 12                                               ; 1                            ;
 ; 13                                               ; 1                            ;
-; 14                                               ; 1                            ;
-; 15                                               ; 1                            ;
-; 16                                               ; 8                            ;
-; 17                                               ; 0                            ;
+; 14                                               ; 2                            ;
+; 15                                               ; 0                            ;
+; 16                                               ; 7                            ;
+; 17                                               ; 2                            ;
 ; 18                                               ; 0                            ;
 ; 19                                               ; 0                            ;
-; 20                                               ; 1                            ;
-; 21                                               ; 0                            ;
+; 20                                               ; 0                            ;
+; 21                                               ; 1                            ;
 ; 22                                               ; 0                            ;
-; 23                                               ; 1                            ;
+; 23                                               ; 0                            ;
 ; 24                                               ; 0                            ;
 ; 25                                               ; 0                            ;
 ; 26                                               ; 0                            ;
 ; 27                                               ; 0                            ;
 ; 28                                               ; 0                            ;
 ; 29                                               ; 0                            ;
-; 30                                               ; 1                            ;
-; 31                                               ; 0                            ;
+; 30                                               ; 0                            ;
+; 31                                               ; 1                            ;
 ; 32                                               ; 1                            ;
 +--------------------------------------------------+------------------------------+
 
@@ -1847,42 +1845,42 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 14.14) ; Number of LABs  (Total = 37) ;
+; Number of Distinct Inputs  (Average = 15.21) ; Number of LABs  (Total = 34) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 0                            ;
 ; 2                                            ; 2                            ;
-; 3                                            ; 4                            ;
-; 4                                            ; 4                            ;
+; 3                                            ; 2                            ;
+; 4                                            ; 6                            ;
 ; 5                                            ; 0                            ;
 ; 6                                            ; 0                            ;
 ; 7                                            ; 0                            ;
-; 8                                            ; 0                            ;
-; 9                                            ; 1                            ;
-; 10                                           ; 1                            ;
-; 11                                           ; 1                            ;
-; 12                                           ; 2                            ;
+; 8                                            ; 1                            ;
+; 9                                            ; 0                            ;
+; 10                                           ; 2                            ;
+; 11                                           ; 0                            ;
+; 12                                           ; 1                            ;
 ; 13                                           ; 1                            ;
 ; 14                                           ; 0                            ;
-; 15                                           ; 0                            ;
+; 15                                           ; 1                            ;
 ; 16                                           ; 2                            ;
 ; 17                                           ; 4                            ;
-; 18                                           ; 3                            ;
-; 19                                           ; 3                            ;
-; 20                                           ; 1                            ;
-; 21                                           ; 4                            ;
-; 22                                           ; 1                            ;
-; 23                                           ; 1                            ;
-; 24                                           ; 0                            ;
+; 18                                           ; 2                            ;
+; 19                                           ; 1                            ;
+; 20                                           ; 0                            ;
+; 21                                           ; 1                            ;
+; 22                                           ; 0                            ;
+; 23                                           ; 0                            ;
+; 24                                           ; 1                            ;
 ; 25                                           ; 0                            ;
-; 26                                           ; 0                            ;
-; 27                                           ; 1                            ;
-; 28                                           ; 0                            ;
-; 29                                           ; 0                            ;
-; 30                                           ; 0                            ;
+; 26                                           ; 1                            ;
+; 27                                           ; 0                            ;
+; 28                                           ; 1                            ;
+; 29                                           ; 1                            ;
+; 30                                           ; 1                            ;
 ; 31                                           ; 0                            ;
-; 32                                           ; 0                            ;
-; 33                                           ; 0                            ;
+; 32                                           ; 1                            ;
+; 33                                           ; 1                            ;
 ; 34                                           ; 0                            ;
 ; 35                                           ; 0                            ;
 ; 36                                           ; 0                            ;
@@ -2032,22 +2030,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------+----------------------+-------------------+
 ; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; I/O             ; usb_clk              ; 1.5               ;
+; I/O             ; usb_clk              ; 1.7               ;
 +-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the TimeQuest Timing Analyzer.
 
 
-+--------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                  ;
-+-------------------------------+----------------------------+-------------------+
-; Source Register               ; Destination Register       ; Delay Added in ns ;
-+-------------------------------+----------------------------+-------------------+
-; usb_clk                       ; usb:COMP_USB|data[4]~reg0  ; 0.442             ;
-; pzs_test:COMP_CCD|ccd_ready   ; usb:COMP_USB|ccd_ready_reg ; 0.382             ;
-; pzs_test:COMP_CCD|data_out[4] ; usb:COMP_USB|data[4]~reg0  ; 0.220             ;
-+-------------------------------+----------------------------+-------------------+
-Note: This table only shows the top 3 path(s) that have the largest delay added for hold.
++-----------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                   ;
++-----------------+---------------------------+-------------------+
+; Source Register ; Destination Register      ; Delay Added in ns ;
++-----------------+---------------------------+-------------------+
+; usb_clk         ; usb:COMP_USB|data[3]~reg0 ; 0.714             ;
++-----------------+---------------------------+-------------------+
+Note: This table only shows the top 1 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -2092,12 +2088,12 @@ Info (170195): Router estimated average interconnect usage is 1% of the availabl
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.33 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.38 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Warning (169177): 28 pins must meet Altera requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone IV E Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
     Info (169178): Pin adc_otr uses I/O standard 3.3-V LVCMOS at C15
     Info (169178): Pin trigger_start uses I/O standard 3.3-V LVCMOS at R16
@@ -2115,26 +2111,26 @@ Warning (169177): 28 pins must meet Altera requirements for 3.3-, 3.0-, and 2.5-
     Info (169178): Pin usb_rxf uses I/O standard 3.3-V LVCMOS at L14
     Info (169178): Pin usb_clk uses I/O standard 3.3-V LVCMOS at J11
     Info (169178): Pin usb_txe uses I/O standard 3.3-V LVCMOS at D16
-    Info (169178): Pin adc_data_in[8] uses I/O standard 3.3-V LVCMOS at K10
-    Info (169178): Pin adc_data_in[0] uses I/O standard 3.3-V LVCMOS at L10
-    Info (169178): Pin adc_data_in[9] uses I/O standard 3.3-V LVCMOS at J14
-    Info (169178): Pin adc_data_in[1] uses I/O standard 3.3-V LVCMOS at M11
-    Info (169178): Pin adc_data_in[10] uses I/O standard 3.3-V LVCMOS at F14
-    Info (169178): Pin adc_data_in[2] uses I/O standard 3.3-V LVCMOS at P14
-    Info (169178): Pin adc_data_in[11] uses I/O standard 3.3-V LVCMOS at D15
-    Info (169178): Pin adc_data_in[3] uses I/O standard 3.3-V LVCMOS at L13
-    Info (169178): Pin adc_data_in[4] uses I/O standard 3.3-V LVCMOS at L12
-    Info (169178): Pin adc_data_in[5] uses I/O standard 3.3-V LVCMOS at J13
-    Info (169178): Pin adc_data_in[6] uses I/O standard 3.3-V LVCMOS at K12
-    Info (169178): Pin adc_data_in[7] uses I/O standard 3.3-V LVCMOS at K11
+    Info (169178): Pin adc_data_in[8] uses I/O standard 3.3-V LVTTL at K10
+    Info (169178): Pin adc_data_in[0] uses I/O standard 3.3-V LVTTL at L10
+    Info (169178): Pin adc_data_in[9] uses I/O standard 3.3-V LVTTL at J14
+    Info (169178): Pin adc_data_in[1] uses I/O standard 3.3-V LVTTL at M11
+    Info (169178): Pin adc_data_in[10] uses I/O standard 3.3-V LVTTL at F14
+    Info (169178): Pin adc_data_in[2] uses I/O standard 3.3-V LVTTL at P14
+    Info (169178): Pin adc_data_in[11] uses I/O standard 3.3-V LVTTL at D15
+    Info (169178): Pin adc_data_in[3] uses I/O standard 3.3-V LVTTL at L13
+    Info (169178): Pin adc_data_in[4] uses I/O standard 3.3-V LVTTL at L12
+    Info (169178): Pin adc_data_in[5] uses I/O standard 3.3-V LVTTL at J13
+    Info (169178): Pin adc_data_in[6] uses I/O standard 3.3-V LVTTL at K12
+    Info (169178): Pin adc_data_in[7] uses I/O standard 3.3-V LVTTL at K11
 Warning (169064): Following 1 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
     Info (169065): Pin r_sda has a permanently disabled output enable
 Info (144001): Generated suppressed messages file C:/TIM/Project/monochr/altera/output_files/monochr.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 5060 megabytes
-    Info: Processing ended: Fri Nov 06 18:12:30 2020
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Peak virtual memory: 5061 megabytes
+    Info: Processing ended: Mon Nov 09 18:44:29 2020
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:07
 
 
 +----------------------------+

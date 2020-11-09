@@ -41,6 +41,24 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines)
     data_chart->removeAllSeries();
     QLineSeries *series = new QLineSeries;
 
+
+//    int j = 0;
+//    while (j < lines.size())
+//    {
+//        bool over_limit = false;
+
+//        for (int i = 0; i < lines[j].size(); i++)
+//        {
+//            if (lines[j][i] > 4096)
+//            {
+//                over_limit = true;
+//                break;
+//            }
+//        }
+//        if (!over_limit)
+//            break;
+//    }
+
     for (int i = 0; i < lines[0].size(); i++)
        series->append(i, static_cast<int>(lines[0][i]));
     data_chart->addSeries(series);
@@ -49,7 +67,7 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines)
     data_chart->createDefaultAxes();
 
     data_chart->axisX()->setRange(-50,2100);
-    data_chart->axisY()->setRange(-50,5000);
+    data_chart->axisY()->setRange(500,4500);
 
 }
 

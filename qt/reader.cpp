@@ -15,9 +15,21 @@ Reader::Reader(UsbHandler *usb)
 
 int Reader::convert(const char ch1, const char ch2)
 {
+//     qDebug()<<"-----";
     ushort numb = ch1;
+//    qDebug()<<Qt::bin<<numb ;
+//    qDebug()<<"ch1"<<Qt::bin<<numb ;
+    ushort numb1=ch2;
+
     numb <<= 8;
-    return  numb + ch2;
+    numb1 = numb1 & 0x00FF;
+
+//    qDebug()<<Qt::bin<<numb ;
+
+    numb += numb1;
+//     qDebug()<<"ch2"<<Qt::bin<<numb1 ;
+//    qDebug()<<Qt::bin<<numb;
+    return  numb;
 //        char ch[2];
 //        ch[1] = ch1; // MSByte
 //        ch[0] = ch2; // LSByte
@@ -37,15 +49,15 @@ QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
         if (i == SEQ_NOT_FOUND)
             break;
         start_line = i + 3; // skip start sequence
-        qDebug() << "start seq" << i;
-        qDebug() << "start line" << start_line;
+//        qDebug() << "start seq" << i;
+//        qDebug() << "start line" << start_line;
 
         i = findSeq(ubuffer, i, end_seq, seq_size);
         if (i == SEQ_NOT_FOUND)
             break;
         end_line = i; // set pos before end sequence
-        qDebug() << "end seq" << i;
-        qDebug() << "end line" << end_line;
+//        qDebug() << "end seq" << i;
+//        qDebug() << "end line" << end_line;
 
         if (end_line - start_line > LINE_SIZE)
             continue;
@@ -104,7 +116,7 @@ void Reader::readUsb()
         {
             // exit from the while but dont stop the thread,
             // will continue reading if readUsb() called
-            qDebug() << "Buffer is empty!";
+//            qDebug() << "Buffer is empty!";
 
 
             // DELETE THIS BEFORE USE!!!!
@@ -137,26 +149,26 @@ void Reader::readUsb()
         for (int i = 0; i < readed; i+=2)
             ubuffer.push_back(convert(buffer[i], buffer[i+1]));
 
-//        QString path = "C:\\TIM\\Project\\monochr\\logs\\";
-//        QString time = QString::number(QTime::currentTime().hour()) + "_" +
-//                       QString::number(QTime::currentTime().minute()) + "_" +
-//                       QString::number(QTime::currentTime().second());
-//        path += "out_raw_" + QDate::currentDate().toString() + "_" + time + ".txt";
+        QString path = "C:\\TIM\\Project\\monochr\\logs\\";
+        QString time = QString::number(QTime::currentTime().hour()) + "_" +
+                       QString::number(QTime::currentTime().minute()) + "_" +
+                       QString::number(QTime::currentTime().second());
+        path += "out_raw_" + QDate::currentDate().toString() + "_" + time + ".txt";
 
-//        QFile fileOut(path);
-//        if (!fileOut.open(QIODevice::WriteOnly))
-//           qDebug() << "error: file to write raw data from ccd don`t open";
+        QFile fileOut(path);
+        if (!fileOut.open(QIODevice::WriteOnly))
+           qDebug() << "error: file to write raw data from ccd don`t open";
 
-//        QTextStream stream(&fileOut);
+        QTextStream stream(&fileOut);
 
-//        Qt::bin(stream);
-//        for (ushort temp : ubuffer)
-//            stream << temp << "\n";
-//        fileOut.close();
+        Qt::bin(stream);
+        for (ushort temp : ubuffer)
+            stream << temp << "\n";
+        fileOut.close();
 
         QList<QVector<ushort>> lines = split(ubuffer);
 
-        qDebug() << "Lines readed:" << lines.size();
+//        qDebug() << "Lines readed:" << lines.size();
 
         if (displayTime.elapsed() >= waitTime())
         {

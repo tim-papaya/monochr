@@ -1,5 +1,5 @@
 |monochr
-adc_clk <= pzs_test:COMP_CCD.adc_clk
+adc_clk << pzs_test:COMP_CCD.adc_clk
 adc_data_in[0] => pzs_test:COMP_CCD.adc_data_in[0]
 adc_data_in[1] => pzs_test:COMP_CCD.adc_data_in[1]
 adc_data_in[2] => pzs_test:COMP_CCD.adc_data_in[2]
@@ -16,10 +16,10 @@ adc_otr => ~NO_FANOUT~
 trigger_start => ~NO_FANOUT~
 button => ~NO_FANOUT~
 clk50Mhz => pzs_test:COMP_CCD.clk_in
-ccd_clk <= pzs_test:COMP_CCD.ccd_clk
-ccd_rog <= pzs_test:COMP_CCD.rog
-ccd_shut <= pzs_test:COMP_CCD.shut
-ccd_shsw <= <GND>
+ccd_clk << pzs_test:COMP_CCD.ccd_clk
+ccd_rog << pzs_test:COMP_CCD.rog
+ccd_shut << pzs_test:COMP_CCD.shut
+ccd_shsw << <GND>
 usb_clk => usb:COMP_USB.clk_in
 usb_txe => usb:COMP_USB.txe
 usb_data[0] <> usb:COMP_USB.data[0]
@@ -30,12 +30,12 @@ usb_data[4] <> usb:COMP_USB.data[4]
 usb_data[5] <> usb:COMP_USB.data[5]
 usb_data[6] <> usb:COMP_USB.data[6]
 usb_data[7] <> usb:COMP_USB.data[7]
-usb_oe <= usb:COMP_USB.oe
-usb_wr <= usb:COMP_USB.wr
-usb_rd <= usb:COMP_USB.rd
+usb_oe << usb:COMP_USB.oe
+usb_wr << usb:COMP_USB.wr
+usb_rd << usb:COMP_USB.rd
 usb_rxf => usb:COMP_USB.rxf
-usb_siwua <= <VCC>
-r_scl <= <VCC>
+usb_siwua << <VCC>
+r_scl << <VCC>
 r_sda <> <UNC>
 
 

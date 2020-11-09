@@ -136,9 +136,9 @@ bool UsbHandler::readData(char *rxBuffer, int &readed)
     FT_GetStatus(ftHandle, &rxBytes, &txBytes, &eventDWORD);
 
     readed = static_cast<int>(rxBytes);
-    qDebug() << "Bytes received:" << readed;
+//    qDebug() << "Bytes received:" << readed;
 
-    qDebug() << "Bytes is transmitted:" << static_cast<int>(txBytes);
+//    qDebug() << "Bytes is transmitted:" << static_cast<int>(txBytes);
 
 
     if (rxBytes > 0)
@@ -147,14 +147,14 @@ bool UsbHandler::readData(char *rxBuffer, int &readed)
                            rxBuffer,
                            rxBytes,
                            &bytesReceived);
-        if (ftStatus == FT_OK) {
-            qDebug() << "First ten chars : ";
-            for (int i = 0; i < 10; i++) {
-                qDebug() << rxBuffer[i] << ":" << static_cast<uchar>(rxBuffer[i]);
-            }
-        }
-        else
-            qDebug() << "error: can`t read bytes.\n";
+//        if (ftStatus == FT_OK) {
+//            qDebug() << "First ten chars : ";
+//            for (int i = 0; i < 10; i++) {
+//                qDebug() << rxBuffer[i] << ":" << static_cast<uchar>(rxBuffer[i]);
+//            }
+//        }
+//        else
+//            qDebug() << "error: can`t read bytes.\n";
 
     }
     else
