@@ -159,7 +159,7 @@ bool UsbHandler::readData(char *rxBuffer, int &readed)
     }
     else
         return false;
-    qDebug() << "usbhandler::readData";
+//    qDebug() << "usbhandler::readData";
     return true;
 }
 

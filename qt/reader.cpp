@@ -13,33 +13,32 @@ Reader::Reader(UsbHandler *usb)
     setWaitTime(300);
 }
 
-int Reader::convert(const char ch1, const char ch2)
+ushort Reader::convert(const char ch1, const char ch2)
 {
 //     qDebug()<<"-----";
-    ushort numb = ch1;
+//    ushort numb = ch1;
 //    qDebug()<<Qt::bin<<numb ;
 //    qDebug()<<"ch1"<<Qt::bin<<numb ;
-    ushort numb1=ch2;
+//    ushort numb1=ch2;
 
-    numb <<= 8;
-    numb1 = numb1 & 0x00FF;
+//    numb <<= 8;
+//    numb1 = numb1 & 0x00FF;
 
 //    qDebug()<<Qt::bin<<numb ;
 
-    numb += numb1;
+//    numb += numb1;
 //     qDebug()<<"ch2"<<Qt::bin<<numb1 ;
 //    qDebug()<<Qt::bin<<numb;
-    return  numb;
-//        char ch[2];
-//        ch[1] = ch1; // MSByte
-//        ch[0] = ch2; // LSByte
-//        return *(ushort*)ch;
-
+//    return  numb;
+        char ch[2];
+        ch[1] = ch1; // MSByte
+        ch[0] = ch2; // LSByte
+        return *(ushort*)ch;
 }
 
 QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
 {
-    qDebug() << "Starting to split lines";
+//    qDebug() << "Starting to split lines";
     QList<QVector<ushort>> list;
     int i = 0, start_line = 0, end_line = 0;
 

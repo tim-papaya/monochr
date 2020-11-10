@@ -3,15 +3,15 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
-Slack : -8.341
-TNS   : -946.717
+Slack : -7.778
+TNS   : -898.290
 
 Type  : Slow 1200mV 85C Model Setup 'usb_clk'
-Slack : -5.073
-TNS   : -236.798
+Slack : -4.694
+TNS   : -221.168
 
 Type  : Slow 1200mV 85C Model Hold 'clk50Mhz'
-Slack : 0.431
+Slack : 0.452
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'usb_clk'
@@ -20,22 +20,22 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -218.615
+TNS   : -220.102
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
 TNS   : -81.811
 
 Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -7.716
-TNS   : -869.197
+Slack : -7.089
+TNS   : -817.973
 
 Type  : Slow 1200mV 0C Model Setup 'usb_clk'
-Slack : -4.676
-TNS   : -216.075
+Slack : -4.314
+TNS   : -201.665
 
 Type  : Slow 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.381
+Slack : 0.401
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'usb_clk'
@@ -44,22 +44,22 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -218.615
+TNS   : -220.102
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
 TNS   : -81.811
 
 Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -3.058
-TNS   : -329.585
+Slack : -2.806
+TNS   : -308.356
 
 Type  : Fast 1200mV 0C Model Setup 'usb_clk'
-Slack : -1.574
-TNS   : -70.992
+Slack : -1.372
+TNS   : -63.610
 
 Type  : Fast 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.178
+Slack : 0.187
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'usb_clk'
@@ -68,10 +68,10 @@ TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -194.264
+TNS   : -196.370
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -79.238
+TNS   : -78.051
 
 ------------------------------------------------------------

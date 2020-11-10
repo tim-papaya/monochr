@@ -22,13 +22,13 @@ generic (
 	
 	TRIGGER_ACTIVE : std_logic := '0';
 	
-	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0000"&"0011"; --0x3
-	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"0111"&"1111"; --0x7F
-	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "0000"&"1100"&"0001";--0xC1
+	START_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0000"&"0011"; --0x003
+	START_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"0111"&"1111"; --0x07F
+	START_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "0000"&"1100"&"0001";--0x0C1
 	
-	END_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0101"&"1100"; --0x5C
-	END_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"1000"&"0000"; --0x80
-	END_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1111"&"0011"&"1110" --0x3E
+	END_SEQUENCE1 : std_logic_vector(11 DOWNTO 0) := "0000"&"0101"&"1100"; --0x05C
+	END_SEQUENCE2 : std_logic_vector(11 DOWNTO 0) := "0000"&"1000"&"0000"; --0x080
+	END_SEQUENCE3 : std_logic_vector(11 DOWNTO 0) := "1111"&"0011"&"1110" --0xF3E
 	
 	);
 
@@ -81,6 +81,9 @@ begin
 	rog <=  NOT rog_reg;	
 	shut <= NOT shut_reg;
 -------ADC--------------
+-- Here NOT because of inverted Schmitt trigger 
+-- + NOT to read at the Negative_edge
+-- actualy adc_clk <= NOT NOT clk_reg;
 	adc_clk <=  clk_reg;
 -------COMMAND----------
 	command_reg <= command_in;
@@ -127,7 +130,7 @@ process (clk_in)
 			--------------------
 			if (count < SHUTTER) then
 				clk_reg <= '1';
-				shut_reg <= '1';
+				shut_reg <= '0';
 			---------------------
 			-- EXPOSURE TIMING --
 			---------------------

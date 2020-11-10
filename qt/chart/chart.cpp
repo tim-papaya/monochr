@@ -37,6 +37,7 @@
 
 void updateChart(QChart* data_chart, QList<QVector<ushort> > lines)
 {
+    int dark_signal = 3730;
     qDebug() << "Updating QChart";
     data_chart->removeAllSeries();
     QLineSeries *series = new QLineSeries;
@@ -60,14 +61,14 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines)
 //    }
 
     for (int i = 0; i < lines[0].size(); i++)
-       series->append(i, static_cast<int>(lines[0][i]));
+       series->append(i, dark_signal - static_cast<int>(lines[0][i]));
     data_chart->addSeries(series);
     qDebug() << "Line, data number:" << lines[0].size();
 
     data_chart->createDefaultAxes();
 
     data_chart->axisX()->setRange(-50,2100);
-    data_chart->axisY()->setRange(500,4500);
+    data_chart->axisY()->setRange(0,4500);
 
 }
 

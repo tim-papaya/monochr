@@ -13,8 +13,8 @@ class Reader : public QObject
     Q_PROPERTY(QList<QVector<ushort>> result READ result WRITE setResult NOTIFY resultChanged)
     Q_PROPERTY(qint64 waitTime READ waitTime WRITE setWaitTime NOTIFY waitTimeChanged)
 public:
-    ushort start_seq[3] = {0x3, 0x7F, 0xFFC1};
-    ushort end_seq[3] = {0x5C, 0xFF80, 0x0F3E};
+    ushort start_seq[3] = {0x0003, 0x007F, 0x00C1};
+    ushort end_seq[3] = {0x005C, 0x0080, 0x0F3E};
     const int seq_size = 3;
     const int LINE_SIZE = 2048;
     const int SEQ_NOT_FOUND = -1;
@@ -69,7 +69,7 @@ private:
     UsbHandler *usb;
     QList<QVector<ushort>> m_result;
 
-    int static convert(char const ch1, char const ch2);
+    ushort static convert(char const ch1, char const ch2);
 
     QList<QVector<ushort>> split(QVector<ushort> &ubuffer);
 
