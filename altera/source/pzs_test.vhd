@@ -7,7 +7,7 @@ generic (
 										
 	---=NUMBERx2----
 	SHUTTER : integer := 40;
-	EXPOSURE : integer := 20;
+	EXPOSURE : integer := 2000;
 	ROG_START : integer := 10;
 	ROG_END : integer := 10;
 	DUM1 : integer := 66;
@@ -130,7 +130,7 @@ process (clk_in)
 			--------------------
 			if (count < SHUTTER) then
 				clk_reg <= '1';
-				shut_reg <= '0';
+				shut_reg <= '1';
 			---------------------
 			-- EXPOSURE TIMING --
 			---------------------

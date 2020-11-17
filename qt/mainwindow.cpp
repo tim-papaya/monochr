@@ -108,7 +108,12 @@ void MainWindow::read()
 
     }
     QList<QVector<ushort>> list = usbReader->result();
-    updateChart(currentView->chart(), list);
+    if (list.size() == 0)
+    {
+        qDebug() << "lines read ERROR";
+        return;
+    }
+    updateChart(currentView->chart(), list,ui->rangeY_low->text().toInt(),ui->rangeY_high->text().toInt());
 
     qDebug() << "lines:" << list.size();
     qDebug("Plot updated, takes %u ms", update_time.elapsed());

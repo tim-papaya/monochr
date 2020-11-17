@@ -1,14 +1,14 @@
-Fitter Status : Successful - Tue Nov 10 17:01:37 2020
+Fitter Status : Successful - Tue Nov 17 16:07:45 2020
 Quartus II 64-Bit Version : 14.1.0 Build 186 12/03/2014 SJ Web Edition
 Revision Name : monochr
 Top-level Entity Name : monochr
 Family : Cyclone IV E
 Device : EP4CE10F17C8
 Timing Models : Final
-Total logic elements : 415 / 10,320 ( 4 % )
-    Total combinational functions : 411 / 10,320 ( 4 % )
-    Dedicated logic registers : 199 / 10,320 ( 2 % )
-Total registers : 199
+Total logic elements : 408 / 10,320 ( 4 % )
+    Total combinational functions : 405 / 10,320 ( 4 % )
+    Dedicated logic registers : 198 / 10,320 ( 2 % )
+Total registers : 198
 Total pins : 38 / 180 ( 21 % )
 Total virtual pins : 0
 Total memory bits : 0 / 423,936 ( 0 % )

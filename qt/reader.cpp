@@ -66,10 +66,34 @@ QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer)
             line.push_back(ubuffer[j]);
         list.push_back(line);
     }
-
     if (list.size() == 0)
-       list.push_back(ubuffer);
+    {
+        i = 1, start_line = 1, end_line = 1;
+        while (i < ubuffer.size())
+        {
+            i = findSeq(ubuffer, i, start_seq, seq_size);
+            if (i == SEQ_NOT_FOUND)
+                break;
+            start_line = i + 3; // skip start sequence
+    //        qDebug() << "start seq" << i;
+    //        qDebug() << "start line" << start_line;
 
+            i = findSeq(ubuffer, i, end_seq, seq_size);
+            if (i == SEQ_NOT_FOUND)
+                break;
+            end_line = i; // set pos before end sequence
+    //        qDebug() << "end seq" << i;
+    //        qDebug() << "end line" << end_line;
+
+            if (end_line - start_line > LINE_SIZE)
+                continue;
+
+            QVector<ushort> line;
+            for (int j = start_line; j < end_line; j++)
+                line.push_back(ubuffer[j]);
+            list.push_back(line);
+        }
+    }
     return list;
 }
 
