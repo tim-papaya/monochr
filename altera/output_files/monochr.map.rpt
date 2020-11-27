@@ -1,5 +1,5 @@
 Analysis & Synthesis report for monochr
-Tue Nov 17 16:07:34 2020
+Fri Nov 27 13:53:49 2020
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -14,15 +14,22 @@ Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Registers Removed During Synthesis
-  9. General Register Statistics
- 10. Inverted Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: pzs_test:COMP_CCD
- 13. Parameter Settings for User Entity Instance: usb:COMP_USB
- 14. Port Connectivity Checks: "pzs_test:COMP_CCD"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |monochr
+ 14. Parameter Settings for User Entity Instance: pzs_test:COMP_CCD
+ 15. Parameter Settings for User Entity Instance: usb:COMP_USB
+ 16. Parameter Settings for User Entity Instance: ram:RAM_0
+ 17. Parameter Settings for User Entity Instance: ram:RAM_1
+ 18. Port Connectivity Checks: "ram:RAM_1"
+ 19. Port Connectivity Checks: "ram:RAM_0"
+ 20. Port Connectivity Checks: "usb:COMP_USB"
+ 21. Port Connectivity Checks: "pzs_test:COMP_CCD"
+ 22. Post-Synthesis Netlist Statistics for Top Partition
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
 
 
 
@@ -49,15 +56,15 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Nov 17 16:07:34 2020      ;
+; Analysis & Synthesis Status        ; Successful - Fri Nov 27 13:53:49 2020      ;
 ; Quartus II 64-Bit Version          ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name                      ; monochr                                    ;
 ; Top-level Entity Name              ; monochr                                    ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 414                                        ;
-;     Total combinational functions  ; 404                                        ;
-;     Dedicated logic registers      ; 198                                        ;
-; Total registers                    ; 198                                        ;
+; Total logic elements               ; 154                                        ;
+;     Total combinational functions  ; 145                                        ;
+;     Dedicated logic registers      ; 93                                         ;
+; Total registers                    ; 93                                         ;
 ; Total pins                         ; 38                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 0                                          ;
@@ -170,6 +177,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                      ; Library ;
 +----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
 ; source/usb.vhd                   ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/usb.vhd      ;         ;
+; source/ram.vhd                   ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/ram.vhd      ;         ;
 ; source/pzs_test.vhd              ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/pzs_test.vhd ;         ;
 ; source/monochr.vhd               ; yes             ; User VHDL File  ; C:/TIM/Project/monochr/altera/source/monochr.vhd  ;         ;
 +----------------------------------+-----------------+-----------------+---------------------------------------------------+---------+
@@ -180,20 +188,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 414            ;
+; Estimated Total logic elements              ; 154            ;
 ;                                             ;                ;
-; Total combinational functions               ; 404            ;
+; Total combinational functions               ; 145            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 168            ;
-;     -- 3 input functions                    ; 32             ;
-;     -- <=2 input functions                  ; 204            ;
+;     -- 4 input functions                    ; 49             ;
+;     -- 3 input functions                    ; 5              ;
+;     -- <=2 input functions                  ; 91             ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 249            ;
-;     -- arithmetic mode                      ; 155            ;
+;     -- normal mode                          ; 71             ;
+;     -- arithmetic mode                      ; 74             ;
 ;                                             ;                ;
-; Total registers                             ; 198            ;
-;     -- Dedicated logic registers            ; 198            ;
+; Total registers                             ; 93             ;
+;     -- Dedicated logic registers            ; 93             ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 38             ;
@@ -201,9 +209,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; clk50Mhz~input ;
-; Maximum fan-out                             ; 145            ;
-; Total fan-out                               ; 1857           ;
-; Average fan-out                             ; 2.70           ;
+; Maximum fan-out                             ; 47             ;
+; Total fan-out                               ; 723            ;
+; Average fan-out                             ; 2.24           ;
 +---------------------------------------------+----------------+
 
 
@@ -212,21 +220,51 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name        ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
-; |monochr                   ; 404 (0)           ; 198 (0)      ; 0           ; 0            ; 0       ; 0         ; 38   ; 0            ; |monochr                   ; work         ;
-;    |pzs_test:COMP_CCD|     ; 337 (337)         ; 145 (145)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|pzs_test:COMP_CCD ; work         ;
-;    |usb:COMP_USB|          ; 67 (67)           ; 53 (53)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|usb:COMP_USB      ; work         ;
+; |monochr                   ; 145 (0)           ; 93 (0)       ; 0           ; 0            ; 0       ; 0         ; 38   ; 0            ; |monochr                   ; work         ;
+;    |pzs_test:COMP_CCD|     ; 91 (91)           ; 47 (47)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|pzs_test:COMP_CCD ; work         ;
+;    |usb:COMP_USB|          ; 54 (54)           ; 46 (46)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |monochr|usb:COMP_USB      ; work         ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; pzs_test:COMP_CCD|shut_reg            ; Stuck at VCC due to stuck port data_in ;
-; Total Number of Removed Registers = 1 ;                                        ;
-+---------------------------------------+----------------------------------------+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; ram:RAM_1|addr_int[0..11]              ; Lost fanout                            ;
+; usb:COMP_USB|ram_addr[0..11]           ; Lost fanout                            ;
+; usb:COMP_USB|data[7]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[6]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[5]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[4]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[3]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[2]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[1]~reg0              ; Stuck at GND due to stuck port data_in ;
+; usb:COMP_USB|data[0]~reg0              ; Stuck at GND due to stuck port data_in ;
+; pzs_test:COMP_CCD|shut_reg             ; Stuck at VCC due to stuck port data_in ;
+; Total Number of Removed Registers = 33 ;                                        ;
++----------------------------------------+----------------------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                          ;
++------------------------+--------------------+----------------------------------------+
+; Register name          ; Reason for Removal ; Registers Removed due to This Register ;
++------------------------+--------------------+----------------------------------------+
+; ram:RAM_1|addr_int[0]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[0]               ;
+; ram:RAM_1|addr_int[1]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[1]               ;
+; ram:RAM_1|addr_int[2]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[2]               ;
+; ram:RAM_1|addr_int[3]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[3]               ;
+; ram:RAM_1|addr_int[4]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[4]               ;
+; ram:RAM_1|addr_int[5]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[5]               ;
+; ram:RAM_1|addr_int[6]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[6]               ;
+; ram:RAM_1|addr_int[7]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[7]               ;
+; ram:RAM_1|addr_int[8]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[8]               ;
+; ram:RAM_1|addr_int[9]  ; Lost Fanouts       ; usb:COMP_USB|ram_addr[9]               ;
+; ram:RAM_1|addr_int[10] ; Lost Fanouts       ; usb:COMP_USB|ram_addr[10]              ;
+; ram:RAM_1|addr_int[11] ; Lost Fanouts       ; usb:COMP_USB|ram_addr[11]              ;
++------------------------+--------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -234,77 +272,74 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 198   ;
-; Number of registers using Synchronous Clear  ; 64    ;
+; Total registers                              ; 93    ;
+; Number of registers using Synchronous Clear  ; 32    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 159   ;
+; Number of registers using Clock Enable       ; 55    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------+
-; Inverted Register Statistics                      ;
-+-----------------------------------------+---------+
-; Inverted Register                       ; Fan out ;
-+-----------------------------------------+---------+
-; pzs_test:COMP_CCD|clk_reg               ; 7       ;
-; pzs_test:COMP_CCD|rog_reg               ; 3       ;
-; usb:COMP_USB|oe                         ; 2       ;
-; usb:COMP_USB|wr                         ; 2       ;
-; usb:COMP_USB|rd                         ; 2       ;
-; pzs_test:COMP_CCD|count[12]             ; 8       ;
-; pzs_test:COMP_CCD|count[7]              ; 5       ;
-; pzs_test:COMP_CCD|count[2]              ; 6       ;
-; pzs_test:COMP_CCD|count[3]              ; 7       ;
-; pzs_test:COMP_CCD|count[4]              ; 9       ;
-; pzs_test:COMP_CCD|count[0]              ; 2       ;
-; pzs_test:COMP_CCD|count[1]              ; 5       ;
-; pzs_test:COMP_CCD|count_line[2]         ; 3       ;
-; Total number of inverted registers = 13 ;         ;
-+-----------------------------------------+---------+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; pzs_test:COMP_CCD|clk_reg              ; 4       ;
+; pzs_test:COMP_CCD|rog_reg              ; 2       ;
+; usb:COMP_USB|oe                        ; 2       ;
+; usb:COMP_USB|wr                        ; 2       ;
+; usb:COMP_USB|rd                        ; 2       ;
+; Total number of inverted registers = 5 ;         ;
++----------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |monochr|usb:COMP_USB|switch_write[21]         ;
-; 4:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|count_line[1]       ;
-; 6:1                ; 25 bits   ; 100 LEs       ; 25 LEs               ; 75 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|count[5]            ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|count_start_seq[14] ;
-; 12:1               ; 12 bits   ; 96 LEs        ; 48 LEs               ; 48 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|data_out[7]         ;
-; 6:1                ; 7 bits    ; 28 LEs        ; 7 LEs                ; 21 LEs                 ; Yes        ; |monochr|pzs_test:COMP_CCD|count[12]           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |monochr|usb:COMP_USB|count[18] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------+
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |monochr ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; LINE_SIZE      ; 2054  ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +----------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: pzs_test:COMP_CCD ;
-+-----------------+--------------+-------------------------------+
-; Parameter Name  ; Value        ; Type                          ;
-+-----------------+--------------+-------------------------------+
-; ccd_clk_divider ; 5            ; Signed Integer                ;
-; SHUTTER         ; 40           ; Signed Integer                ;
-; EXPOSURE        ; 20           ; Signed Integer                ;
-; ROG_START       ; 10           ; Signed Integer                ;
-; ROG_END         ; 10           ; Signed Integer                ;
-; DUM1            ; 66           ; Signed Integer                ;
-; DATA            ; 4096         ; Signed Integer                ;
-; DUM2            ; 12           ; Signed Integer                ;
-; SEQUENCE_0      ; 1            ; Signed Integer                ;
-; SEQUENCE_1      ; 2            ; Signed Integer                ;
-; SEQUENCE_2      ; 3            ; Signed Integer                ;
-; LINE_END        ; 1            ; Signed Integer                ;
-; TRIGGER_ACTIVE  ; '0'          ; Enumerated                    ;
-; START_SEQUENCE1 ; 000000000011 ; Unsigned Binary               ;
-; START_SEQUENCE2 ; 000001111111 ; Unsigned Binary               ;
-; START_SEQUENCE3 ; 000011000001 ; Unsigned Binary               ;
-; END_SEQUENCE1   ; 000001011100 ; Unsigned Binary               ;
-; END_SEQUENCE2   ; 000010000000 ; Unsigned Binary               ;
-; END_SEQUENCE3   ; 111100111110 ; Unsigned Binary               ;
-+-----------------+--------------+-------------------------------+
++-----------------+------------------+---------------------------+
+; Parameter Name  ; Value            ; Type                      ;
++-----------------+------------------+---------------------------+
+; ccd_clk_divider ; 4                ; Signed Integer            ;
+; SHUTTER         ; 40               ; Signed Integer            ;
+; EXPOSURE        ; 20               ; Signed Integer            ;
+; ROG_START       ; 10               ; Signed Integer            ;
+; ROG_END         ; 10               ; Signed Integer            ;
+; DUM1            ; 66               ; Signed Integer            ;
+; DATA            ; 4096             ; Signed Integer            ;
+; DUM2            ; 12               ; Signed Integer            ;
+; SEQUENCE_0      ; 1                ; Signed Integer            ;
+; SEQUENCE_1      ; 2                ; Signed Integer            ;
+; SEQUENCE_2      ; 3                ; Signed Integer            ;
+; LINE_END        ; 4                ; Signed Integer            ;
+; TRIGGER_ACTIVE  ; '0'              ; Enumerated                ;
+; START_SEQUENCE1 ; 0000000000000011 ; Unsigned Binary           ;
+; START_SEQUENCE2 ; 0000000001111111 ; Unsigned Binary           ;
+; START_SEQUENCE3 ; 0000000011000001 ; Unsigned Binary           ;
+; END_SEQUENCE1   ; 0000000001011100 ; Unsigned Binary           ;
+; END_SEQUENCE2   ; 0000000010000000 ; Unsigned Binary           ;
+; END_SEQUENCE3   ; 0000111100111110 ; Unsigned Binary           ;
++-----------------+------------------+---------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -313,20 +348,75 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+----------------------------------+
 ; Parameter Name ; Value ; Type                             ;
 +----------------+-------+----------------------------------+
-; timing_msb     ; 0     ; Signed Integer                   ;
-; timing_lsb     ; 1     ; Signed Integer                   ;
-; timing_end     ; 2     ; Signed Integer                   ;
+; TIMING_START   ; 0     ; Signed Integer                   ;
+; TIMING_MSB     ; 1     ; Signed Integer                   ;
+; TIMING_LSB     ; 2     ; Signed Integer                   ;
+; line_size      ; 2054  ; Signed Integer                   ;
 +----------------+-------+----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-------------------------------------------------+
-; Port Connectivity Checks: "pzs_test:COMP_CCD"   ;
-+---------------+-------+----------+--------------+
-; Port          ; Type  ; Severity ; Details      ;
-+---------------+-------+----------+--------------+
-; trigger_start ; Input ; Info     ; Stuck at GND ;
-+---------------+-------+----------+--------------+
++--------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ram:RAM_0 ;
++----------------+-------+-------------------------------+
+; Parameter Name ; Value ; Type                          ;
++----------------+-------+-------------------------------+
+; d_width        ; 16    ; Signed Integer                ;
+; size           ; 2054  ; Signed Integer                ;
++----------------+-------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ram:RAM_1 ;
++----------------+-------+-------------------------------+
+; Parameter Name ; Value ; Type                          ;
++----------------+-------+-------------------------------+
+; d_width        ; 16    ; Signed Integer                ;
+; size           ; 2054  ; Signed Integer                ;
++----------------+-------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------+
+; Port Connectivity Checks: "ram:RAM_1"    ;
++--------+-------+----------+--------------+
+; Port   ; Type  ; Severity ; Details      ;
++--------+-------+----------+--------------+
+; wr_ena ; Input ; Info     ; Stuck at GND ;
++--------+-------+----------+--------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ram:RAM_0"                                                                              ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; addr     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "usb:COMP_USB"                                                                                   ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; ram_addr[31..12] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "pzs_test:COMP_CCD"                                                                           ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ram_select    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ram_addr      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; ccd_ready     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; trigger_start ; Input  ; Info     ; Stuck at GND                                                                        ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -335,24 +425,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 38                          ;
-; cycloneiii_ff         ; 198                         ;
-;     ENA               ; 95                          ;
-;     ENA SCLR          ; 64                          ;
-;     plain             ; 39                          ;
+; cycloneiii_ff         ; 93                          ;
+;     ENA               ; 23                          ;
+;     ENA SCLR          ; 32                          ;
+;     plain             ; 38                          ;
 ; cycloneiii_io_obuf    ; 9                           ;
-; cycloneiii_lcell_comb ; 410                         ;
-;     arith             ; 155                         ;
-;         2 data inputs ; 154                         ;
+; cycloneiii_lcell_comb ; 151                         ;
+;     arith             ; 74                          ;
+;         2 data inputs ; 73                          ;
 ;         3 data inputs ; 1                           ;
-;     normal            ; 255                         ;
+;     normal            ; 77                          ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 10                          ;
-;         2 data inputs ; 44                          ;
-;         3 data inputs ; 31                          ;
-;         4 data inputs ; 168                         ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 14                          ;
+;         3 data inputs ; 4                           ;
+;         4 data inputs ; 49                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 12.70                       ;
-; Average LUT depth     ; 6.11                        ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 3.86                        ;
 +-----------------------+-----------------------------+
 
 
@@ -361,7 +451,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -371,7 +461,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
-    Info: Processing started: Tue Nov 17 16:07:17 2020
+    Info: Processing started: Fri Nov 27 13:53:33 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off monochr -c monochr
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file source/usb.vhd
@@ -398,9 +488,6 @@ Info (12021): Found 1 design units, including 1 entities, in source file source/
 Info (12021): Found 2 design units, including 1 entities, in source file source/monochr.vhd
     Info (12022): Found design unit 1: monochr-monochr
     Info (12023): Found entity 1: monochr
-Info (12021): Found 2 design units, including 1 entities, in source file source/memory.vhd
-    Info (12022): Found design unit 1: memory-memory
-    Info (12023): Found entity 1: memory
 Warning (12019): Can't analyze file -- file source/logic_memory.vhd is missing
 Info (12021): Found 1 design units, including 1 entities, in source file source/monochr_sch.bdf
     Info (12023): Found entity 1: monochr_sch
@@ -410,17 +497,27 @@ Info (12021): Found 2 design units, including 1 entities, in source file source/
     Info (12022): Found design unit 1: vhdl_tb-vhdl_tb
     Info (12023): Found entity 1: vhdl_tb
 Info (12127): Elaborating entity "monochr" for the top level hierarchy
-Warning (10540): VHDL Signal Declaration warning at monochr.vhd(24): used explicit default value for signal "ccd_shsw" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at monochr.vhd(35): used explicit default value for signal "usb_siwua" because signal was never assigned a value
-Warning (10540): VHDL Signal Declaration warning at monochr.vhd(39): used explicit default value for signal "r_scl" because signal was never assigned a value
-Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(104): object "pc_trig_reg" assigned a value but never read
+Warning (10540): VHDL Signal Declaration warning at monochr.vhd(27): used explicit default value for signal "ccd_shsw" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at monochr.vhd(38): used explicit default value for signal "usb_siwua" because signal was never assigned a value
+Warning (10540): VHDL Signal Declaration warning at monochr.vhd(42): used explicit default value for signal "r_scl" because signal was never assigned a value
+Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(121): object "ccd_ready_reg" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(126): object "pc_trig_reg" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(128): object "ccd_data_out_reg" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(130): object "ram_select_reg" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(132): object "ccd_ram_addr_reg" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at monochr.vhd(136): used implicit default value for signal "ram0_addr_reg" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at monochr.vhd(137): used implicit default value for signal "ram0_data_in_reg" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at monochr.vhd(138): object "ram0_data_out_reg" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at monochr.vhd(139): used implicit default value for signal "ram0_wr_ena_reg" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at monochr.vhd(140): used implicit default value for signal "ram0_clk_reg" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at monochr.vhd(144): used implicit default value for signal "ram1_data_in_reg" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12128): Elaborating entity "pzs_test" for hierarchy "pzs_test:COMP_CCD"
-Warning (10540): VHDL Signal Declaration warning at pzs_test.vhd(59): used explicit default value for signal "auto_mod" because signal was never assigned a value
-Warning (10036): Verilog HDL or VHDL warning at pzs_test.vhd(67): object "command_reg" assigned a value but never read
-Warning (10540): VHDL Signal Declaration warning at pzs_test.vhd(70): used explicit default value for signal "CCD_LINES_NUMBER" because signal was never assigned a value
-Warning (10542): VHDL Variable Declaration warning at pzs_test.vhd(107): used initial value expression for variable "ccd_freq" because variable was never assigned a value
+Warning (10541): VHDL Signal Declaration warning at pzs_test.vhd(40): used implicit default value for signal "ram_select" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at pzs_test.vhd(70): object "command_reg" assigned a value but never read
+Warning (10540): VHDL Signal Declaration warning at pzs_test.vhd(73): used explicit default value for signal "CCD_LINES_NUMBER" because signal was never assigned a value
 Warning (10492): VHDL Process Statement warning at pzs_test.vhd(112): signal "CCD_LINES_NUMBER" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "usb" for hierarchy "usb:COMP_USB"
+Info (12128): Elaborating entity "ram" for hierarchy "ram:RAM_0"
 Warning (13039): The following bidir pins have no drivers
     Warning (13040): Bidir "r_sda" has no driver
 Warning (13024): Output pins are stuck at VCC or GND
@@ -429,6 +526,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "usb_siwua" is stuck at VCC
     Warning (13410): Pin "r_scl" is stuck at VCC
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 24 registers lost all their fanouts during netlist optimizations.
 Warning (20013): Ignored assignments for entity "pll_usb" -- entity does not exist in design
     Warning (20014): Assignment for entity set_global_assignment -name IP_GENERATED_DEVICE_FAMILY "\{Cyclone IV E\}" -entity pll_usb -qip source/pll_usb/synthesis/pll_usb.qip -library pll_usb was ignored
     Warning (20014): Assignment for entity set_global_assignment -name IP_TARGETED_DEVICE_FAMILY "Cyclone IV E" -entity pll_usb -qip source/pll_usb/synthesis/pll_usb.qip -library pll_usb was ignored
@@ -534,19 +632,31 @@ Warning (20013): Ignored assignments for entity "pll_usb_altpll_0" -- entity doe
     Warning (20014): Assignment for entity set_global_assignment -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::Q3ljbG9uZSBJViBF::QXV0byBERVZJQ0VfRkFNSUxZ" -entity pll_usb_altpll_0 -qip source/pll_usb/synthesis/pll_usb.qip -library pll_usb was ignored
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 3 input pin(s) that do not drive logic
+Warning (21074): Design contains 15 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "adc_data_in[0]"
+    Warning (15610): No output dependent on input pin "adc_data_in[1]"
+    Warning (15610): No output dependent on input pin "adc_data_in[2]"
+    Warning (15610): No output dependent on input pin "adc_data_in[3]"
+    Warning (15610): No output dependent on input pin "adc_data_in[4]"
+    Warning (15610): No output dependent on input pin "adc_data_in[5]"
+    Warning (15610): No output dependent on input pin "adc_data_in[6]"
+    Warning (15610): No output dependent on input pin "adc_data_in[7]"
+    Warning (15610): No output dependent on input pin "adc_data_in[8]"
+    Warning (15610): No output dependent on input pin "adc_data_in[9]"
+    Warning (15610): No output dependent on input pin "adc_data_in[10]"
+    Warning (15610): No output dependent on input pin "adc_data_in[11]"
     Warning (15610): No output dependent on input pin "adc_otr"
     Warning (15610): No output dependent on input pin "trigger_start"
     Warning (15610): No output dependent on input pin "button"
-Info (21057): Implemented 484 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 193 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 19 input pins
     Info (21059): Implemented 10 output pins
     Info (21060): Implemented 9 bidirectional pins
-    Info (21061): Implemented 446 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 125 warnings
+    Info (21061): Implemented 155 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 146 warnings
     Info: Peak virtual memory: 4794 megabytes
-    Info: Processing ended: Tue Nov 17 16:07:34 2020
-    Info: Elapsed time: 00:00:17
+    Info: Processing ended: Fri Nov 27 13:53:49 2020
+    Info: Elapsed time: 00:00:16
     Info: Total CPU time (on all processors): 00:00:22
 
 

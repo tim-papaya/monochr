@@ -74,7 +74,6 @@ set_global_assignment -name VERILOG_FILE source/pll.v
 set_global_assignment -name VHDL_FILE source/monochr.vhd
 set_global_assignment -name CDF_FILE output_files/Chain2.cdf
 set_global_assignment -name CDF_FILE output_files/Chain1.cdf
-set_global_assignment -name VHDL_FILE source/memory.vhd
 set_global_assignment -name VHDL_FILE source/logic_memory.vhd
 set_global_assignment -name BDF_FILE source/monochr_sch.bdf
 set_global_assignment -name VERILOG_FILE source/testbench_monochr.v

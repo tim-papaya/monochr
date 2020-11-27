@@ -67,6 +67,11 @@ void MainWindow::on_showDevicesBtn_clicked()
 
 void MainWindow::on_readBtn_clicked()
 {
+    if (ui->checkBox->checkState() == Qt::Checked)
+        usbReader->setisWriteFile(true);
+    else
+        usbReader->setisWriteFile(false);
+
     emit(read_from_usb());
 }
 
@@ -125,4 +130,13 @@ void MainWindow::on_writeBtn_clicked()
 //  char wrBuffer[] = "11111111";
     int written;
     usb.writeData(wrBuffer, written);
+}
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Checked)
+        usbReader->setisWriteFile(true);
+    else
+        usbReader->setisWriteFile(false);
+
 }

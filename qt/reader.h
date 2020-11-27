@@ -12,6 +12,7 @@ class Reader : public QObject
     Q_OBJECT
     Q_PROPERTY(QList<QVector<ushort>> result READ result WRITE setResult NOTIFY resultChanged)
     Q_PROPERTY(qint64 waitTime READ waitTime WRITE setWaitTime NOTIFY waitTimeChanged)
+    Q_PROPERTY(bool isWriteFile READ isWriteFile WRITE setIsWriteFile NOTIFY isWriteFileChanged)
 public:
     ushort start_seq[3] = {0x0003, 0x007F, 0x00C1};
     ushort end_seq[3] = {0x005C, 0x0080, 0x0F3E};
@@ -31,6 +32,11 @@ public:
     qint64 waitTime() const
     {
         return m_waitTime;
+    }
+
+    bool isWriteFile() const
+    {
+        return m_isWriteFile;
     }
 
 public slots:
@@ -55,6 +61,24 @@ public slots:
         emit waitTimeChanged(m_waitTime);
     }
 
+    void setisWriteFile(bool isWriteFile)
+    {
+        if (m_isWriteFile == isWriteFile)
+            return;
+
+        m_isWriteFile = isWriteFile;
+        emit isWriteFileChanged(m_isWriteFile);
+    }
+
+    void setIsWriteFile(bool isWriteFile)
+    {
+        if (m_isWriteFile == isWriteFile)
+            return;
+
+        m_isWriteFile = isWriteFile;
+        emit isWriteFileChanged(m_isWriteFile);
+    }
+
 signals:
     void ready();
     void finished();
@@ -62,6 +86,8 @@ signals:
     void resultChanged(QList<QVector<ushort>> result);
 
     void waitTimeChanged(qint64 waitTime);
+
+    void isWriteFileChanged(bool isWriteFile);
 
 private:
     QElapsedTimer  displayTime;
@@ -75,6 +101,7 @@ private:
 
     int findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
     qint64 m_waitTime;
+    bool m_isWriteFile;
 };
 
 #endif // READER_H

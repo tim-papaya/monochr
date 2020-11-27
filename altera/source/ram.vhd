@@ -20,40 +20,40 @@
 --    
 --------------------------------------------------------------------------------
 
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
 
-ENTITY ram IS
-	GENERIC(
-		d_width	:	INTEGER := 10;    --width of each data word
-		size		:	INTEGER := 1024);  --number of data words the memory can store
-	PORT(
-		clk		:	IN		STD_LOGIC;                             --system clock
-		wr_ena	:	IN		STD_LOGIC;                             --write enable
-		addr		:	IN		INTEGER RANGE 0 TO size-1;             --address to write/read
-		data_in	:	IN		STD_LOGIC_VECTOR(d_width-1 DOWNTO 0);  --input data to write
-		data_out	:	OUT	STD_LOGIC_VECTOR(d_width-1 DOWNTO 0)); --output data read
-END ram;
+entity ram is
+	generic(
+		D_WIDTH	:	integer := 10;    --width of each data word
+		SIZE		:	integer := 1024);  --number of data words the memory can store
+	port(
+		clk		:	in		std_logic;                             --system clock
+		wr_ena	:	in		std_logic;                             --write enable
+		addr		:	in		integer range 0 to size-1;             --address to write/read
+		data_in	:	in		std_logic_vector(d_width-1 downto 0);  --input data to write
+		data_out	:	out	std_logic_vector(d_width-1 downto 0)); --output data read
+end ram;
 
-ARCHITECTURE logic OF ram IS
-	TYPE memory IS ARRAY(size-1 DOWNTO 0) OF STD_LOGIC_VECTOR(d_width-1 DOWNTO 0);  --data type for memory
-	SIGNAL ram			:	memory;                                                    --memory array
-	SIGNAL addr_int	:	INTEGER RANGE 0 TO size-1;                                 --internal address register
-BEGIN
+architecture logic of ram is
+	type memory is array(size-1 downto 0) of std_logic_vector(d_width-1 downto 0);  --data type for memory
+	signal ram			:	memory;                                                    --memory array
+	signal addr_int	:	integer range 0 to size-1;                                 --internal address register
+begin
 
-	PROCESS(clk)
-	BEGIN
-		IF(clk'EVENT AND clk = '1') THEN
+	process(clk)
+	begin
+		if(clk'event and clk = '1') then
 
-			IF(wr_ena = '1') THEN     --write enable is asserted
+			if(wr_ena = '1') then     --write enable is asserted
 				ram(addr) <= data_in;  --write input data into memory
-			END IF;
+			end if;
 			
 			addr_int <= addr;         --store the address in the internal address register
 
-		END IF;	
-	END PROCESS;
+		end if;	
+	end process;
 	
 	data_out <= ram(addr_int);      --output data at the stored address
 	
-END logic;
+end logic;

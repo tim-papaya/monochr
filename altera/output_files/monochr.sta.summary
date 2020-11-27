@@ -2,16 +2,16 @@
 TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
-Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
-Slack : -8.341
-TNS   : -946.717
-
 Type  : Slow 1200mV 85C Model Setup 'usb_clk'
-Slack : -5.073
-TNS   : -236.798
+Slack : -4.774
+TNS   : -192.109
+
+Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
+Slack : -3.707
+TNS   : -125.299
 
 Type  : Slow 1200mV 85C Model Hold 'clk50Mhz'
-Slack : 0.431
+Slack : 0.433
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'usb_clk'
@@ -20,22 +20,22 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -218.615
+TNS   : -72.889
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -81.811
-
-Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -7.716
-TNS   : -869.197
+TNS   : -71.402
 
 Type  : Slow 1200mV 0C Model Setup 'usb_clk'
-Slack : -4.676
-TNS   : -216.075
+Slack : -4.352
+TNS   : -175.525
+
+Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
+Slack : -3.338
+TNS   : -109.481
 
 Type  : Slow 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.381
+Slack : 0.382
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'usb_clk'
@@ -44,34 +44,34 @@ TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -218.615
+TNS   : -72.889
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -81.811
-
-Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -3.058
-TNS   : -329.585
+TNS   : -71.402
 
 Type  : Fast 1200mV 0C Model Setup 'usb_clk'
-Slack : -1.574
-TNS   : -70.992
+Slack : -1.425
+TNS   : -55.712
+
+Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
+Slack : -1.024
+TNS   : -27.675
 
 Type  : Fast 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.178
+Slack : 0.179
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'usb_clk'
 Slack : 0.199
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
-Slack : -3.000
-TNS   : -194.264
-
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -79.238
+TNS   : -71.814
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
+Slack : -3.000
+TNS   : -64.216
 
 ------------------------------------------------------------

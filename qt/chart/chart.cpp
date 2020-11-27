@@ -67,14 +67,14 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, int low, int
 //    }
 
     for (int i = 0; i < lines[0].size(); i++)
-       series->append(border_low + i * k_wl, dark_signal - static_cast<int>(lines[0][i]));
-       // series->append(i, static_cast<int>(lines[0][i]));
+//       series->append(border_low + i * k_wl, dark_signal - static_cast<int>(lines[0][i]));
+        series->append(i, static_cast<int>(lines[0][i]));
     data_chart->addSeries(series);
     qDebug() << "Line, data number:" << lines[0].size();
 
     data_chart->createDefaultAxes();
 
-    data_chart->axisX()->setRange(border_low,  border_high);
+    data_chart->axisX()->setRange(0, 4096);
     data_chart->axisY()->setRange(low,high);
 
 }
