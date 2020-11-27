@@ -75,6 +75,7 @@ end component;
 --------------------------
 component pzs_test
 generic (
+	LINE_SIZE       : integer := 2054;		
 	CCD_CLK_DIVIDER : integer -- 50Mhz => 4.16Mhz := 5	
 										-- 50Mhz => 5Mhz := 4
 	);
@@ -82,11 +83,9 @@ generic (
 port (
 	---DATA---
 	data_out      : out std_logic_vector(15 DOWNTO 0);
-	command_in    : in std_logic_vector(7 DOWNTO 0);
 	---EXTERNAL-CLOCK---
 	clk_in        : in std_logic;  -- 50 Mhz
 	----RAM------------
-	ram_select    : out std_logic;
 	ram_addr      : out integer;
 	---CCD---   
 	ccd_clk       : out std_logic; -- 2.5 Mhz /clk
@@ -104,16 +103,24 @@ end component;
 -------------------------
 ----------RAM------------
 -------------------------
-component ram is
-	generic(
-		D_WIDTH	:	INTEGER := 10;    --width of each data word
-		SIZE		:	INTEGER := 1024);  --number of data words the memory can store
-	port(
-		clk		:	in		STD_LOGIC;                             --system clock
-		wr_ena	:	in		STD_LOGIC;                             --write enable
-		addr		:	in		INTEGER range 0 to SIZE - 1;             --address to write/read
-		data_in	:	in		STD_LOGIC_VECTOR(D_WIDTH - 1 downto 0);  --input data to write
-		data_out	:	out	STD_LOGIC_VECTOR(D_WIDTH - 1 downto 0)); --output data read
+component true_dpram_sclk is
+	generic (
+				D_WORD : integer := 16;
+				SIZE   : integer := 2054
+	);
+	port 
+	(	
+		data_a	: in std_logic_vector(D_WORD - 1 downto 0);
+		data_b	: in std_logic_vector(D_WORD - 1 downto 0);
+		addr_a	: in integer range 0 to SIZE - 1;
+		addr_b	: in integer range 0 to SIZE - 1;
+		we_a	: in std_logic := '1';
+		we_b	: in std_logic := '1';
+		clk		: in std_logic;
+		q_a		: out std_logic_vector(D_WORD - 1 downto 0);
+		q_b		: out std_logic_vector(D_WORD - 1 downto 0)
+	);
+	
 end component;
 -------------------------
 --------SIGNALS----------
@@ -127,60 +134,14 @@ signal pc_trig_reg 		 :  std_logic := '1';
 
 signal ccd_data_out_reg  :  std_logic_vector(15 DOWNTO 0);
 
-signal ram_select_reg    :  std_logic;
-
 signal ccd_ram_addr_reg  :  integer;
 
 signal usb_ram_addr_reg  :  integer;
 
-signal ram0_addr_reg     :  integer range 0 to LINE_SIZE;
-signal ram0_data_in_reg  :  std_logic_vector(15 DOWNTO 0);
-signal ram0_data_out_reg :  std_logic_vector(15 DOWNTO 0);
-signal ram0_wr_ena_reg   :  std_logic;
-signal ram0_clk_reg		 :  std_logic;
-
-
-signal ram1_addr_reg     :  integer range 0 to LINE_SIZE;
-signal ram1_data_in_reg  :  std_logic_vector(15 DOWNTO 0);
-signal ram1_data_out_reg :  std_logic_vector(15 DOWNTO 0);
-signal ram1_wr_ena_reg   :  std_logic;
-signal ram1_clk_reg		 :  std_logic;
 -------------------------
 -------------------------
 -------------------------
 begin
------------------------
----RAM-CONTROL---------
------------------------
---process (usb_clk, ccd_ready_reg)
---
---begin
---
---	ram0_data_in_reg  <=  ccd_data_out_reg; 
---	ram1_data_in_reg  <=  ccd_data_out_reg;
---	
---	case ram_select_reg is
---	when '0' =>
---		ram0_clk_reg      <=  ccd_ready_reg;
---		ram0_addr_reg     <=  ccd_ram_addr_reg;   
---		ram0_wr_ena_reg   <=  '1';					  
---		
-		ram1_addr_reg     <=  usb_ram_addr_reg;  
-		usb_data_in_reg   <=  ram1_data_out_reg;
-		ram1_wr_ena_reg   <=  '0';					
-		ram1_clk_reg      <=  usb_clk;
---	when '1' =>
---		ram1_clk_reg      <=  ccd_ready_reg;
---		ram1_addr_reg     <=  ccd_ram_addr_reg;       
---		ram1_wr_ena_reg   <=  '1';					     
---		                   
---		ram0_addr_reg     <=  usb_ram_addr_reg;     
---		usb_data_in_reg   <=  ram0_data_out_reg;     
---		ram0_wr_ena_reg   <=  '0';				
---		ram0_clk_reg      <=  usb_clk;
---		
---	end case;
---end process;
 
 process (clk50Mhz) 
 	variable count : integer := 0;
@@ -204,18 +165,17 @@ start_trig_reg <= '0';
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------
-COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 4)
-							port map (data_out      => ccd_data_out_reg,
+COMP_CCD : pzs_test  generic map (LINE_SIZE       => LINE_SIZE,
+								  CCD_CLK_DIVIDER => 4)
+							port map (   data_out      => ccd_data_out_reg,
 										 clk_in        => clk50Mhz,                             
-                               ccd_clk       => ccd_clk,
-                               rog           => ccd_rog,
+                                         ccd_clk       => ccd_clk,
+                                         rog           => ccd_rog,
 										 shut          => ccd_shut,
-                               adc_clk       => adc_clk,
-										 command_in    => command_reg,
+                                         adc_clk       => adc_clk,
 										 ccd_ready	   => ccd_ready_reg,
 										 adc_data_in   => adc_data_in,
-                               trigger_start => start_trig_reg,
-										 ram_select    => ram_select_reg,
+                                         trigger_start => start_trig_reg,
 										 ram_addr  	   => ccd_ram_addr_reg,
 										 line_ready    => ccd_line_ready_reg
 										 );
@@ -224,7 +184,7 @@ COMP_CCD : pzs_test  generic map (CCD_CLK_DIVIDER => 4)
 -----------------------
 COMP_USB : usb generic map (LINE_SIZE   => LINE_SIZE
 									 )
-						port map (clk_in      => usb_clk,
+						port map (   clk_in      => usb_clk,
 									 txe         => usb_txe,
 									 ccd_ready   => ccd_line_ready_reg,
 									 data_in     => usb_data_in_reg,
@@ -239,22 +199,19 @@ COMP_USB : usb generic map (LINE_SIZE   => LINE_SIZE
 -----------------------
 ---RAM-PORTMAP---------
 -----------------------
-RAM_0 : ram generic map (D_WIDTH    => 16,
-								 SIZE       => LINE_SIZE
-							    )  
-					port map (clk		   => ram0_clk_reg,
-								 wr_ena	   => ram0_wr_ena_reg,
-								 addr		   => ram0_addr_reg,
-								 data_in	   => ram0_data_in_reg,
-								 data_out   => ram0_data_out_reg 
-								);  
-RAM_1 : ram generic map (D_WIDTH    => 16,
-									 SIZE    => LINE_SIZE
-									 )
-					port map (clk		   => ram1_clk_reg,
-								 wr_ena	   => ram1_wr_ena_reg,
-								 addr		   => ram1_addr_reg,
-								 data_in	   => ram1_data_in_reg,
-								 data_out   => ram1_data_out_reg 
-								);									
+COMP_RAM : true_dpram_sclk generic map (
+										D_WORD => 16,
+                                        SIZE   => 2054
+										)
+                           port map (
+									 data_a  =>	 ccd_data_out_reg,
+									 data_b	 =>  "0000"&"0000"&"0000"&"0000",
+									 addr_a	 =>	 ccd_ram_addr_reg,
+									 addr_b	 =>  usb_ram_addr_reg,
+									 we_a	 =>	 '1',
+									 we_b	 =>  '0',
+									 clk	 =>	 usb_clk,
+									 q_b	 =>	 usb_data_in_reg
+									 );
+																	
 end architecture;

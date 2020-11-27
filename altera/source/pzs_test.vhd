@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 entity pzs_test is
 generic (
 	CCD_CLK_DIVIDER : integer; -- 50Mhz => 5Mhz := 5	
-										
+	LINE_SIZE       : integer := 2054;										
 	---=NUMBERx2----
 	SHUTTER : integer := 40;
 	EXPOSURE : integer := 20;
@@ -35,9 +35,7 @@ generic (
 port (
 	---DATA---
 	data_out      : out std_logic_vector(15 DOWNTO 0);
-	command_in    : in std_logic_vector(7 DOWNTO 0);
 	----RAM------------
-	ram_select    : out std_logic;
 	ram_addr      : out integer;
 	---EXTERNAL CLOCK---
 	clk_in        : in std_logic;  -- 50 Mhz
@@ -67,7 +65,6 @@ architecture pzs_test of pzs_test is
 	signal adc_clk_reg : std_logic := '1';
 	
 	signal data_reg : std_logic_vector (11 DOWNTO 0);  
-	signal command_reg : std_logic_vector(7 DOWNTO 0) := "0110" & "1011";
 	signal ccd_ready_reg : std_logic := '0';
 -------CONSTANTS-------------
 	signal CCD_LINES_NUMBER : integer := 4 ;
@@ -90,7 +87,6 @@ begin
 -- actualy adc_clk <= NOT NOT clk_reg;
 	adc_clk <=  clk_reg;
 -------COMMAND----------
-	command_reg <= command_in;
 	
 --process (clk_in)
 --begin
@@ -238,10 +234,6 @@ process (clk_in)
 					rog_reg <= '1';
 					shut_reg <= '1';
 					clk_reg <= NOT clk_reg;
-				else
-					rog_reg <= '1';
-					shut_reg <= '1'; -- When shutter open ('0') CCD is heating
-	--				clk_reg <= NOT clk_reg;	
 				end if; 
 				count := count + 1;
 				-------------------------
