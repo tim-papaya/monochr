@@ -3,75 +3,75 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
-Slack : -5.911
-TNS   : -495.054
+Slack : -8.310
+TNS   : -865.997
 
 Type  : Slow 1200mV 85C Model Setup 'usb_clk'
-Slack : -5.739
-TNS   : -352.856
+Slack : -6.171
+TNS   : -325.895
 
 Type  : Slow 1200mV 85C Model Hold 'usb_clk'
-Slack : 0.212
+Slack : 0.204
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk50Mhz'
-Slack : 0.453
+Slack : 0.433
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.201
-TNS   : -177.966
+TNS   : -163.096
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -175.492
+TNS   : -209.693
 
 Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -5.473
-TNS   : -451.082
+Slack : -7.693
+TNS   : -791.940
 
 Type  : Slow 1200mV 0C Model Setup 'usb_clk'
-Slack : -5.341
-TNS   : -327.217
+Slack : -5.771
+TNS   : -301.989
 
 Type  : Slow 1200mV 0C Model Hold 'usb_clk'
-Slack : 0.133
+Slack : 0.077
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.401
+Slack : 0.383
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.201
-TNS   : -177.966
+TNS   : -163.096
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -175.492
+TNS   : -209.693
 
 Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -1.915
-TNS   : -144.698
+Slack : -2.960
+TNS   : -294.090
 
 Type  : Fast 1200mV 0C Model Setup 'usb_clk'
-Slack : -1.870
-TNS   : -110.506
+Slack : -2.076
+TNS   : -107.508
 
 Type  : Fast 1200mV 0C Model Hold 'usb_clk'
-Slack : 0.123
+Slack : 0.159
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.186
+Slack : 0.178
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
-TNS   : -153.228
+TNS   : -185.778
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -130.392
+TNS   : -119.058
 
 ------------------------------------------------------------

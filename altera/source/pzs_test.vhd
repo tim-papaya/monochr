@@ -13,13 +13,14 @@ generic (
 	DUM1 : integer := 66;
 	DATA : integer := 4096;
 	DUM2 : integer := 12;
+	
+	LINE_END : integer := 4; 
+	
    -----------------
 	SEQUENCE_0 : integer := 1;
 	SEQUENCE_1 : integer := 2;
 	SEQUENCE_2 : integer := 3;
 
-	LINE_END : integer := 4; 
-	
 	TRIGGER_ACTIVE : std_logic := '0';
 	
 	START_SEQUENCE1 : std_logic_vector(15 DOWNTO 0) := "0000"&"0000"&"0000"&"0011"; --0x003
@@ -103,8 +104,7 @@ begin
 process (clk_in)	
 	variable count_div : integer := 0; -- divider for clock
 	
-	variable count : integer range 0 to SHUTTER + EXPOSURE + ROG_START 
-	                          + ROG_END + DUM1 + DATA + DUM2 + LINE_END;
+	variable count : integer := 0;
 	variable count_line : integer := CCD_LINES_NUMBER;
 	variable count_start_seq : integer := 0;
 	variable trigger_start_reg : std_logic := '0';
@@ -117,12 +117,16 @@ process (clk_in)
 		
 		if (count_div = CCD_CLK_DIVIDER) then
 			count_div := 0;
+		else
+			count_div := count_div + 1;
+		end if;
 		-----------------
+		if (count_div = CCD_CLK_DIVIDER) then
 			if (count = SHUTTER + EXPOSURE + ROG_START 
 							+ ROG_END + DUM1 + DATA + DUM2 
 							+ LINE_END) then
 				count := 0;
-			else			
+			else	
 				--------------------
 				-- SHUTTER TIMING --
 				--------------------
@@ -134,6 +138,7 @@ process (clk_in)
 				-- EXPOSURE TIMING --
 				---------------------
 				elsif (count < SHUTTER + EXPOSURE) then
+					line_ready <= '0';
 					shut_reg      <= '1';
 					clk_reg       <= '1';
 					ccd_ready_reg <= '0';
@@ -141,12 +146,14 @@ process (clk_in)
 				-- ROG START TIMING --
 				----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START) then
+					line_ready <= '0';
 					rog_reg         <= '0';
 					count_start_seq := 0;
 				----------------
 				-- ROG END TIMING --
 				----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END) then
+					line_ready <= '0';
 					rog_reg         <= '1';
 					count_start_seq := 0;
 					count_data      := 0;
@@ -154,6 +161,7 @@ process (clk_in)
 				-- DUMMIES BEFORE DATA --
 				-------------------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1) then
+					
 					-- SENDING START SEQUENCE --
 					if (clk_reg = '0') then
 					
@@ -186,19 +194,26 @@ process (clk_in)
 				-- DATA TIMING --
 				-----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA) then
+					line_ready <= '0';
 	--				data_out <= adc_data_in;
-					data_out <= std_logic_vector(to_unsigned(count, 16));
-					ram_addr <= count_data;
-					ccd_ready_reg <= NOT clk_reg;
+					-- data_out <= "0000"&"0000"&"1111"&"1111";
+					if (clk_reg = '0') then
+						data_out <= std_logic_vector(to_unsigned(count, 16));
+						ram_addr <= count_data;
+						count_data := count_data + 1;
+						ccd_ready_reg <= '1';
+					else
+						ccd_ready_reg <= '0';
+					end if;
 					
 					clk_reg <= NOT clk_reg;
 					
-					count_data := count_data + 1;
 					count_start_seq := 0;
 				--------------------------
 				-- DUMMIES AFTER TIMING --
 				--------------------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2) then
+					line_ready <= '0';
 					-- SENDING END SEQUENCE --
 					if (clk_reg = '0') then
 						case count_start_seq is
@@ -235,7 +250,6 @@ process (clk_in)
 					shut_reg <= '1';
 					clk_reg <= NOT clk_reg;
 				end if; 
-				count := count + 1;
 				-------------------------
 				---LINE NUMBER CONTROL---
 				-------------------------
@@ -259,9 +273,8 @@ process (clk_in)
 	--			elsif (auto_mod = '1') then
 				
 	--			end if;
+				count := count + 1;
 			end if;
-		else
-			count_div := count_div + 1;
 		end if;
 	 end if; 
  end process;

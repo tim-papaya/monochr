@@ -6,6 +6,7 @@ generic (
 	TIMING_START : integer := 0;
 	TIMING_MSB   : integer := 1;
 	TIMING_LSB   : integer := 2;
+	TIMING_END   : integer := 3;
 
 	LINE_SIZE    : integer := 2054
 );
@@ -34,40 +35,39 @@ begin
 command_out <= command_reg;
 
 process (clk_in)
-		variable switch_write 	: integer range 0 to TIMING_LSB := TIMING_START;
+		variable switch_write 	: integer range 0 to TIMING_END := TIMING_START;
 		variable ccd_ready_reg  : std_logic := '0';
 		variable read_delay_reg : std_logic := '0';
 		variable count 			: integer   := 0;
 		
 begin 
 		if (falling_edge(clk_in)) then
-			if (rxf = '0') then
+			-- if (count = LINE_SIZE) then
+				-- count := 0;
+			if (ccd_ready = '1' AND ccd_ready_reg = '0') then
+				count := 0;
+				ccd_ready_reg := '1';
+			elsif (ccd_ready = '0' AND count >= LINE_SIZE) then
+				ccd_ready_reg := '0';
+			-- elsif (rxf = '0') then
 				-- reading from PC
-				wr <= '1';
-				data <= "ZZZZZZZZ";
-				if (read_delay_reg = '0') then
-					oe <= '0'; -- OE set '0' to read
-					read_delay_reg := '1';
-				else
-					rd <= '0';
-					command_reg <= data;
-				end if;
+				-- wr <= '1';
+				-- data <= "ZZZZZZZZ";
+				-- if (read_delay_reg = '0') then
+					-- oe <= '0'; -- OE set '0' to read
+					-- read_delay_reg := '1';
+				-- else
+					-- rd <= '0';
+					-- command_reg <= data;
+				-- end if;
 			else
 				-- writing to PC
 				read_delay_reg := '0';
 				rd <= '1';
 				oe <= '1'; -- OE set '1' to write
-				-- txe = '0' then Write buffer is ready
+				-- txe = '0' then Write buffer is ready	
 				if (txe = '0') then
-					-- ccd_ready - pix from ccd
---					if (ccd_ready = '1' AND ccd_ready_reg = '0') then
---						count := 0;
---						ccd_ready_reg := '1';
---					elsif (ccd_ready = '0' AND count >= LINE_SIZE) then
---						ccd_ready_reg := '0';
-					if (count = LINE_SIZE) then
-						count := 0;
-					elsif (count < LINE_SIZE) then
+					if (count < LINE_SIZE) then
 						case switch_write is
 						when TIMING_START =>
 							wr <= '1'; 
@@ -80,8 +80,11 @@ begin
 						when TIMING_LSB =>
 							wr <= '0';
 							data <= data_in(7 DOWNTO 0);
-							switch_write := TIMING_START;
+							switch_write := TIMING_END;						
+						when TIMING_END =>
+							wr <= '1';
 							count := count + 1;
+							switch_write := TIMING_START;
 						end case;
 					else
 						wr <= '1';
