@@ -30,7 +30,7 @@ generic (
 	END_SEQUENCE1 : std_logic_vector(15 DOWNTO 0) := "0000"&"0000"&"0101"&"1100"; --0x05C
 	END_SEQUENCE2 : std_logic_vector(15 DOWNTO 0) := "0000"&"0000"&"1000"&"0000"; --0x080
 	END_SEQUENCE3 : std_logic_vector(15 DOWNTO 0) := "0000"&"1111"&"0011"&"1110" --0xF3E
-	
+		
 	);
 
 port (
@@ -39,18 +39,22 @@ port (
 	----RAM------------
 	ram_addr      : out integer;
 	---EXTERNAL CLOCK---
-	clk_in        : in std_logic;  -- 50 Mhz
+	clk_in        : in  std_logic;  -- 50 Mhz
 	---CCD--
 	ccd_clk       : out std_logic; -- 2.5 Mhz /clk
 	rog           : out std_logic; -- /rog signal
-	shut          : out std_logic; -- /shut signal;
-	line_ready    : out std_logic; 
+	shut          : out std_logic; -- /shut signal;	
 	---ADC--
 	adc_clk       : out std_logic;
 	ccd_ready     : out std_logic;
-	adc_data_in   : in std_logic_vector(11 DOWNTO 0);
+	adc_data_in   : in  std_logic_vector(11 DOWNTO 0);
 	---START TRIGGER----
-	trigger_start : in std_logic
+	trigger_start : in  std_logic;
+	-----USB-----
+	line_ready    : out std_logic;
+	line_pos_start: out integer;
+	line_pos_end  : out integer;
+	dram_we_a	  : out  std_logic
 );
 end entity;
 
@@ -59,19 +63,22 @@ architecture pzs_test of pzs_test is
 ----SIGNALS------
 -----------------
 -------CCD-------
-	signal auto_mod : std_logic := '1';
-	signal clk_reg : std_logic := '1'; 
-	signal rog_reg : std_logic := '1'; 
-	signal shut_reg : std_logic := '1';
-	signal adc_clk_reg : std_logic := '1';
-	
-	signal data_reg : std_logic_vector (11 DOWNTO 0);  
-	signal ccd_ready_reg : std_logic := '0';
--------CONSTANTS-------------
-	signal CCD_LINES_NUMBER : integer := 4 ;
--------ADC--------
-	signal adc_clk_div : std_logic := '1'; -- reads Vout of ccd on rising_edge
-														-- gives data on negative_edge 
+	signal auto_mod           : std_logic := '1';
+	signal clk_reg            : std_logic := '1'; 
+	signal rog_reg            : std_logic := '1'; 
+	signal shut_reg           : std_logic := '1';
+	signal adc_clk_reg        : std_logic := '1';
+							  
+	signal data_reg           : std_logic_vector (11 DOWNTO 0);  
+	signal ccd_ready_reg      : std_logic := '0';
+	--CONSTANTS---
+	signal ccd_lines_number   : integer := 4 ;
+	----ADC-------
+	signal adc_clk_div     	  : std_logic := '1'; -- reads Vout of ccd on rising_edge
+												  -- gives data on negative_edge 
+	----USB------
+	signal line_pos_start_reg : integer   := 0;
+	signal line_pos_end_reg   : integer   := LINE_SIZE;  
 -----------------
 -----------------
 -----------------	
@@ -92,11 +99,11 @@ begin
 --process (clk_in)
 --begin
 --	if (command_reg = ("0011" & "0001")) then
---		CCD_LINES_NUMBER <= 1; 
+--		ccd_lines_number <= 1; 
 --	elsif (command_reg = ("0011" & "0010")) then
---		CCD_LINES_NUMBER <= 4;
+--		ccd_lines_number <= 4;
 --	elsif (command_reg = ("0011" & "0011")) then
---		CCD_LINES_NUMBER <= 100;
+--		ccd_lines_number <= 100;
 --	else 
 --	end if;
 --end process;	
@@ -105,16 +112,17 @@ process (clk_in)
 	variable count_div : integer := 0; -- divider for clock
 	
 	variable count : integer := 0;
-	variable count_line : integer := CCD_LINES_NUMBER;
+	variable count_line : integer := ccd_lines_number;
 	variable count_start_seq : integer := 0;
 	variable trigger_start_reg : std_logic := '0';
 	
 	variable count_data : integer;
 	
  begin
-	if rising_edge(clk_in) then
-		---CCD-DIVIDER---
+	if (trigger_start = '0') then
 		
+	elsif rising_edge(clk_in) then
+		---CCD-DIVIDER---	
 		if (count_div = CCD_CLK_DIVIDER) then
 			count_div := 0;
 		else
@@ -126,19 +134,27 @@ process (clk_in)
 							+ ROG_END + DUM1 + DATA + DUM2 
 							+ LINE_END) then
 				count := 0;
+				
+				if (line_pos_start_reg = 0) then
+					line_pos_start_reg <= 0;
+					line_pos_end_reg   <= LINE_SIZE;
+				elsif (line_pos_start_reg = LINE_SIZE) then
+					line_pos_start_reg <= LINE_SIZE;
+					line_pos_end_reg   <= 2 * LINE_SIZE;
+				end if;
 			else	
 				--------------------
 				-- SHUTTER TIMING --
 				--------------------
 				if (count < SHUTTER) then
-					line_ready <= '0';
-					clk_reg    <= '1';
-					shut_reg   <= '1';
+					line_ready 		<= '0';
+					clk_reg    		<= '1';
+					shut_reg   		<= '1';
 				---------------------
 				-- EXPOSURE TIMING --
 				---------------------
 				elsif (count < SHUTTER + EXPOSURE) then
-					line_ready <= '0';
+					line_ready    <= '0';
 					shut_reg      <= '1';
 					clk_reg       <= '1';
 					ccd_ready_reg <= '0';
@@ -157,6 +173,7 @@ process (clk_in)
 					rog_reg         <= '1';
 					count_start_seq := 0;
 					count_data      := 0;
+					dram_we_a   <= '0';
 				-------------------------
 				-- DUMMIES BEFORE DATA --
 				-------------------------
@@ -167,25 +184,36 @@ process (clk_in)
 					
 						case count_start_seq is
 						when 0 =>
+														
 							data_out <= START_SEQUENCE1;
 							ram_addr <= count_data;
 							ccd_ready_reg <= '1';
+							dram_we_a <= '1';
+							
 							count_data := count_data + 1;
 						when 1 =>  
+							
 							data_out <= START_SEQUENCE2;
 							ram_addr <= count_data;
 							ccd_ready_reg <= '1';
+							dram_we_a <= '1';
+							
 							count_data := count_data + 1;
 						when 2 =>
+							
 							data_out <= START_SEQUENCE3;
 							ram_addr <= count_data;
 							ccd_ready_reg <= '1';
+							dram_we_a <= '1';
+							
 							count_data := count_data + 1;
 						when others =>
+							-- dram_we_a <= '0';
 							ccd_ready_reg <= '0';
 						end case;
 						count_start_seq := count_start_seq + 1;
 					else
+						-- dram_we_a <= '0';
 						ccd_ready_reg <= '0';
 					end if;
 					-----------------------------
@@ -198,11 +226,15 @@ process (clk_in)
 	--				data_out <= adc_data_in;
 					-- data_out <= "0000"&"0000"&"1111"&"1111";
 					if (clk_reg = '0') then
-						data_out <= std_logic_vector(to_unsigned(count, 16));
-						ram_addr <= count_data;
-						count_data := count_data + 1;
+						data_out    <= std_logic_vector(to_unsigned(count, 16));
+						ram_addr    <= count_data;
+						
+						count_data  := count_data + 1;
+						
+						dram_we_a     <= '1';
 						ccd_ready_reg <= '1';
 					else
+						dram_we_a     <= '0';
 						ccd_ready_reg <= '0';
 					end if;
 					
@@ -218,25 +250,39 @@ process (clk_in)
 					if (clk_reg = '0') then
 						case count_start_seq is
 						when 0 =>
+							
 							data_out <= END_SEQUENCE1;
 							ram_addr <= count_data;
 							ccd_ready_reg <= '1';
+
+							dram_we_a   <= '1';
+							
 							count_data := count_data + 1;
 						when 1 =>  
 							data_out <= END_SEQUENCE2;
 							ram_addr <= count_data;
 							ccd_ready_reg <= '1';
+							
+							dram_we_a   <= '1';
+							
 							count_data := count_data + 1;
 						when 2 =>
+
 							data_out <= END_SEQUENCE3;
 							ram_addr <= count_data;
 							ccd_ready_reg <= '1';
+							
+							dram_we_a   <= '1';
+							
 							count_data := count_data + 1;
 						when others =>
+							-- dram_we_a <= '0';
+							
 							ccd_ready_reg <= '0';
 						end case;
 						count_start_seq := count_start_seq + 1;
 					else
+						-- dram_we_a <= '0';
 						ccd_ready_reg <= '0';
 					end if;
 					-----------------------------
@@ -245,10 +291,14 @@ process (clk_in)
 				------ END LINE ----------
 				--------------------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2 + LINE_END) then
-					line_ready <= '1';
+					line_pos_start <= line_pos_start_reg;
+					line_pos_end   <= line_pos_end_reg;    
+					
 					rog_reg <= '1';
 					shut_reg <= '1';
 					clk_reg <= NOT clk_reg;
+					
+					line_ready <= '1';
 				end if; 
 				-------------------------
 				---LINE NUMBER CONTROL---
@@ -257,14 +307,14 @@ process (clk_in)
 	--				count_line := 0;
 	--				count := 0;
 	--				trigger_start_reg := '1';
-	--			elsif (NOT (trigger_start = TRIGGER_ACTIVE) AND (count_line >= CCD_LINES_NUMBER)) then
+	--			elsif (NOT (trigger_start = TRIGGER_ACTIVE) AND (count_line >= ccd_lines_number)) then
 	--				trigger_start_reg := '0';
-	--			elsif (count_line < CCD_LINES_NUMBER) then
+	--			elsif (count_line < ccd_lines_number) then
 	--				if (count >= SHUTTER + EXPOSURE + ROG_START 
 	--								+ ROG_END + DUM1 + DATA + DUM2 
 	--								+ LINE_END) then
 	--					count_line := count_line + 1;
-	--					if (count_line < CCD_LINES_NUMBER) then
+	--					if (count_line < ccd_lines_number) then
 	--						count := 0;
 	--					end if;
 	--				else

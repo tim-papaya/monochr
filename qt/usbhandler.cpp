@@ -44,83 +44,67 @@ int UsbHandler::showDevices(QString* info)
     return numDevs;
 }
 
-bool UsbHandler::setSyncFIFO(unsigned long inBuffer, unsigned long outBuffer, char* desc)
+bool UsbHandler::setSyncFIFO(unsigned long inBuffer, char* desc)
 {
     // SET DEVICE
     ftStatus = FT_ListDevices(&numDevs, NULL, FT_LIST_NUMBER_ONLY);
 
-    if (ftStatus == FT_OK) {
-        qDebug() << "NumDev: " << numDevs;
-
-        ftStatus = FT_OpenEx(desc, FT_OPEN_BY_DESCRIPTION, &ftHandle);
-       }
-
-    //ftStatus = FT_Open(, &ftHandle);
-
-    else
+    if (ftStatus != FT_OK)
     {
         qDebug() << "Can`t open device.";
         return false;
     }
 
+    qDebug() << "NumDev: " << numDevs;
+
+    ftStatus = FT_OpenEx(desc, FT_OPEN_BY_DESCRIPTION, &ftHandle);
+
     if (!(ftStatus == FT_OK))
+    {
         qDebug() << "Something with device.";
+        return false;
+    }
 
-    UCHAR BitMode;
+    UCHAR bitMode;
 
-
-    ftStatus = FT_GetBitMode(ftHandle, &BitMode);
-    QByteArray bitmodeExa(BitMode, 1);
-    if (ftStatus == FT_OK)
-
-        qDebug() << "BitMode: "<< QString( QByteArray::fromHex(bitmodeExa))  << Qt::hex  <<BitMode;
-    else
-        qDebug() << "Can`t read bit mode.";
-
-
-    // SET WORKING MODE OF DEVICE
-    // 0x00 - reset
-    // 0x40 - sync FIFO
-
-    UCHAR mask(0xff);
-
-    qDebug() << "mask : " << Qt::hex << mask;
-
-    ftStatus = FT_SetBitMode(ftHandle, mask, 0x07);
-    Sleep(10);
-
-    if (!(ftStatus == FT_OK))
-        qDebug() << "Can`t set bit mode.";
-
-
-    ftStatus = FT_GetBitMode(ftHandle, &BitMode);
-    if (ftStatus == FT_OK)
-
-        qDebug() << "BitMode: "<< QString( QByteArray::fromHex(bitmodeExa))  << Qt::hex  <<BitMode;
-    else
-        qDebug() << "Can`t read bit mode.";
-
+    UCHAR mask = 0xff;
 
     ftStatus = FT_SetBitMode(ftHandle, mask, FT_BITMODE_SYNC_FIFO);
 
-    ftStatus = FT_GetBitMode(ftHandle, &BitMode);
-    if (ftStatus == FT_OK)
-        qDebug() << "BitMode: " << Qt::hex << BitMode;
-    else
-       qDebug() << "Can`t read bit mode.";
-    // SET SIZE OF RECEIVING, TRANSMITTING BUFFER
-    if (ftStatus == FT_OK)
+    ftStatus = FT_GetBitMode(ftHandle, &bitMode);
+
+    if (ftStatus != FT_OK)
     {
-        ftStatus = FT_SetUSBParameters(ftHandle, inBuffer, outBuffer);
-        ftStatus = FT_SetFlowControl(ftHandle, FT_FLOW_RTS_CTS, 0x10, 0x13);
+       qDebug() << "Can`t read bit mode.";
+       return false;
     }
-    else
+
+    qDebug() << "BitMode: " << Qt::hex << bitMode;
+
+    ftStatus = FT_SetLatencyTimer(ftHandle, latency_timer);
+
+    if (ftStatus != FT_OK)
+    {
+        qDebug() << "Can`t set timer.";
+        return false;
+    }
+
+    ftStatus = FT_SetUSBParameters(ftHandle, inBuffer, inBuffer);
+
+    if (ftStatus != FT_OK)
     {
         qDebug() << "Can`t set bufferSize.";
         return false;
     }
-    if (!(ftStatus == FT_OK))
-        qDebug() << "Can`t set BUFFER.";
+
+    FT_SetFlowControl(ftHandle, FT_FLOW_RTS_CTS, 0x0, 0x0);
+
+    if (ftStatus != FT_OK)
+    {
+        qDebug() << "Can`t set flow control.";
+        return false;
+    }
+
     return true;
 }
 bool UsbHandler::readData(char *rxBuffer, int &readed)
@@ -159,7 +143,7 @@ bool UsbHandler::writeData(char *wrBuffer, int &writed)
     DWORD bytesWritten;
 
     qDebug() << "Write buffer:";
-    for (int i = 0; i < sizeof (wrBuffer); i++)
+    for (uint i = 0; i < sizeof (wrBuffer); i++)
         qDebug() << i << ':' << wrBuffer[i];
     ftStatus = FT_Write(ftHandle, wrBuffer, sizeof(wrBuffer), &bytesWritten);
     if (ftStatus == FT_OK) {
@@ -169,9 +153,12 @@ bool UsbHandler::writeData(char *wrBuffer, int &writed)
     else {
         qDebug() << "error: can`t write bytes.\n";
     }
+    return true;
 }
 
 bool UsbHandler::closeHandle()
 {
     FT_Close(ftHandle);
+    return true;
 }
+

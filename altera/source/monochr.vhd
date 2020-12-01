@@ -55,19 +55,21 @@ generic (
 	LINE_SIZE  : integer := 2054
 );
 port (
-	clk_in      : in std_logic;
-	txe         : in std_logic;
-	rxf         : in std_logic;
-	ccd_ready   : in std_logic;
-	oe          : out std_logic := '1';
-	wr          : out std_logic := '1';
-	rd          : out std_logic := '1';
-	
-	ram_addr    : out integer; 
-	
-	data_in     : in std_logic_vector(15 DOWNTO 0);
-	command_out : out  std_logic_vector(7 DOWNTO 0);
-	data        : inout std_logic_vector(7 DOWNTO 0)
+	clk_in          : in std_logic;
+	txe             : in std_logic;
+	rxf             : in std_logic;
+	ccd_ready       : in std_logic;
+	oe              : out std_logic := '1';
+	wr              : out std_logic := '1';
+	rd              : out std_logic := '1';
+				    
+	ram_addr        : out integer; 
+				    
+	data_in         : in std_logic_vector(15 DOWNTO 0);
+	command_out     : out  std_logic_vector(7 DOWNTO 0);
+	data            : inout std_logic_vector(7 DOWNTO 0);
+	line_pos_start  : in     integer;
+	line_pos_end    : in     integer
 );
 end component;
 --------------------------
@@ -97,7 +99,10 @@ port (
 	ccd_ready     : out std_logic;
 	adc_data_in   : in std_logic_vector(11 DOWNTO 0);
 	---START-TRIGGER----
-	trigger_start : in std_logic
+	trigger_start : in std_logic;
+	line_pos_start: out integer;
+	line_pos_end  : out integer;
+	dram_we_a 	  : out  std_logic
 );
 end component;
 -------------------------
@@ -125,19 +130,23 @@ end component;
 -------------------------
 --------SIGNALS----------
 -------------------------
-signal ccd_ready_reg     :  std_logic;
-signal ccd_line_ready_reg:  std_logic;
-signal usb_data_in_reg   :  std_logic_vector(15 DOWNTO 0);
-signal command_reg       :  std_logic_vector(7 DOWNTO 0);
-signal start_trig_reg    :  std_logic := '1';
-signal pc_trig_reg 		 :  std_logic := '1';
+signal ccd_ready_reg       :  std_logic;
+signal ccd_line_ready_reg  :  std_logic;
+signal usb_data_in_reg     :  std_logic_vector(15 DOWNTO 0);
+signal command_reg         :  std_logic_vector(7 DOWNTO 0);
+signal start_trig_reg      :  std_logic := '1';
+signal pc_trig_reg 		   :  std_logic := '1';
+						   
+signal ccd_data_out_reg    :  std_logic_vector(15 DOWNTO 0);
+						   
+signal ccd_ram_addr_reg    :  integer;
+						   
+signal usb_ram_addr_reg    :  integer;
+						   
+signal line_pos_start_reg  :  integer;
+signal line_pos_end_reg    :  integer;
 
-signal ccd_data_out_reg  :  std_logic_vector(15 DOWNTO 0);
-
-signal ccd_ram_addr_reg  :  integer;
-
-signal usb_ram_addr_reg  :  integer;
-
+signal dram_we_a_reg	   :  std_logic;
 -------------------------
 -------------------------
 -------------------------
@@ -160,55 +169,60 @@ begin
 	end if;
 end process;
 
-start_trig_reg <= '0';
+start_trig_reg <= button;
 
 -----------------------
 ---CCD-PORTMAP---------
 -----------------------
 COMP_CCD : pzs_test  generic map (LINE_SIZE       => LINE_SIZE,
 								  CCD_CLK_DIVIDER => 4)
-							port map (   data_out      => ccd_data_out_reg,
-										 clk_in        => clk50Mhz,                             
-                                         ccd_clk       => ccd_clk,
-                                         rog           => ccd_rog,
-										 shut          => ccd_shut,
-                                         adc_clk       => adc_clk,
-										 ccd_ready	   => ccd_ready_reg,
-										 adc_data_in   => adc_data_in,
-                                         trigger_start => start_trig_reg,
-										 ram_addr  	   => ccd_ram_addr_reg,
-										 line_ready    => ccd_line_ready_reg
+							port map (   data_out        => ccd_data_out_reg,
+										 clk_in          => clk50Mhz,                             
+                                         ccd_clk         => ccd_clk,
+                                         rog             => ccd_rog,
+										 shut            => ccd_shut,
+                                         adc_clk         => adc_clk,
+										 ccd_ready	     => ccd_ready_reg,
+										 adc_data_in     => adc_data_in,
+                                         trigger_start   => start_trig_reg,
+										 ram_addr  	     => ccd_ram_addr_reg,
+										 line_ready      => ccd_line_ready_reg,
+										 line_pos_start  => line_pos_start_reg,
+										 line_pos_end    => line_pos_end_reg,
+										 dram_we_a   	 => dram_we_a_reg
 										 );
 -----------------------
 ---USB-PORTMAP---------
 -----------------------
 COMP_USB : usb generic map (LINE_SIZE   => LINE_SIZE
 									 )
-						port map (   clk_in      => usb_clk,
-									 txe         => usb_txe,
-									 ccd_ready   => ccd_line_ready_reg,
-									 data_in     => usb_data_in_reg,
-									 data        => usb_data,
-									 command_out => command_reg,
-									 oe          => usb_oe,
-									 wr          => usb_wr,
-									 rxf         => usb_rxf,
-									 rd          => usb_rd,
-									 ram_addr	 => usb_ram_addr_reg
+						port map (   clk_in          => usb_clk,
+									 txe             => usb_txe,
+									 ccd_ready       => ccd_line_ready_reg,
+									 data_in         => usb_data_in_reg,
+									 data            => usb_data,
+									 command_out     => command_reg,
+									 oe              => usb_oe,
+									 wr              => usb_wr,
+									 rxf             => usb_rxf,
+									 rd              => usb_rd,
+									 ram_addr	     => usb_ram_addr_reg,
+									 line_pos_start  => line_pos_start_reg,
+									 line_pos_end    => line_pos_end_reg  
 									 );
 -----------------------
 ---RAM-PORTMAP---------
 -----------------------
 COMP_RAM : true_dpram_sclk generic map (
 										D_WORD => 16,
-                                        SIZE   => 2054
+                                        SIZE   => 2 * LINE_SIZE
 										)
                            port map (
 									 data_a  =>	 ccd_data_out_reg,
 									 data_b	 =>  "0000"&"0000"&"0000"&"0000",
 									 addr_a	 =>	 ccd_ram_addr_reg,
 									 addr_b	 =>  usb_ram_addr_reg,
-									 we_a	 =>	 '1',
+									 we_a	 =>	 dram_we_a_reg,
 									 we_b	 =>  '0',
 									 clk	 =>	 usb_clk,
 									 q_b	 =>	 usb_data_in_reg

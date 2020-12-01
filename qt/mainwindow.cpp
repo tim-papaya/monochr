@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
+
+#include "solar_sdk/solarls_sdk.h"
+
 #include <QtCharts/QtCharts>
 
 
@@ -10,15 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    usbThread = new QThread();
-    usbReader = new Reader(&usb);
-
-    connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
-    connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
-    connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
-    usbReader->moveToThread(usbThread);
-
-    usbThread->start();
 }
 
 MainWindow::~MainWindow()
@@ -78,17 +72,25 @@ void MainWindow::on_readBtn_clicked()
 void MainWindow::on_initBtn_clicked()
 {
 
-
-    constexpr int size_rd_buffer = 65536;
-    constexpr int size_wr_buffer = 64;
-
     QString str = ui->deviceList->currentText();
 
     qDebug() << "device :" << str;
     QByteArray qb = str.toUtf8();
     char* desc = qb.data();
 
-    usb.setSyncFIFO(size_rd_buffer, size_wr_buffer, desc);
+    size_rdbuf = ui->buferSizeEdit->text().toInt();
+
+    usb.setSyncFIFO(size_rdbuf, desc);
+
+    usbThread = new QThread();
+    usbReader = new Reader(&usb, size_rdbuf);
+
+    connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
+    connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
+    connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
+    usbReader->moveToThread(usbThread);
+
+    usbThread->start();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -139,4 +141,60 @@ void MainWindow::on_checkBox_stateChanged(int arg1)
     else
         usbReader->setisWriteFile(false);
 
+}
+
+void MainWindow::on_m150WL_Btn_clicked()
+{
+
+}
+
+void MainWindow::on_m150Grating_Btn_clicked()
+{
+
+}
+
+void MainWindow::on_m150Slit_Btn_clicked()
+{
+
+}
+
+void MainWindow::on_m150Filter_Btn_clicked()
+{
+
+}
+
+void MainWindow::on_m150InitBtn_clicked()
+{
+//    if (!sls_SetLogging(SDKLOGLEVEL_DEBUG, "c:\\temp\\example.log"))
+//        return;
+    if (!sls_Init("c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\"))
+    {
+        qDebug() << "error m150: can`t init the m150";
+        return;
+    }
+
+    int instrumentCount = 0;
+    if (!sls_GetInstrumentCount(&instrumentCount))
+    {
+        qDebug() << "error m150: can`t find m150";
+        return;
+    }
+    if (instrumentCount == 0)
+    {
+        qDebug() << "error m150: can`t find m150";
+        return;
+    }
+
+    for (int i = 0; i < instrumentCount; i++)
+    {
+        char instrumentName[100];
+        if (!sls_GetInstrumentName(i, instrumentName, sizeof(instrumentName)))
+             return;
+
+        char instrumentSerial[100];
+        if (!sls_GetInstrumentSerial(i, instrumentSerial, sizeof(instrumentSerial)))
+            return;
+
+        qDebug("%d: %s %s\r\n", i, instrumentName, instrumentSerial);
+    }
 }

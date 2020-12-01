@@ -12,6 +12,7 @@ HEADERS += \
     chart/chart.h \
     mainwindow.h \
     reader.h \
+    solar_sdk/solarls_sdk.h \
     usb/ftd2xx.h \
     usbhandler.h
 
@@ -31,3 +32,12 @@ unix|win32: LIBS += -L$$PWD/usb/ -lftd2xx
 
 INCLUDEPATH += $$PWD/usb
 DEPENDPATH += $$PWD/usb
+
+DISTFILES +=
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/solar_sdk/ -lSolarLS.Sdk_x64
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/solar_sdk/ -lSolarLS.Sdk_x64
+else:unix: LIBS += -L$$PWD/solar_sdk/ -lSolarLS.Sdk_x64
+
+INCLUDEPATH += $$PWD/solar_sdk
+DEPENDPATH += $$PWD/solar_sdk
