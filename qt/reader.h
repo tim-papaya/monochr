@@ -116,6 +116,8 @@ private:
 
     QList<QVector<ushort>> split(QVector<ushort> &ubuffer, int start_pos);
 
+    void writeBufferTo (QString fileName, QVector<ushort> &ubuffer, int linesCount);
+
     int findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
 };
 

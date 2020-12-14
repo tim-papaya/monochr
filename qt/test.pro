@@ -3,6 +3,7 @@ QT       += charts
 
 SOURCES += \
     chart/chart.cpp \
+    m150handler.cpp \
     main.cpp \
     mainwindow.cpp \
     reader.cpp \
@@ -10,6 +11,7 @@ SOURCES += \
 
 HEADERS += \
     chart/chart.h \
+    m150handler.h \
     mainwindow.h \
     reader.h \
     solar_sdk/solarls_sdk.h \

@@ -7,8 +7,9 @@
 #include <QtCharts/QChartView>
 
 #include "reader.h"
-#include <usbhandler.h>
+#include "usbhandler.h"
 #include "chart/chart.h"
+#include "m150handler.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,7 @@ public:
     QThread *usbThread;
     Reader *usbReader;
 
+    void updateM150Info();
 signals:
     void read_from_usb();
 
@@ -56,14 +58,29 @@ private slots:
     void on_m150InitBtn_clicked();
 
 private:
-    int size_rdbuf ;
 
-    QChartView *currentView;
+    char* M150_LOG_PATH = "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
+    char* M150_CONFIG_PATH = "c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\";
+
+    const QString FIFO_DEVICE_DESC = "FT2232H MiniModule A";
+
+    QString deviseDesc;
+
+    int size_rdbuf;
+
+    QChartView *currentView = nullptr;
 
     Ui::MainWindow *ui;
 
     UsbHandler usb;
 
+    M150Handler *m150;
+
     QGraphicsScene scene;
+
+
+    QStringList* getDeviseList(QString info);
+
+
 };
 #endif // MAINWINDOW_H

@@ -25,8 +25,9 @@ port (
 	data_in          : in     std_logic_vector(15 DOWNTO 0);
 	command_out      : out    std_logic_vector(7 DOWNTO 0);
 	data             : inout  std_logic_vector(7 DOWNTO 0);
-	line_pos_start   : in     integer;
-	line_pos_end     : in     integer
+	
+	line_pos_end     : in     integer;
+	line_pos_start   : in     integer
 );
 end entity;
 

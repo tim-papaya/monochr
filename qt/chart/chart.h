@@ -34,6 +34,7 @@
 #include <QtCharts>
 
    QChart* createChart();
-   void updateChart(QChart *data_chart, QList<QVector<ushort>> lines, int low, int high);
+   void updateChart(QChart *data_chart, QList<QVector<ushort>> lines, int Ylow, int Yhigh,
+                    int Xlow, int Xhigh);
 
 #endif

@@ -55,19 +55,19 @@ generic (
 	LINE_SIZE  : integer := 2054
 );
 port (
-	clk_in          : in std_logic;
-	txe             : in std_logic;
-	rxf             : in std_logic;
-	ccd_ready       : in std_logic;
-	oe              : out std_logic := '1';
-	wr              : out std_logic := '1';
-	rd              : out std_logic := '1';
+	clk_in          : in     std_logic;
+	txe             : in     std_logic;
+	rxf             : in     std_logic;
+	ccd_ready       : in     std_logic;
+	oe              : out    std_logic := '1';
+	wr              : out    std_logic := '1';
+	rd              : out    std_logic := '1';
 				    
-	ram_addr        : out integer; 
+	ram_addr        : out    integer; 
 				    
-	data_in         : in std_logic_vector(15 DOWNTO 0);
-	command_out     : out  std_logic_vector(7 DOWNTO 0);
-	data            : inout std_logic_vector(7 DOWNTO 0);
+	data_in         : in     std_logic_vector(15 DOWNTO 0);
+	command_out     : out    std_logic_vector(7 DOWNTO 0);
+	data            : inout  std_logic_vector(7 DOWNTO 0);
 	line_pos_start  : in     integer;
 	line_pos_end    : in     integer
 );
@@ -215,7 +215,7 @@ COMP_USB : usb generic map (LINE_SIZE   => LINE_SIZE
 -----------------------
 COMP_RAM : true_dpram_sclk generic map (
 										D_WORD => 16,
-                                        SIZE   => 2 * LINE_SIZE
+                                        SIZE   => 3 * LINE_SIZE
 										)
                            port map (
 									 data_a  =>	 ccd_data_out_reg,

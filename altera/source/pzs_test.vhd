@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
+
 entity pzs_test is
 generic (
 	CCD_CLK_DIVIDER : integer; -- 50Mhz => 5Mhz := 5	
@@ -54,7 +55,7 @@ port (
 	line_ready    : out std_logic;
 	line_pos_start: out integer;
 	line_pos_end  : out integer;
-	dram_we_a	  : out  std_logic
+	dram_we_a	  : out std_logic
 );
 end entity;
 
@@ -78,7 +79,9 @@ architecture pzs_test of pzs_test is
 												  -- gives data on negative_edge 
 	----USB------
 	signal line_pos_start_reg : integer   := 0;
-	signal line_pos_end_reg   : integer   := LINE_SIZE;  
+	signal line_pos_end_reg   : integer   := LINE_SIZE; 
+
+	signal line_ready_reg 	  : std_logic := '0';
 -----------------
 -----------------
 -----------------	
@@ -94,6 +97,8 @@ begin
 -- + NOT to read at the Negative_edge
 -- actualy adc_clk <= NOT NOT clk_reg;
 	adc_clk <=  clk_reg;
+	
+	line_ready <= line_ready_reg;
 -------COMMAND----------
 	
 --process (clk_in)
@@ -118,9 +123,14 @@ process (clk_in)
 	
 	variable count_data : integer;
 	
+	
  begin
 	if (trigger_start = '0') then
-		
+		if (line_ready_reg = '0') then
+			line_ready_reg <= '1';
+		else
+			line_ready_reg <= '0';
+		end if;
 	elsif rising_edge(clk_in) then
 		---CCD-DIVIDER---	
 		if (count_div = CCD_CLK_DIVIDER) then
@@ -136,25 +146,25 @@ process (clk_in)
 				count := 0;
 				
 				if (line_pos_start_reg = 0) then
-					line_pos_start_reg <= 0;
-					line_pos_end_reg   <= LINE_SIZE;
-				elsif (line_pos_start_reg = LINE_SIZE) then
 					line_pos_start_reg <= LINE_SIZE;
 					line_pos_end_reg   <= 2 * LINE_SIZE;
+				elsif (line_pos_start_reg = LINE_SIZE) then
+					line_pos_start_reg <= 0;
+					line_pos_end_reg   <= LINE_SIZE;
 				end if;
 			else	
 				--------------------
 				-- SHUTTER TIMING --
 				--------------------
 				if (count < SHUTTER) then
-					line_ready 		<= '0';
+					line_ready_reg 		<= '0';
 					clk_reg    		<= '1';
 					shut_reg   		<= '1';
 				---------------------
 				-- EXPOSURE TIMING --
 				---------------------
 				elsif (count < SHUTTER + EXPOSURE) then
-					line_ready    <= '0';
+					line_ready_reg    <= '0';
 					shut_reg      <= '1';
 					clk_reg       <= '1';
 					ccd_ready_reg <= '0';
@@ -162,17 +172,17 @@ process (clk_in)
 				-- ROG START TIMING --
 				----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START) then
-					line_ready <= '0';
+					line_ready_reg <= '0';
 					rog_reg         <= '0';
 					count_start_seq := 0;
 				----------------
 				-- ROG END TIMING --
 				----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END) then
-					line_ready <= '0';
+					line_ready_reg <= '0';
 					rog_reg         <= '1';
 					count_start_seq := 0;
-					count_data      := 0;
+					count_data      := line_pos_start_reg;
 					dram_we_a   <= '0';
 				-------------------------
 				-- DUMMIES BEFORE DATA --
@@ -222,11 +232,10 @@ process (clk_in)
 				-- DATA TIMING --
 				-----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA) then
-					line_ready <= '0';
-	--				data_out <= adc_data_in;
-					-- data_out <= "0000"&"0000"&"1111"&"1111";
+					line_ready_reg <= '0';
 					if (clk_reg = '0') then
-						data_out    <= std_logic_vector(to_unsigned(count, 16));
+						-- data_out <= "0000" & adc_data_in;
+						data_out    <= std_logic_vector(to_unsigned(count_data, 16));
 						ram_addr    <= count_data;
 						
 						count_data  := count_data + 1;
@@ -245,7 +254,7 @@ process (clk_in)
 				-- DUMMIES AFTER TIMING --
 				--------------------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2) then
-					line_ready <= '0';
+					line_ready_reg <= '0';
 					-- SENDING END SEQUENCE --
 					if (clk_reg = '0') then
 						case count_start_seq is
@@ -291,6 +300,7 @@ process (clk_in)
 				------ END LINE ----------
 				--------------------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA + DUM2 + LINE_END) then
+					
 					line_pos_start <= line_pos_start_reg;
 					line_pos_end   <= line_pos_end_reg;    
 					
@@ -298,7 +308,7 @@ process (clk_in)
 					shut_reg <= '1';
 					clk_reg <= NOT clk_reg;
 					
-					line_ready <= '1';
+					line_ready_reg <= '1';
 				end if; 
 				-------------------------
 				---LINE NUMBER CONTROL---

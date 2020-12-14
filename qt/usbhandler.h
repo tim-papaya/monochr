@@ -15,7 +15,7 @@ public:
 
     bool setSyncFIFO(unsigned long inBuffer, char* desc);
 
-    bool readData(char *rxBuffer, int &readed);
+    bool readData(char **rxBuffer, int &readed);
 
     bool writeData(char *wrBuffer, int &writed);
 
@@ -24,7 +24,8 @@ public:
 
 private:
 
-    const int latency_timer = 2;
+    const DWORD BUFFER_FULL = 0;
+    const char LATENCY_TIMER = 2;
 
     DWORD numDevs;
 

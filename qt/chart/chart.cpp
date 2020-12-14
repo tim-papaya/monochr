@@ -35,7 +35,7 @@
 #include <QDebug>
 #include "reader.h"
 
-void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, int low, int high)
+void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, int Ylow, int Yhigh, int Xlow, int Xhigh)
 {
     const float k_wl = 0.146;
     const int dark_signal = 3730;
@@ -74,8 +74,8 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, int low, int
 
     data_chart->createDefaultAxes();
 
-    data_chart->axisX()->setRange(0, 4096);
-    data_chart->axisY()->setRange(low,high);
+    data_chart->axisX()->setRange(Xlow, Xhigh);
+    data_chart->axisY()->setRange(Ylow, Yhigh);
 
 }
 

@@ -81,7 +81,14 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, char* desc)
 
     qDebug() << "BitMode: " << Qt::hex << bitMode;
 
-    ftStatus = FT_SetLatencyTimer(ftHandle, latency_timer);
+    ftStatus = FT_SetLatencyTimer(ftHandle, LATENCY_TIMER);
+
+
+    PUCHAR l_timer;
+
+    FT_GetLatencyTimer(ftHandle, l_timer);
+
+    qDebug() << "Latency timer: " << static_cast<int>(*l_timer);
 
     if (ftStatus != FT_OK)
     {
@@ -107,7 +114,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, char* desc)
 
     return true;
 }
-bool UsbHandler::readData(char *rxBuffer, int &readed)
+bool UsbHandler::readData(char **rxBuffer, int &readed)
 {
     DWORD rxBytes;
     DWORD txBytes;
@@ -124,17 +131,12 @@ bool UsbHandler::readData(char *rxBuffer, int &readed)
 
 //    qDebug() << "Bytes is transmitted:" << static_cast<int>(txBytes);
 
-
-    if (rxBytes > 0)
-    {
-        ftStatus = FT_Read(ftHandle,
-                           rxBuffer,
-                           rxBytes,
-                           &bytesReceived);
-    }
-    else
+    if (rxBytes < 65536)
         return false;
-//    qDebug() << "usbhandler::readData";
+
+    *rxBuffer = new char[rxBytes];
+
+    ftStatus = FT_Read(ftHandle, *rxBuffer, rxBytes, &bytesReceived);
     return true;
 }
 

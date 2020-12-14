@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
 
-#include "solar_sdk/solarls_sdk.h"
+
 
 #include <QtCharts/QtCharts>
 
@@ -18,7 +18,24 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
    usbReader->stop();
-    delete ui;
+   delete ui;
+   delete m150;
+}
+
+void MainWindow::updateM150Info()
+{
+    double wl;
+    QString grating;
+    double slitWidth;
+    QString filter;
+
+
+    m150->getInfo(wl, grating, slitWidth, filter);
+
+    ui->m150WL_ReadtLine->setText(QString::number(wl));
+    ui->m150Grating_ReadLine->setText(grating);
+    ui->m150Slit_ReadLine->setText(QString::number(slitWidth));
+    ui->m150Filter_ReadLine->setText(filter);
 }
 
 
@@ -28,35 +45,18 @@ void MainWindow::on_showDevicesBtn_clicked()
 
     ui->deviceNumbText->display(usb.showDevices(&info));
 
-    QTextStream deviceList(&info);
-    QString desc;
-    QStringList listDev;
+    QStringList *devices = getDeviseList(info);
 
-    while (!deviceList.atEnd()) {
-        deviceList >> desc;
-        if (desc == "Description=") {
-            QString str;
+    int index_fifo = devices->indexOf(FIFO_DEVICE_DESC, 0);
 
-            desc = "";
-            QTextStream stream(&desc);
+    deviseDesc = devices->at(index_fifo);
 
-            deviceList >> str;
-            stream << str;
-            deviceList >> str;
-
-            while(str != "ftHandle=") {
-                stream << " " << str;
-                deviceList >> str;
-            }
-
-            deviceList >> str;
-            listDev.push_back(desc);
-        }
-    }
     ui->deviceList->clear();
-    ui->deviceList->addItems(listDev);
+    ui->deviceList->addItems(*devices);
 
     ui->infoList->setPlainText(info);
+
+    delete devices;
 }
 
 void MainWindow::on_readBtn_clicked()
@@ -72,10 +72,8 @@ void MainWindow::on_readBtn_clicked()
 void MainWindow::on_initBtn_clicked()
 {
 
-    QString str = ui->deviceList->currentText();
-
-    qDebug() << "device :" << str;
-    QByteArray qb = str.toUtf8();
+    qDebug() << "device :" << deviseDesc;
+    QByteArray qb = deviseDesc.toUtf8();
     char* desc = qb.data();
 
     size_rdbuf = ui->buferSizeEdit->text().toInt();
@@ -120,7 +118,12 @@ void MainWindow::read()
         qDebug() << "lines read ERROR";
         return;
     }
-    updateChart(currentView->chart(), list,ui->rangeY_low->text().toInt(),ui->rangeY_high->text().toInt());
+    updateChart(currentView->chart(),
+                list,
+                ui->rangeY_low->text().toInt(),
+                ui->rangeY_high->text().toInt(),
+                ui->rangeX_low->text().toInt(),
+                ui->rangeX_high->text().toInt());
 
     qDebug() << "lines:" << list.size();
     qDebug("Plot updated, takes %u ms", update_time.elapsed());
@@ -145,56 +148,74 @@ void MainWindow::on_checkBox_stateChanged(int arg1)
 
 void MainWindow::on_m150WL_Btn_clicked()
 {
-
+    m150->setWL(ui->m150WL_SetLine->text().toDouble());
+    updateM150Info();
 }
 
 void MainWindow::on_m150Grating_Btn_clicked()
 {
-
+    m150->setGrating(ui->m150Grating_SetCombo->currentText());
+    updateM150Info();
 }
 
 void MainWindow::on_m150Slit_Btn_clicked()
 {
+    m150->setSlit(ui->m150Slit_SetLine->text().toInt());
+    updateM150Info();
 
 }
 
 void MainWindow::on_m150Filter_Btn_clicked()
 {
-
+    m150->setFilter(ui->m150Filter_SetCombo->currentText());
+    updateM150Info();
 }
 
 void MainWindow::on_m150InitBtn_clicked()
 {
-//    if (!sls_SetLogging(SDKLOGLEVEL_DEBUG, "c:\\temp\\example.log"))
-//        return;
-    if (!sls_Init("c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\"))
-    {
-        qDebug() << "error m150: can`t init the m150";
-        return;
-    }
-
-    int instrumentCount = 0;
-    if (!sls_GetInstrumentCount(&instrumentCount))
-    {
-        qDebug() << "error m150: can`t find m150";
-        return;
-    }
-    if (instrumentCount == 0)
-    {
-        qDebug() << "error m150: can`t find m150";
-        return;
-    }
-
-    for (int i = 0; i < instrumentCount; i++)
-    {
-        char instrumentName[100];
-        if (!sls_GetInstrumentName(i, instrumentName, sizeof(instrumentName)))
-             return;
-
-        char instrumentSerial[100];
-        if (!sls_GetInstrumentSerial(i, instrumentSerial, sizeof(instrumentSerial)))
-            return;
-
-        qDebug("%d: %s %s\r\n", i, instrumentName, instrumentSerial);
-    }
+    m150 = new M150Handler();
+    m150->init(M150_LOG_PATH,M150_CONFIG_PATH);
+    updateM150Info();
 }
+
+QStringList* MainWindow::getDeviseList(QString info)
+{
+    QStringList* listDev = new QStringList();
+
+    QTextStream infoStream(&info);
+
+    QString desc;
+
+    while (!infoStream.atEnd())
+    {
+        infoStream >> desc;
+
+        if (desc == "Description=")
+        {
+            QString str;
+
+            desc = "";
+            QTextStream descStream(&desc);
+
+            infoStream >> str;
+            descStream << str;
+            infoStream >> str;
+
+            while(str != "ftHandle=")
+            {
+                descStream << " " << str;
+                infoStream >> str;
+            }
+
+            infoStream >> str;
+            listDev->push_back(desc);
+        }
+    }
+    return listDev;
+}
+
+
+
+
+
+
