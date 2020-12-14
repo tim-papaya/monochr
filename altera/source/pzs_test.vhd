@@ -218,12 +218,12 @@ process (clk_in)
 							
 							count_data := count_data + 1;
 						when others =>
-							-- dram_we_a <= '0';
+							dram_we_a <= '0';
 							ccd_ready_reg <= '0';
 						end case;
 						count_start_seq := count_start_seq + 1;
 					else
-						-- dram_we_a <= '0';
+						 dram_we_a <= '0';
 						ccd_ready_reg <= '0';
 					end if;
 					-----------------------------
@@ -234,8 +234,8 @@ process (clk_in)
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END + DUM1 + DATA) then
 					line_ready_reg <= '0';
 					if (clk_reg = '0') then
-						-- data_out <= "0000" & adc_data_in;
-						data_out    <= std_logic_vector(to_unsigned(count_data, 16));
+						data_out <= "0000" & adc_data_in;
+						-- data_out    <= std_logic_vector(to_unsigned(count_data, 16));
 						ram_addr    <= count_data;
 						
 						count_data  := count_data + 1;
@@ -285,13 +285,13 @@ process (clk_in)
 							
 							count_data := count_data + 1;
 						when others =>
-							-- dram_we_a <= '0';
+							dram_we_a <= '0';
 							
 							ccd_ready_reg <= '0';
 						end case;
 						count_start_seq := count_start_seq + 1;
 					else
-						-- dram_we_a <= '0';
+						dram_we_a <= '0';
 						ccd_ready_reg <= '0';
 					end if;
 					-----------------------------

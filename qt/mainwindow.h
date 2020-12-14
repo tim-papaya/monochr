@@ -66,7 +66,9 @@ private:
 
     QString deviseDesc;
 
-    int size_rdbuf;
+    int SIZE_RD_BUFFER = 65536;
+
+    bool isM150Inited = false;
 
     QChartView *currentView = nullptr;
 

@@ -76,12 +76,10 @@ void MainWindow::on_initBtn_clicked()
     QByteArray qb = deviseDesc.toUtf8();
     char* desc = qb.data();
 
-    size_rdbuf = ui->buferSizeEdit->text().toInt();
-
-    usb.setSyncFIFO(size_rdbuf, desc);
+    usb.setSyncFIFO(SIZE_RD_BUFFER, desc);
 
     usbThread = new QThread();
-    usbReader = new Reader(&usb, size_rdbuf);
+    usbReader = new Reader(&usb, SIZE_RD_BUFFER);
 
     connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
@@ -120,6 +118,7 @@ void MainWindow::read()
     }
     updateChart(currentView->chart(),
                 list,
+                isM150Inited,
                 ui->rangeY_low->text().toInt(),
                 ui->rangeY_high->text().toInt(),
                 ui->rangeX_low->text().toInt(),
@@ -176,6 +175,8 @@ void MainWindow::on_m150InitBtn_clicked()
     m150 = new M150Handler();
     m150->init(M150_LOG_PATH,M150_CONFIG_PATH);
     updateM150Info();
+
+    isM150Inited = true;
 }
 
 QStringList* MainWindow::getDeviseList(QString info)

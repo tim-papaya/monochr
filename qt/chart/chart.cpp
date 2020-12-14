@@ -35,41 +35,37 @@
 #include <QDebug>
 #include "reader.h"
 
-void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, int Ylow, int Yhigh, int Xlow, int Xhigh)
+void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, bool m150Init, int Ylow, int Yhigh, int Xlow, int Xhigh)
 {
-    const float k_wl = 0.146;
-    const int dark_signal = 3730;
-    const int wl_const = 865;
-    const int line_size = 1930;
+    const float K_WL = 0.146;
+    const int DARK_SIGNAL = 3730;
 
-    float border_low = wl_const - line_size / 2 * k_wl;
-    float border_high = wl_const + line_size / 2* k_wl;
+
     qDebug() << "Updating QChart";
+
     data_chart->removeAllSeries();
+
     QLineSeries *series = new QLineSeries;
 
+    if (m150Init)
+    {
+        // !!!!!!!!!!!!!!!!
+        // Need rework Here
+        // !!!!!!!!!!!!!!!!
+//        float border_low = wl_const - line_size / 2 * k_wl;
+//        float border_high = wl_const + line_size / 2* k_wl;
 
-//    int j = 0;
-//    while (j < lines.size())
-//    {
-//        bool over_limit = false;
+        for (int i = 0; i < lines[0].size(); i++)
+            series->append(i, static_cast<int>(lines[0][i]));
+    }
+    else
+    {
+        for (int i = 0; i < lines[0].size(); i++)
+            series->append(i, static_cast<int>(lines[0][i]));
+    }
 
-//        for (int i = 0; i < lines[j].size(); i++)
-//        {
-//            if (lines[j][i] > 4096)
-//            {
-//                over_limit = true;
-//                break;
-//            }
-//        }
-//        if (!over_limit)
-//            break;
-//    }
-
-    for (int i = 0; i < lines[0].size(); i++)
-//       series->append(border_low + i * k_wl, dark_signal - static_cast<int>(lines[0][i]));
-        series->append(i, static_cast<int>(lines[0][i]));
     data_chart->addSeries(series);
+
     qDebug() << "Line, data number:" << lines[0].size();
 
     data_chart->createDefaultAxes();
