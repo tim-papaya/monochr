@@ -10,7 +10,7 @@ Reader::Reader(UsbHandler *usb, int size_rdbuf)
 {
     qRegisterMetaType<QList<QVector<ushort>>>();
     displayTime.start();
-    setWaitTime(300);
+    setWaitTime(100);
 }
 
 ushort Reader::convert(const char ch1, const char ch2)

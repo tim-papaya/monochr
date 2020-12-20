@@ -1201,6 +1201,58 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLineEdit" name="Wl_atCenter_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>320</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>850</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Wl_atCenter_label">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>300</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Wavelenght at center</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="PeriodTime_label">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>380</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Period to write, ms</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="PeriodTime_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>400</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>10</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

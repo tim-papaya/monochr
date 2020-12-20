@@ -33,9 +33,10 @@
 
 
 #include <QDebug>
-#include "reader.h"
+#include <QQueue>
 
-void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, bool m150Init, int Ylow, int Yhigh, int Xlow, int Xhigh)
+
+void updateChart(QChart* data_chart, QList<QVector<ushort>> lines, Borders borders, double  wl_atCenter)
 {
     const float K_WL = 0.146;
     const int DARK_SIGNAL = 3730;
@@ -47,22 +48,14 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, bool m150Ini
 
     QLineSeries *series = new QLineSeries;
 
-    if (m150Init)
-    {
-        // !!!!!!!!!!!!!!!!
-        // Need rework Here
-        // !!!!!!!!!!!!!!!!
-//        float border_low = wl_const - line_size / 2 * k_wl;
-//        float border_high = wl_const + line_size / 2* k_wl;
 
-        for (int i = 0; i < lines[0].size(); i++)
-            series->append(i, static_cast<int>(lines[0][i]));
-    }
-    else
-    {
-        for (int i = 0; i < lines[0].size(); i++)
-            series->append(i, static_cast<int>(lines[0][i]));
-    }
+
+    float border_low = wl_atCenter - lines[0].size() / 2 * K_WL;
+
+    int dark_signal = findDarkSignal(lines[0]);
+
+    for (int i = 0; i < lines[0].size(); i++)
+        series->append(border_low + K_WL * i, dark_signal - static_cast<int>(lines[0][i]));
 
     data_chart->addSeries(series);
 
@@ -70,11 +63,23 @@ void updateChart(QChart* data_chart, QList<QVector<ushort> > lines, bool m150Ini
 
     data_chart->createDefaultAxes();
 
-    data_chart->axisX()->setRange(Xlow, Xhigh);
-    data_chart->axisY()->setRange(Ylow, Yhigh);
-
+    data_chart->axisX()->setRange(borders.Xlow, borders.Xhigh);
+    data_chart->axisY()->setRange(borders.Ylow, borders.Yhigh);
 }
 
+int findDarkSignal(QVector<ushort> line)
+{
+    ushort max = line[0];
+
+    for (int i = 1; i < line.size(); i++)
+    {
+        if (line[i] > max)
+        {
+            max = line[i];
+        }
+    }
+    return static_cast<int>(max);
+}
 
 QChart* createChart()
 {
@@ -83,7 +88,7 @@ QChart* createChart()
 
     //dataChart->setMinimumSize(640, 480);
     dataChart->setTitle("Lines");
-    //dataChart->legend()->hide();
+//    dataChart->legend()->hide();
 
     // create lines for chart
 

@@ -33,14 +33,21 @@
 #include <QtCharts/QChartView>
 #include <QtCharts>
 
+   struct Borders
+   {
+       int     Ylow;
+       int     Yhigh;
+       int     Xlow;
+       int     Xhigh;
+   };
+
    QChart* createChart();
 
-   void updateChart(QChart *data_chart,
+   void updateChart(QChart  *data_chart,
                     QList<QVector<ushort>> lines,
-                    bool    m150Init,
-                    int     Ylow,
-                    int     Yhigh,
-                    int     Xlow,
-                    int     Xhigh);
+                    Borders borders,
+                    double  wl_atCenter);
+
+   int findDarkSignal(QVector<ushort> line);
 
 #endif

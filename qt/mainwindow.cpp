@@ -116,13 +116,22 @@ void MainWindow::read()
         qDebug() << "lines read ERROR";
         return;
     }
+
+    Borders borders;
+    borders.Ylow = ui->rangeY_low->text().toInt();
+    borders.Yhigh = ui->rangeY_high->text().toInt();
+    borders.Xlow = ui->rangeX_low->text().toInt();
+    borders.Xhigh = ui->rangeX_high->text().toInt();
+
+    double wl_atCenter;
+    if (!isM150Inited)
+        wl_atCenter = ui->Wl_atCenter_lineEdit->text().toDouble();
+    else
+        wl_atCenter = ui->m150WL_ReadtLine->text().toDouble();
     updateChart(currentView->chart(),
                 list,
-                isM150Inited,
-                ui->rangeY_low->text().toInt(),
-                ui->rangeY_high->text().toInt(),
-                ui->rangeX_low->text().toInt(),
-                ui->rangeX_high->text().toInt());
+                borders,
+                wl_atCenter);
 
     qDebug() << "lines:" << list.size();
     qDebug("Plot updated, takes %u ms", update_time.elapsed());
