@@ -38,24 +38,18 @@
 
 void updateChart(QChart* data_chart, QList<QVector<ushort>> lines, Borders borders, double  wl_atCenter)
 {
-    const float K_WL = 0.146;
-    const int DARK_SIGNAL = 3730;
-
-
     qDebug() << "Updating QChart";
 
     data_chart->removeAllSeries();
 
     QLineSeries *series = new QLineSeries;
 
-
-
-    float border_low = wl_atCenter - lines[0].size() / 2 * K_WL;
+    WlBorders wl_info = WlBorders(wl_atCenter, lines[0].size());
 
     int dark_signal = findDarkSignal(lines[0]);
 
     for (int i = 0; i < lines[0].size(); i++)
-        series->append(border_low + K_WL * i, dark_signal - static_cast<int>(lines[0][i]));
+        series->append(wl_info.wl_low + WlBorders::K_WL * i, dark_signal - static_cast<int>(lines[0][i]));
 
     data_chart->addSeries(series);
 
@@ -93,3 +87,5 @@ QChart* createChart()
     // create lines for chart
 
 }
+
+

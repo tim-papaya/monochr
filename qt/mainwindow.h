@@ -43,10 +43,6 @@ public slots:
 
 private slots:
 
-    void on_writeBtn_clicked();
-
-    void on_checkBox_stateChanged(int arg1);
-
     void on_m150WL_Btn_clicked();
 
     void on_m150Grating_Btn_clicked();
@@ -57,12 +53,19 @@ private slots:
 
     void on_m150InitBtn_clicked();
 
+    void on_wrTimeWriteBtn_clicked();
+
+    void on_fileWriteCheckBox_stateChanged(int arg1);
+
+    void on_cmdWriteBtn_clicked();
+
 private:
 
     char* M150_LOG_PATH = "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
     char* M150_CONFIG_PATH = "c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\";
 
     const QString FIFO_DEVICE_DESC = "FT2232H MiniModule A";
+    const int LINE_SIZE = 2048;
 
     QString deviseDesc;
 

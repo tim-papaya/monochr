@@ -33,21 +33,51 @@
 #include <QtCharts/QChartView>
 #include <QtCharts>
 
-   struct Borders
-   {
-       int     Ylow;
-       int     Yhigh;
-       int     Xlow;
-       int     Xhigh;
-   };
+struct Borders
+{
+    int     Ylow;
+    int     Yhigh;
+    int     Xlow;
+    int     Xhigh;
+};
 
-   QChart* createChart();
+struct WlBorders
+{
+    static constexpr float K_WL = 0.137;
 
-   void updateChart(QChart  *data_chart,
-                    QList<QVector<ushort>> lines,
-                    Borders borders,
-                    double  wl_atCenter);
+    double wl_low;
+    double wl_high;
+    double wl_center;
 
-   int findDarkSignal(QVector<ushort> line);
+    WlBorders()
+    {
+        this->wl_low = 0;
+        this->wl_high = 0;
+        this->wl_center = 0;
+    }
+    WlBorders(double wl_low, double wl_high, double wl_center)
+    {
+        this->wl_low = wl_low;
+        this->wl_high = wl_high;
+        this->wl_center = wl_center;
+    }
+
+    WlBorders(double wl_center, int line_size)
+    {
+        this->wl_low = wl_center - line_size / 2 * WlBorders::K_WL;
+        this->wl_high = wl_center + line_size / 2 * WlBorders::K_WL;
+    }
+};
+
+QChart* createChart();
+
+void updateChart(QChart  *data_chart,
+                 QList<QVector<ushort>> lines,
+                 Borders borders,
+                 double  wl_atCenter);
+
+int findDarkSignal(QVector<ushort> line);
+
+WlBorders findWlBorders(double wl_center);
 
 #endif

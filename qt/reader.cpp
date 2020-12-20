@@ -1,9 +1,9 @@
 #include "reader.h"
+#include "filewriter.h"
+
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
-#include <QtEndian>
-#include <QDate>
 
 Reader::Reader(UsbHandler *usb, int size_rdbuf)
   : usb(usb), size_buffer_rd(size_rdbuf)
@@ -57,28 +57,8 @@ QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer, int start_pos)
     return list;
 }
 
-void Reader::writeBufferTo(QString fileName, QVector<ushort> &ubuffer, int linesCount)
-{
-    QString path = "C:\\TIM\\Project\\monochr\\logs\\";
-    QString time = QString::number(QTime::currentTime().hour()) + "_" +
-                   QString::number(QTime::currentTime().minute()) + "_" +
-                   QString::number(QTime::currentTime().second());
-    path += fileName + " " + QString::number(linesCount) + " ";
-    path +=  QDate::currentDate().toString() + "_" + time + ".txt";
 
-    QFile fileOut(path);
-    if (!fileOut.open(QIODevice::WriteOnly))
-       qDebug() << "error: file to write raw data from ccd don`t open";
-
-    QTextStream stream(&fileOut);
-
-//            Qt::bin(stream);
-    for (ushort temp : ubuffer)
-        stream << temp << "\n";
-    fileOut.close();
-}
-
-int Reader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int SEQ_SIZE)
+int Reader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int seq_size)
 {
     int count = 0;
     for (int i = start_from; i < vec.size(); i++) {
@@ -86,7 +66,7 @@ int Reader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int SEQ_S
             count++;
         else
             count = 0;
-        if (count == SEQ_SIZE)
+        if (count == seq_size)
             return i - 2;
     }
     return -1;
@@ -123,20 +103,22 @@ void Reader::readUsb()
 
         QList<QVector<ushort>> lines = split(ubuffer, 0);
 
-//        if (lines.size() == 0)
-//        {
-//            QList<QVector<ushort>> lines = split(ubuffer, 1);
-//        }
         if (lines.size() == 0)
         {
             qDebug() << "Size of eror line " << readed;
-            writeBufferTo("error", ubuffer, lines.size());
         }
 
         if (isWriteFile() && lines.size() != 0)
-            writeBufferTo("data", ubuffer, lines.size());
+        {
+            if (displayTime.elapsed() >= waitTime())
+            {
+                FileWriter *writer = new FileWriter("ddata");
+                writer->writeLines(lines, wlinfo().wl_low, wlinfo().wl_high, 0);
 
-        if (displayTime.elapsed() >= waitTime())
+                displayTime.restart();
+            }
+        }
+        if (!isWriteFile() && displayTime.elapsed() >= waitTime())
         {
             setResult(lines);
             displayTime.restart();

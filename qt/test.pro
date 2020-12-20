@@ -3,6 +3,7 @@ QT       += charts
 
 SOURCES += \
     chart/chart.cpp \
+    filewriter.cpp \
     m150handler.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -11,6 +12,7 @@ SOURCES += \
 
 HEADERS += \
     chart/chart.h \
+    filewriter.h \
     m150handler.h \
     mainwindow.h \
     reader.h \

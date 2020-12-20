@@ -6,6 +6,7 @@
 #include <QElapsedTimer>
 
 #include <usbhandler.h>
+#include "chart/chart.h"
 
 class Reader : public QObject
 {
@@ -13,7 +14,7 @@ class Reader : public QObject
     Q_PROPERTY(QList<QVector<ushort>> result READ result WRITE setResult NOTIFY resultChanged)
     Q_PROPERTY(qint64 waitTime READ waitTime WRITE setWaitTime NOTIFY waitTimeChanged)
     Q_PROPERTY(bool isWriteFile READ isWriteFile WRITE setIsWriteFile NOTIFY isWriteFileChanged)
-
+    Q_PROPERTY(WlBorders wlinfo READ wlinfo WRITE setWlinfo NOTIFY wlinfoChanged)
 public:
 
     ushort start_seq[3] = {0x0003, 0x007F, 0x00C1};
@@ -39,6 +40,11 @@ public:
     bool isWriteFile() const
     {
         return m_isWriteFile;
+    }
+
+    WlBorders wlinfo() const
+    {
+        return m_wlinfo;
     }
 
 public slots:
@@ -84,6 +90,13 @@ public slots:
     }
 
 
+    void setwlinfo(WlBorders wlinfo)
+    {
+        m_wlinfo = wlinfo;
+        emit wlinfoChanged(m_wlinfo);
+    }
+
+
 signals:
 
     void ready();
@@ -95,6 +108,8 @@ signals:
     void waitTimeChanged(qint64 waitTime);
 
     void isWriteFileChanged(bool isWriteFile);
+
+    void wlinfoChanged(WlBorders wlinfo);
 
 private:
 
@@ -119,6 +134,7 @@ private:
     void writeBufferTo (QString fileName, QVector<ushort> &ubuffer, int linesCount);
 
     int findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
+    WlBorders m_wlinfo;
 };
 
 #endif // READER_H

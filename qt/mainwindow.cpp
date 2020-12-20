@@ -1,8 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
-
-
+#include "chart/chart.h"
 
 #include <QtCharts/QtCharts>
 
@@ -29,13 +28,14 @@ void MainWindow::updateM150Info()
     double slitWidth;
     QString filter;
 
-
     m150->getInfo(wl, grating, slitWidth, filter);
 
     ui->m150WL_ReadtLine->setText(QString::number(wl));
     ui->m150Grating_ReadLine->setText(grating);
     ui->m150Slit_ReadLine->setText(QString::number(slitWidth));
     ui->m150Filter_ReadLine->setText(filter);
+
+    usbReader->setwlinfo(WlBorders(wl, LINE_SIZE));
 }
 
 
@@ -61,7 +61,7 @@ void MainWindow::on_showDevicesBtn_clicked()
 
 void MainWindow::on_readBtn_clicked()
 {
-    if (ui->checkBox->checkState() == Qt::Checked)
+    if (ui->fileWriteCheckBox->checkState() == Qt::Checked)
         usbReader->setisWriteFile(true);
     else
         usbReader->setisWriteFile(false);
@@ -137,23 +137,6 @@ void MainWindow::read()
     qDebug("Plot updated, takes %u ms", update_time.elapsed());
 }
 
-void MainWindow::on_writeBtn_clicked()
-{
-    char* wrBuffer = ui->writeLine->text().toUtf8().data();
-//  char wrBuffer[] = "11111111";
-    int written;
-    usb.writeData(wrBuffer, written);
-}
-
-void MainWindow::on_checkBox_stateChanged(int arg1)
-{
-    if (arg1 == Qt::Checked)
-        usbReader->setisWriteFile(true);
-    else
-        usbReader->setisWriteFile(false);
-
-}
-
 void MainWindow::on_m150WL_Btn_clicked()
 {
     m150->setWL(ui->m150WL_SetLine->text().toDouble());
@@ -224,8 +207,24 @@ QStringList* MainWindow::getDeviseList(QString info)
     return listDev;
 }
 
+void MainWindow::on_wrTimeWriteBtn_clicked()
+{
+    int wrTime = ui->wrTimeWriteLine->text().toInt();
+    usbReader->setWaitTime(wrTime);
+}
 
+void MainWindow::on_fileWriteCheckBox_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Checked)
+        usbReader->setisWriteFile(true);
+    else
+        usbReader->setisWriteFile(false);
+}
 
-
-
-
+void MainWindow::on_cmdWriteBtn_clicked()
+{
+    char* wrBuffer = ui->writeLine->text().toUtf8().data();
+//  char wrBuffer[] = "11111111";
+    int written;
+    usb.writeData(wrBuffer, written);
+}
