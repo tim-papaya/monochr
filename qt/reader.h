@@ -15,6 +15,7 @@ class Reader : public QObject
     Q_PROPERTY(qint64 waitTime READ waitTime WRITE setWaitTime NOTIFY waitTimeChanged)
     Q_PROPERTY(bool isWriteFile READ isWriteFile WRITE setIsWriteFile NOTIFY isWriteFileChanged)
     Q_PROPERTY(WlBorders wlinfo READ wlinfo WRITE setWlinfo NOTIFY wlinfoChanged)
+
 public:
 
     ushort start_seq[3] = {0x0003, 0x007F, 0x00C1};
@@ -113,28 +114,34 @@ signals:
 
 private:
 
-    QElapsedTimer  displayTime;
-
-    bool m_running;
-
-    qint64 m_waitTime;
-
-    bool m_isWriteFile;
-
     UsbHandler *usb;
 
-    const int size_buffer_rd;
+    int size_buffer_rd;
+
+    QElapsedTimer  displayTimer;
+    const qint64   DISPLAY_WAIT_TIME = 100;
+
+    QElapsedTimer  fileTimer;
+    qint64         m_waitTime;
+
+    bool      m_running;
+    WlBorders m_wlinfo;
+    bool      m_isWriteFile;
 
     QList<QVector<ushort>> m_result;
 
-    ushort convert(char const ch1, char const ch2);
+    bool    startedWrite = false;
+    QString fileDir;
+    quint64 filesCount = 0;
+
+    ushort                 convert(char const ch1, char const ch2);
 
     QList<QVector<ushort>> split(QVector<ushort> &ubuffer, int start_pos);
 
-    void writeBufferTo (QString fileName, QVector<ushort> &ubuffer, int linesCount);
+    void                   writeBufferTo (QString fileName, QVector<ushort> &ubuffer, int linesCount);
 
-    int findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
-    WlBorders m_wlinfo;
+    int                    findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
+
 };
 
 #endif // READER_H

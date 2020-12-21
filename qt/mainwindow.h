@@ -67,6 +67,11 @@ private:
     const QString FIFO_DEVICE_DESC = "FT2232H MiniModule A";
     const int LINE_SIZE = 2048;
 
+    const int INDEX_OF_LIVE_TAB = 0;
+    const int INDEX_OF_RECORD_TAB = 1;
+
+    const int STEP_OF_POS = 5;
+
     QString deviseDesc;
 
     int SIZE_RD_BUFFER = 65536;
@@ -74,6 +79,8 @@ private:
     bool isM150Inited = false;
 
     QChartView *currentView = nullptr;
+
+    QChartView *recordView = nullptr;
 
     Ui::MainWindow *ui;
 
@@ -85,6 +92,10 @@ private:
 
 
     QStringList* getDeviseList(QString info);
+
+    void readLive();
+
+    void readRecord();
 
 
 };

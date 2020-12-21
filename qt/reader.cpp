@@ -9,8 +9,12 @@ Reader::Reader(UsbHandler *usb, int size_rdbuf)
   : usb(usb), size_buffer_rd(size_rdbuf)
 {
     qRegisterMetaType<QList<QVector<ushort>>>();
-    displayTime.start();
+
+    displayTimer.start();
+    fileTimer.start();
+
     setWaitTime(100);
+
 }
 
 ushort Reader::convert(const char ch1, const char ch2)
@@ -105,23 +109,38 @@ void Reader::readUsb()
 
         if (lines.size() == 0)
         {
-            qDebug() << "Size of eror line " << readed;
+            qDebug() << "Size of error line " << readed;
+            return;
         }
 
-        if (isWriteFile() && lines.size() != 0)
+        if (isWriteFile())
         {
-            if (displayTime.elapsed() >= waitTime())
+            if (fileTimer.elapsed() >= waitTime())
             {
-                FileWriter *writer = new FileWriter("ddata");
-                writer->writeLines(lines, wlinfo().wl_low, wlinfo().wl_high, 0);
+                if (isWriteFile() && !startedWrite)
+                {
+                    fileDir = "ddata\\"
+                            + FileWriter::getDate()
+                            + "_" + FileWriter::getTimeLine();
+                    startedWrite = true;
+                    filesCount = 0;
+                }
 
-                displayTime.restart();
+                FileWriter *writer = new FileWriter(fileDir);
+                writer->writeLines(lines, wlinfo().wl_low, wlinfo().wl_high, filesCount);
+                filesCount++;
+
+                fileTimer.restart();
             }
         }
-        if (!isWriteFile() && displayTime.elapsed() >= waitTime())
+        else
+        {
+            startedWrite = false;
+        }
+        if (displayTimer.elapsed() >= DISPLAY_WAIT_TIME)
         {
             setResult(lines);
-            displayTime.restart();
+            displayTimer.restart();
         }
     }
 }

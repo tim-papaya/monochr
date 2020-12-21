@@ -20,10 +20,11 @@ public:
 
     void writeLines(QList<QVector<ushort>> &lines, double wlStart, double wlEnd, int fileNum);
 
-    QString getDate();
+    static QString getDate();
 
-    QString getTime();
+    static QString getTime();
 
+    static QString getTimeLine();
 
 private:
     QString path = "C:\\TIM\\Project\\monochr\\logs\\";

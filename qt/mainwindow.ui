@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>687</height>
+    <height>716</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -38,7 +38,7 @@
       <x>-10</x>
       <y>10</y>
       <width>1071</width>
-      <height>631</height>
+      <height>721</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -62,7 +62,7 @@
        <x>0</x>
        <y>0</y>
        <width>1055</width>
-       <height>629</height>
+       <height>719</height>
       </rect>
      </property>
      <property name="sizePolicy">
@@ -505,7 +505,7 @@
               </size>
              </property>
              <property name="text">
-              <string>2</string>
+              <string>100</string>
              </property>
             </widget>
            </item>
@@ -525,17 +525,12 @@
              </property>
              <item>
               <property name="text">
-               <string>s</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>us</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
                <string>ms</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>s</string>
               </property>
              </item>
             </widget>
@@ -592,7 +587,7 @@
               </size>
              </property>
              <property name="text">
-              <string>C:\logs\log.txt</string>
+              <string>c:\\TIM\\Project\\monochr\\logs\\ddata</string>
              </property>
             </widget>
            </item>
@@ -1096,33 +1091,18 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="verticalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>260</y>
-        <width>611</width>
-        <height>321</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="chartLayout">
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-      </layout>
-     </widget>
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>590</y>
+        <x>90</x>
+        <y>620</y>
         <width>160</width>
         <height>24</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <layout class="QHBoxLayout" name="rangeY_HLayout">
        <item>
-        <widget class="QLabel" name="label_9">
+        <widget class="QLabel" name="rangeY_label">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -1150,7 +1130,7 @@
        <item>
         <widget class="QLineEdit" name="rangeY_high">
          <property name="text">
-          <string>5000</string>
+          <string>2500</string>
          </property>
         </widget>
        </item>
@@ -1159,15 +1139,15 @@
      <widget class="QWidget" name="horizontalLayoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>590</y>
+        <x>370</x>
+        <y>620</y>
         <width>160</width>
         <height>24</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <layout class="QHBoxLayout" name="rangeX_HLayout">
        <item>
-        <widget class="QLabel" name="label_10">
+        <widget class="QLabel" name="rangeX_label">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -1188,23 +1168,26 @@
        <item>
         <widget class="QLineEdit" name="rangeX_low">
          <property name="text">
-          <string>0</string>
+          <string>50</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="rangeX_high">
          <property name="text">
-          <string>2048</string>
+          <string>0</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
      <widget class="QLineEdit" name="Wl_atCenter_lineEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>730</x>
+        <x>740</x>
         <y>320</y>
         <width>113</width>
         <height>21</height>
@@ -1217,7 +1200,7 @@
      <widget class="QLabel" name="Wl_atCenter_label">
       <property name="geometry">
        <rect>
-        <x>730</x>
+        <x>740</x>
         <y>300</y>
         <width>121</width>
         <height>16</height>
@@ -1231,7 +1214,7 @@
       <property name="geometry">
        <rect>
         <x>740</x>
-        <y>380</y>
+        <y>360</y>
         <width>121</width>
         <height>16</height>
        </rect>
@@ -1241,10 +1224,13 @@
       </property>
      </widget>
      <widget class="QLineEdit" name="PeriodTime_lineEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>740</x>
-        <y>400</y>
+        <y>380</y>
         <width>113</width>
         <height>21</height>
        </rect>
@@ -1252,6 +1238,299 @@
       <property name="text">
        <string>10</string>
       </property>
+     </widget>
+     <widget class="QTabWidget" name="chartsTabWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>260</y>
+        <width>641</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Live</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>611</width>
+          <height>321</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="chartLayout">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Record</string>
+       </attribute>
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>621</width>
+          <height>231</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="recordChartLayout">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>280</y>
+          <width>146</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="posHLayout">
+         <item>
+          <widget class="QPushButton" name="posLeft">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="posLineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="posMaxLineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="palette">
+            <palette>
+             <active>
+              <colorrole role="Button">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Mid">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </active>
+             <inactive>
+              <colorrole role="Button">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Mid">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </inactive>
+             <disabled>
+              <colorrole role="Button">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Mid">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>186</red>
+                 <green>186</green>
+                 <blue>186</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </disabled>
+            </palette>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(186, 186, 186);</string>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="posRight">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>280</y>
+          <width>101</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="posRangeHLayout">
+         <item>
+          <widget class="QLabel" name="posRangeLabel">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Range</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="posRangeLineEdit">
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLineEdit" name="infoLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>250</y>
+          <width>471</width>
+          <height>21</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="dirNamesCBox">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>280</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>

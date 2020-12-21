@@ -4,6 +4,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDebug>
+#include <QDir>
 
 
 FileWriter::FileWriter(QString dirName)
@@ -93,17 +94,28 @@ QString FileWriter::getDate()
 
 QString FileWriter::getTime()
 {
-    QString time = "h" +
-                   QString::number(QTime::currentTime().hour()) + "m" +
-                   QString::number(QTime::currentTime().minute()) + "s" +
-                   QString::number(QTime::currentTime().second()) + "ms" +
+    QString time = "h\t" +
+                   QString::number(QTime::currentTime().hour()) + "\t" + "m\t" +
+                   QString::number(QTime::currentTime().minute()) + "\t" + "s\t" +
+                   QString::number(QTime::currentTime().second()) + "\t" + "ms\t" +
                    QString::number(QTime::currentTime().msec());
     return  time;
 }
-
+QString FileWriter::getTimeLine()
+{
+    QString time = "h" +
+                   QString::number(QTime::currentTime().hour()) + "_" + "m" +
+                   QString::number(QTime::currentTime().minute()) + "_" + "s" +
+                   QString::number(QTime::currentTime().second()) + "_" + "ms" +
+                   QString::number(QTime::currentTime().msec());
+    return  time;
+}
 void FileWriter::setFileName(int fileNum)
 {
-    path +=  getDate() + "_" + getTime() + "_" + QString::number(fileNum) + ".txt";
+    QDir dirPath(path);
+    dirPath.mkpath(path);
+
+    path += QString::number(fileNum) + ".txt";
 }
 
 QTextStream &FileWriter::writeLineInfo(QTextStream &stream, double wlStart, double wlEnd)

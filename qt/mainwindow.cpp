@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "usbhandler.h"
 #include "chart/chart.h"
+#include "filereader.h"
 
 #include <QtCharts/QtCharts>
 
@@ -98,43 +99,12 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::read()
 {
     // Plot update here
-    QElapsedTimer update_time;
-    update_time.start();
+    int indexTabSelected = ui->chartsTabWidget->currentIndex();
 
-
-    if (currentView == nullptr) {
-
-        currentView = new QChartView(createChart());
-        currentView->setRenderHint(QPainter::Antialiasing);
-        qDebug() << "creating QChartView";
-        ui->chartLayout->addWidget(currentView);
-
-    }
-    QList<QVector<ushort>> list = usbReader->result();
-    if (list.size() == 0)
-    {
-        qDebug() << "lines read ERROR";
-        return;
-    }
-
-    Borders borders;
-    borders.Ylow = ui->rangeY_low->text().toInt();
-    borders.Yhigh = ui->rangeY_high->text().toInt();
-    borders.Xlow = ui->rangeX_low->text().toInt();
-    borders.Xhigh = ui->rangeX_high->text().toInt();
-
-    double wl_atCenter;
-    if (!isM150Inited)
-        wl_atCenter = ui->Wl_atCenter_lineEdit->text().toDouble();
-    else
-        wl_atCenter = ui->m150WL_ReadtLine->text().toDouble();
-    updateChart(currentView->chart(),
-                list,
-                borders,
-                wl_atCenter);
-
-    qDebug() << "lines:" << list.size();
-    qDebug("Plot updated, takes %u ms", update_time.elapsed());
+    if (indexTabSelected == INDEX_OF_LIVE_TAB)
+        readLive();
+    else if (indexTabSelected == INDEX_OF_RECORD_TAB)
+        readRecord();
 }
 
 void MainWindow::on_m150WL_Btn_clicked()
@@ -205,6 +175,103 @@ QStringList* MainWindow::getDeviseList(QString info)
         }
     }
     return listDev;
+}
+
+void MainWindow::readLive()
+{
+    QElapsedTimer update_time;
+    update_time.start();
+
+    if (currentView == nullptr)
+    {
+        currentView = new QChartView(createChart());
+        currentView->setRenderHint(QPainter::Antialiasing);
+        qDebug() << "creating QChartView";
+        ui->chartLayout->addWidget(currentView);
+    }
+
+    QList<QVector<ushort>> list = usbReader->result();
+
+    if (list.size() == 0)
+    {
+        qDebug() << "lines read ERROR";
+        return;
+    }
+
+    resetChart(currentView->chart());
+
+    double wl_atCenter;
+
+    if (!isM150Inited)
+        wl_atCenter = ui->Wl_atCenter_lineEdit->text().toDouble();
+    else
+        wl_atCenter = ui->m150WL_ReadtLine->text().toDouble();
+
+    addLine(currentView->chart(),
+            list[0],
+            wl_atCenter);
+
+    Borders borders(ui->rangeY_low->text().toInt(),
+                    ui->rangeY_high->text().toInt(),
+                    ui->rangeX_low->text().toInt(),
+                    ui->rangeX_high->text().toInt());
+
+    setBorders(currentView->chart(), borders);
+
+    qDebug() << "lines:" << list.size();
+    qDebug("Plot updated, takes %u ms", update_time.elapsed());
+}
+
+void MainWindow::readRecord()
+{
+    if (recordView == nullptr)
+    {
+        recordView = new QChartView(createChart());
+        recordView->setRenderHint(QPainter::Antialiasing);
+        qDebug() << "creating recordView";
+        ui->recordChartLayout->addWidget(recordView);
+    }
+
+    FileReader fileReader(ui->pathWriteLine->text());
+    QStringList *dirNames = fileReader.readDirs();
+
+    if (dirNames->isEmpty())
+        return;
+
+    if (ui->dirNamesCBox->count() != dirNames->count())
+    {
+        ui->dirNamesCBox->clear();
+
+        for (QString name : *dirNames)
+            ui->dirNamesCBox->addItem(name);
+    }
+
+    QString currentDir = ui->dirNamesCBox->currentText();
+
+    int countPoints = fileReader.countPoints(currentDir);
+    int currentPos = ui->posLineEdit->text().toInt();
+
+    ui->posMaxLineEdit->setText(QString::number(countPoints));
+
+    resetChart(recordView->chart());
+
+    for (int i = currentPos; i < countPoints && i < currentPos + STEP_OF_POS; i++)
+    {
+        QVector<ushort> *line = fileReader.getPoint(currentDir, i);
+
+        addLine(recordView->chart(), *line, 850);
+
+        delete line;
+    }
+
+    Borders borders(ui->rangeY_low->text().toInt(),
+                    ui->rangeY_high->text().toInt(),
+                    ui->rangeX_low->text().toInt(),
+                    ui->rangeX_high->text().toInt());
+
+    setBorders(recordView->chart(), borders);
+
+    delete dirNames;
 }
 
 void MainWindow::on_wrTimeWriteBtn_clicked()
