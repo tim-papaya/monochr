@@ -13,6 +13,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    qDebug() << "creating recordView";
+    recordView = new QChartView(createChart());
+    recordView->setRenderHint(QPainter::Antialiasing);
+    ui->recordChartLayout->addWidget(recordView);
+
+    qDebug() << "creating QChartView";
+    currentView = new QChartView(createChart());
+    currentView->setRenderHint(QPainter::Antialiasing);
+    ui->chartLayout->addWidget(currentView);
+
+    readRecord();
 }
 
 MainWindow::~MainWindow()
@@ -36,7 +47,7 @@ void MainWindow::updateM150Info()
     ui->m150Slit_ReadLine->setText(QString::number(slitWidth));
     ui->m150Filter_ReadLine->setText(filter);
 
-    usbReader->setwlinfo(WlBorders(wl, LINE_SIZE));
+    usbReader->setWlinfo(WlBorders(wl, LINE_SIZE));
 }
 
 
@@ -48,14 +59,20 @@ void MainWindow::on_showDevicesBtn_clicked()
 
     QStringList *devices = getDeviseList(info);
 
-    int index_fifo = devices->indexOf(FIFO_DEVICE_DESC, 0);
-
-    deviseDesc = devices->at(index_fifo);
+    if (devices->empty())
+        return;
 
     ui->deviceList->clear();
     ui->deviceList->addItems(*devices);
 
     ui->infoList->setPlainText(info);
+
+    int index_fifo = devices->indexOf(FIFO_DEVICE_DESC, 0);
+
+    if (index_fifo != DEVICE_NOT_FOUND)
+    {
+        deviseDesc = devices->at(index_fifo);
+    }
 
     delete devices;
 }
@@ -85,7 +102,10 @@ void MainWindow::on_initBtn_clicked()
     connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
     connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
+
     usbReader->moveToThread(usbThread);
+
+    usbReader->setFilesPath(ui->pathWriteLine->text());
 
     usbThread->start();
 }
@@ -103,8 +123,6 @@ void MainWindow::read()
 
     if (indexTabSelected == INDEX_OF_LIVE_TAB)
         readLive();
-    else if (indexTabSelected == INDEX_OF_RECORD_TAB)
-        readRecord();
 }
 
 void MainWindow::on_m150WL_Btn_clicked()
@@ -182,14 +200,6 @@ void MainWindow::readLive()
     QElapsedTimer update_time;
     update_time.start();
 
-    if (currentView == nullptr)
-    {
-        currentView = new QChartView(createChart());
-        currentView->setRenderHint(QPainter::Antialiasing);
-        qDebug() << "creating QChartView";
-        ui->chartLayout->addWidget(currentView);
-    }
-
     QList<QVector<ushort>> list = usbReader->result();
 
     if (list.size() == 0)
@@ -217,6 +227,9 @@ void MainWindow::readLive()
                     ui->rangeX_high->text().toInt());
 
     setBorders(currentView->chart(), borders);
+    double timeStep = usbReader->timeStep();
+    timeStep /= LINES_IN_BUFFER;
+    ui->realTimeStepLineEdit->setText(QString::number(timeStep));
 
     qDebug() << "lines:" << list.size();
     qDebug("Plot updated, takes %u ms", update_time.elapsed());
@@ -224,26 +237,18 @@ void MainWindow::readLive()
 
 void MainWindow::readRecord()
 {
-    if (recordView == nullptr)
-    {
-        recordView = new QChartView(createChart());
-        recordView->setRenderHint(QPainter::Antialiasing);
-        qDebug() << "creating recordView";
-        ui->recordChartLayout->addWidget(recordView);
-    }
-
     FileReader fileReader(ui->pathWriteLine->text());
-    QStringList *dirNames = fileReader.readDirs();
 
-    if (dirNames->isEmpty())
-        return;
-
-    if (ui->dirNamesCBox->count() != dirNames->count())
+    if (prevPath != ui->pathWriteLine->text())
     {
+        prevPath = ui->pathWriteLine->text();
         ui->dirNamesCBox->clear();
+
+        QStringList *dirNames = fileReader.readDirs();
 
         for (QString name : *dirNames)
             ui->dirNamesCBox->addItem(name);
+        delete dirNames;
     }
 
     QString currentDir = ui->dirNamesCBox->currentText();
@@ -255,23 +260,38 @@ void MainWindow::readRecord()
 
     resetChart(recordView->chart());
 
-    for (int i = currentPos; i < countPoints && i < currentPos + STEP_OF_POS; i++)
+
+    int step = ui->posStepLineEdit->text().toInt();
+
+    if (step < 1)
+        step = 1;
+
+    for (int i = currentPos;    i < countPoints &&
+                                i < currentPos + NUM_LINES_VISIBLE * step;
+         i+= step)
     {
-        QVector<ushort> *line = fileReader.getPoint(currentDir, i);
+        PointInfo* pointInfo = fileReader.getPoint(currentDir, i);
 
-        addLine(recordView->chart(), *line, 850);
+        addLine(recordView->chart(), pointInfo);
 
-        delete line;
+        double timeStep = pointInfo->time_step * ui->posStepLineEdit->text().toDouble();
+        ui->timeStepLineEdit->setText(QString::number(timeStep));
+
+        ui->infoLineEdit->setText(*pointInfo->info);
+
+        delete pointInfo;
     }
 
-    Borders borders(ui->rangeY_low->text().toInt(),
-                    ui->rangeY_high->text().toInt(),
-                    ui->rangeX_low->text().toInt(),
-                    ui->rangeX_high->text().toInt());
+    if (countPoints > 0)
+    {
+        Borders borders(ui->rangeY_low->text().toInt(),
+                        ui->rangeY_high->text().toInt(),
+                        ui->rangeX_low->text().toInt(),
+                        ui->rangeX_high->text().toInt());
 
-    setBorders(recordView->chart(), borders);
+        setBorders(recordView->chart(), borders);
+    }
 
-    delete dirNames;
 }
 
 void MainWindow::on_wrTimeWriteBtn_clicked()
@@ -294,4 +314,99 @@ void MainWindow::on_cmdWriteBtn_clicked()
 //  char wrBuffer[] = "11111111";
     int written;
     usb.writeData(wrBuffer, written);
+}
+void MainWindow::on_posLeft_clicked()
+{
+    int step = ui->posStepLineEdit->text().toInt();
+    if (!step)
+        step = 1;
+
+    int pos = ui->posLineEdit->text().toInt();
+    QString newPos = QString::number(pos - step);
+
+    ui->posLineEdit->setText(newPos);
+
+    readRecord();
+}
+
+void MainWindow::on_posRight_clicked()
+{
+    int step = ui->posStepLineEdit->text().toInt();
+    if (!step)
+        step = 1;
+
+    int pos = ui->posLineEdit->text().toInt();
+    QString newPos = QString::number(pos + step);
+
+    ui->posLineEdit->setText(newPos);
+
+    readRecord();
+}
+
+void MainWindow::on_pathWriteLine_editingFinished()
+{
+    if (usbReader != nullptr)
+        usbReader->setFilesPath(ui->pathWriteLine->text());
+    readRecord();
+}
+
+void MainWindow::on_dirNamesCBox_currentTextChanged(const QString &arg1)
+{
+
+    // that is bad, but working
+    if (just_started)
+    {
+        just_started = false;
+        return;
+    }
+    readRecord();
+}
+
+void MainWindow::on_posStepLineEdit_editingFinished()
+{
+    readRecord();
+}
+
+void MainWindow::on_posLineEdit_editingFinished()
+{
+    readRecord();
+}
+
+void MainWindow::on_rangeX_low_editingFinished()
+{
+    readRecord();
+}
+
+
+
+void MainWindow::on_rangeX_high_editingFinished()
+{
+    readRecord();
+}
+
+void MainWindow::on_rangeY_high_editingFinished()
+{
+    readRecord();
+}
+
+void MainWindow::on_rangeY_low_editingFinished()
+{
+    readRecord();
+}
+
+void MainWindow::on_expWriteBtn_clicked()
+{
+//    QString str = "expt";
+//    unsigned time = ui->expWriteLine->text().toUInt();
+
+//    void *time_ptr = &time;
+
+//    char *char_ptr = (char*) time_ptr;
+
+//    for (int i = 0;i < 4;i++)
+//        str += char_ptr[i];
+
+//    char* wrBuffer = str.d;
+//    int written;
+//    usb.writeData(wrBuffer, written);
 }

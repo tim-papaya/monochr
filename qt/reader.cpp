@@ -12,6 +12,7 @@ Reader::Reader(UsbHandler *usb, int size_rdbuf)
 
     displayTimer.start();
     fileTimer.start();
+    timeStepTimer.start();
 
     setWaitTime(100);
 
@@ -99,6 +100,9 @@ void Reader::readUsb()
         if (!usb->readData(&buffer, readed))
             continue;
 
+        setTimeStep(timeStepTimer.elapsed());
+        timeStepTimer.restart();
+
         QVector<ushort> ubuffer;
         for (int i = 0; i < readed; i+=2)
             ubuffer.push_back(convert(buffer[i], buffer[i+1]));
@@ -110,38 +114,43 @@ void Reader::readUsb()
         if (lines.size() == 0)
         {
             qDebug() << "Size of error line " << readed;
+            FileWriter *writer = new FileWriter("error_log", filesPath());
+
+            writer->writeErrorLine(ubuffer);
+
+            m_running = false;
             return;
         }
 
         if (isWriteFile())
         {
-            if (fileTimer.elapsed() >= waitTime())
+            if (isWriteFile() && !startedWrite)
             {
-                if (isWriteFile() && !startedWrite)
-                {
-                    fileDir = "ddata\\"
-                            + FileWriter::getDate()
-                            + "_" + FileWriter::getTimeLine();
-                    startedWrite = true;
-                    filesCount = 0;
-                }
-
-                FileWriter *writer = new FileWriter(fileDir);
-                writer->writeLines(lines, wlinfo().wl_low, wlinfo().wl_high, filesCount);
-                filesCount++;
-
-                fileTimer.restart();
+                fileDir = FileWriter::getDate() + "_"
+                        + FileWriter::getTimeLine();
+                startedWrite = true;
+                filesCount = 0;
             }
+            double timeStepDbl = timeStep();
+            timeStepDbl /= lines.size();
+
+            FileWriter *writer = new FileWriter(fileDir, filesPath());
+            writer->writeLines(lines, wlinfo(), timeStepDbl, filesCount);
+            filesCount++;
+
+            fileTimer.restart();
         }
         else
         {
             startedWrite = false;
         }
+
         if (displayTimer.elapsed() >= DISPLAY_WAIT_TIME)
         {
             setResult(lines);
             displayTimer.restart();
         }
     }
+
 }
 

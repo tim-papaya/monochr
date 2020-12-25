@@ -8,10 +8,9 @@
 class UsbHandler
 {
 public:
+         UsbHandler();
 
-    UsbHandler();
-
-    int showDevices(QString* info);
+    int  showDevices(QString* info);
 
     bool setSyncFIFO(unsigned long inBuffer, char* desc);
 
@@ -21,17 +20,14 @@ public:
 
     bool closeHandle();
 
-
 private:
-
     const DWORD BUFFER_FULL = 0;
-    const char LATENCY_TIMER = 2;
+    const char  LATENCY_TIMER = 255;
 
-    DWORD numDevs;
+          DWORD numDevs;
 
-    FT_STATUS ftStatus;
-
-    FT_HANDLE ftHandle;
+          FT_STATUS ftStatus;
+          FT_HANDLE ftHandle;
 };
 
 

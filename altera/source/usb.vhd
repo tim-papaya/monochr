@@ -45,24 +45,22 @@ process (clk_in)
 		
 begin 
 	if (falling_edge(clk_in)) then
-		-- if (count = LINE_SIZE) then
-			-- count := 0;
 		if (ccd_ready = '1' AND ccd_ready_reg = '0') then
 			count := line_pos_start;
 			ccd_ready_reg := '1';
 		elsif (ccd_ready = '0' AND count >= line_pos_end) then
 			ccd_ready_reg := '0';
-		-- elsif (rxf = '0') then
-			-- reading from PC
-			-- wr <= '1';
-			-- data <= "ZZZZZZZZ";
-			-- if (read_delay_reg = '0') then
-				-- oe <= '0'; -- OE set '0' to read
-				-- read_delay_reg := '1';
-			-- else
-				-- rd <= '0';
-				-- command_reg <= data;
-			-- end if;
+		elsif (rxf = '0') then
+----- reading from PC -----------
+			wr <= '1';
+			data <= "ZZZZZZZZ";
+			if (read_delay_reg = '0') then
+				oe <= '0'; -- OE set '0' to read
+				read_delay_reg := '1';
+			else
+				rd <= '0';
+				command_reg <= data;
+			end if;
 		else
 			-- writing to PC
 			read_delay_reg := '0';

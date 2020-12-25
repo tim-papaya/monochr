@@ -23,10 +23,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QThread *usbThread;
-    Reader *usbReader;
+    QThread *usbThread = nullptr;
+    Reader *usbReader = nullptr;
 
     void updateM150Info();
+
 signals:
     void read_from_usb();
 
@@ -59,6 +60,28 @@ private slots:
 
     void on_cmdWriteBtn_clicked();
 
+    void on_posLeft_clicked();
+
+    void on_posRight_clicked();
+
+    void on_pathWriteLine_editingFinished();
+
+    void on_dirNamesCBox_currentTextChanged(const QString &arg1);
+
+    void on_posStepLineEdit_editingFinished();
+
+    void on_posLineEdit_editingFinished();
+
+    void on_rangeX_low_editingFinished();
+
+    void on_rangeX_high_editingFinished();
+
+    void on_rangeY_high_editingFinished();
+
+    void on_rangeY_low_editingFinished();
+
+    void on_expWriteBtn_clicked();
+
 private:
 
     char* M150_LOG_PATH = "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
@@ -66,11 +89,13 @@ private:
 
     const QString FIFO_DEVICE_DESC = "FT2232H MiniModule A";
     const int LINE_SIZE = 2048;
+    const int LINES_IN_BUFFER = 15;
 
     const int INDEX_OF_LIVE_TAB = 0;
     const int INDEX_OF_RECORD_TAB = 1;
 
-    const int STEP_OF_POS = 5;
+    const int NUM_LINES_VISIBLE = 5;
+    const int DEVICE_NOT_FOUND  = -1;
 
     QString deviseDesc;
 
@@ -90,13 +115,15 @@ private:
 
     QGraphicsScene scene;
 
+    bool just_started = true;
 
     QStringList* getDeviseList(QString info);
+
+    QString prevPath;
 
     void readLive();
 
     void readRecord();
-
 
 };
 #endif // MAINWINDOW_H

@@ -5,19 +5,42 @@
 #include <QList>
 #include <QVector>
 
+struct PointInfo
+{
+    QVector<ushort> *data;
+    QString *info;
+
+    double wl_high;
+    double wl_low;
+
+    double time_step;
+
+    PointInfo(QVector<ushort> *data, QString *info);
+
+    ~PointInfo()
+    {
+        delete  data;
+        delete  info;
+    }
+};
+
 class FileReader
 {
 public:
-    FileReader(QString path);
+                     FileReader(QString path);
 
-    QStringList*  readDirs();
+    QStringList*     readDirs();
 
     int              countPoints(QString dirName);
 
-    QVector<ushort>* getPoint(QString dirName, int pointNum);
+    PointInfo*       getPoint(QString dirName, int pointNum);
 
 private:
-    QString path;
+    const QString FILE_FORMAT = ".sdf";
+
+          QString path;
 };
+
+
 
 #endif // FILEREADER_H

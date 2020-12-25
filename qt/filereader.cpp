@@ -7,6 +7,9 @@
 FileReader::FileReader(QString path)
 {
     this->path = path;
+
+    QDir dirPath(this->path);
+    dirPath.mkpath(path);
 }
 
 QStringList *FileReader::readDirs()
@@ -21,38 +24,50 @@ int FileReader::countPoints(QString dirName)
     QDir dir(path + "\\" + dirName);
     dir.setFilter(QDir::Files | QDir::NoDot | QDir::NoDotDot);
 
-    return dir.count();
+    QStringList filters = dir.nameFiltersFromString("*" + FILE_FORMAT);
+
+    dir.setNameFilters(filters);
+
+    QStringList filesList = dir.entryList();
+
+    return filesList.count();
 }
 
-QVector<ushort> *FileReader::getPoint(QString dirName, int pointNum)
+PointInfo* FileReader::getPoint(QString dirName, int pointNum)
 {
     QDir dir(path + "\\" + dirName);
     dir.setFilter(QDir::Files | QDir::NoDot | QDir::NoDotDot);
 
-    QStringList fileName = dir.nameFiltersFromString(QString::number(pointNum) + ".txt");
+    QStringList filters = dir.nameFiltersFromString(QString::number(pointNum) + FILE_FORMAT);
 
-    if (fileName.count() == 0)
+    dir.setNameFilters(filters);
+
+    QStringList filesList = dir.entryList();
+
+    if (filesList.count() == 0)
     {
         qDebug() << "error: can`t find files to read";
-        return new QVector<ushort>();
+        return nullptr;
     }
 
-    qDebug() << "Files to read finded:" << fileName.count();
+//    qDebug() << "Files to read finded:" << filesList.count();
 
-    QFile file(dir.path() + "\\" + fileName[0]);
+    QFile file(dir.path() + "\\" + filesList[0]);
 
     if (!file.open(QFile::ReadOnly))
     {
         qDebug() << "error: can`t open file to read lines";
-        return new QVector<ushort>();
+        return nullptr;
     }
 
-    QString info = file.readLine();
+    QString *info = new QString(file.readLine());
     QString firstLine = file.readLine();
 
     QTextStream lineStream(&firstLine);
-    QString time;
-    lineStream >> time >> time >> time;
+
+    QString *time = new QString();
+
+    lineStream >> *time >> *time >> *time;
 
     QVector<ushort>* vec = new QVector<ushort>();
 
@@ -63,5 +78,18 @@ QVector<ushort> *FileReader::getPoint(QString dirName, int pointNum)
         lineStream >> pix;
         vec->push_back(pix);
     }
-    return vec;
+
+    return new PointInfo(vec, info);
+}
+
+PointInfo::PointInfo(QVector<ushort> *data, QString *info)
+    : data(data), info(info)
+{
+    QTextStream infoStream(info);
+
+    QString buf;
+
+    infoStream >> buf >> buf >> buf;
+    infoStream >> buf >> time_step;
+    infoStream >> buf >> wl_low >> buf >> wl_high;
 }

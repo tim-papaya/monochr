@@ -123,7 +123,6 @@ bool UsbHandler::readData(char **rxBuffer, int &readed)
 
     DWORD bytesReceived;
 
-
     FT_GetStatus(ftHandle, &rxBytes, &txBytes, &eventDWORD);
 
     readed = static_cast<int>(rxBytes);

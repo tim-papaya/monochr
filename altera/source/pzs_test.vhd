@@ -8,7 +8,7 @@ generic (
 	LINE_SIZE       : integer := 2054;										
 	---=NUMBERx2----
 	SHUTTER : integer := 40;
-	EXPOSURE : integer := 20;
+	EXPOSURE : integer := 65000; -- number (ms) * 10000
 	ROG_START : integer := 10;
 	ROG_END : integer := 10;
 	DUM1 : integer := 66;
@@ -157,7 +157,7 @@ process (clk_in)
 				-- SHUTTER TIMING --
 				--------------------
 				if (count < SHUTTER) then
-					line_ready_reg 		<= '0';
+					line_ready_reg 	<= '0';
 					clk_reg    		<= '1';
 					shut_reg   		<= '1';
 				---------------------
@@ -165,21 +165,21 @@ process (clk_in)
 				---------------------
 				elsif (count < SHUTTER + EXPOSURE) then
 					line_ready_reg    <= '0';
-					shut_reg      <= '1';
-					clk_reg       <= '1';
-					ccd_ready_reg <= '0';
+					shut_reg      	  <= '1';
+					clk_reg           <= '1';
+					ccd_ready_reg     <= '0';
 				----------------
 				-- ROG START TIMING --
 				----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START) then
-					line_ready_reg <= '0';
+					line_ready_reg  <= '0';
 					rog_reg         <= '0';
 					count_start_seq := 0;
 				----------------
 				-- ROG END TIMING --
 				----------------
 				elsif (count < SHUTTER + EXPOSURE + ROG_START + ROG_END) then
-					line_ready_reg <= '0';
+					line_ready_reg  <= '0';
 					rog_reg         <= '1';
 					count_start_seq := 0;
 					count_data      := line_pos_start_reg;

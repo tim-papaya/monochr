@@ -3,40 +3,40 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk50Mhz'
-Slack : -8.059
-TNS   : -903.846
+Slack : -7.673
+TNS   : -859.168
 
 Type  : Slow 1200mV 85C Model Setup 'usb_clk'
-Slack : -7.328
-TNS   : -479.861
+Slack : -5.959
+TNS   : -485.073
 
 Type  : Slow 1200mV 85C Model Setup 'button'
-Slack : -2.173
-TNS   : -2.173
+Slack : -2.381
+TNS   : -2.381
 
 Type  : Slow 1200mV 85C Model Hold 'usb_clk'
-Slack : 0.211
+Slack : 0.104
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk50Mhz'
-Slack : 0.433
+Slack : 0.453
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'button'
-Slack : 0.692
+Slack : 0.804
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Recovery 'clk50Mhz'
-Slack : -1.090
-TNS   : -1.090
+Slack : -0.950
+TNS   : -0.950
 
 Type  : Slow 1200mV 85C Model Removal 'clk50Mhz'
-Slack : 1.200
+Slack : 1.074
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.201
-TNS   : -292.623
+TNS   : -308.980
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
@@ -47,40 +47,40 @@ Slack : -3.000
 TNS   : -3.000
 
 Type  : Slow 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -7.589
-TNS   : -815.198
+Slack : -7.021
+TNS   : -777.333
 
 Type  : Slow 1200mV 0C Model Setup 'usb_clk'
-Slack : -6.795
-TNS   : -438.381
+Slack : -5.511
+TNS   : -443.509
 
 Type  : Slow 1200mV 0C Model Setup 'button'
-Slack : -1.838
-TNS   : -1.838
+Slack : -2.043
+TNS   : -2.043
 
 Type  : Slow 1200mV 0C Model Hold 'usb_clk'
-Slack : 0.111
+Slack : 0.008
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.382
+Slack : 0.401
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'button'
-Slack : 0.620
+Slack : 0.713
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Recovery 'clk50Mhz'
-Slack : -0.906
-TNS   : -0.906
+Slack : -0.775
+TNS   : -0.775
 
 Type  : Slow 1200mV 0C Model Removal 'clk50Mhz'
-Slack : 1.268
+Slack : 1.155
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.201
-TNS   : -292.623
+TNS   : -308.980
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
 Slack : -3.000
@@ -91,47 +91,47 @@ Slack : -3.000
 TNS   : -3.000
 
 Type  : Fast 1200mV 0C Model Setup 'clk50Mhz'
-Slack : -2.930
-TNS   : -326.330
+Slack : -2.729
+TNS   : -303.798
 
 Type  : Fast 1200mV 0C Model Setup 'usb_clk'
-Slack : -2.517
-TNS   : -156.634
+Slack : -1.888
+TNS   : -149.462
 
 Type  : Fast 1200mV 0C Model Setup 'button'
-Slack : -0.895
-TNS   : -0.895
+Slack : -1.060
+TNS   : -1.060
 
 Type  : Fast 1200mV 0C Model Hold 'usb_clk'
-Slack : 0.147
+Slack : 0.073
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'clk50Mhz'
-Slack : 0.178
+Slack : 0.165
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'button'
-Slack : 0.276
+Slack : 0.337
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Recovery 'clk50Mhz'
-Slack : -0.808
-TNS   : -0.808
+Slack : -0.735
+TNS   : -0.735
 
 Type  : Fast 1200mV 0C Model Removal 'clk50Mhz'
-Slack : 0.346
+Slack : 0.296
 TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
-Slack : -3.000
-TNS   : -189.330
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'usb_clk'
 Slack : -3.000
-TNS   : -179.120
+TNS   : -194.369
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50Mhz'
+Slack : -3.000
+TNS   : -188.740
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'button'
 Slack : -3.000
-TNS   : -3.306
+TNS   : -3.302
 
 ------------------------------------------------------------

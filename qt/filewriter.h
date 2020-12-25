@@ -1,6 +1,8 @@
 #ifndef FILEWRITER_H
 #define FILEWRITER_H
 
+#include "chart/chart.h"
+
 #include <QString>
 #include <QVector>
 #include <QTextStream>
@@ -8,17 +10,15 @@
 class FileWriter
 {
 public:
-    const double TIME_BETWEEN_LINES = 0.5;
-
-         FileWriter(QString dirName);
-
          FileWriter(QString dirName, QString path);
 
     void writeBuffer(QVector<ushort> &ubuffer, double wlStart, double wlEnd, int fileNum);
 
     void writeLine(QVector<ushort> &line, double wlStart, double wlEnd, int fileNum);
 
-    void writeLines(QList<QVector<ushort>> &lines, double wlStart, double wlEnd, int fileNum);
+    void writeLines(QList<QVector<ushort>> &lines, WlBorders wlinfo, double timeStep, int fileNum);
+
+    void writeErrorLine(QVector<ushort> &ubuffer);
 
     static QString getDate();
 
@@ -27,11 +27,15 @@ public:
     static QString getTimeLine();
 
 private:
-    QString path = "C:\\TIM\\Project\\monochr\\logs\\";
+          QString path;
 
-    QTextStream& writeLineInfo(QTextStream &stream, double wlStart, double wlEnd);
+    const QString FILE_FORMAT = ".sdf";
+    const QString ERROR_LOG_FORMAT = ".txt";
 
-    void setFileName(int fileNum);
+    QTextStream& writeLineInfo(QTextStream &stream, double wlStart, double wlEnd, double timeStep);
+
+    void         setFileName(QString name, QString fileFormat);
+    void         setFileName(int fileNum);
 };
 
 

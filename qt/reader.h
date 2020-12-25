@@ -15,7 +15,8 @@ class Reader : public QObject
     Q_PROPERTY(qint64 waitTime READ waitTime WRITE setWaitTime NOTIFY waitTimeChanged)
     Q_PROPERTY(bool isWriteFile READ isWriteFile WRITE setIsWriteFile NOTIFY isWriteFileChanged)
     Q_PROPERTY(WlBorders wlinfo READ wlinfo WRITE setWlinfo NOTIFY wlinfoChanged)
-
+    Q_PROPERTY(QString filesPath READ filesPath WRITE setFilesPath NOTIFY filesPathChanged)
+    Q_PROPERTY(qint64 timeStep READ timeStep WRITE setTimeStep NOTIFY timeStepChanged)
 public:
 
     ushort start_seq[3] = {0x0003, 0x007F, 0x00C1};
@@ -46,6 +47,16 @@ public:
     WlBorders wlinfo() const
     {
         return m_wlinfo;
+    }
+
+    QString filesPath() const
+    {
+        return m_filesPath;
+    }
+
+    qint64 timeStep() const
+    {
+        return m_timeStep;
     }
 
 public slots:
@@ -91,12 +102,30 @@ public slots:
     }
 
 
-    void setwlinfo(WlBorders wlinfo)
+    void setWlinfo(WlBorders wlinfo)
     {
         m_wlinfo = wlinfo;
         emit wlinfoChanged(m_wlinfo);
     }
 
+
+    void setFilesPath(QString filesPath)
+    {
+        if (m_filesPath == filesPath)
+            return;
+
+        m_filesPath = filesPath;
+        emit filesPathChanged(m_filesPath);
+    }
+
+    void setTimeStep(qint64 timeStep)
+    {
+        if (m_timeStep == timeStep)
+            return;
+
+        m_timeStep = timeStep;
+        emit timeStepChanged(m_timeStep);
+    }
 
 signals:
 
@@ -112,6 +141,10 @@ signals:
 
     void wlinfoChanged(WlBorders wlinfo);
 
+    void filesPathChanged(QString filesPath);
+
+    void timeStepChanged(double timeStep);
+
 private:
 
     UsbHandler *usb;
@@ -119,14 +152,17 @@ private:
     int size_buffer_rd;
 
     QElapsedTimer  displayTimer;
-    const qint64   DISPLAY_WAIT_TIME = 100;
+    const qint64   DISPLAY_WAIT_TIME = 300;
 
     QElapsedTimer  fileTimer;
     qint64         m_waitTime;
 
+    QElapsedTimer  timeStepTimer;
+
     bool      m_running;
     WlBorders m_wlinfo;
     bool      m_isWriteFile;
+    QString   m_filesPath;
 
     QList<QVector<ushort>> m_result;
 
@@ -138,10 +174,9 @@ private:
 
     QList<QVector<ushort>> split(QVector<ushort> &ubuffer, int start_pos);
 
-    void                   writeBufferTo (QString fileName, QVector<ushort> &ubuffer, int linesCount);
-
     int                    findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
 
+    double m_timeStep;
 };
 
 #endif // READER_H

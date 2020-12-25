@@ -7,17 +7,50 @@
 #include <QDir>
 
 
-FileWriter::FileWriter(QString dirName)
-{
-    path += dirName + "\\";
-}
-
 FileWriter::FileWriter(QString dirName, QString path)
 {
-    this->path = path + dirName + "\\";
+    this->path = path + "\\" + dirName + "\\";
 }
 
-void FileWriter::writeBuffer(QVector<ushort> &ubuffer, double wlStart, double wlEnd, int fileNum)
+//void FileWriter::writeBuffer(QVector<ushort> &ubuffer, double wlStart, double wlEnd, int fileNum)
+//{
+//    setFileName(fileNum);
+
+//    QFile fileOut(path);
+
+//    if (!fileOut.open(QIODevice::WriteOnly))
+//       qDebug() << "error: file to write raw data from ccd don`t open";
+
+//    QTextStream stream(&fileOut);
+
+//    writeLineInfo(stream, wlStart, wlEnd);
+
+//    for (ushort temp : ubuffer)
+//        stream << temp << "\n";
+
+//    fileOut.close();
+//}
+
+//void FileWriter::writeLine(QVector<ushort> &line, double wlStart, double wlEnd, int fileNum)
+//{
+//    setFileName(fileNum);
+
+//    QFile fileOut(path);
+
+//    if (!fileOut.open(QIODevice::WriteOnly))
+//       qDebug() << "error: file to write raw data from ccd don`t open";
+
+//    QTextStream stream(&fileOut);
+
+//    writeLineInfo(stream, wlStart, wlEnd);
+
+//    for (ushort temp : line)
+//        stream << temp << "\t";
+
+//    fileOut.close();
+//}
+
+void FileWriter::writeLines(QList<QVector<ushort>> &lines, WlBorders wlinfo, double timeStep, int fileNum)
 {
     setFileName(fileNum);
 
@@ -28,45 +61,7 @@ void FileWriter::writeBuffer(QVector<ushort> &ubuffer, double wlStart, double wl
 
     QTextStream stream(&fileOut);
 
-    writeLineInfo(stream, wlStart, wlEnd);
-
-    for (ushort temp : ubuffer)
-        stream << temp << "\n";
-
-    fileOut.close();
-}
-
-void FileWriter::writeLine(QVector<ushort> &line, double wlStart, double wlEnd, int fileNum)
-{
-    setFileName(fileNum);
-
-    QFile fileOut(path);
-
-    if (!fileOut.open(QIODevice::WriteOnly))
-       qDebug() << "error: file to write raw data from ccd don`t open";
-
-    QTextStream stream(&fileOut);
-
-    writeLineInfo(stream, wlStart, wlEnd);
-
-    for (ushort temp : line)
-        stream << temp << "\t";
-
-    fileOut.close();
-}
-
-void FileWriter::writeLines(QList<QVector<ushort> > &lines, double wlStart, double wlEnd, int fileNum)
-{
-    setFileName(fileNum);
-
-    QFile fileOut(path);
-
-    if (!fileOut.open(QIODevice::WriteOnly))
-       qDebug() << "error: file to write raw data from ccd don`t open";
-
-    QTextStream stream(&fileOut);
-
-    writeLineInfo(stream, wlStart, wlEnd);
+    writeLineInfo(stream, wlinfo.wl_low, wlinfo.wl_high, timeStep);
 
     QList<QVector<ushort>>::iterator line;
 
@@ -75,13 +70,30 @@ void FileWriter::writeLines(QList<QVector<ushort> > &lines, double wlStart, doub
     for (line = lines.begin(); line != lines.end(); ++line)
     {
         stream << "time (ms):\t" <<  QStringLiteral("%1").arg(startTime_ms, 4, 'f', 1) << "\t";
-        startTime_ms += TIME_BETWEEN_LINES;
+        startTime_ms += timeStep;
 
         for (ushort temp : *line)
             stream << temp << "\t";
         stream << "\n";
     }
     fileOut.close();
+}
+
+void FileWriter::writeErrorLine(QVector<ushort> &ubuffer)
+{
+    setFileName(getDate() + " " + getTimeLine(),ERROR_LOG_FORMAT);
+
+        QFile fileOut(path);
+
+        if (!fileOut.open(QIODevice::WriteOnly))
+           qDebug() << "error: file to write raw data from ccd don`t open";
+
+        QTextStream stream(&fileOut);
+
+        for (ushort temp : ubuffer)
+            stream << temp << "\n";
+
+        fileOut.close();
 }
 
 QString FileWriter::getDate()
@@ -115,12 +127,21 @@ void FileWriter::setFileName(int fileNum)
     QDir dirPath(path);
     dirPath.mkpath(path);
 
-    path += QString::number(fileNum) + ".txt";
+    path += QString::number(fileNum) + FILE_FORMAT;
 }
 
-QTextStream &FileWriter::writeLineInfo(QTextStream &stream, double wlStart, double wlEnd)
+void FileWriter::setFileName(QString name, QString fileFormat)
 {
-    stream << "date\t" << getDate() << " " << getTime() << "\t";
-    stream << "wl range\t" << wlStart << "-" << wlEnd << "\n";
+    QDir dirPath(path);
+    dirPath.mkpath(path);
+
+    path += name + fileFormat;
+}
+
+QTextStream &FileWriter::writeLineInfo(QTextStream &stream, double wlStart, double wlEnd, double timeStep)
+{
+    stream << "date\t" << getDate() << " " << getTimeLine() << "\t";
+    stream << "time_step\t" << timeStep << "\t";
+    stream << "wl_range\t" << wlStart << " - " << wlEnd << "\n";
     return stream;
 }
