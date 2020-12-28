@@ -345,6 +345,9 @@
            </item>
            <item>
             <widget class="QComboBox" name="expComboBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>40</width>
@@ -440,11 +443,6 @@
                <string>trigger</string>
               </property>
              </item>
-             <item>
-              <property name="text">
-               <string>forse trigger</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -492,6 +490,9 @@
            </item>
            <item>
             <widget class="QLineEdit" name="wrTimeWriteLine">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>52</width>
@@ -511,6 +512,9 @@
            </item>
            <item>
             <widget class="QComboBox" name="wrTimeComboBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>40</width>
@@ -537,6 +541,9 @@
            </item>
            <item>
             <widget class="QPushButton" name="wrTimeWriteBtn">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="minimumSize">
               <size>
                <width>80</width>
