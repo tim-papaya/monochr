@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "reader.h"
+#include "usbreader.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])

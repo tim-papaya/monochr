@@ -1,6 +1,6 @@
 #include "usbhandler.h"
 #include "QDebug"
-#include "reader.h"
+#include "usbreader.h"
 UsbHandler::UsbHandler() : numDevs(0) ,
                            ftStatus(FT_CreateDeviceInfoList(&numDevs))
 {
@@ -44,7 +44,7 @@ int UsbHandler::showDevices(QString* info)
     return numDevs;
 }
 
-bool UsbHandler::setSyncFIFO(unsigned long inBuffer, char* desc)
+bool UsbHandler::setSyncFIFO(char* desc)
 {
     // SET DEVICE
     ftStatus = FT_ListDevices(&numDevs, NULL, FT_LIST_NUMBER_ONLY);
@@ -96,7 +96,7 @@ bool UsbHandler::setSyncFIFO(unsigned long inBuffer, char* desc)
         return false;
     }
 
-    ftStatus = FT_SetUSBParameters(ftHandle, inBuffer, inBuffer);
+    ftStatus = FT_SetUSBParameters(ftHandle, SIZE_RD_BUFFER, SIZE_RD_BUFFER);
 
     if (ftStatus != FT_OK)
     {

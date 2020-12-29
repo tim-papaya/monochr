@@ -12,7 +12,7 @@ public:
 
     int  showDevices(QString* info);
 
-    bool setSyncFIFO(unsigned long inBuffer, char* desc);
+    bool setSyncFIFO(char* desc);
 
     bool readData(char **rxBuffer, int &readed);
 
@@ -21,13 +21,14 @@ public:
     bool closeHandle();
 
 private:
-    const DWORD BUFFER_FULL = 0;
-    const char  LATENCY_TIMER = 255;
+    int   const  SIZE_RD_BUFFER = 65536;
+    DWORD const  BUFFER_FULL = 0;
+    char  const  LATENCY_TIMER = static_cast<char>(255);
 
-          DWORD numDevs;
+    DWORD numDevs;
 
-          FT_STATUS ftStatus;
-          FT_HANDLE ftHandle;
+    FT_STATUS ftStatus;
+    FT_HANDLE ftHandle;
 };
 
 

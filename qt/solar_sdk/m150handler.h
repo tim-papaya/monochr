@@ -24,28 +24,28 @@ public:
 
 private:
 
-    const char* M150_NAME = "M150 i-III";
+    char const *M150_NAME = "M150 i-III";
 
-    const int INSTR_NOT_FOUND = -1;
-    const int GRATING_NOT_FOUND = -1;
+    int  const INSTR_NOT_FOUND = -1;
+    int  const GRATING_NOT_FOUND = -1;
 
-    const int SLIT_NUM = 0;
+    int  const SLIT_NUM = 0;
 
-    const bool RESET = true;
-    const bool NOT_RESET = false;
+    bool const RESET = true;
+    bool const NOT_RESET = false;
 
-    const char* GRATING700 = "0-700nm (1800 gr)";
-    const char* GRATING2000 = "0-2000nm (600 gr)";
-    const char* GRATING11000 = "0-11000nm (100 gr)";
+    char const *GRATING700 = "0-700nm (1800 gr)";
+    char const *GRATING2000 = "0-2000nm (600 gr)";
+    char const *GRATING11000 = "0-11000nm (100 gr)";
 
-    const char* FILTER0 = "no filter";
-    const char* FILTER1 = "350-560 nm";
-    const char* FILTER2 = "560-700 nm";
-    const char* FILTER3 = "700-1120 nm";
-    const char* FILTER4 = "1120-1380 nm";
-    const char* FILTER5 = "1380-1920 nm";
+    char const *FILTER0 = "no filter";
+    char const *FILTER1 = "350-560 nm";
+    char const *FILTER2 = "560-700 nm";
+    char const *FILTER3 = "700-1120 nm";
+    char const *FILTER4 = "1120-1380 nm";
+    char const *FILTER5 = "1380-1920 nm";
 
-    const int FILTER_WHEEL = 0;
+    int const FILTER_WHEEL = 0;
 
     int instr_numb = INSTR_NOT_FOUND;
 

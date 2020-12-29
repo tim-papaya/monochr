@@ -6,10 +6,10 @@
 #include <QGraphicsScene>
 #include <QtCharts/QChartView>
 
-#include "reader.h"
-#include "usbhandler.h"
+#include "usb/usbreader.h"
+#include "usb/usbhandler.h"
 #include "chart/chart.h"
-#include "m150handler.h"
+#include "solar_sdk/m150handler.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,13 +18,13 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+public:
+    QThread   *usbThread = nullptr;
+    UsbReader *usbReader = nullptr;
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-    QThread *usbThread = nullptr;
-    Reader *usbReader = nullptr;
+   ~MainWindow();
 
     void updateM150Info();
 
@@ -32,6 +32,9 @@ signals:
     void read_from_usb();
 
 public slots:
+    void read();
+
+private slots:
     void on_showDevicesBtn_clicked();
 
     void on_readBtn_clicked();
@@ -39,10 +42,6 @@ public slots:
     void on_initBtn_clicked();
 
     void on_pushButton_clicked();
-
-    void read();
-
-private slots:
 
     void on_m150WL_Btn_clicked();
 
@@ -84,46 +83,42 @@ private slots:
 
 private:
 
-    char* M150_LOG_PATH = "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
-    char* M150_CONFIG_PATH = "c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\";
+    char  *M150_LOG_PATH = (char*)    "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
+    char  *M150_CONFIG_PATH = (char*) "c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\";
 
-    const QString FIFO_DEVICE_DESC = "FT2232H MiniModule A";
-    const int LINE_SIZE = 2048;
-    const int LINES_IN_BUFFER = 15;
+    QString const  FIFO_DEVICE_DESC = "FT2232H MiniModule A";
 
-    const int INDEX_OF_LIVE_TAB = 0;
-    const int INDEX_OF_RECORD_TAB = 1;
+    int const LINE_SIZE = 2048;
+    int const LINES_IN_BUFFER = 15;
 
-    const int NUM_LINES_VISIBLE = 5;
-    const int DEVICE_NOT_FOUND  = -1;
+    int const INDEX_OF_LIVE_TAB = 0;
+    int const INDEX_OF_RECORD_TAB = 1;
+
+    int const NUM_LINES_VISIBLE =  5;
+    int const DEVICE_NOT_FOUND  = -1;
+
+
 
     QString deviseDesc;
-
-    int SIZE_RD_BUFFER = 65536;
+    QString prevPath;
 
     bool isM150Inited = false;
 
     QChartView *currentView = nullptr;
-
-    QChartView *recordView = nullptr;
+    QChartView *recordView  = nullptr;
 
     Ui::MainWindow *ui;
 
-    UsbHandler usb;
-
-    M150Handler *m150;
-
-    QGraphicsScene scene;
+    UsbHandler   usb;
+    M150Handler *m150 = nullptr;
 
     bool just_started = true;
 
+private:
     QStringList* getDeviseList(QString info);
-
-    QString prevPath;
 
     void readLive();
 
     void readRecord();
-
 };
 #endif // MAINWINDOW_H

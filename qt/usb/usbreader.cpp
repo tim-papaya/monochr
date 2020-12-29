@@ -1,26 +1,23 @@
-#include "reader.h"
-#include "filewriter.h"
+#include "usbreader.h"
+#include "chart/filewriter.h"
 
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
 
-Reader::Reader(UsbHandler *usb, int size_rdbuf)
-  : usb(usb), size_buffer_rd(size_rdbuf)
+UsbReader::UsbReader(UsbHandler *usb)
+  : usb(usb)
 {
-    qRegisterMetaType<QList<QVector<ushort>>>();
+    qRegisterMetaType<lines_t>();
 
     displayTimer.start();
-    fileTimer.start();
     timeStepTimer.start();
 
     setWaitTime(100);
-
 }
 
-ushort Reader::convert(const char ch1, const char ch2)
+ushort UsbReader::convert(const char ch1, const char ch2)
 {
-
     ushort numb = static_cast<ushort>(ch1);
     numb <<= 8;
     numb += static_cast<ushort>(ch2) & 0x00FF;
@@ -31,9 +28,9 @@ ushort Reader::convert(const char ch1, const char ch2)
 //    return *(ushort*)ch;
 }
 
-QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer, int start_pos)
+lines_t* UsbReader::split(QVector<ushort> &ubuffer, int start_pos)
 {
-    QList<QVector<ushort>> list;
+    lines_t *list = new lines_t();
     int i = start_pos;
     int start_line = start_pos;
     int end_line = start_pos;
@@ -56,14 +53,14 @@ QList<QVector<ushort>> Reader::split(QVector<ushort> &ubuffer, int start_pos)
         QVector<ushort> line;
         for (int j = start_line; j < end_line; j++)
             line.push_back(ubuffer[j]);
-        list.push_back(line);
+        list->push_back(line);
     }
 
     return list;
 }
 
 
-int Reader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int seq_size)
+int UsbReader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int seq_size)
 {
     int count = 0;
     for (int i = start_from; i < vec.size(); i++) {
@@ -77,24 +74,39 @@ int Reader::findSeq(QVector<ushort> &vec, int start_from, ushort* seq, int seq_s
     return -1;
 }
 
-void Reader::stop()
+void UsbReader::writeData(lines_t *lines)
+{
+    if (!startedWrite)
+    {
+        fileDir = FileWriter::getDate() + "_"
+                + FileWriter::getTimeLine();
+        startedWrite = true;
+        filesCount = 0;
+    }
+    double timeStepDbl = timeStep();
+    timeStepDbl /= lines->size();
+
+    FileWriter *writer = new FileWriter(fileDir, filesPath());
+    writer->writeLines(*lines, wlinfo(), timeStepDbl, filesCount);
+    filesCount++;
+}
+
+void UsbReader::stop()
 {
     qDebug() << "Thread Stopped";
     m_running = false;
     emit finished();
 }
 
-void Reader::readUsb()
+void UsbReader::readUsb()
 {
     qDebug() << "Thread Started";
 
     m_running = true;
 
-    char* buffer = nullptr;
-
     while (m_running)
     {
-
+        char* buffer = nullptr;
         int readed = 0;
 
         if (!usb->readData(&buffer, readed))
@@ -109,9 +121,9 @@ void Reader::readUsb()
 
         delete[] buffer;
 
-        QList<QVector<ushort>> lines = split(ubuffer, 0);
+        lines_t *lines = split(ubuffer, 0);
 
-        if (lines.size() == 0)
+        if (lines->size() == 0)
         {
             qDebug() << "Size of error line " << readed;
             FileWriter *writer = new FileWriter("error_log", filesPath());
@@ -123,27 +135,9 @@ void Reader::readUsb()
         }
 
         if (isWriteFile())
-        {
-            if (isWriteFile() && !startedWrite)
-            {
-                fileDir = FileWriter::getDate() + "_"
-                        + FileWriter::getTimeLine();
-                startedWrite = true;
-                filesCount = 0;
-            }
-            double timeStepDbl = timeStep();
-            timeStepDbl /= lines.size();
-
-            FileWriter *writer = new FileWriter(fileDir, filesPath());
-            writer->writeLines(lines, wlinfo(), timeStepDbl, filesCount);
-            filesCount++;
-
-            fileTimer.restart();
-        }
+            writeData(lines);
         else
-        {
             startedWrite = false;
-        }
 
         if (displayTimer.elapsed() >= DISPLAY_WAIT_TIME)
         {

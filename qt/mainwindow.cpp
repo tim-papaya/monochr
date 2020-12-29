@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "usbhandler.h"
+#include "usb/usbhandler.h"
 #include "chart/chart.h"
-#include "filereader.h"
+#include "chart/filereader.h"
 
 #include <QtCharts/QtCharts>
 
@@ -94,13 +94,14 @@ void MainWindow::on_initBtn_clicked()
     QByteArray qb = deviseDesc.toUtf8();
     char* desc = qb.data();
 
-    usb.setSyncFIFO(SIZE_RD_BUFFER, desc);
+    usb.setSyncFIFO(desc);
 
     usbThread = new QThread();
-    usbReader = new Reader(&usb, SIZE_RD_BUFFER);
+    usbReader = new UsbReader(&usb);
 
-    connect(usbReader, SIGNAL(resultChanged(QList<QVector<ushort>>)), this, SLOT(read()));
+    connect(usbReader, SIGNAL(resultChanged(lines_t*)), this, SLOT(read()));
     connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
+
     connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
 
     usbReader->moveToThread(usbThread);
@@ -153,7 +154,7 @@ void MainWindow::on_m150Filter_Btn_clicked()
 void MainWindow::on_m150InitBtn_clicked()
 {
     m150 = new M150Handler();
-    m150->init(M150_LOG_PATH,M150_CONFIG_PATH);
+    m150->init(M150_LOG_PATH ,M150_CONFIG_PATH);
     updateM150Info();
 
     isM150Inited = true;
@@ -200,9 +201,9 @@ void MainWindow::readLive()
     QElapsedTimer update_time;
     update_time.start();
 
-    QList<QVector<ushort>> list = usbReader->result();
+    lines_t *list = usbReader->result();
 
-    if (list.size() == 0)
+    if (list->size() == 0)
     {
         qDebug() << "lines read ERROR";
         return;
@@ -218,7 +219,7 @@ void MainWindow::readLive()
         wl_atCenter = ui->m150WL_ReadtLine->text().toDouble();
 
     addLine(currentView->chart(),
-            list[0],
+            list->first(),
             wl_atCenter);
 
     Borders borders(ui->rangeY_low->text().toInt(),
@@ -231,8 +232,10 @@ void MainWindow::readLive()
     timeStep /= LINES_IN_BUFFER;
     ui->realTimeStepLineEdit->setText(QString::number(timeStep));
 
-    qDebug() << "lines:" << list.size();
+    qDebug() << "lines:" << list->size();
     qDebug("Plot updated, takes %u ms", update_time.elapsed());
+
+    delete list;
 }
 
 void MainWindow::readRecord()

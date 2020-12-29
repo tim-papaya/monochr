@@ -27,18 +27,18 @@ struct PointInfo
 class FileReader
 {
 public:
-                     FileReader(QString path);
+                  FileReader(QString path);
 
-    QStringList*     readDirs();
+    QStringList*  readDirs();
 
-    int              countPoints(QString dirName);
+    int           countPoints(QString dirName);
 
-    PointInfo*       getPoint(QString dirName, int pointNum);
+    PointInfo*    getPoint(QString dirName, int pointNum);
 
 private:
-    const QString FILE_FORMAT = ".sdf";
+     QString const FILE_FORMAT = ".sdf";
 
-          QString path;
+     QString path;
 };
 
 

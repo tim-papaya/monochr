@@ -3,24 +3,24 @@ QT       += charts
 
 SOURCES += \
     chart/chart.cpp \
-    filereader.cpp \
-    filewriter.cpp \
-    m150handler.cpp \
+    chart/filereader.cpp \
+    chart/filewriter.cpp \
     main.cpp \
     mainwindow.cpp \
-    reader.cpp \
-    usbhandler.cpp
+    solar_sdk/m150handler.cpp \
+    usb/usbhandler.cpp \
+    usb/usbreader.cpp \
 
 HEADERS += \
     chart/chart.h \
-    filereader.h \
-    filewriter.h \
-    m150handler.h \
+    chart/filereader.h \
+    chart/filewriter.h \
     mainwindow.h \
-    reader.h \
+    solar_sdk/m150handler.h \
     solar_sdk/solarls_sdk.h \
     usb/ftd2xx.h \
-    usbhandler.h
+    usb/usbhandler.h \
+    usb/usbreader.h \
 
 FORMS += \
     mainwindow.ui

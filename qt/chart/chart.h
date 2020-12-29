@@ -49,20 +49,20 @@ struct WlBorders
     }
 };
 
-QChart*   createChart();
+    QChart*   createChart();
 
-void      resetChart(QChart* data_chart);
+    void      resetChart(QChart* data_chart);
 
-void      setBorders(QChart* data_chart, Borders borders);
+    void      setBorders(QChart* data_chart, Borders borders);
 
-void      addLine(QChart          *data_chart,
-                  QVector<ushort> &line,
-                  double           wl_atCenter);
+    void      addLine(QChart          *data_chart,
+                      QVector<ushort> &line,
+                      double           wl_atCenter);
 
-void      addLine(QChart *data_chart, PointInfo *pointInfo);
+    void      addLine(QChart *data_chart, PointInfo *pointInfo);
 
-int       findDarkSignal(QVector<ushort> *line);
+    int       findDarkSignal(QVector<ushort> *line);
 
-WlBorders findWlBorders(double wl_center);
+    WlBorders findWlBorders(double wl_center);
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef READER_H
-#define READER_H
+#ifndef USBREADER_H
+#define USBREADER_H
 
 #include <QObject>
 #include <QGraphicsScene>
@@ -8,28 +8,31 @@
 #include <usbhandler.h>
 #include "chart/chart.h"
 
-class Reader : public QObject
+typedef QList<QVector<ushort>> lines_t;
+
+
+class UsbReader : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QList<QVector<ushort>> result READ result WRITE setResult NOTIFY resultChanged)
+    Q_PROPERTY(lines_t* result READ result WRITE setResult NOTIFY resultChanged)
     Q_PROPERTY(qint64 waitTime READ waitTime WRITE setWaitTime NOTIFY waitTimeChanged)
     Q_PROPERTY(bool isWriteFile READ isWriteFile WRITE setIsWriteFile NOTIFY isWriteFileChanged)
     Q_PROPERTY(WlBorders wlinfo READ wlinfo WRITE setWlinfo NOTIFY wlinfoChanged)
     Q_PROPERTY(QString filesPath READ filesPath WRITE setFilesPath NOTIFY filesPathChanged)
     Q_PROPERTY(qint64 timeStep READ timeStep WRITE setTimeStep NOTIFY timeStepChanged)
-public:
 
+public:
     ushort start_seq[3] = {0x0003, 0x007F, 0x00C1};
     ushort end_seq[3] = {0x005C, 0x0080, 0x0F3E};
-
 
     const int SEQ_SIZE = 3;
     const int LINE_SIZE = 2048;
     const int SEQ_NOT_FOUND = -1;
 
-    Reader(UsbHandler *usb, int size_rdbuf);
+public:
+    UsbReader(UsbHandler *usb);
 
-    QList<QVector<ushort>> result() const
+    lines_t* result() const
     {
         return m_result;
     }
@@ -60,12 +63,11 @@ public:
     }
 
 public slots:
-
     void stop();
 
     void readUsb();
 
-    void setResult(QList<QVector<ushort>> result)
+    void setResult(lines_t *result)
     {
         if (m_result == result)
             return;
@@ -133,7 +135,7 @@ signals:
 
     void finished();
 
-    void resultChanged(QList<QVector<ushort>> result);
+    void resultChanged(lines_t *result);
 
     void waitTimeChanged(qint64 waitTime);
 
@@ -146,13 +148,10 @@ signals:
     void timeStepChanged(double timeStep);
 
 private:
-
     UsbHandler *usb;
 
-    int size_buffer_rd;
-
     QElapsedTimer  displayTimer;
-    const qint64   DISPLAY_WAIT_TIME = 300;
+    qint64   const DISPLAY_WAIT_TIME = 300;
 
     QElapsedTimer  fileTimer;
     qint64         m_waitTime;
@@ -160,23 +159,31 @@ private:
     QElapsedTimer  timeStepTimer;
 
     bool      m_running;
-    WlBorders m_wlinfo;
     bool      m_isWriteFile;
+
+    WlBorders m_wlinfo;
+
     QString   m_filesPath;
 
-    QList<QVector<ushort>> m_result;
+    lines_t  *m_result;
+
+    double    m_timeStep;
 
     bool    startedWrite = false;
     QString fileDir;
     quint64 filesCount = 0;
 
-    ushort                 convert(char const ch1, char const ch2);
 
-    QList<QVector<ushort>> split(QVector<ushort> &ubuffer, int start_pos);
 
-    int                    findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
+private:
+    ushort   convert(char const ch1, char const ch2);
 
-    double m_timeStep;
+    lines_t* split(QVector<ushort> &ubuffer, int start_pos);
+
+    int      findSeq(QVector<ushort> &vec, int start_from, ushort *seq, int seq_size);
+
+    void     writeData(lines_t *lines);
+
 };
 
-#endif // READER_H
+#endif // USBREADER_H
