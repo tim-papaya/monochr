@@ -97,7 +97,7 @@ private:
     int const NUM_LINES_VISIBLE =  5;
     int const DEVICE_NOT_FOUND  = -1;
 
-
+    bool m150busy = false;
 
     QString deviseDesc;
     QString prevPath;

@@ -47,7 +47,8 @@ void MainWindow::updateM150Info()
     ui->m150Slit_ReadLine->setText(QString::number(slitWidth));
     ui->m150Filter_ReadLine->setText(filter);
 
-    usbReader->setWlinfo(WlBorders(wl, LINE_SIZE));
+    if (usbReader != nullptr)
+        usbReader->setWlinfo(WlBorders(wl, LINE_SIZE));
 }
 
 
@@ -119,6 +120,8 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::read()
 {
+    if (m150busy)
+        return;
     // Plot update here
     int indexTabSelected = ui->chartsTabWidget->currentIndex();
 
@@ -128,27 +131,36 @@ void MainWindow::read()
 
 void MainWindow::on_m150WL_Btn_clicked()
 {
+    m150busy = true;
     m150->setWL(ui->m150WL_SetLine->text().toDouble());
     updateM150Info();
+    m150busy = false;
 }
 
 void MainWindow::on_m150Grating_Btn_clicked()
 {
+    m150busy = true;
     m150->setGrating(ui->m150Grating_SetCombo->currentText());
     updateM150Info();
+    m150busy = false;
 }
 
 void MainWindow::on_m150Slit_Btn_clicked()
 {
+    m150busy = true;
     m150->setSlit(ui->m150Slit_SetLine->text().toInt());
     updateM150Info();
+    m150busy = false;
 
 }
 
 void MainWindow::on_m150Filter_Btn_clicked()
 {
+    m150busy = true;
     m150->setFilter(ui->m150Filter_SetCombo->currentText());
     updateM150Info();
+    m150busy = false;
+
 }
 
 void MainWindow::on_m150InitBtn_clicked()
