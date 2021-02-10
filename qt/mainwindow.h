@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     QThread   *usbThread = nullptr;
+    QThread   *m150Thread = nullptr;
     UsbReader *usbReader = nullptr;
 
 public:
@@ -30,6 +31,11 @@ public:
 
 signals:
     void read_from_usb();
+
+    void m150ReadWL();
+    void m150ReadGrating();
+    void m150ReadSlit();
+    void m150ReadFilter();
 
 public slots:
     void read();
@@ -83,9 +89,6 @@ private slots:
 
 private:
 
-    char  *M150_LOG_PATH = (char*)    "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
-    char  *M150_CONFIG_PATH = (char*) "c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\";
-
     QString const  FIFO_DEVICE_DESC = "FT2232H MiniModule A";
 
     int const LINE_SIZE = 2048;
@@ -116,6 +119,10 @@ private:
 
 private:
     QStringList* getDeviseList(QString info);
+
+    void startUsbThread();
+
+    void startM150Thread();
 
     void readLive();
 

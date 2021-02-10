@@ -9,14 +9,14 @@ M150Handler::M150Handler()
 
 }
 
-void M150Handler::init(char* log_path, char* config_path)
+void M150Handler::init()
 {
-    if (!sls_SetLogging(SDKLOGLEVEL_DEBUG, log_path))
+    if (!sls_SetLogging(SDKLOGLEVEL_DEBUG, M150_LOG_PATH))
     {
         qDebug() << "error m150: can`t set logs";
         return;
     }
-    if (!sls_Init(config_path))
+    if (!sls_Init(M150_CONFIG_PATH))
     {
         qDebug() << "error m150: can`t init the m150";
         return;
@@ -73,7 +73,7 @@ void M150Handler::setSlit(int width)
     }
 }
 
-void M150Handler::setWL(double wl)
+void M150Handler::setWl(double wl)
 {
     if (wl < 0)
     {
@@ -199,14 +199,17 @@ QString M150Handler::findFilterName(int filter_num)
     }
 }
 
-void M150Handler::getInfo(double& wl, QString& grating, double& slitWidth, QString& filter)
+void M150Handler::getInfo()
 {
+    double wl;
 
     if (!sls_GetWl(instr_numb, &wl))
     {
         qDebug() << "error m150: can`t get WL";
         return;
     }
+
+    setWl(wl);
 
     int gr_index;
 
@@ -215,8 +218,11 @@ void M150Handler::getInfo(double& wl, QString& grating, double& slitWidth, QStri
         qDebug() << "error m150: can`t get Grating";
         return;
     }
-    grating = findGratingName(gr_index);
+    QString grating = findGratingName(gr_index);
 
+    setGrating(grating);
+
+    double slitWidth;
 
     if (!sls_GetSlitWidth(instr_numb, SLIT_NUM, &slitWidth))
     {
@@ -224,14 +230,15 @@ void M150Handler::getInfo(double& wl, QString& grating, double& slitWidth, QStri
         return;
     }
 
-    int filter_num = findFilterNum(filter);
+    int filter_num;
 
     if (!sls_GetFilterStateIdx(instr_numb, FILTER_WHEEL, &filter_num))
     {
         qDebug() << "error m150: can`t get Filter name";
         return;
     }
-    filter = findFilterName(filter_num);
+
+    QString filter = findFilterName(filter_num);
 }
 
 int M150Handler::findGratingNum(QString grating)

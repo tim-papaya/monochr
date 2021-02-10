@@ -30,6 +30,7 @@ int FileReader::countPoints(QString dirName)
 
     QStringList filesList = dir.entryList();
 
+
     return filesList.count();
 }
 
