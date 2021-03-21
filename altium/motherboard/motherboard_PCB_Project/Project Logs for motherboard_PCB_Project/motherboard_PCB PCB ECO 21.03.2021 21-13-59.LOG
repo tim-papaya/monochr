@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=VINA Pin=P5-1
+Removed Member From Class: ClassName=motherboard_Sheet Member=P5
+Added Pin To Net: NetName=VINA Pin=R1-2

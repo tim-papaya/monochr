@@ -1,0 +1,313 @@
+Removed Pin From Net: NetName=GND Pin=C9-1
+Removed Pin From Net: NetName=V5_VDD Pin=C10-2
+Removed Pin From Net: NetName=GND Pin=C12-1
+Removed Pin From Net: NetName=V5_VDD Pin=C13-2
+Removed Pin From Net: NetName=GND Pin=C16-1
+Removed Pin From Net: NetName=GND Pin=C17-1
+Removed Pin From Net: NetName=GND Pin=C19-1
+Removed Pin From Net: NetName=GND Pin=C21-1
+Removed Pin From Net: NetName=GND Pin=C22-1
+Removed Pin From Net: NetName=V12 Pin=C25-1
+Removed Pin From Net: NetName=GND Pin=C25-2
+Removed Pin From Net: NetName=GND Pin=D2-1
+Removed Pin From Net: NetName=V12 Pin=D2-3
+Removed Pin From Net: NetName=GND Pin=D3-1
+Removed Pin From Net: NetName=V12 Pin=D3-3
+Removed Pin From Net: NetName=V12 Pin=D4-3
+Removed Pin From Net: NetName=GND Pin=D5-1
+Removed Pin From Net: NetName=V12 Pin=D5-3
+Removed Pin From Net: NetName=V5_VDD Pin=D7-8
+Removed Pin From Net: NetName=GND Pin=D7-12
+Removed Pin From Net: NetName=GND Pin=D7-17
+Removed Pin From Net: NetName=GND Pin=D7-19
+Removed Pin From Net: NetName=V5_VDD Pin=D7-21
+Removed Pin From Net: NetName=V5_VDD Pin=D7-22
+Removed Pin From Net: NetName=GND Pin=DD2-3
+Removed Pin From Net: NetName=V5_VDD Pin=DD2-5
+Removed Pin From Net: NetName=FPGA_ADC_CLK Pin=DD4-2
+Removed Pin From Net: NetName=GND Pin=DD4-3
+Removed Pin From Net: NetName=ADC_CLK Pin=DD4-4
+Removed Pin From Net: NetName=V5_VDD Pin=DD4-5
+Removed Pin From Net: NetName=NetDD5_1 Pin=DD5-4
+Removed Pin From Net: NetName=GND Pin=DD7-3
+Removed Pin From Net: NetName=V5_VDD Pin=DD7-5
+Removed Pin From Net: NetName=V5_ADC Pin=P2-1
+Removed Pin From Net: NetName=V5_VDD Pin=P3-1
+Removed Pin From Net: NetName=V3V3_VDD Pin=P4-1
+Removed Pin From Net: NetName=VINA Pin=R1-2
+Removed Pin From Net: NetName=GND Pin=R8-1
+Removed Pin From Net: NetName=GND Pin=SB1-1
+Removed Pin From Net: NetName=GND Pin=SB1-1
+Removed Pin From Net: NetName=NetR7_1 Pin=SB1-2
+Removed Pin From Net: NetName=NetR7_1 Pin=SB1-2
+Removed Member From Class: ClassName=motherboard_Sheet Member=C9
+Removed Member From Class: ClassName=motherboard_Sheet Member=C12
+Removed Member From Class: ClassName=motherboard_Sheet Member=C16
+Removed Member From Class: ClassName=motherboard_Sheet Member=C17
+Removed Member From Class: ClassName=motherboard_Sheet Member=C19
+Removed Member From Class: ClassName=motherboard_Sheet Member=C21
+Removed Member From Class: ClassName=motherboard_Sheet Member=C22
+Removed Member From Class: ClassName=motherboard_Sheet Member=C25
+Removed Member From Class: ClassName=motherboard_Sheet Member=D2
+Removed Member From Class: ClassName=motherboard_Sheet Member=D3
+Removed Member From Class: ClassName=motherboard_Sheet Member=D4
+Removed Member From Class: ClassName=motherboard_Sheet Member=D5
+Removed Member From Class: ClassName=motherboard_Sheet Member=DD2
+Removed Member From Class: ClassName=motherboard_Sheet Member=DD4
+Removed Member From Class: ClassName=motherboard_Sheet Member=DD7
+Removed Member From Class: ClassName=motherboard_Sheet Member=P1
+Removed Member From Class: ClassName=motherboard_Sheet Member=P2
+Removed Member From Class: ClassName=motherboard_Sheet Member=P3
+Removed Member From Class: ClassName=motherboard_Sheet Member=P4
+Removed Member From Class: ClassName=motherboard_Sheet Member=R8
+Removed Member From Class: ClassName=motherboard_Sheet Member=R12
+Removed Member From Class: ClassName=motherboard_Sheet Member=SB1
+Change Component Footprint: Designator=D7 Old Footprint=ILX751A New Footprint=s11639-01
+Change Component Comment : Designator=D7 Old Comment=ILX751A New Comment=S11639-01
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(TYPE_C)
+Add component. Clean all parameters for all variants
+Added Component: Designator=C?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(SN74LVC244ADWR)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(TO-252)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(TO-252)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(TO-252)
+Add component. Clean all parameters for all variants
+Added Component: Designator=D?(TO-252)
+Add component. Clean all parameters for all variants
+Added Component: Designator=DD?(SOT-23-5)
+Add component. Clean all parameters for all variants
+Added Component: Designator=DD?(SOT-23-5)
+Add component. Clean all parameters for all variants
+Added Component: Designator=P?(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P?(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P?(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P?(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P?(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=R?(0805)
+Add component. Clean all parameters for all variants
+Added Component: Designator=SW?(BUTTON)
+Add component. Clean all parameters for all variants
+Added Component: Designator=VD?(SOT-23)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=V12 Pin=C?-1
+Added Pin To Net: NetName=V12 Pin=C?-1
+Added Pin To Net: NetName=V12 Pin=C?-1
+Added Pin To Net: NetName=V12 Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=D7-2
+Added Pin To Net: NetName=GND Pin=D7-11
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=GND Pin=D?-1
+Added Pin To Net: NetName=V12 Pin=D?-3
+Added Pin To Net: NetName=V12 Pin=D?-3
+Added Pin To Net: NetName=V12 Pin=D?-3
+Added Pin To Net: NetName=V12 Pin=D?-3
+Added Pin To Net: NetName=GND Pin=D?-10
+Added Pin To Net: NetName=V3V3_VDD Pin=D?-20
+Added Pin To Net: NetName=FPGA_ADC_CLK Pin=DD?-2
+Added Pin To Net: NetName=GND Pin=DD?-2
+Added Pin To Net: NetName=GND Pin=DD?-3
+Added Pin To Net: NetName=ADC_CLK Pin=DD?-4
+Added Pin To Net: NetName=V5_ADC Pin=DD?-5
+Added Pin To Net: NetName=V5_VDD Pin=DD?-5
+Added Pin To Net: NetName=VINA Pin=P?-1
+Added Pin To Net: NetName=V3V3_VDD Pin=P?-2
+Added Pin To Net: NetName=V5_VDD Pin=P?-2
+Added Pin To Net: NetName=GND Pin=R?-1
+Added Pin To Net: NetName=GND Pin=R?-2
+Added Pin To Net: NetName=NetDD5_1 Pin=R?-2
+Added Pin To Net: NetName=V5_VDD Pin=R?-2
+Added Pin To Net: NetName=NetR7_1 Pin=SW?-1
+Added Pin To Net: NetName=NetR7_1 Pin=SW?-1
+Added Pin To Net: NetName=GND Pin=SW?-2
+Added Pin To Net: NetName=GND Pin=SW?-2
+Added Pin To Net: NetName=GND Pin=VD?-2
+Change Net Name : Old Net Name=FPGA_CCD_CLK New Net Name=FPGA_LIS_CLK
+Added Pin To Net: NetName=5V_ADC Pin=P?-2
+Added Net: Name=5V_ADC
+Added Pin To Net: NetName=5V_LIS Pin=P?-2
+Added Net: Name=5V_LIS
+Added Pin To Net: NetName=FPGA_EOS Pin=D?-16
+Added Pin To Net: NetName=FPGA_EOS Pin=X2-12
+Added Net: Name=FPGA_EOS
+Added Pin To Net: NetName=FPGA_LIS_ST Pin=DD3-2
+Added Pin To Net: NetName=FPGA_LIS_ST Pin=X3-9
+Added Net: Name=FPGA_LIS_ST
+Added Pin To Net: NetName=FPGA_TRIG Pin=D?-18
+Added Pin To Net: NetName=FPGA_TRIG Pin=X2-10
+Added Net: Name=FPGA_TRIG
+Added Pin To Net: NetName=LIS_CLK Pin=D7-3
+Added Pin To Net: NetName=LIS_CLK Pin=DD1-4
+Added Net: Name=LIS_CLK
+Added Pin To Net: NetName=LIS_EOS Pin=D7-15
+Added Pin To Net: NetName=LIS_EOS Pin=D?-4
+Added Net: Name=LIS_EOS
+Added Pin To Net: NetName=LIS_ST Pin=D7-24
+Added Pin To Net: NetName=LIS_ST Pin=DD3-4
+Added Net: Name=LIS_ST
+Added Pin To Net: NetName=LIS_TRIG Pin=D7-23
+Added Pin To Net: NetName=LIS_TRIG Pin=D?-2
+Added Net: Name=LIS_TRIG
+Added Pin To Net: NetName=LIS_Vout Pin=D7-13
+Added Pin To Net: NetName=LIS_Vout Pin=R?-2
+Added Net: Name=LIS_Vout
+Added Pin To Net: NetName=NetC?_1 Pin=C?-1
+Added Pin To Net: NetName=NetC?_1 Pin=D7-22
+Added Net: Name=NetC?_1
+Added Pin To Net: NetName=NetC?_2 Pin=C?-2
+Added Pin To Net: NetName=NetC?_2 Pin=C?-2
+Added Pin To Net: NetName=NetC?_2 Pin=C?-2
+Added Pin To Net: NetName=NetC?_2 Pin=D?-2
+Added Pin To Net: NetName=NetC?_2 Pin=P?-1
+Added Net: Name=NetC?_2
+Added Pin To Net: NetName=NetDD5_4 Pin=DD5-4
+Added Pin To Net: NetName=NetDD5_4 Pin=R?-1
+Added Pin To Net: NetName=NetDD5_4 Pin=R?-2
+Added Net: Name=NetDD5_4
+Added Pin To Net: NetName=NetDD?_3 Pin=DD?-3
+Added Pin To Net: NetName=NetDD?_3 Pin=R?-1
+Added Pin To Net: NetName=NetDD?_3 Pin=R?-1
+Added Net: Name=NetDD?_3
+Added Pin To Net: NetName=NetDD?_4 Pin=DD?-4
+Added Pin To Net: NetName=NetDD?_4 Pin=R?-1
+Added Pin To Net: NetName=NetDD?_4 Pin=R?-2
+Added Net: Name=NetDD?_4
+Added Pin To Net: NetName=NetP?_2 Pin=P?-2
+Added Pin To Net: NetName=NetP?_2 Pin=R1-2
+Added Net: Name=NetP?_2
+Added Pin To Net: NetName=NetR?_1 Pin=R?-1
+Added Pin To Net: NetName=NetR?_1 Pin=R?-1
+Added Pin To Net: NetName=NetR?_1 Pin=VD?-1
+Added Net: Name=NetR?_1
+Added Pin To Net: NetName=V5_LIS Pin=C10-2
+Added Pin To Net: NetName=V5_LIS Pin=C13-2
+Added Pin To Net: NetName=V5_LIS Pin=D7-1
+Added Pin To Net: NetName=V5_LIS Pin=D7-12
+Added Net: Name=V5_LIS
+Added Pin To Net: NetName=V_diff Pin=DD5-3
+Added Pin To Net: NetName=V_diff Pin=DD?-1
+Added Pin To Net: NetName=V_diff Pin=R?-2
+Added Net: Name=V_diff
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 22,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 1,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 22,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 22,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 22,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 10,0
+Added Member To Class: ClassName=motherboard_Sheet Member=Component C? 0,1
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? BUFFER 5V ->3.3V
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? LM1117 3.3V
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? LM1117 5V
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? LM1117 5V
+Added Member To Class: ClassName=motherboard_Sheet Member=Component D? LM1117 5V
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD? NC7SZ14M5X
+Added Member To Class: ClassName=motherboard_Sheet Member=Component DD? AD8605ARTZ
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P? ADC_IN_TEST
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P? Header 2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P? Header 2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P? Header 2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component P? Header 2
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 5k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 10k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 10k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 2.94k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 10k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 15k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component R? 5k
+Added Member To Class: ClassName=motherboard_Sheet Member=Component SW? BUTTON
+Added Member To Class: ClassName=motherboard_Sheet Member=Component VD? AD1580

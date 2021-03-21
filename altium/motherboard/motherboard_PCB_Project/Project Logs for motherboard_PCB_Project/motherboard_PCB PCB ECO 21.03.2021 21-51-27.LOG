@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=V5_LIS Pin=DD2-5
+Added Pin To Net: NetName=V5_VDD Pin=DD2-5
