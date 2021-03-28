@@ -96,7 +96,20 @@ void MainWindow::on_initBtn_clicked()
     char* desc = qb.data();
 
     usb.setSyncFIFO(desc);
-    startUsbThread();
+
+    usbThread = new QThread();
+    usbReader = new UsbReader(&usb);
+
+    connect(usbReader, SIGNAL(resultChanged(lines_t*)), this, SLOT(read()));
+    connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
+
+    connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
+
+    usbReader->moveToThread(usbThread);
+
+    usbReader->setFilesPath(ui->pathWriteLine->text());
+
+    usbThread->start();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -152,7 +165,11 @@ void MainWindow::on_m150Filter_Btn_clicked()
 
 void MainWindow::on_m150InitBtn_clicked()
 {
-    startM150Thread();
+    m150 = new M150Handler();
+    m150->init(M150_LOG_PATH ,M150_CONFIG_PATH);
+    updateM150Info();
+
+    isM150Inited = true;
 }
 
 QStringList* MainWindow::getDeviseList(QString info)
@@ -189,33 +206,6 @@ QStringList* MainWindow::getDeviseList(QString info)
         }
     }
     return listDev;
-}
-
-void MainWindow::startUsbThread()
-{
-    usbThread = new QThread();
-    usbReader = new UsbReader(&usb);
-
-    connect(usbReader, SIGNAL(resultChanged(lines_t*)), this, SLOT(read()));
-    connect(usbReader, SIGNAL(finished()), usbThread, SLOT(quit()));
-
-    connect(this, SIGNAL(read_from_usb()), usbReader, SLOT(readUsb()));
-
-    usbReader->moveToThread(usbThread);
-
-    usbReader->setFilesPath(ui->pathWriteLine->text());
-
-    usbThread->start();
-}
-
-void MainWindow::startM150Thread()
-{
-    m150 = new M150Handler();
-    m150Thread = new QThread();
-
-    updateM150Info();
-
-    isM150Inited = true;
 }
 
 void MainWindow::readLive()

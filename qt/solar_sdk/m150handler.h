@@ -2,66 +2,27 @@
 #define M150HANDLER_H
 
 #include <QString>
-#include <QObject>
 
-class M150Handler : public QObject
+class M150Handler
 {
-    Q_OBJECT
-
-    Q_PROPERTY(double wl READ wl WRITE setWl NOTIFY wlChanged)
-    Q_PROPERTY(QString grating READ grating WRITE setGrating NOTIFY gratingChanged)
-    Q_PROPERTY(QString filter READ filter WRITE setFilter NOTIFY filterChanged)
-    Q_PROPERTY(int slit READ slit WRITE setSlit NOTIFY slitChanged)
 
 public:
 
     M150Handler();
 
-    void init();
-
-    void getInfo();
-
-    double wl() const
-    {
-        return m_wl;
-    }
-
-    QString grating() const
-    {
-        return m_grating;
-    }
-
-    QString filter() const
-    {
-        return m_filter;
-    }
-
-    int slit() const
-    {
-        return m_slit;
-    }
-
-public slots:
-    void setWl(double wl);
+    void init(char* log_path, char* config_path);
 
     void setSlit(int width);
+
+    void setWL(double wl);
 
     void setGrating(QString gratingName);
 
     void setFilter(QString filterName);
 
-signals:
-    void wlChanged(double wl);
-
-    void gratingChanged(QString grating);
-
-    void filterChanged(QString filter);
-
-    void slitChanged(int slit);
+    void getInfo(double& wl, QString& grating, double& slitWidth, QString& filter);
 
 private:
-    char  *M150_LOG_PATH = (char*)    "c:\\TIM\\Project\\monochr\\logs\\m150\\m150.log";
-    char  *M150_CONFIG_PATH = (char*) "c:\\TIM\\Project\\monochr\\qt\\solar_sdk\\";
 
     char const *M150_NAME = "M150 i-III";
 
@@ -98,10 +59,6 @@ private:
 
     QString findFilterName(int filter_num);
 
-    double m_wl;
-    QString m_grating;
-    QString m_filter;
-    int m_slit;
 };
 
 #endif // M150HANDLER_H

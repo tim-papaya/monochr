@@ -1,11 +1,9 @@
 #include "mainwindow.h"
 #include "usbreader.h"
 #include <QApplication>
-#include <QRegularExpression>
 
 int main(int argc, char *argv[])
 {
-
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
